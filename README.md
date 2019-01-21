@@ -1,34 +1,27 @@
-## ScholarWeb
+# ScholarWeb
 
+### Temática
 
-### Markdown
+1. _Sección pública_.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
+Funcionalidades:
 - Bulleted
 - List
 
-1. Numbered
-2. List
+2. _Sección privada_.
 
-**Bold** and _Italic_ and `Code` text
+Funcionalidades:
+- Bulleted
+- List
 
-[Link](url) and ![Image](src)
-```
+###**Entidades que componen la aplicación web.**
+Tendremos en un principio 6 entidades en toda la aplicación web que se identificarán como: invitado, alumno, profesor, padre, actividades extraescolares y comedor. 
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+###**Funcionalidades del servicio interno.**
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/belenp97/ScholarWeb/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+###**Equipo de desarrollo.**
+  1. Jorge Alonso Vivar
+  2. Laura Fernández García
+  3. Belén Palazón Pacheco.
 
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
