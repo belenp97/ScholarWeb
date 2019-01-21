@@ -15,7 +15,7 @@ Funcionalidades:
 - List
 
 ### **Entidades que componen la aplicación web.**
-Tendremos en un principio 6 entidades en toda la aplicación web que se identificarán como: invitado, alumno, profesor, padre, actividades extraescolares y comedor. 
+Tendremos en un principio 5 entidades en toda la aplicación web que se identificarán como: alumno, profesor, padre, actividades extraescolares y comedor. 
 
 ### **Funcionalidades del servicio interno.**
 
