@@ -2,7 +2,7 @@
 
 ## Temática
 
-###1. _Sección pública_.
+### 1. _Sección pública_.
 
 Funcionalidades:
 - Visualización de los diferentes lugares del colegio.
@@ -10,7 +10,7 @@ Funcionalidades:
 - Actividades extraescolares
 - Visualización del menú del comedor (intolerancia a alimentos).
 
-###2. _Sección privada_.
+### 2. _Sección privada_.
 
 Funcionalidades:
 - Subida de notas por parte del profesor.
