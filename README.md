@@ -19,7 +19,7 @@ Funcionalidades:
 - Login de padres para ver datos de su hijo/a.
 
 ### **Entidades que componen la aplicación web.**
-Tendremos en un principio 6 entidades en toda la aplicación web que se identificarán como: alumno, profesor, padre, actividades extraescolares y comedor. 
+Tendremos en un principio 6 entidades en toda la aplicación web que se identificarán como: Administradores de la página, alumno, profesor, padre, actividades extraescolares y comedor. 
 
 ### **Funcionalidades del servicio interno.**
 
