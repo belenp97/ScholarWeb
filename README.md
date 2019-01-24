@@ -3,7 +3,7 @@
 ## Temática
 
 ## Descripcion
-vamos a realizar la creación de un página web de un colegio de primaria, en el cual se podrán hacer cosas como: 
+Vamos a realizar la creación de un página web de un colegio de primaria, en el cual se podrán hacer cosas como: 
  - Envio de correo a los padres de las notas de los hijos, sus faltas e incluso el menu del mes. 
  - Los monitores de las actividades extraescolares podran saber los nuevos alumnos inscritos. 
  - Tanto profesores, padres y monitores recibiran las ultimas noticias del colegio. 
@@ -36,6 +36,7 @@ Tendremos en un principio 6 entidades en toda la aplicación web que se identifi
 - Profesores.
 - Padres.
 - Monitores (actividades extraescolares). 
+- Actividades. 
 - Asignaturas 
 - Comedor (menus con o sin intolerancia). 
 
