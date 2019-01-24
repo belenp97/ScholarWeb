@@ -2,6 +2,13 @@
 
 ## Temática
 
+## Descripcion
+vamos a realizar la creación de un página web de un colegio de primaria, en el cual se podrán hacer cosas como: 
+ - Envio de correo a los padres de las notas de los hijos, sus faltas e incluso el menu del mes. 
+ - Los monitores de las actividades extraescolares podran saber los nuevos alumnos inscritos. 
+ - tanto profesores, padres y monitores recibiran las ultimas noticias del colegio. 
+ - Las personas que no sean del centro, podrán visualizar las diferentes zonas del centro y sus distintas actividades. 
+
 ### 1. _Sección pública_.
 
 Funcionalidades:
