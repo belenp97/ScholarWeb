@@ -45,4 +45,7 @@ Tendremos en un principio 6 entidades en toda la aplicación web que se identifi
   1. Jorge Alonso Vivar
   2. Laura Fernández García
   3. Belén Palazón Pacheco.
+  
+### **Gestión de Proyecto en Trello.**
+- https://trello.com/b/EJT4Gd68/scholarweb
 
