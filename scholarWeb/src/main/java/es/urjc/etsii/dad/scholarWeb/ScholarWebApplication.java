@@ -9,6 +9,8 @@ public class ScholarWebApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ScholarWebApplication.class, args);
 	}
+	
+	//prueba de comentario.
 
 }
 
