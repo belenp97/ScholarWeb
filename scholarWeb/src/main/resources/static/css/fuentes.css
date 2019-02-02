@@ -118,7 +118,6 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5,
 .principal {
 	padding-top: 30px;
 	color: #666666;
-	background: url("images/featured_bg.gif") bottom left repeat-x #E0E0E0;
 }
 
 .enlaces {
@@ -193,7 +192,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5,
 	padding-left: 14px;
 	text-transform: uppercase;
 	color: #EBEBEC;
-	background: url("images/box_tittle_left.gif") top left no-repeat
+	background: url("./img/box_left.gif") top left no-repeat
 		transparent;
 }
 
@@ -202,7 +201,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5,
 	line-height: 40px;
 	white-space: nowrap;
 	font-weight: normal;
-	background: url("images/box_tittle_right.gif") top right no-repeat;
+	background: url("./img/box_right.gif") top right no-repeat;
 }
 
 #box_tittle li a:hover, #box_tittle li.active a {
@@ -216,6 +215,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5,
 #box_tittle li.last {
 	margin: 0;
 }
+
 
 /* ----------------------------------------------Content------------------------------------- */
 #box_image {
@@ -654,6 +654,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5,
 
 #footer .fl_left {
 	margin-bottom: 30px;
+    margin-left: 70px;
 }
 
 #footer .fl_left .fl_left {
@@ -683,39 +684,6 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5,
 	margin: 0 0 15px 0;
 	padding: 0;
 	line-height: normal;
-}
-
-#footer .fl_right #social {
-	display: block;
-	width: 100%;
-	margin: 0 0 15px 0;
-	padding: 0;
-	line-height: normal;
-}
-
-#footer .fl_right #social ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-#footer .fl_right #social li {
-	float: left; /* Only For IE */
-}
-
-#footer .fl_right #social a {
-	display: block;
-	float: left;
-	width: 49px;
-	height: 49px;
-	margin-right: 20px;
-	overflow: hidden;
-	text-indent: -4000em;
-	background: url("images/social-sprite.gif") no-repeat;
-}
-
-#footer .fl_right #social li.last a {
-	margin-right: 0;
 }
 
 #footer .last {
