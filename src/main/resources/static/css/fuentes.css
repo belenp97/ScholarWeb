@@ -67,6 +67,13 @@ a {
 	float: right;
 }
 
+.t{
+	background-color: #444A4F;
+	color: #EBEBEC;
+}
+
+
+
 img {
 	margin: 0;
 	padding: 0;
@@ -164,6 +171,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5,
 
 #header .fl_right p {
 	text-align: center;
+	
 }
 
 #box_tittle {
@@ -192,8 +200,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5,
 	padding-left: 14px;
 	text-transform: uppercase;
 	color: #EBEBEC;
-	background: url("./img/box_left.gif") top left no-repeat
-		transparent;
+	background: url("img/box_left.gif") top left no-repeat transparent;
 }
 
 #box_tittle li a strong {
@@ -201,7 +208,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5,
 	line-height: 40px;
 	white-space: nowrap;
 	font-weight: normal;
-	background: url("./img/box_right.gif") top right no-repeat;
+	background: url("img/box_right.gif") top right no-repeat;
 }
 
 #box_tittle li a:hover, #box_tittle li.active a {
