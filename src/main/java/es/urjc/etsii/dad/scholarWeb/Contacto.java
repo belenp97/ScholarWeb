@@ -3,18 +3,20 @@ package es.urjc.etsii.dad.scholarWeb;
 public class Contacto {
 
 	private String nombre;
-	private String asunto;
-	private String cuerpo;
+	private int telefono;
+	private String mail;
+	private String cuerpo; 
 
 
 	public Contacto() {
 
 	}
 
-	public Contacto(String nombre, String asunto, String cuerpo) {
+	public Contacto(String nombre, int telefono, String mail, String cuerpo) {
 		super();
 		this.nombre = nombre;
-		this.asunto = asunto; 
+		this.telefono = telefono; 
+		this.mail = mail; 
 		this.cuerpo = cuerpo;
 	}
 
@@ -26,12 +28,20 @@ public class Contacto {
 		this.nombre = nombre;
 	}
 
-	public String getasunto() {
-		return asunto;
+	public int gettelefono() {
+		return telefono;
 	}
 
-	public void setasunto(String asunto) {
-		this.asunto = asunto;
+	public void settelefono(int telefono) {
+		this.telefono = telefono;
+	}
+	
+	public String getmail() {
+		return mail;
+	}
+
+	public void setmail(String mail) {
+		this.mail = mail;
 	}
 	
 	public String getcuerpo() {
@@ -44,7 +54,7 @@ public class Contacto {
 
 	@Override
 	public String toString() {
-		return "Anuncio [nombre=" + nombre +" asunto= " +asunto + ", cuerpo=" + cuerpo + "]";
+		return "Anuncio [nombre=" + nombre +" telefono= "+telefono +" mail= " +mail + ", cuerpo=" + cuerpo + "]";
 	}
 
 }
