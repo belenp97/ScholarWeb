@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class PrincipalControler {
-
+	
 	private List<Noticia> noticias = new ArrayList<>();
 	
 	public PrincipalControler() {
@@ -24,15 +24,16 @@ public class PrincipalControler {
 		return "principal";
 	}
 	
-	@GetMapping("/noticia")
+	@GetMapping("/noticias")
 	public String verNoticia(Model model) {
 
-		//Noticia noticia = noticias.get();
-
-		//model.addAttribute("noticia", noticia);
-
-		return "noticia";
+		return "noticias";
 	}
 
+	@GetMapping("/contacto")
+	public String contacto(Model model) {
+
+		return "contacto";
+	}
 	
 }

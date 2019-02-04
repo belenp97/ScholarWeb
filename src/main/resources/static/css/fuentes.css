@@ -225,6 +225,32 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5,
 
 
 /* ----------------------------------------------Content------------------------------------- */
+#send{
+	width: 100px;  
+    margin: 20px; 
+}
+
+#center{
+	text-align: center; 
+	margin-left: 120px;
+    width: 500px;
+    height: 400px; 
+}
+
+
+
+#box_contact{
+	position: relative; /* important */
+	margin: 0 auto 20px;
+	display: block;
+	width: 740px;
+	height: 340px;
+	color: #FFFFFF;
+	background-color: #444A4F;
+	border: 3px solid #737E86;
+	overflow: hidden; /* important */
+}
+
 #box_image {
 	position: relative; /* important */
 	margin: 0 auto 20px;

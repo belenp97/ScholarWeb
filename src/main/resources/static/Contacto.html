@@ -9,9 +9,9 @@
   <div id="box_tittle">
     <ul>
       <li class="active"><a href="/"><strong>Inicio</strong></a></li>
-      <li><a href="profesores"><strong>Profesores</strong></a></li>
-      <li><a href="noticias"><strong>Noticias</strong></a></li>
-      <li><a href=""><strong>Contacto</strong></a></li>
+      <li><a href="profesores.html"><strong>Profesores</strong></a></li>
+      <li><a href="noticias.html"><strong>Noticias</strong></a></li>
+      <li><a href="contacto.html"><strong>Contacto</strong></a></li>
     </ul>
   </div>
 </div>
@@ -26,8 +26,8 @@
       <form action="#" method="post" id="sitesearch">
         <fieldset>
           <legend>Site Search</legend>
-          <input type="text" />
-          <input type="image" src="img/search.gif" id="search" alt="Search" />
+          <input type="text" class="t" />
+          <input type="image" src="css/img/search.gif" id="search" alt="Search" />
         </fieldset>
       </form>
       <p> <a href="#">Student Login</a> | <a href="#">Staff Login</a></p>
@@ -38,10 +38,21 @@
 <!-- ####################################################################################################### -->
 
 <div class="wrapper principal">
-  <div id="container" class="clear"> 
-    <h1>{{noticia.titulo}}</h1>
-	<p>{{noticia.cuerpo}}</p> 
-  </div>
+	<div id="box_contact">
+		<div id="center">
+		  <h2>Escribe aqui tu sugerencia</h2>
+		     <form action="/contacto" method="post">
+				<p>Nombre: </p>
+				<input type='text' name='nombre'/>
+				<p>Asunto:</p>
+				<input type='text' name='asunto'/>
+				<p>Comentario:</p>
+				<textarea name='comentario' rows=6 cols=50></textarea>
+		
+				<input id="send" type='submit' value='Enviar'/>
+			</form>
+		</div>
+</div>
 </div>
 
 <!-- ####################################################################################################### -->
@@ -126,7 +137,8 @@
 <div class="wrapper">
   <div id="footer" class="clear"> 
     <div class="fl_left clear">
-      <div class="fl_left center"><img src="./img/worldmap.gif" alt="" /><br />
+      <div class="fl_left center">
+      	<img src="./css/img/worldmap.gif" alt="" /><br />
         <a href="#">Find Us With Google Maps &raquo;</a>
       </div>
     </div>
