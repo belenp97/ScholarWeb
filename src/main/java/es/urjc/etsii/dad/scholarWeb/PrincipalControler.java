@@ -23,7 +23,7 @@ public class PrincipalControler {
 	}
 
 	@GetMapping("/")
-	public String tablon(Model model) {
+	public String principal(Model model) {
 
 		return "principal";
 	}
@@ -33,17 +33,22 @@ public class PrincipalControler {
 
 		return "noticias";
 	}
+	
+	@GetMapping("/profesores")
+	public String verprofesores(Model model) {
 
-	@PostMapping("/contacto")
-	public String newContacto(Model model, @RequestParam("name") String name, @RequestParam Integer telefono,
-			@RequestParam String mail, @RequestParam String cuerpo) {
-
-		model.addAttribute("name", name);
-		model.addAttribute("telefono", telefono);
-		model.addAttribute("mail", mail);
-		model.addAttribute("comentario", cuerpo);
+		return "profesores";
+	}
+	
+	@GetMapping("/contacto")
+	public String newContacto(Model model) {
 
 		return "contacto";// llamarlo como se llama el html
 	}
+	
+	@PostMapping("/contacto/recibido")
+	public String contactoRecibido(Model model) {
 
+		return "contacto_recibido";
+	}
 }
