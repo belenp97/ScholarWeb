@@ -46,7 +46,7 @@ Tendremos en un principio 6 entidades en toda la aplicación web que se identifi
 ### **DIAGRAMA ENTIDAD-RELACIÓN.**
 ![untitled diagram](https://user-images.githubusercontent.com/45795451/52587160-bb2fdb00-2e39-11e9-83ce-6d51ad25237e.png)
 
-### **MODELO DE NAVEGCIÓN.**
+### **MODELO DE NAVEGACIÓN.**
 
 
 ### **CAPTURAS DE PANTALLA.**
