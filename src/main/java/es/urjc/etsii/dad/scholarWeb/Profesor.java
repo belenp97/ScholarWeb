@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class Profesor {
 	
 	@Id
-	private int identificador;
+	private Integer identificador;
 	@Column
 	private String nombre;
 	@Column

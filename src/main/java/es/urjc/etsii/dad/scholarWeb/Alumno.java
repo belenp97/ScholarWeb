@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Alumno {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int n_expediente;
+	Integer n_expediente;
 	@Column
 	String nombre;
 	@Column
@@ -30,7 +30,7 @@ public class Alumno {
 		this.apellido=a;
 		this.correo=c;
 	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}
