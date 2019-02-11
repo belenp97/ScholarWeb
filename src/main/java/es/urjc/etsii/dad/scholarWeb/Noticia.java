@@ -1,13 +1,16 @@
 package es.urjc.etsii.dad.scholarWeb;
 
+import javax.persistence.*;
+
+@Entity
 public class Noticia {
 
+	@Id
 	private String titulo;
+	@Column
 	private String cuerpo;
 
-	public Noticia() {
-
-	}
+	public Noticia() {	}
 
 	public Noticia(String titulo, String cuerpo) {
 		super();

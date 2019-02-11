@@ -1,11 +1,19 @@
 package es.urjc.etsii.dad.scholarWeb;
 
 import java.util.Arrays;
+import javax.persistence.*;
 
+@Entity
 public class Asignatura {
+	@Id
 	String nombre;
+	@Column
 	String curso;
+	@Column
 	int[][] notas;
+	
+	public Asignatura() {}
+	
 	public Asignatura(String nombre, String curso) {
 		super();
 		this.nombre = nombre;
