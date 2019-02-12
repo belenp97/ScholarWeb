@@ -39,7 +39,10 @@
 
 <div class="wrapper principal">
   <div id="container" class="clear"> 
-    
+    {{#noticias}}
+	    <p>{{noticias.titulo}}</p>
+	    <p>{{noticias.cuerpo}}</p>
+    {{/noticias}}
   </div>
 </div>
 
