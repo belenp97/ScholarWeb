@@ -7,6 +7,7 @@ public class Padre {
 	
 	@Id
 	String correo;
+	
 	@OneToMany
 	Alumno alumno;
 	

@@ -29,22 +29,22 @@ public class NoticiaController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Noticia> addItem(@RequestBody Noticia item) {
-		//item.setId(null);
+		item.settitulo(null);
 		Noticia newItem = repository.saveAndFlush(item);
 		return new ResponseEntity<>(newItem,HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{Titulo}", method = RequestMethod.PUT)
 	public ResponseEntity<Noticia> updateItem(@RequestBody Noticia updatedItem,
-			@PathVariable Integer id) {
+			@PathVariable String titulo) {
 		
-		//updatedItem.setId(id);
+		updatedItem.settitulo(titulo);
 		Noticia item = repository.saveAndFlush(updatedItem);
 		return new ResponseEntity<>(item,HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void deleteItem(@PathVariable Integer id) {
-		//repository.delete(id);
+	@RequestMapping(value = "/{Titulo}", method = RequestMethod.DELETE)
+	public void deleteItem(@PathVariable String titulo) {
+		repository.deleteById(titulo);
 	}
 }

@@ -11,40 +11,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import es.urjc.etsii.dad.scholarWeb.Profesor;
-import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
-
+import es.urjc.etsii.dad.scholarWeb.Aula;
+import es.urjc.etsii.dad.scholarWeb.Repositories.AulaRepository;
 
 @RestController
-@RequestMapping("/profesores")
-public class ProfesorController {
-
+@RequestMapping("/aulas")
+public class AulaController {
+	
 	@Autowired
-	private ProfesorRepository repository;
+	private AulaRepository repository;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public List<Profesor> findItems() {
+	public List<Aula> findItems() {
 		return repository.findAll();
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Profesor> addItem(@RequestBody Profesor item) {
-		item.setIdentificador(null);
-		Profesor newItem = repository.saveAndFlush(item);
+	public ResponseEntity<Aula> addItem(@RequestBody Aula item) {
+		item.setIdAula(null);
+		Aula newItem = repository.saveAndFlush(item);
 		return new ResponseEntity<>(newItem,HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/{identificador}", method = RequestMethod.PUT)
-	public ResponseEntity<Profesor> updateItem(@RequestBody Profesor updatedItem,
+	@RequestMapping(value = "/{IdAula}", method = RequestMethod.PUT)
+	public ResponseEntity<Aula> updateItem(@RequestBody Aula updatedItem,
 			@PathVariable Integer id) {
 		
-		updatedItem.setIdentificador(id);
-		Profesor item = repository.saveAndFlush(updatedItem);
+		updatedItem.setIdAula(id);
+		Aula item = repository.saveAndFlush(updatedItem);
 		return new ResponseEntity<>(item,HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/{identificador}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{IdAula}", method = RequestMethod.DELETE)
 	public void deleteItem(@PathVariable Integer id) {
 		repository.deleteById(id);
 	}
+
 }

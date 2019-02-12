@@ -28,22 +28,22 @@ public class PadreController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Padre> addItem(@RequestBody Padre item) {
-		//item.setId(null);
+		item.setCorreo(null);
 		Padre newItem = repository.saveAndFlush(item);
 		return new ResponseEntity<>(newItem,HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{Correo}", method = RequestMethod.PUT)
 	public ResponseEntity<Padre> updateItem(@RequestBody Padre updatedItem,
-			@PathVariable Integer id) {
+			@PathVariable String correo) {
 		
-		//updatedItem.setId(id);
+		updatedItem.setCorreo(correo);
 		Padre item = repository.saveAndFlush(updatedItem);
 		return new ResponseEntity<>(item,HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void deleteItem(@PathVariable Integer id) {
-		//repository.delete(id);
+	@RequestMapping(value = "/{Correo}", method = RequestMethod.DELETE)
+	public void deleteItem(@PathVariable String correo) {
+		repository.deleteById(correo);
 	}
 }
