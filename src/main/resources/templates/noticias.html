@@ -36,18 +36,16 @@
   </div>
 </div>
 <!-- ####################################################################################################### -->
+
 <div class="wrapper principal">
-  <div id="box_image">
-    <img src="./css/img/fachada.jpg" alt="" width="940" height="340"/>
-  </div>
-  <div id="box_url_info" class="clear">
-    <ul>
-      <li><a href="#"><img src="css/img/fachada.jpg" alt="" /> <strong>Make An Application</strong></a></li>
-      <li><a href="#"><img src="css/img/fachada.jpg" alt="" /> <strong>Order A Prospectus</strong></a></li>
-      <li class="last"><a href="#"><img src="css/img/fachada.jpg" alt="" /> <strong>Fees &amp; Funding</strong></a></li>
-    </ul>
+  <div id="container" class="clear"> 
+    {{#noticias}}
+	    <p>{{noticias.titulo}}</p>
+	    <p>{{noticias.cuerpo}}</p>
+    {{/noticias}}
   </div>
 </div>
+
 <!-- ####################################################################################################### -->
 <div class="wrapper enlaces">
   <div id="table_nav" class="clear">
