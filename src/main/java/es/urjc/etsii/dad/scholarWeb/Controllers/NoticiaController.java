@@ -2,6 +2,8 @@ package es.urjc.etsii.dad.scholarWeb.Controllers;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +20,14 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.NoticiaRepository;
 @RequestMapping("/noticias")
 public class NoticiaController {
 
-
 	@Autowired
 	private NoticiaRepository repository;
 
+	@PostConstruct
+	public void init() {
+		repository.save(new Noticia("Importante","es una noticia importante para los padres"));
+	}
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Noticia> findItems() {
 		return repository.findAll();
