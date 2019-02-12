@@ -1,17 +1,28 @@
 package es.urjc.etsii.dad.scholarWeb;
 
 import java.io.File;
+import javax.persistence.*;
 import java.util.Arrays;
 
+@Entity
 public class Profesor {
 	
-	private String nombre, correo;
+	@Id
+	private Integer identificador;
+	@Column
+	private String nombre;
+	@Column
+	private String correo;
+	@Column
 	private File comedor;
+	@OneToMany
 	private Asignatura[] asignaturas;
+	@OneToMany
 	private Alumno[] alumnos;
+	@OneToMany
 	private Padre[] padres;
 	
-	
+	public Profesor() {}
 
 	public Profesor(String n, String c) {
 		this.nombre= n;

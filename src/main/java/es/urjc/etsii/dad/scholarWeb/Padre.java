@@ -1,8 +1,17 @@
 package es.urjc.etsii.dad.scholarWeb;
 
+import javax.persistence.*;
+
+@Entity
 public class Padre {
-	Alumno alumno;
+	
+	@Id
 	String correo;
+	@OneToMany
+	Alumno alumno;
+	
+	public Padre() {}
+	
 	public Padre(Alumno alumno, String correo) {
 		super();
 		this.alumno = alumno;

@@ -1,5 +1,6 @@
 package es.urjc.etsii.dad.scholarWeb;
 
+
 public class Contacto {
 
 	private String nombre;
@@ -9,7 +10,6 @@ public class Contacto {
 
 
 	public Contacto() {
-
 	}
 
 	public Contacto(String nombre, int telefono, String mail, String cuerpo) {

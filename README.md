@@ -1,7 +1,5 @@
 # ScholarWeb
 
-## Temática
-
 ## Descripcion
 Vamos a realizar la creación de un página web de un colegio de primaria, en el cual se podrán hacer cosas como: 
  - Envio de correo a los padres de las notas de los hijos, sus faltas e incluso el menu del mes. 
@@ -40,6 +38,19 @@ Tendremos en un principio 6 entidades en toda la aplicación web que se identifi
 - Menu comedor. 
 - Notificaciones a padres (notas, faltas, horario).
 - Dias festivos.
+- Menú comedor.
+
+### **DIAGRAMA DE CLASES.**
+![diagrama_clases](https://user-images.githubusercontent.com/45795451/52587343-1a8deb00-2e3a-11e9-955a-1b40acbb1aef.png)
+
+### **DIAGRAMA ENTIDAD-RELACIÓN.**
+![untitled diagram](https://user-images.githubusercontent.com/45795451/52587160-bb2fdb00-2e39-11e9-83ce-6d51ad25237e.png)
+
+### **MODELO DE NAVEGACIÓN.**
+
+
+### **CAPTURAS DE PANTALLA.**
+
 
 ### **Equipo de desarrollo.**
   1. Jorge Alonso Vivar

@@ -1,21 +1,36 @@
 package es.urjc.etsii.dad.scholarWeb;
 
 import java.util.Arrays;
+import javax.persistence.*;
 
+
+@Entity
 public class Alumno {
-	String nombre, apellido;
-	int n_expediente;
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Integer n_expediente;
+	@Column
+	String nombre;
+	@Column
+	String apellido;
+	@Column
 	String correo;
-	Asignatura[] asignaturas;
-	int[][] faltas = new int[asignaturas.length][1];   //la idea es que las filas sean asignaturas y las columnas el nº de faltas.
+	@Column
 	String letra_curso;
+	@OneToMany
+	Asignatura[] asignaturas;
+	@Column
+	int[][] faltas = new int[asignaturas.length][1];   //la idea es que las filas sean asignaturas y las columnas el nº de faltas.
+	
+	
+	public Alumno() {}
 	
 	public Alumno(String n, String a,String c) {
 		this.nombre=n;
 		this.apellido=a;
 		this.correo=c;
 	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}
