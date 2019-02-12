@@ -11,35 +11,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import es.urjc.etsii.dad.scholarWeb.Asignatura;
-import es.urjc.etsii.dad.scholarWeb.Repositories.AsignaturaRepository;
+import es.urjc.etsii.dad.scholarWeb.Contacto;
+import es.urjc.etsii.dad.scholarWeb.Repositories.ContactoRepository;
+
 
 @RestController
-@RequestMapping("/asignaturas")
-public class AsignaturaController {
+@RequestMapping("/contactos")
+public class ContactoController {
 
-	
 	@Autowired
-	private AsignaturaRepository repository;
+	private ContactoRepository repository;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public List<Asignatura> findItems() {
+	public List<Contacto> findItems() {
 		return repository.findAll();
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Asignatura> addItem(@RequestBody Asignatura item) {
-		item.setNombre(null);
-		Asignatura newItem = repository.saveAndFlush(item);
+	public ResponseEntity<Contacto> addItem(@RequestBody Contacto item) {
+		item.setnombre(null);
+		Contacto newItem = repository.saveAndFlush(item);
 		return new ResponseEntity<>(newItem,HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/{nombre}", method = RequestMethod.PUT)
-	public ResponseEntity<Asignatura> updateItem(@RequestBody Asignatura updatedItem,
+	public ResponseEntity<Contacto> updateItem(@RequestBody Contacto updatedItem,
 			@PathVariable String nombre) {
 		
-		updatedItem.setNombre(nombre);
-		Asignatura item = repository.saveAndFlush(updatedItem);
+		updatedItem.setnombre(nombre);
+		Contacto item = repository.saveAndFlush(updatedItem);
 		return new ResponseEntity<>(item,HttpStatus.CREATED);
 	}
 

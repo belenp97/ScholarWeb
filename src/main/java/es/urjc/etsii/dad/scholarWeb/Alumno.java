@@ -51,7 +51,7 @@ public class Alumno {
 		return n_expediente;
 	}
 
-	public void setN_expediente(int n_expediente) {
+	public void setN_expediente(Integer n_expediente) {
 		this.n_expediente = n_expediente;
 	}
 
