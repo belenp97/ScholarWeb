@@ -19,11 +19,11 @@ public class PrincipalControler {
 		return "principal";
 	}
 
-	/*@GetMapping("/noticias")
+	@GetMapping("/noticias")
 	public String verNoticia(Model model) {
 
 		return "noticias";
-	}*/
+	}
 	
 	@GetMapping("/profesores")
 	public String verprofesores(Model model) {
