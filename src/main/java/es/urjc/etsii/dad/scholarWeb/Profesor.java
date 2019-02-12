@@ -2,7 +2,6 @@ package es.urjc.etsii.dad.scholarWeb;
 
 import java.io.File;
 import javax.persistence.*;
-import java.util.Arrays;
 
 @Entity
 public class Profesor {
@@ -26,8 +25,7 @@ public class Profesor {
 	private File comedor;
 	@OneToMany
 	private Asignatura[] asignaturas;
-	@OneToMany
-	private Alumno[] alumnos;
+	
 	@OneToMany
 	private Padre[] padres;
 	
@@ -37,6 +35,7 @@ public class Profesor {
 		this.nombre= n;
 		this.correo=c;
 	}
+	
 
 	public String getNombre() {
 		return nombre;
@@ -84,20 +83,6 @@ public class Profesor {
 		this.asignaturas = asignaturas;
 	}
 
-
-
-	public Alumno[] getAlumnos() {
-		return alumnos;
-	}
-
-
-
-	public void setAlumnos(Alumno[] alumnos) {
-		this.alumnos = alumnos;
-	}
-
-
-
 	public Padre[] getPadres() {
 		return padres;
 	}
@@ -107,13 +92,6 @@ public class Profesor {
 		this.padres = padres;
 	}
 	
-	
-	
- @Override
-	public String toString() {
-		return "Profesor [nombre=" + nombre + ", correo=" + correo + ", asignaturas="
-				+ Arrays.toString(asignaturas) + ", alumnos=" + Arrays.toString(alumnos); //puede ser mejor idea imprimir solo los cursos que imparte en lugar de los alumnos.
-	}
 
 	/*FUNCIONES PROPIAS*/
 	public void EnviarComedor(Padre[]  p, File f) {}

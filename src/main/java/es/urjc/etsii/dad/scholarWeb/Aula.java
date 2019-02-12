@@ -14,10 +14,23 @@ public class Aula {
 	@Column
 	private char letra;
 	
+	@OneToMany
+	private Alumno[] alumnos_curso;
+	@OneToMany
+	private Profesor[] profesores_curso;
+	
 	public Aula() {}
 	
-	public Aula(Integer c, Integer l) {
-		
+	public Aula(Integer c, char l) {
+		this.Curso= c;
+		this.letra=l;
+	}
+	
+	public Aula(Integer c, char l, Alumno[] a, Profesor[] p) {
+		this.Curso= c;
+		this.letra=l;
+		this.alumnos_curso=a;
+		this.profesores_curso=p;
 	}
 	
 	public Integer getIdAula() {
@@ -43,5 +56,22 @@ public class Aula {
 	public void setLetra(char letra) {
 		this.letra = letra;
 	}
+	
+	public Alumno[] getAlumnos_curso() {
+		return alumnos_curso;
+	}
+
+	public void setAlumnos_curso(Alumno[] alumnos_curso) {
+		this.alumnos_curso = alumnos_curso;
+	}
+
+	public Profesor[] getProfesores_curso() {
+		return profesores_curso;
+	}
+
+	public void setProfesores_curso(Profesor[] profesores_curso) {
+		this.profesores_curso = profesores_curso;
+	}
+
 
 }
