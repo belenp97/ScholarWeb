@@ -1,17 +1,16 @@
 package es.urjc.etsii.dad.scholarWeb;
 
-import javax.persistence.*;
 
-@Entity
+
 public class Contacto {
 
-	@Id
+	
 	private String nombre;
-	@Column
+	
 	private int telefono;
-	@Column
+	
 	private String mail;
-	@Column
+	
 	private String cuerpo; 
 
 

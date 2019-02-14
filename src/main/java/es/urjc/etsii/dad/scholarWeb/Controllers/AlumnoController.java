@@ -30,7 +30,7 @@ public class AlumnoController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Alumno> addItem(@RequestBody Alumno item) {
-		item.setN_expediente(null);
+		item.setNexpediente(null);
 		Alumno newItem = repository.saveAndFlush(item);
 		return new ResponseEntity<>(newItem,HttpStatus.CREATED);
 	}
@@ -39,7 +39,7 @@ public class AlumnoController {
 	public ResponseEntity<Alumno> updateItem(@RequestBody Alumno updatedItem,
 			@PathVariable Integer id) {
 		
-		updatedItem.setN_expediente(id);
+		updatedItem.setNexpediente(id);
 		Alumno item = repository.saveAndFlush(updatedItem);
 		return new ResponseEntity<>(item,HttpStatus.CREATED);
 	}

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import es.urjc.etsii.dad.scholarWeb.Controllers.NoticiaController;
 
 @Controller
-public class PrincipalControler {
+public class PrincipalControler{
 	
 	@Autowired
 	private NoticiaController nc; 

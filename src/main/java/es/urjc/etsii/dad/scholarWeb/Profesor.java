@@ -1,6 +1,8 @@
 package es.urjc.etsii.dad.scholarWeb;
 
 import java.io.File;
+import java.util.Arrays;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,19 +22,39 @@ public class Profesor {
 	@Column
 	private String nombre;
 	@Column
-	private String correo;
+	private String apellido1;
 	@Column
-	private File comedor;
-	@OneToMany
+	private String apellido2;
+	@Column
+	private String correo;
+	@OneToMany (mappedBy = "Asignatura")
 	private Asignatura[] asignaturas;
+	@ManyToMany (mappedBy = "Alumno")
+	private Alumno[] alumnos;
+	@ManyToMany (mappedBy = "Aula")
+	private Aula[] aulas;
 	
-	@OneToMany
-	private Padre[] padres;
 	
-	public Profesor() {}
+	public Aula[] getAulas() {
+		return aulas;
+	}
 
-	public Profesor(String n, String c) {
+	public void setAulas(Aula[] aulas) {
+		this.aulas = aulas;
+	}
+
+	public Alumno[] getAlumnos() {
+		return alumnos;
+	}
+
+	public void setAlumnos(Alumno[] alumnos) {
+		this.alumnos = alumnos;
+	}
+
+	public Profesor(String n, String c, String a1, String a2) {
 		this.nombre= n;
+		this.apellido1 = a1;
+		this.apellido2 = a2;
 		this.correo=c;
 	}
 	
@@ -55,23 +77,25 @@ public class Profesor {
 
 
 
+	public String getApellido1() {
+		return apellido1;
+	}
+
+	public void setApellido1(String apellido1) {
+		this.apellido1 = apellido1;
+	}
+
+	public String getApellido2() {
+		return apellido2;
+	}
+
+	public void setApellido2(String apellido2) {
+		this.apellido2 = apellido2;
+	}
+
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-
-
-
-	public File getComedor() {
-		return comedor;
-	}
-
-
-
-	public void setComedor(File comedor) {
-		this.comedor = comedor;
-	}
-
-
 
 	public Asignatura[] getAsignaturas() {
 		return asignaturas;
@@ -82,16 +106,15 @@ public class Profesor {
 	public void setAsignaturas(Asignatura[] asignaturas) {
 		this.asignaturas = asignaturas;
 	}
-
-	public Padre[] getPadres() {
-		return padres;
-	}
-
-
-	public void setPadres(Padre[] padres) {
-		this.padres = padres;
-	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "Profesor [identificador=" + identificador + ", nombre=" + nombre + ", apellido1=" + apellido1
+				+ ", apellido2=" + apellido2 + ", correo=" + correo + ", asignaturas=" + Arrays.toString(asignaturas)
+				+ ", alumnos=" + Arrays.toString(alumnos) + ", aulas=" + Arrays.toString(aulas) + "]";
+	}
 
 	/*FUNCIONES PROPIAS*/
 	public void EnviarComedor(Padre[]  p, File f) {}

@@ -14,12 +14,10 @@ public class Aula {
 	@Column
 	private char letra;
 	
-	@OneToMany
+	@OneToMany (mappedBy = "Alumno")
 	private Alumno[] alumnos_curso;
-	@OneToMany
+	@ManyToMany (mappedBy = "Profesor")
 	private Profesor[] profesores_curso;
-	
-	public Aula() {}
 	
 	public Aula(Integer c, char l) {
 		this.Curso= c;

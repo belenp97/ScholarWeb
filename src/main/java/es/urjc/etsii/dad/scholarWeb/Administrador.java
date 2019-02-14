@@ -1,11 +1,17 @@
 package es.urjc.etsii.dad.scholarWeb;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Administrador {
+	@Id
 	String id;
-	Alumno[] alumnos;
-	Padre[] padres;
-	Profesor[] profesores;
-	Asignatura[] asignaturas;
+	@Column
+	String nombre;
+	@Column
+	String apellido;
 	
 	
 	public Administrador(String id) {
@@ -26,52 +32,27 @@ public class Administrador {
 
 
 
-	public Alumno[] getAlumnos() {
-		return alumnos;
+	public String getnombre() {
+		return nombre;
 	}
 
 
 
-	public void setAlumnos(Alumno[] alumnos) {
-		this.alumnos = alumnos;
+	public void setnombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 
 
-	public Padre[] getPadres() {
-		return padres;
+	public String getapellido() {
+		return apellido;
 	}
 
 
 
-	public void setPadres(Padre[] padres) {
-		this.padres = padres;
+	public void setapellido(String apellido) {
+		this.nombre = apellido;
 	}
-
-
-
-	public Profesor[] getProfesores() {
-		return profesores;
-	}
-
-
-
-	public void setProfesores(Profesor[] profesores) {
-		this.profesores = profesores;
-	}
-
-
-
-	public Asignatura[] getAsignaturas() {
-		return asignaturas;
-	}
-
-
-
-	public void setAsignaturas(Asignatura[] asignaturas) {
-		this.asignaturas = asignaturas;
-	}
-
 
 
 	@Override

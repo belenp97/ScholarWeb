@@ -10,8 +10,6 @@ public class Noticia {
 	@Column
 	private String cuerpo;
 
-	public Noticia() {	}
-
 	public Noticia(String titulo, String cuerpo) {
 		super();
 		this.titulo = titulo;

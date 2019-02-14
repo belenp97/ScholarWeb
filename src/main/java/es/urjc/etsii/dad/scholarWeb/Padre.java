@@ -6,18 +6,39 @@ import javax.persistence.*;
 public class Padre {
 	
 	@Id
+	int idPadre;
+	@Column
 	String correo;
+	@Column
+	String apellido;
 	
-	@OneToMany
+	@OneToMany(mappedBy="Alumno")
 	Alumno alumno;
 	
-	public Padre() {}
-	
-	public Padre(Alumno alumno, String correo) {
+	public Padre(int id, Alumno alumno, String correo, String apellido) {
 		super();
+		this.idPadre = id;
 		this.alumno = alumno;
 		this.correo = correo;
+		this.apellido = apellido;
 	}
+	
+	public int getIdPadre() {
+		return idPadre;
+	}
+
+	public void setIdPadre(int idPadre) {
+		this.idPadre = idPadre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
 	public Alumno getAlumno() {
 		return alumno;
 	}

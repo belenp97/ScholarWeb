@@ -8,27 +8,60 @@ import javax.persistence.*;
 public class Alumno {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer n_expediente;
+	Integer nexpediente;
 	@Column
 	String nombre;
 	@Column
-	String apellido;
+	String apellido1;
 	@Column
-	String correo;
+	String apellido2;
+	
+	@ManyToMany (mappedBy="Asignatura")
+	private Asignatura[] asignaturas;
+	
+	@ManyToMany (mappedBy="Profesor")
+	private Profesor[] profesores;
+	
+	@ManyToOne
+	private Aula aula;
+	
 	@Column
-	String letra_curso;
-	@OneToMany
-	Asignatura[] asignaturas;
-	@Column
-	int[][] faltas = new int[asignaturas.length][1];   //la idea es que las filas sean asignaturas y las columnas el nº de faltas.
+	int faltas; 
+	
+	@ManyToOne
+	private Padre padre;
 	
 	
+	public Aula getAula() {
+		return aula;
+	}
+
+	public void setAula(Aula aula) {
+		this.aula = aula;
+	}
+
+	public Profesor[] getProfesores() {
+		return profesores;
+	}
+
+	public void setProfesores(Profesor[] profesores) {
+		this.profesores = profesores;
+	}
+
+	public Padre getPadre() {
+		return padre;
+	}
+
+	public void setPadre(Padre padre) {
+		this.padre = padre;
+	}
+
 	public Alumno() {}
 	
-	public Alumno(String n, String a,String c) {
+	public Alumno(String n, String a1,String a2) {
 		this.nombre=n;
-		this.apellido=a;
-		this.correo=c;
+		this.apellido1=a1;
+		this.apellido2=a2;
 	}
 	
 	public String getNombre() {
@@ -39,28 +72,28 @@ public class Alumno {
 		this.nombre = nombre;
 	}
 
-	public String getApellido() {
-		return apellido;
+	public String getApellido1() {
+		return apellido1;
+	}
+	
+	public String getApellido2() {
+		return apellido2;
 	}
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setApellido1(String apellido) {
+		this.apellido1 = apellido;
+	}
+	
+	public void setApellido2(String apellido) {
+		this.apellido2 = apellido;
 	}
 
-	public int getN_expediente() {
-		return n_expediente;
+	public int getNexpediente() {
+		return nexpediente;
 	}
 
-	public void setN_expediente(Integer n_expediente) {
-		this.n_expediente = n_expediente;
-	}
-
-	public String getCorreo() {
-		return correo;
-	}
-
-	public void setCorreo(String correo) {
-		this.correo = correo;
+	public void setNexpediente(Integer n_expediente) {
+		this.nexpediente = n_expediente;
 	}
 
 	public Asignatura[] getAsignaturas() {
@@ -71,21 +104,19 @@ public class Alumno {
 		this.asignaturas = asignaturas;
 	}
 
-	public int[][] getFaltas() {
+	public int getFaltas() {
 		return faltas;
 	}
 
-
-	public String getLetra_curso() {
-		return letra_curso;
+	public void setFaltas(int faltas) {
+		this.faltas = faltas;
 	}
-	
-	
+
 	@Override
 	public String toString() {
-		return "Alumno [nombre=" + nombre + ", apellido=" + apellido + ", n_expediente=" + n_expediente + ", correo="
-				+ correo + ", asignaturas=" + Arrays.toString(asignaturas) + ", faltas=" + Arrays.toString(faltas)
-				+ ", letra_curso=" + letra_curso + "]";
+		return "Alumno [nexpediente=" + nexpediente + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2="
+				+ apellido2 + ", asignaturas=" + Arrays.toString(asignaturas) + ", profesores="
+				+ Arrays.toString(profesores) + ", faltas=" + faltas + ", padre=" + padre + "]";
 	}
 
 	/* FUNCIONES PROPIAS */ 
