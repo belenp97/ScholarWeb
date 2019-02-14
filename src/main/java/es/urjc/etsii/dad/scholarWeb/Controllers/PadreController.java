@@ -23,7 +23,7 @@ public class PadreController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Padre> findItems() {
-		return repository.findAll();
+		return (List<Padre>) repository.findAll();
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

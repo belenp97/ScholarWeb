@@ -14,6 +14,7 @@ public class Alumno {
 	@Column
 	String apellido1;
 	@Column
+
 	String apellido2;
 	
 	@ManyToMany (mappedBy="Asignatura")
@@ -56,8 +57,6 @@ public class Alumno {
 		this.padre = padre;
 	}
 
-	public Alumno() {}
-	
 	public Alumno(String n, String a1,String a2) {
 		this.nombre=n;
 		this.apellido1=a1;

@@ -9,10 +9,10 @@ public class Administrador {
 	@Id
 	String id;
 	@Column
+
 	String nombre;
 	@Column
 	String apellido;
-	
 	
 	public Administrador(String id) {
 		super();

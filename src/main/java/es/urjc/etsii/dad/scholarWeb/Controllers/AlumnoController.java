@@ -18,14 +18,13 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.AlumnoRepository;
 @RestController
 @RequestMapping("/alumnos")
 public class AlumnoController {
-
 	
 	@Autowired
 	private AlumnoRepository repository;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Alumno> findItems() {
-		return repository.findAll();
+		return (List<Alumno>) repository.findAll();
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

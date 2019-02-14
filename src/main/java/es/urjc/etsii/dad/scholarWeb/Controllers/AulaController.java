@@ -23,7 +23,7 @@ public class AulaController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Aula> findItems() {
-		return repository.findAll();
+		return (List<Aula>) repository.findAll();
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
