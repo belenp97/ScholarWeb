@@ -24,7 +24,7 @@ public class AsignaturaController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Asignatura> findItems() {
-		return repository.findAll();
+		return (List<Asignatura>) repository.findAll();
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

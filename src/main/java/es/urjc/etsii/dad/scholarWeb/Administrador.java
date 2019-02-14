@@ -1,10 +1,20 @@
 package es.urjc.etsii.dad.scholarWeb;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Administrador {
+	@Id
 	String id;
+	@Column
 	Alumno[] alumnos;
+	@Column
 	Padre[] padres;
+	@Column
 	Profesor[] profesores;
+	@Column
 	Asignatura[] asignaturas;
 	
 	

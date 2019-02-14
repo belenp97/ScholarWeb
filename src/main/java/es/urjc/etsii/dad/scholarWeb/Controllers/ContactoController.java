@@ -24,7 +24,7 @@ public class ContactoController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Contacto> findItems() {
-		return repository.findAll();
+		return (List<Contacto>) repository.findAll();
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

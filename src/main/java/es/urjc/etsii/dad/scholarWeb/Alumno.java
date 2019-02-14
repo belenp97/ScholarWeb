@@ -19,6 +19,8 @@ public class Alumno {
 	String letra_curso;
 	@OneToMany
 	Asignatura[] asignaturas;
+	
+	
 	@Column
 	int[][] faltas = new int[asignaturas.length][1];   //la idea es que las filas sean asignaturas y las columnas el nº de faltas.
 	

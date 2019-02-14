@@ -30,7 +30,7 @@ public class NoticiaController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Noticia> findItems() {
-		return repository.findAll();
+		return (List<Noticia>) repository.findAll();
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
