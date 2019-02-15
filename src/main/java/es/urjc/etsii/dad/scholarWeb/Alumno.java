@@ -5,6 +5,7 @@ import javax.persistence.*;
 
 
 @Entity
+@Table(name ="Alumno")
 public class Alumno {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,8 +15,9 @@ public class Alumno {
 	@Column
 	String apellido1;
 	@Column
-
 	String apellido2;
+	@Column
+	private Alumno[] alumnos; 
 	
 	@ManyToMany (mappedBy="Asignatura")
 	private Asignatura[] asignaturas;
@@ -109,6 +111,15 @@ public class Alumno {
 
 	public void setFaltas(int faltas) {
 		this.faltas = faltas;
+	}
+
+	
+	public Alumno[] getAlumnos() {
+		return alumnos;
+	}
+
+	public void setAlumnos(Alumno[] alumnos) {
+		this.alumnos = alumnos;
 	}
 
 	@Override

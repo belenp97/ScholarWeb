@@ -1,10 +1,10 @@
 package es.urjc.etsii.dad.scholarWeb.Repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import es.urjc.etsii.dad.scholarWeb.Contacto;
 
-public interface ContactoRepository extends CrudRepository<Contacto, String> {
+public interface ContactoRepository extends JpaRepository<Contacto, String> {
 
 	Contacto saveAndFlush(Contacto item);
 

@@ -3,6 +3,7 @@ package es.urjc.etsii.dad.scholarWeb;
 import javax.persistence.*;
 
 @Entity
+@Table(name ="Noticia")
 public class Noticia {
 
 	@Id

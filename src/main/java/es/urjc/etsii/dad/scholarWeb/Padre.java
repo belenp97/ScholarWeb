@@ -3,6 +3,7 @@ package es.urjc.etsii.dad.scholarWeb;
 import javax.persistence.*;
 
 @Entity
+@Table(name ="Padre")
 public class Padre {
 	
 	@Id
@@ -13,7 +14,7 @@ public class Padre {
 	String apellido;
 	
 	@OneToMany(mappedBy="Alumno")
-	Alumno alumno;
+	private Alumno alumno;
 	
 	public Padre(int id, Alumno alumno, String correo, String apellido) {
 		super();

@@ -6,13 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import es.urjc.etsii.dad.scholarWeb.Controllers.NoticiaController;
 
 @Controller
 public class PrincipalControler{
-	
-	@Autowired
-	private NoticiaController nc; 
 	
 	public PrincipalControler() {
 		
@@ -24,7 +20,7 @@ public class PrincipalControler{
 		return "principal";
 	}
 
-	@GetMapping("/noticias")
+	/*@GetMapping("/noticias")
 	public String verNoticia(Model model) {
 
 		nc.init();
@@ -36,7 +32,7 @@ public class PrincipalControler{
 	public String verprofesores(Model model) {
 
 		return "profesores";
-	}
+	}*/
 	
 	@GetMapping("/contacto")
 	public String newContacto(Model model) {

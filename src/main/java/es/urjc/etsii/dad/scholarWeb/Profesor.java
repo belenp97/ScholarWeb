@@ -6,6 +6,7 @@ import java.util.Arrays;
 import javax.persistence.*;
 
 @Entity
+@Table(name ="Profesor")
 public class Profesor {
 	
 	@Id

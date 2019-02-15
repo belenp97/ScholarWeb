@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 
 @Entity
+@Table(name ="Aula")
 public class Aula {
 	
 	@Id 

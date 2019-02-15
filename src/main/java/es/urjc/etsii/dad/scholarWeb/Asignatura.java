@@ -4,6 +4,7 @@ import java.util.Arrays;
 import javax.persistence.*;
 
 @Entity
+@Table(name ="Asignatura")
 public class Asignatura {
 	@Id
 	String nombre;

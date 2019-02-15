@@ -3,8 +3,10 @@ package es.urjc.etsii.dad.scholarWeb;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name ="Administrador")
 public class Administrador {
 	@Id
 	String id;
