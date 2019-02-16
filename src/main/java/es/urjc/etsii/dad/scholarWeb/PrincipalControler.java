@@ -55,6 +55,7 @@ public class PrincipalControler {
 		AsigRepo.save(new Asignatura("Ingles",1));
 		AsigRepo.save(new Asignatura("Física",4));
 		Profesor p=new Profesor("Pedro","Gomez","Martin","pgm@gmail.com");
+		ProfeRepo.save(p);
 		AulaRepo.save(new Aula(1,'A'));		
 		
 	}
