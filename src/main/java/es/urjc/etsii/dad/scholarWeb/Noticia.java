@@ -3,13 +3,18 @@ package es.urjc.etsii.dad.scholarWeb;
 import javax.persistence.*;
 
 @Entity
-@Table(name ="Noticia")
+@Table(name ="noticia")
 public class Noticia {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id; 
+	@Column
 	private String titulo;
 	@Column
 	private String cuerpo;
+
+	public Noticia() {	}
 
 	public Noticia(String titulo, String cuerpo) {
 		super();

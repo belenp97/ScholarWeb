@@ -1,10 +1,13 @@
 package es.urjc.etsii.dad.scholarWeb;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 
 @Entity
-@Table(name ="Aula")
+@Table(name ="aula")
 public class Aula {
 	
 	@Id 
@@ -15,17 +18,18 @@ public class Aula {
 	@Column
 	private char letra;
 	
-	@OneToMany (mappedBy = "Alumno")
-	private Alumno[] alumnos_curso;
-	@ManyToMany (mappedBy = "Profesor")
-	private Profesor[] profesores_curso;
+	@OneToMany (mappedBy = "aula")
+	private List<Alumno> alumnos_curso = new ArrayList<>();
+	
+	@ManyToMany (targetEntity = Profesor.class)
+	private List<Profesor> profesores_curso = new ArrayList<>();
 	
 	public Aula(Integer c, char l) {
 		this.Curso= c;
 		this.letra=l;
 	}
 	
-	public Aula(Integer c, char l, Alumno[] a, Profesor[] p) {
+	public Aula(Integer c, char l, List<Alumno> a, List<Profesor> p) {
 		this.Curso= c;
 		this.letra=l;
 		this.alumnos_curso=a;
@@ -56,21 +60,29 @@ public class Aula {
 		this.letra = letra;
 	}
 	
-	public Alumno[] getAlumnos_curso() {
+	public List<Alumno> getAlumnos_curso() {
 		return alumnos_curso;
 	}
 
-	public void setAlumnos_curso(Alumno[] alumnos_curso) {
+	public void setAlumnos_curso(List<Alumno> alumnos_curso) {
 		this.alumnos_curso = alumnos_curso;
 	}
 
-	public Profesor[] getProfesores_curso() {
+	public List<Profesor> getProfesores_curso() {
 		return profesores_curso;
 	}
 
-	public void setProfesores_curso(Profesor[] profesores_curso) {
+	public void setProfesores_curso(List<Profesor> profesores_curso) {
 		this.profesores_curso = profesores_curso;
 	}
+
+	@Override
+	public String toString() {
+		return "Aula [idAula=" + idAula + ", Curso=" + Curso + ", letra=" + letra + ", alumnos_curso=" + alumnos_curso
+				+ ", profesores_curso=" + profesores_curso + "]";
+	}
+	
+	
 
 
 }

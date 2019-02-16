@@ -1,25 +1,19 @@
 package es.urjc.etsii.dad.scholarWeb;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name ="Profesor")
+@Table(name ="profesor")
 public class Profesor {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer identificador;
-	
-	public Integer getIdentificador() {
-		return identificador;
-	}
-
-	public void setIdentificador(Integer identificador) {
-		this.identificador = identificador;
-	}
 	@Column
 	private String nombre;
 	@Column
@@ -28,28 +22,30 @@ public class Profesor {
 	private String apellido2;
 	@Column
 	private String correo;
-	@OneToMany (mappedBy = "Asignatura")
-	private Asignatura[] asignaturas;
-	@ManyToMany (mappedBy = "Alumno")
-	private Alumno[] alumnos;
-	@ManyToMany (mappedBy = "Aula")
-	private Aula[] aulas;
+	@OneToMany (mappedBy = "profesorPorAsignatura", targetEntity = Asignatura.class)
+	private List<Asignatura> asignaturas= new ArrayList<>();
+	
+	@ManyToMany (mappedBy = "profesorePorAlumno", targetEntity = Alumno.class)
+	private List<Alumno> alumnosPorProfesor = new ArrayList<>();
+	
+	@ManyToMany (mappedBy = "profesores_curso", targetEntity = Aula.class)
+	private List<Aula> aulas = new ArrayList<>();
 	
 	
-	public Aula[] getAulas() {
+	public List<Aula> getAulas() {
 		return aulas;
 	}
 
-	public void setAulas(Aula[] aulas) {
+	public void setAulas(List<Aula> aulas) {
 		this.aulas = aulas;
 	}
 
-	public Alumno[] getAlumnos() {
-		return alumnos;
+	public List<Alumno> getAlumnos() {
+		return alumnosPorProfesor;
 	}
 
-	public void setAlumnos(Alumno[] alumnos) {
-		this.alumnos = alumnos;
+	public void setAlumnos(List<Alumno> alumnos) {
+		this.alumnosPorProfesor = alumnos;
 	}
 
 	public Profesor(String n, String c, String a1, String a2) {
@@ -98,13 +94,11 @@ public class Profesor {
 		this.correo = correo;
 	}
 
-	public Asignatura[] getAsignaturas() {
+	
+	public List<Asignatura> getAsignaturas() {
 		return asignaturas;
 	}
-
-
-
-	public void setAsignaturas(Asignatura[] asignaturas) {
+	public void setAsignaturas(List<Asignatura> asignaturas) {
 		this.asignaturas = asignaturas;
 	}
 	
@@ -113,11 +107,11 @@ public class Profesor {
 	@Override
 	public String toString() {
 		return "Profesor [identificador=" + identificador + ", nombre=" + nombre + ", apellido1=" + apellido1
-				+ ", apellido2=" + apellido2 + ", correo=" + correo + ", asignaturas=" + Arrays.toString(asignaturas)
-				+ ", alumnos=" + Arrays.toString(alumnos) + ", aulas=" + Arrays.toString(aulas) + "]";
+				+ ", apellido2=" + apellido2 + ", correo=" + correo + ", asignaturas=" 
+				+ ", alumnos=" +  ", aulas=" + "]";
 	}
 
-	/*FUNCIONES PROPIAS*/
+	//FUNCIONES PROPIAS
 	public void EnviarComedor(Padre[]  p, File f) {}
 	public void EnviarCorreo(Padre[] p){}
 	public void Añadir_falta(Alumno a, Asignatura as){}

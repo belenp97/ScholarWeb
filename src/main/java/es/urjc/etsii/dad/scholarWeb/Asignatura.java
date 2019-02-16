@@ -1,20 +1,24 @@
 package es.urjc.etsii.dad.scholarWeb;
 
-import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
 import javax.persistence.*;
 
 @Entity
-@Table(name ="Asignatura")
+@Table(name ="asignatura")
 public class Asignatura {
 	@Id
-	String nombre;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id; 
 	@Column
-	String curso;
+	private String nombre;
 	@Column
-	int notas;
+	private String curso;
+	@Column
+	private int notas;
 	
-	@ManyToMany
-	private Alumno[] alumnos;
+	@ManyToMany(targetEntity=Alumno.class, cascade = CascadeType.ALL)
+	private List<Alumno> alumno = new ArrayList<Alumno>();
 	
 	@ManyToOne
 	private Profesor profesorPorAsignatura;
@@ -28,12 +32,12 @@ public class Asignatura {
 		this.profesorPorAsignatura = profesorPorAsignatura;
 	}
 
-	public Alumno[] getAlumnos() {
-		return alumnos;
+	public List<Alumno> getAlumnos() {
+		return alumno;
 	}
 
-	public void setAlumnos(Alumno[] alumnos) {
-		this.alumnos = alumnos;
+	public void setAlumnos(List<Alumno> alumnos) {
+		this.alumno = alumnos;
 	}
 
 	public Asignatura() {}
@@ -65,8 +69,7 @@ public class Asignatura {
 	
 	@Override
 	public String toString() {
-		return "Asignatura [nombre=" + nombre + ", curso=" + curso + ", notas=" + notas + ", alumnos="
-				+ Arrays.toString(alumnos) + "]";
+		return "Asignatura [nombre=" + nombre + ", curso=" + curso + ", notas=" + notas + "]";
 	}
 	
 	

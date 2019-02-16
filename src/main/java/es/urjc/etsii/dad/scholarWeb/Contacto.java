@@ -1,9 +1,7 @@
 package es.urjc.etsii.dad.scholarWeb;
 
 
-
 public class Contacto {
-
 	
 	private String nombre;
 	

@@ -1,4 +1,4 @@
-package es.urjc.etsii.dad.scholarWeb.Controllers;
+/*package es.urjc.etsii.dad.scholarWeb.Controllers;
 
 import java.util.List;
 
@@ -47,4 +47,4 @@ public class AulaController {
 		repository.deleteById(id);
 	}
 
-}
+}*/

@@ -1,4 +1,4 @@
-package es.urjc.etsii.dad.scholarWeb.Controllers;
+/*package es.urjc.etsii.dad.scholarWeb.Controllers;
 
 import java.util.List;
 
@@ -28,9 +28,12 @@ public class NoticiaController {
 		repository.save(new Noticia("Importante","es una noticia importante para los padres"));
 	}
 	
+	
+	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Noticia> findItems() {
-		return (List<Noticia>) repository.findAll();
+		return repository.findAll();
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -53,4 +56,4 @@ public class NoticiaController {
 	public void deleteItem(@PathVariable String titulo) {
 		repository.deleteById(titulo);
 	}
-}
+}*/

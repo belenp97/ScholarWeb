@@ -1,5 +1,7 @@
 package es.urjc.etsii.dad.scholarWeb;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,10 +15,10 @@ public class Padre {
 	@Column
 	String apellido;
 	
-	@OneToMany(mappedBy="Alumno")
-	private Alumno alumno;
+	@OneToMany(mappedBy="padre_alumno", targetEntity=Alumno.class)
+	private List<Alumno> alumno;
 	
-	public Padre(int id, Alumno alumno, String correo, String apellido) {
+	public Padre(int id, List<Alumno> alumno, String correo, String apellido) {
 		super();
 		this.idPadre = id;
 		this.alumno = alumno;
@@ -40,10 +42,10 @@ public class Padre {
 		this.apellido = apellido;
 	}
 
-	public Alumno getAlumno() {
+	public List<Alumno> getAlumno() {
 		return alumno;
 	}
-	public void setAlumno(Alumno alumno) {
+	public void setAlumno(List<Alumno> alumno) {
 		this.alumno = alumno;
 	}
 	public String getCorreo() {
@@ -56,7 +58,7 @@ public class Padre {
 	
 	@Override
 	public String toString() {
-		return "Padre [alumno=" + alumno + ", correo=" + correo + "]";
+		return "Padre [alumno="  + ", correo=" + correo + "]";
 	}
 	
 	/*FUNCIONES PROPIAS */

@@ -1,11 +1,13 @@
 package es.urjc.etsii.dad.scholarWeb;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 
 @Entity
-@Table(name ="Alumno")
+@Table(name ="alumnos")
 public class Alumno {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,22 +19,21 @@ public class Alumno {
 	@Column
 	String apellido2;
 	@Column
-	private Alumno[] alumnos; 
+	int faltas; 
+	//@Column
+	//private Alumno alumnos;
 	
-	@ManyToMany (mappedBy="Asignatura")
-	private Asignatura[] asignaturas;
+	@ManyToMany (mappedBy="alumno", targetEntity=Asignatura.class)
+	private List<Asignatura> asignaturas = new ArrayList<>();
 	
-	@ManyToMany (mappedBy="Profesor")
-	private Profesor[] profesores;
+	@ManyToMany (targetEntity = Profesor.class)
+	private List<Profesor> profesorePorAlumno = new ArrayList<>();
 	
 	@ManyToOne
 	private Aula aula;
 	
-	@Column
-	int faltas; 
-	
-	@ManyToOne
-	private Padre padre;
+	@ManyToOne(targetEntity=Padre.class, fetch = FetchType.LAZY)
+	private Padre padre_alumno;
 	
 	
 	public Aula getAula() {
@@ -43,20 +44,20 @@ public class Alumno {
 		this.aula = aula;
 	}
 
-	public Profesor[] getProfesores() {
-		return profesores;
+	public List<Profesor> getProfesores() {
+		return profesorePorAlumno;
 	}
 
-	public void setProfesores(Profesor[] profesores) {
-		this.profesores = profesores;
+	public void setProfesores(List<Profesor> profesores) {
+		this.profesorePorAlumno = profesores;
 	}
 
 	public Padre getPadre() {
-		return padre;
+		return padre_alumno;
 	}
 
 	public void setPadre(Padre padre) {
-		this.padre = padre;
+		this.padre_alumno = padre;
 	}
 
 	public Alumno(String n, String a1,String a2) {
@@ -97,11 +98,11 @@ public class Alumno {
 		this.nexpediente = n_expediente;
 	}
 
-	public Asignatura[] getAsignaturas() {
+	public List<Asignatura> getAsignaturas() {
 		return asignaturas;
 	}
 
-	public void setAsignaturas(Asignatura[] asignaturas) {
+	public void setAsignaturas(List<Asignatura> asignaturas) {
 		this.asignaturas = asignaturas;
 	}
 
@@ -114,19 +115,18 @@ public class Alumno {
 	}
 
 	
-	public Alumno[] getAlumnos() {
+	/*public Alumno getAlumnos() {
 		return alumnos;
 	}
 
-	public void setAlumnos(Alumno[] alumnos) {
+	public void setAlumnos(Alumno alumnos) {
 		this.alumnos = alumnos;
-	}
+	}*/
 
 	@Override
 	public String toString() {
 		return "Alumno [nexpediente=" + nexpediente + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2="
-				+ apellido2 + ", asignaturas=" + Arrays.toString(asignaturas) + ", profesores="
-				+ Arrays.toString(profesores) + ", faltas=" + faltas + ", padre=" + padre + "]";
+				+ apellido2  + ", faltas=" + faltas + ", padre="  + "]";
 	}
 
 	/* FUNCIONES PROPIAS */ 
