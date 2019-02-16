@@ -64,7 +64,10 @@ public class Alumno {
 		this.nombre=n;
 		this.apellido1=a1;
 		this.apellido2=a2;
+		this.nexpediente= (int) (Math.random()*(120-1)+1);
 	}
+	
+	public Alumno() {} 
 	
 	public String getNombre() {
 		return nombre;

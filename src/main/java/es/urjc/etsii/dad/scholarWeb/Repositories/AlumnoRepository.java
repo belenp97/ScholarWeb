@@ -7,7 +7,7 @@ import es.urjc.etsii.dad.scholarWeb.Alumno;
 
 public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
 
-	//Alumno saveAndFlush(Alumno updatedItem);
+	Alumno saveAndFlush(Alumno updatedItem);
 	
 
 }

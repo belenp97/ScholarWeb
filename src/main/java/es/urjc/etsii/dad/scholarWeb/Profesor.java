@@ -52,8 +52,11 @@ public class Profesor {
 	public void setAlumnos(List<Alumno> alumnos) {
 		this.alumnosPorProfesor = alumnos;
 	}
+	
+	public Profesor() {}
 
-	public Profesor(String n, String c, String a1, String a2) {
+	public Profesor(String n, String a1, String a2,String c) {
+		this.identificador=(int)(Math.random()*(129-1)+1);
 		this.nombre= n;
 		this.apellido1 = a1;
 		this.apellido2 = a2;

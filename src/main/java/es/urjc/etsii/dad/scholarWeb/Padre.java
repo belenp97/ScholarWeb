@@ -18,9 +18,8 @@ public class Padre {
 	@OneToMany(mappedBy="padre_alumno", targetEntity=Alumno.class)
 	private List<Alumno> alumno;
 	
-	public Padre(int id, List<Alumno> alumno, String correo, String apellido) {
-		super();
-		this.idPadre = id;
+	public Padre(List<Alumno> alumno, String correo, String apellido) {
+		this.idPadre = (int)(Math.random()*(129-1)+1);
 		this.alumno = alumno;
 		this.correo = correo;
 		this.apellido = apellido;

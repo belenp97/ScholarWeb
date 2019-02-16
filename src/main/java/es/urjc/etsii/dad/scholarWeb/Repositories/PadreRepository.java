@@ -6,6 +6,6 @@ import es.urjc.etsii.dad.scholarWeb.Padre;
 
 public interface PadreRepository extends JpaRepository<Padre, String> {
 
-	//Padre saveAndFlush(Padre item);
+	Padre saveAndFlush(Padre item);
 
 }

@@ -13,7 +13,7 @@ public class Asignatura {
 	@Column
 	private String nombre;
 	@Column
-	private String curso;
+	private int curso;
 	@Column
 	private int notas;
 	
@@ -42,8 +42,8 @@ public class Asignatura {
 
 	public Asignatura() {}
 	
-	public Asignatura(String nombre, String curso) {
-		super();
+	public Asignatura(String nombre, int curso) {
+		this.id= (int)(Math.random()*(19-1)+1);
 		this.nombre = nombre;
 		this.curso = curso;
 	}
@@ -53,10 +53,10 @@ public class Asignatura {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getCurso() {
+	public int getCurso() {
 		return curso;
 	}
-	public void setCurso(String curso) {
+	public void setCurso(int curso) {
 		this.curso = curso;
 	}
 	public int getNotas() {

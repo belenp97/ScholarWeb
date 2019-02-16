@@ -7,8 +7,5 @@ import es.urjc.etsii.dad.scholarWeb.Asignatura;
 
 public interface AsignaturaRepository extends JpaRepository<Asignatura, String>{
 
-	//Asignatura saveAndFlush(Asignatura item);
-
-	
-
+	Asignatura saveAndFlush(Asignatura item);
 }
