@@ -1,11 +1,10 @@
-/*package es.urjc.etsii.dad.scholarWeb.Controllers;
+package es.urjc.etsii.dad.scholarWeb.Controllers;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,17 +33,17 @@ public class AsignaturaController {
 		return new ResponseEntity<>(newItem,HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/{nombre}", method = RequestMethod.PUT)
+	/*@RequestMapping(value = "/{nombre}", method = RequestMethod.PUT)
 	public ResponseEntity<Asignatura> updateItem(@RequestBody Asignatura updatedItem,
 			@PathVariable String nombre) {
 		
 		updatedItem.setNombre(nombre);
 		Asignatura item = repository.saveAndFlush(updatedItem);
 		return new ResponseEntity<>(item,HttpStatus.CREATED);
-	}
+	}*/
 
-	@RequestMapping(value = "/{nombre}", method = RequestMethod.DELETE)
+	/*@RequestMapping(value = "/{nombre}", method = RequestMethod.DELETE)
 	public void deleteItem(@PathVariable String nombre) {
 		repository.deleteById(nombre);
-	}
-}*/
+	}*/
+}

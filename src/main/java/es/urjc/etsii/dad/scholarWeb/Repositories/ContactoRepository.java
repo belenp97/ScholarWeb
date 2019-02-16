@@ -6,4 +6,6 @@ import es.urjc.etsii.dad.scholarWeb.Contacto;
 
 public interface ContactoRepository extends JpaRepository<Contacto, String> {
 
-}*/
+	Contacto saveAndFlush(Contacto item);
+}
+*/

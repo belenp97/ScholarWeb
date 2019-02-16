@@ -1,6 +1,5 @@
 package es.urjc.etsii.dad.scholarWeb;
 
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +32,7 @@ public class ScholarWebApplication{
 	PadreRepository padreRepo; 
 	
 	@Autowired
-	ProfesorRepository profeRepo; 
+	ProfesorRepository profeRepo;
 	
 	
 	public static void main(String[] args) {

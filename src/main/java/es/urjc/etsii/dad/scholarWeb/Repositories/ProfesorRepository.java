@@ -7,6 +7,6 @@ import es.urjc.etsii.dad.scholarWeb.Profesor;
 
 public interface ProfesorRepository extends JpaRepository<Profesor, Integer>{
 
-	Profesor saveAndFlush(Profesor item);
+	//Profesor saveAndFlush(Profesor item);
 
 }

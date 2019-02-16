@@ -208,7 +208,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5,
 	background: url("img/box_right.gif") top right no-repeat;
 }
 
-#box_tittle li a:hover, #box_tittle  {
+#box_tittle li a:hover, #box_tittle {
 	background-position: 0 -40px;
 }
 
@@ -264,7 +264,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5,
 .row_b {
 	display: flex;
 	width: 1130px;
-    margin-left: 50px;
+	margin-left: 50px;
 }
 
 .col {
@@ -317,7 +317,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5,
 	background-color: #007bff;
 	border-color: #007bff;
 	width: 100px;
-	height: 50px; 
+	height: 50px;
 }
 
 .btn-primary:hover {
@@ -346,7 +346,6 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5,
 	padding: 0;
 	list-style: none;
 }
-
 
 #box_url_info {
 	display: block;

@@ -1,8 +1,6 @@
 package es.urjc.etsii.dad.scholarWeb;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.*;
@@ -14,6 +12,13 @@ public class Profesor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer identificador;
+	public Integer getIdentificador() {
+		return identificador;
+	}
+
+	public void setIdentificador(Integer identificador) {
+		this.identificador = identificador;
+	}
 	@Column
 	private String nombre;
 	@Column
@@ -111,12 +116,12 @@ public class Profesor {
 				+ ", alumnos=" +  ", aulas=" + "]";
 	}
 
-	//FUNCIONES PROPIAS
+	/*FUNCIONES PROPIAS
 	public void EnviarComedor(Padre[]  p, File f) {}
 	public void EnviarCorreo(Padre[] p){}
 	public void Añadir_falta(Alumno a, Asignatura as){}
 	public void Subir_notas(Asignatura a){}
-	public void EnviarInfoExcursiones(Padre[] p){}
+	public void EnviarInfoExcursiones(Padre[] p){}*/
 
 }
 

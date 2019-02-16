@@ -129,9 +129,9 @@ public class Alumno {
 				+ apellido2  + ", faltas=" + faltas + ", padre="  + "]";
 	}
 
-	/* FUNCIONES PROPIAS */ 
+	/* FUNCIONES PROPIAS  
 	public void VerDatos() {}
 	public void VerNotas(Asignatura a) {}
 	public void VerFaltas(Asignatura a) {}
-	public void VerFaltasTotales() {}
+	public void VerFaltasTotales() {}*/
 }

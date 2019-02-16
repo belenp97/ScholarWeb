@@ -61,10 +61,10 @@ public class Padre {
 		return "Padre [alumno="  + ", correo=" + correo + "]";
 	}
 	
-	/*FUNCIONES PROPIAS */
+	/*FUNCIONES PROPIAS
 	public void VerDatos() {}
 	public void VerFaltas(){}
 	public void VerNotas(){}
 	public void VerCorreo(){}
-	public void VerExcursiones(){}
+	public void VerExcursiones(){}*/
 }
