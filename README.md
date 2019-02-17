@@ -41,7 +41,11 @@ Tendremos en un principio 6 entidades en toda la aplicación web que se identifi
 - Menú comedor.
 
 ### **DIAGRAMA DE CLASES.**
-![diagrama_clases](https://user-images.githubusercontent.com/45795451/52587343-1a8deb00-2e3a-11e9-955a-1b40acbb1aef.png)
+![uml](https://user-images.githubusercontent.com/45795451/52914858-a3d76e80-32cd-11e9-955a-c76f15ee7a04.png)
+
+- Rectángulo azul: entidades.
+- Rectángulo rojo: Repository de cada entidad.
+- Rectángulo verder: Controller de cada entidad.
 
 ### **DIAGRAMA ENTIDAD-RELACIÓN.**
 ![untitled diagram](https://user-images.githubusercontent.com/45795451/52587160-bb2fdb00-2e39-11e9-83ce-6d51ad25237e.png)
