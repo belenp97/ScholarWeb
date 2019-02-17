@@ -2,6 +2,8 @@ package es.urjc.etsii.dad.scholarWeb.Controllers;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +22,13 @@ public class AulaController {
 	
 	@Autowired
 	private AulaRepository repository;
-
+	
+	@PostConstruct
+	public void init() {
+		repository.save(new Aula(1,'A'));		
+		
+	}
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Aula> findItems() {
 		return (List<Aula>) repository.findAll();

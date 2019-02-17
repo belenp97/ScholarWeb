@@ -1,6 +1,7 @@
 package es.urjc.etsii.dad.scholarWeb;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,37 +25,26 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 public class PrincipalControler {
 	
 	@Autowired
-	private NoticiaRepository repository;
+	private NoticiaRepository notRepo;
 	
 	@Autowired
-	private AlumnoRepository AlumnoRepo;
+	private AlumnoRepository alumnoRepo;
 	
 	@Autowired
-	private AsignaturaRepository AsigRepo;
+	private AsignaturaRepository asigRepo;
 	
 	@Autowired
-	private AulaRepository AulaRepo;
+	private AulaRepository aulaRepo;
 	
 	@Autowired
-	private PadreRepository PadreRepo;
+	private PadreRepository padreRepo;
 	
 	@Autowired
-	private ProfesorRepository ProfeRepo;
+	private ProfesorRepository profeRepo;
 	
 	//faltaría contacto.
 	
-	public PrincipalControler() {
-		
-	}
-	
-	@PostConstruct
-	public void init() {
-		
-		Profesor p=new Profesor("Pedro","Gomez","Martin","pgm@gmail.com");
-		ProfeRepo.save(p);
-		AulaRepo.save(new Aula(1,'A'));		
-		
-	}
+	public PrincipalControler() {}
 
 	@GetMapping("/")
 	public String principal(Model model) {
@@ -64,7 +55,8 @@ public class PrincipalControler {
 	@RequestMapping("/noticias")
 	public String verNoticia(Model model, @RequestParam(required=false) String name) throws Exception{
 		
-		model.addAttribute("noticia", repository.findAll());	
+		model.addAttribute("noticia", notRepo.findAll());
+		
 		
 		return "noticias"; 
 	}
@@ -72,7 +64,7 @@ public class PrincipalControler {
 	@RequestMapping("/alumnos")
 	public String verAlumnos(Model model, @RequestParam(required=false) int n_exp) throws Exception{
 		
-		model.addAttribute("alumno",AlumnoRepo.findAll());
+		model.addAttribute("alumno",alumnoRepo.findAll());
 		
 		return "alumnos";
 	}
@@ -80,7 +72,7 @@ public class PrincipalControler {
 	@RequestMapping("/profesores")
 	public String verprofesores(Model model) {
 		
-		model.addAttribute("profesor", ProfeRepo.findAll());
+		model.addAttribute("profesor", profeRepo.findAll());
 		
 		return "profesores";
 	}
