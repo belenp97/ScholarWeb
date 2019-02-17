@@ -30,12 +30,12 @@ public class AlumnoController {
 	}
 	
 
-	@RequestMapping(method = RequestMethod.GET)
+	/*@RequestMapping(method = RequestMethod.GET)
 	public List<Alumno> findItems() {
 		return (List<Alumno>) repository.findAll();
-	}
+	}*/
 
-	@RequestMapping(method = RequestMethod.POST)
+	//@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Alumno> addItem(@RequestBody Alumno item) {
 		item.setNexpediente(null);
 		Alumno newItem = repository.saveAndFlush(item);

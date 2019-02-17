@@ -125,10 +125,6 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5,
 	color: #666666;
 }
 
-.enlaces {
-	border-top: 1px solid #BCBCBC;
-	border-bottom: 1px solid #BCBCBC;
-}
 
 /* ----------------------------------------------General------------------------------------- */
 #header, #container, #academiclinks, #footer {
@@ -722,7 +718,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5,
 	clear: left;
 }
 
-/* ----------------------------------------------Academic link Block------------------------------------- */
+/* ----------------------------------------------Academic link Block------------------------------------- 
 #table_nav {
 	display: block;
 	position: relative;
@@ -845,10 +841,11 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5,
 #academiclinks .last {
 	margin: 0;
 }
-
+*/
 /* ----------------------------------------------Footer------------------------------------- */
 #footer {
 	padding: 30px 0;
+	border-top: 1px solid #949BA0;
 }
 
 #footer a {
