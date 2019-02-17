@@ -2,6 +2,8 @@ package es.urjc.etsii.dad.scholarWeb.Controllers;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +23,10 @@ public class ProfesorController {
 	@Autowired
 	private ProfesorRepository repository;
 	
+	@PostConstruct
 	public void init() {
-		Profesor p1=new Profesor("Pedro","Gomez","Martin","pgm@gmail.com");
-		Profesor p2=new Profesor("Felix","Lopez","Cid","flc@gmail.com");
-		repository.save(p1);
-		repository.save(p2);
+		//repository.save(new Profesor("Pedro","Gomez","Martin","pgm@gmail.com"));
+		//repository.save(new Profesor("Felix","Lopez","Cid","flc@gmail.com"));
 	}
 
 	public List<Profesor> findItems() {

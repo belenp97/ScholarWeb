@@ -47,18 +47,16 @@
 			<h3 class="center">Profesores</h3>
 			<section class="school-features text-dark d-flex">
 				<div class="inner">
+					{{#profe}}
 					<div class="feature text-center">
-						<img src="./css/img/j.gif" alt="">
-						{{#profesor}}
-						
+						<img src="./css/img/{{nombre}}.gif">
 						<h3 class="center">
 							{{nombre}} {{apellido1}} {{apellido2}}
 						</h3>
 						<p>Asignaturas:</p>
 						<p>{{correo}}</p>
-						
-						{{/profesor}}
 					</div>
+					{{/profe}}
 				</div>
 			</section>
 		</div>

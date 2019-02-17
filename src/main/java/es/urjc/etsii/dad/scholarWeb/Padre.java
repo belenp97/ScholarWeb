@@ -14,15 +14,18 @@ public class Padre {
 	String correo;
 	@Column
 	String apellido;
+	@Column
+	String nombre; 
 	
 	@OneToMany(mappedBy="padre_alumno", targetEntity=Alumno.class)
 	private List<Alumno> alumno;
 	
-	public Padre(List<Alumno> alumno, String correo, String apellido) {
+	public Padre(List<Alumno> alumno, String correo, String apellido, String nombre) {
 		this.idPadre = (int)(Math.random()*(129-1)+1);
 		this.alumno = alumno;
 		this.correo = correo;
 		this.apellido = apellido;
+		this.nombre = nombre; 
 	}
 	
 	public int getIdPadre() {
@@ -54,10 +57,17 @@ public class Padre {
 		this.correo = correo;
 	}
 	
-	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	@Override
 	public String toString() {
-		return "Padre [alumno="  + ", correo=" + correo + "]";
+		return "Padre [alumno="  +" nombre " +nombre +" apellido " + apellido + ", correo=" + correo + "]";
 	}
 	
 	/*FUNCIONES PROPIAS

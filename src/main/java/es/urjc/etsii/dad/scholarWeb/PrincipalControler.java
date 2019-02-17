@@ -57,7 +57,6 @@ public class PrincipalControler {
 		
 		model.addAttribute("noticia", notRepo.findAll());
 		
-		
 		return "noticias"; 
 	}
 	
@@ -72,12 +71,10 @@ public class PrincipalControler {
 	@RequestMapping("/profesores")
 	public String verprofesores(Model model) {
 		
-		model.addAttribute("profesor", profeRepo.findAll());
+		model.addAttribute("profe", profeRepo.findAll());
 		
 		return "profesores";
 	}
-	
-	
 	
 	@GetMapping("/contacto")
 	public String newContacto(Model model) {
