@@ -20,13 +20,14 @@ public class Padre {
 	@OneToMany(mappedBy="padre_alumno", targetEntity=Alumno.class)
 	private List<Alumno> alumno;
 	
-	public Padre(List<Alumno> alumno, String correo, String apellido, String nombre) {
+	public Padre(String correo, String apellido, String nombre) {
 		this.idPadre = (int)(Math.random()*(129-1)+1);
-		this.alumno = alumno;
 		this.correo = correo;
 		this.apellido = apellido;
 		this.nombre = nombre; 
 	}
+	
+	public Padre(){}
 	
 	public int getIdPadre() {
 		return idPadre;

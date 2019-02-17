@@ -22,11 +22,18 @@ public class AlumnoController {
 	
 	@Autowired
 	private AlumnoRepository repository;
+	//private AulaRepository repoA;
 	
 	@PostConstruct
 	public void init() {
-		Alumno a= new Alumno("Juan", "Perez", "Gomez");		
+		Alumno a= new Alumno("Juan", "Perez", "Gomez");	
+		Alumno a2= new Alumno("Ana", "Martin","Lopez");
+		Alumno a3= new Alumno("Elena","Vazquez","Rodriguez");
+		
+		//a.setAula(aula);
 		repository.save(a);
+		repository.save(a2);
+		repository.save(a3);
 	}
 	
 

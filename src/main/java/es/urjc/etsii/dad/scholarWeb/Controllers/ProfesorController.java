@@ -25,8 +25,8 @@ public class ProfesorController {
 	
 	@PostConstruct
 	public void init() {
-		//repository.save(new Profesor("Pedro","Gomez","Martin","pgm@gmail.com"));
-		//repository.save(new Profesor("Felix","Lopez","Cid","flc@gmail.com"));
+		repository.save(new Profesor("Pedro","Gomez","Martin","pgm@gmail.com"));
+		repository.save(new Profesor("Felix","Lopez","Cid","flc@gmail.com"));
 	}
 
 	public List<Profesor> findItems() {

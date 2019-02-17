@@ -2,6 +2,8 @@ package es.urjc.etsii.dad.scholarWeb.Controllers;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,14 @@ public class PadreController {
 
 	@Autowired
 	private PadreRepository repository;
+	
+	@PostConstruct
+	public void init() {
+	
+			repository.save(new Padre("juan@gmail.com","Juan","Ortega"));
+			repository.save(new Padre("marisa@gmail.com","Marisa","Ramos"));
+			repository.save(new Padre("jpablo@gmail.com","Jose Pablo","Hernandez"));
+	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Padre> findItems() {
