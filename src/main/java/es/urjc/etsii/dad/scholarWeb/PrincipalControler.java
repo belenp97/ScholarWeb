@@ -49,7 +49,6 @@ public class PrincipalControler {
 	@PostConstruct
 	public void init() {
 		
-		
 		Profesor p=new Profesor("Pedro","Gomez","Martin","pgm@gmail.com");
 		ProfeRepo.save(p);
 		AulaRepo.save(new Aula(1,'A'));		
