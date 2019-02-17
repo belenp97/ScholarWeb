@@ -48,7 +48,7 @@ Tendremos en un principio 6 entidades en toda la aplicación web que se identifi
 - Rectángulo verder: Controller de cada entidad.
 
 ### **DIAGRAMA ENTIDAD-RELACIÓN.**
-![untitled diagram](https://user-images.githubusercontent.com/45795451/52587160-bb2fdb00-2e39-11e9-83ce-6d51ad25237e.png)
+![entidad-relacion](https://user-images.githubusercontent.com/45795451/52915678-46e0b600-32d7-11e9-991f-d7332c5f59b0.png)
 
 ### **MODELO DE NAVEGACIÓN.**
 
