@@ -12,13 +12,7 @@ public class Profesor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer identificador;
-	public Integer getIdentificador() {
-		return identificador;
-	}
-
-	public void setIdentificador(Integer identificador) {
-		this.identificador = identificador;
-	}
+	
 	@Column
 	private String nombre;
 	@Column
@@ -36,6 +30,13 @@ public class Profesor {
 	@ManyToMany (mappedBy = "profesores_curso", targetEntity = Aula.class)
 	private List<Aula> aulas = new ArrayList<>();
 	
+	public Integer getIdentificador() {
+		return identificador;
+	}
+
+	public void setIdentificador(Integer identificador) {
+		this.identificador = identificador;
+	}
 	
 	public List<Aula> getAulas() {
 		return aulas;
