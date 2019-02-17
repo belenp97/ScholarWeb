@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -48,12 +49,7 @@ public class PrincipalControler {
 	@PostConstruct
 	public void init() {
 		
-		Alumno a= new Alumno("Juan", "Perez", "Gomez");		
-		repository.save(new Noticia("Importante","es una noticia importante para los padres"));
-		AlumnoRepo.save(a);
-		AsigRepo.save(new Asignatura("Matematicas",2));
-		AsigRepo.save(new Asignatura("Ingles",1));
-		AsigRepo.save(new Asignatura("Física",4));
+		
 		Profesor p=new Profesor("Pedro","Gomez","Martin","pgm@gmail.com");
 		ProfeRepo.save(p);
 		AulaRepo.save(new Aula(1,'A'));		
@@ -76,6 +72,7 @@ public class PrincipalControler {
 	
 	@RequestMapping("/alumnos")
 	public String verAlumnos(Model model, @RequestParam(required=false) int n_exp) throws Exception{
+		
 		model.addAttribute("alumno",AlumnoRepo.findAll());
 		
 		return "alumnos";
@@ -83,13 +80,15 @@ public class PrincipalControler {
 	
 	@RequestMapping("/profesores")
 	public String verprofesores(Model model) {
-
+		
+		model.addAttribute("profesor", ProfeRepo.findAll());
+		
 		return "profesores";
 	}
 	
 	
 	
-	/*@GetMapping("/contacto")
+	@GetMapping("/contacto")
 	public String newContacto(Model model) {
 
 		return "contacto";// llamarlo como se llama el html
@@ -99,5 +98,5 @@ public class PrincipalControler {
 	public String contactoRecibido(Model model) {
 
 		return "contacto_recibido";
-	}*/
+	}
 }

@@ -15,18 +15,22 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 
 
 @RestController
-@RequestMapping("/profesores")
 public class ProfesorController {
 
 	@Autowired
 	private ProfesorRepository repository;
+	
+	public void init() {
+		Profesor p1=new Profesor("Pedro","Gomez","Martin","pgm@gmail.com");
+		Profesor p2=new Profesor("Felix","Lopez","Cid","flc@gmail.com");
+		repository.save(p1);
+		repository.save(p2);
+	}
 
-	@RequestMapping(method = RequestMethod.GET)
 	public List<Profesor> findItems() {
 		return (List<Profesor>) repository.findAll();
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Profesor> addItem(@RequestBody Profesor item) {
 		item.setIdentificador(null);
 		Profesor newItem = repository.saveAndFlush(item);

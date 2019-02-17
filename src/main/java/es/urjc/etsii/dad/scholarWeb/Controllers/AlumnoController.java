@@ -2,6 +2,8 @@ package es.urjc.etsii.dad.scholarWeb.Controllers;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +17,17 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.AlumnoRepository;
 
 
 @RestController
-@RequestMapping("/alumnos")
 public class AlumnoController {
 	
 	@Autowired
 	private AlumnoRepository repository;
+	
+	@PostConstruct
+	public void init() {
+		Alumno a= new Alumno("Juan", "Perez", "Gomez");		
+		repository.save(a);
+	}
+	
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Alumno> findItems() {

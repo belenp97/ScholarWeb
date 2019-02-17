@@ -49,29 +49,15 @@
 				<div class="inner">
 					<div class="feature text-center">
 						<img src="./css/img/j.gif" alt="">
-						<h3 class="center">Rhea Smith</h3>
-						<p>WordPress Expert</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Tempora fuga suscipit numquam esse saepe quam, eveniet iure
-							assumenda dignissimos aliquam!</p>
-					</div>
-
-					<div class="feature text-center">
-						<img src="./css/img/j.gif" alt="">
-						<h3 class="center">Gregg White</h3>
-						<p>HTML4, CSS3 Expert</p>
-						<p>Delectus fuga voluptatum minus amet, mollitia distinctio
-							assumenda voluptate quas repellat eius quisquam odio. Aliquam,
-							laudantium, optio? Error velit, alias.</p>
-					</div>
-
-					<div class="feature text-center">
-						<img src="./css/img/j.gif" alt="">
-						<h3 class="center">Rob Gold</h3>
-						<p>JS Expert</p>
-						<p>Delectus fuga voluptatum minus amet, mollitia distinctio
-							assumenda voluptate quas repellat eius quisquam odio. Aliquam,
-							laudantium, optio? Error velit, alias.</p>
+						{{#profesor}}
+						
+						<h3 class="center">
+							{{nombre}} {{apellido1}} {{apellido2}}
+						</h3>
+						<p>Asignaturas:</p>
+						<p>{{correo}}</p>
+						
+						{{/profesor}}
 					</div>
 				</div>
 			</section>

@@ -2,6 +2,8 @@ package es.urjc.etsii.dad.scholarWeb.Controllers;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,19 +16,22 @@ import es.urjc.etsii.dad.scholarWeb.Asignatura;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AsignaturaRepository;
 
 @RestController
-@RequestMapping("/asignaturas")
 public class AsignaturaController {
-
 	
 	@Autowired
 	private AsignaturaRepository repository;
+	
+	@PostConstruct
+	public void init() {
+		repository.save(new Asignatura("Matematicas",2));
+		repository.save(new Asignatura("Ingles",1));
+		repository.save(new Asignatura("Física",4));
+	}
 
-	@RequestMapping(method = RequestMethod.GET)
 	public List<Asignatura> findItems() {
 		return (List<Asignatura>) repository.findAll();
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Asignatura> addItem(@RequestBody Asignatura item) {
 		item.setNombre(null);
 		Asignatura newItem = repository.saveAndFlush(item);

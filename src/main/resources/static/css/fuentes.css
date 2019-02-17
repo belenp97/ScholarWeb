@@ -494,8 +494,9 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5,
 	margin: 0 0 0 10px;
 }
 
-<!--
-profesores            -->.school-features {
+<!--	profesores            -->
+
+.school-features {
 	width: 100%;
 	padding-right: 15px;
 	padding-left: 15px;
@@ -579,6 +580,16 @@ profesores            -->.school-features {
 	color: #000;
 	opacity: .5;
 }
+
+/*-------------------------------------------- Noticias ----------*/
+.not{
+	list-style:none; 
+	line-height:normal;
+	background: red; 
+	display: block;
+}
+
+
 
 /* ----------------------------------------------Column------------------------------------- */
 #column {

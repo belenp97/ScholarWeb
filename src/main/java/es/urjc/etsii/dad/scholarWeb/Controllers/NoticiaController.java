@@ -16,7 +16,6 @@ import es.urjc.etsii.dad.scholarWeb.Noticia;
 import es.urjc.etsii.dad.scholarWeb.Repositories.NoticiaRepository;
 
 @RestController
-@RequestMapping("/noticias")
 public class NoticiaController {
 
 	@Autowired
@@ -25,17 +24,15 @@ public class NoticiaController {
 	@PostConstruct
 	public void init() {
 		repository.save(new Noticia("Importante","es una noticia importante para los padres"));
+		repository.save(new Noticia("Padres","cada alumno tendra un menu especializado, respecto a sus intolerancias"));
 	}
-	
-	
-	
 
-	@RequestMapping(method = RequestMethod.GET)
+	
 	public List<Noticia> findItems() {
 		return repository.findAll();
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	
 	public ResponseEntity<Noticia> addItem(@RequestBody Noticia item) {
 		item.settitulo(null);
 		Noticia newItem = repository.saveAndFlush(item);
