@@ -24,10 +24,15 @@ public class Profesor {
 	@OneToMany (mappedBy = "profesorPorAsignatura", targetEntity = Asignatura.class)
 	private List<Asignatura> asignaturas= new ArrayList<>();
 	
-	@ManyToMany (mappedBy = "profesorePorAlumno", targetEntity = Alumno.class)
+	@ManyToMany (/*mappedBy = "profesorePorAlumno",*/ targetEntity = Alumno.class)
+	@JoinTable(name = "alumnos_progesore_por_alumno", joinColumns = { @JoinColumn(name = "alumnos_por_profesor") },
+    inverseJoinColumns = { @JoinColumn(name = "profesore_por_alumno") })
 	private List<Alumno> alumnosPorProfesor = new ArrayList<>();
 	
-	@ManyToMany (mappedBy = "profesores_curso", targetEntity = Aula.class)
+	@ManyToMany (/*mappedBy = "profesores_curso",*/ targetEntity = Aula.class)
+	@JoinTable(name = "aula_profesores_curso", joinColumns = { @JoinColumn(name = "aulas") },
+    inverseJoinColumns = { @JoinColumn(name = "profesores_curso") })
+	
 	private List<Aula> aulas = new ArrayList<>();
 	
 	public Integer getIdentificador() {

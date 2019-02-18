@@ -1,7 +1,7 @@
 package es.urjc.etsii.dad.scholarWeb;
 
-import java.util.ArrayList;
-import java.util.Optional;
+
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -65,6 +64,12 @@ public class PrincipalControler {
 		Asignatura asi2= new Asignatura("Ingles",1);
 		Asignatura asi3= new Asignatura("Física",1);
 		
+		List<Asignatura> ass= asigRepo.findAll();
+		a.setAsignaturas(ass);
+		a2.setAsignaturas(ass);
+		a3.setAsignaturas(ass);
+		
+				
 		/*a.getAsignaturas().add(asi1);
 		a.getAsignaturas().add(asi2);
 		a.getAsignaturas().add(asi3);

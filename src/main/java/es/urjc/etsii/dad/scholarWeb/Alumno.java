@@ -23,10 +23,15 @@ public class Alumno {
 	//@Column
 	//private Alumno alumnos;
 	
-	@ManyToMany (mappedBy="alumno", targetEntity=Asignatura.class)
+	@ManyToMany(targetEntity = Asignatura.class)
+	@JoinTable(name = "asignatura_alumno", joinColumns = { @JoinColumn(name = "alumno") },
+            inverseJoinColumns = { @JoinColumn(name = "asignaturas") })
 	private List<Asignatura> asignaturas = new ArrayList<>();
 	
 	@ManyToMany (targetEntity = Profesor.class)
+	@JoinTable(name = "alumnos_profesore_por_alumno", joinColumns = { @JoinColumn(name = "alumnos_por_profesor") },
+    inverseJoinColumns = { @JoinColumn(name = "profesore_por_alumno") })
+	
 	private List<Profesor> profesorePorAlumno = new ArrayList<>();
 	
 	@ManyToOne

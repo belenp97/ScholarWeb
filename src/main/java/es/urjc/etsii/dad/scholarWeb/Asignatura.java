@@ -18,6 +18,9 @@ public class Asignatura {
 	private int notas;
 	
 	@ManyToMany(targetEntity=Alumno.class, cascade = CascadeType.ALL)
+	@JoinTable(name = "asignatura_alumno", joinColumns = { @JoinColumn(name = "alumno") },
+    inverseJoinColumns = { @JoinColumn(name = "asignaturas") })
+	
 	private List<Alumno> alumno = new ArrayList<Alumno>();
 	
 	@ManyToOne
