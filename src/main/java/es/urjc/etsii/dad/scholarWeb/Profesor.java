@@ -25,7 +25,9 @@ public class Profesor {
 	@OneToMany(mappedBy = "profesorPorAsignatura", targetEntity = Asignatura.class)
 	private List<Asignatura> asignaturas = new ArrayList<>();
 
-	@ManyToMany(mappedBy = "profesorePorAlumno", targetEntity = Alumno.class)
+	@ManyToMany(targetEntity = Alumno.class, cascade = CascadeType.ALL)
+	@JoinTable(name = "alumnos_profesor", joinColumns = { @JoinColumn(name = "profesorePorAlumno") },
+    inverseJoinColumns = { @JoinColumn(name = "alumnosPorProfesor") })
 	private List<Alumno> alumnosPorProfesor = new ArrayList<>();
 
 	@ManyToMany(mappedBy = "profesores_curso", targetEntity = Aula.class)

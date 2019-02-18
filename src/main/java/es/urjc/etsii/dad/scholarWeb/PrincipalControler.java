@@ -55,9 +55,9 @@ public class PrincipalControler {
 		a2.setAula(a.getAula());
 		a3.setAula(new Aula(1,'C'));
 
-		/*a.getAula().getAlumnos_curso().add(a);
+		a.getAula().getAlumnos_curso().add(a);
 		a.getAula().getAlumnos_curso().add(a2);
-		a3.getAula().getAlumnos_curso().add(a3);*/
+		a3.getAula().getAlumnos_curso().add(a3);
 				
 		Asignatura asi1=new Asignatura("Matematicas",1);
 		Asignatura asi2= new Asignatura("Ingles",1);
