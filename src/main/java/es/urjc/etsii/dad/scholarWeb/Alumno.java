@@ -21,8 +21,6 @@ public class Alumno {
 	private String apellido2;
 	@Column
 	private int faltas; 
-	//@Column
-	//private Alumno alumnos;
 	
 	@ManyToMany(targetEntity = Asignatura.class)
 	@JoinTable(name = "asignatura_alumno", joinColumns = { @JoinColumn(name = "alumno") },
@@ -123,15 +121,6 @@ public class Alumno {
 	public void setFaltas(int faltas) {
 		this.faltas = faltas;
 	}
-
-	
-	/*public Alumno getAlumnos() {
-		return alumnos;
-	}
-
-	public void setAlumnos(Alumno alumnos) {
-		this.alumnos = alumnos;
-	}*/
 
 	@Override
 	public String toString() {

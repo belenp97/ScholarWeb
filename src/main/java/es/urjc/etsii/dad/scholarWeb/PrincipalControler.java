@@ -55,9 +55,9 @@ public class PrincipalControler {
 		a2.setAula(a.getAula());
 		a3.setAula(new Aula(1,'C'));
 
-		a.getAula().getAlumnos_curso().add(a);
+		/*a.getAula().getAlumnos_curso().add(a);
 		a.getAula().getAlumnos_curso().add(a2);
-		a3.getAula().getAlumnos_curso().add(a3);
+		a3.getAula().getAlumnos_curso().add(a3);*/
 				
 		Asignatura asi1=new Asignatura("Matematicas",1);
 		Asignatura asi2= new Asignatura("Ingles",1);
@@ -79,26 +79,11 @@ public class PrincipalControler {
 		a2.setProfesores(pss);
 		a3.setProfesores(pss);
 		
-				
-		/*a.getAsignaturas().add(asi1);
-		a.getAsignaturas().add(asi2);
-		a.getAsignaturas().add(asi3);
-		a2.getAsignaturas().add(asi1);
-		a2.getAsignaturas().add(asi2);
-		a2.getAsignaturas().add(asi3);		
-		a3.getAsignaturas().add(asi1);
-		a3.getAsignaturas().add(asi2);
-		a3.getAsignaturas().add(asi3);
+		List<Alumno> alumnos= reposAl.findAll();
+		asi1.setAlumnos(alumnos);
+		asi2.setAlumnos(alumnos);
+		asi3.setAlumnos(alumnos);
 		
-		asi1.getAlumnos().add(a);
-		asi1.getAlumnos().add(a2);
-		asi1.getAlumnos().add(a3);
-		asi2.getAlumnos().add(a);
-		asi2.getAlumnos().add(a2);
-		asi2.getAlumnos().add(a3);
-		asi3.getAlumnos().add(a);
-		asi3.getAlumnos().add(a2);
-		asi3.getAlumnos().add(a3);*/
 		
 		Padre pa= new Padre("juan@gmail.com","Ortega","Juan");
 		Padre pa2= new Padre("marisa@gmail.com","Ramos","Marisa");
@@ -112,18 +97,16 @@ public class PrincipalControler {
 		Profesor p2=new Profesor("Felix","Lopez","Cid","flc@gmail.com");
 		Profesor p3 = new Profesor("Agatha", "Garcia", "Lopez", "agl@gmail.com");
 		
-		p.getAsignaturas().add(asi1);
-		p2.getAsignaturas().add(asi2);
-		p3.getAsignaturas().add(asi3);
+		p.setAsignaturas(ass);
+		p2.setAsignaturas(ass);
+		p3.setAsignaturas(ass);
 		
+		List<Profesor> profs= profeRepo.findAll();
+		a.setProfesores(profs);
+		a2.setProfesores(profs);
+		a3.setProfesores(profs);
 		
-		/*a.getProfesores().add(p);
-		a.getProfesores().add(p2);
-		a2.getProfesores().add(p);
-		a2.getProfesores().add(p2);
-		a3.getProfesores().add(p);
-		a3.getProfesores().add(p2);*/
-		
+	
 		padreRepo.save(pa);
 		padreRepo.save(pa2);
 		padreRepo.save(pa3);
