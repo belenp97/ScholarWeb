@@ -129,7 +129,6 @@ public class PrincipalControler {
 		reposAl.save(a);
 		reposAl.save(a2);
 		reposAl.save(a3);
-			
 		
 	}
 
