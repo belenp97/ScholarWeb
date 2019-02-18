@@ -6,13 +6,13 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name ="profesor")
+@Table(name = "profesor")
 public class Profesor {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer identificador;
-	
+	private long identificador;
+
 	@Column
 	private String nombre;
 	@Column
@@ -21,23 +21,24 @@ public class Profesor {
 	private String apellido2;
 	@Column
 	private String correo;
-	@OneToMany (mappedBy = "profesorPorAsignatura", targetEntity = Asignatura.class)
-	private List<Asignatura> asignaturas= new ArrayList<>();
 	
-	@ManyToMany (mappedBy = "profesorePorAlumno", targetEntity = Alumno.class)
+	@OneToMany(mappedBy = "profesorPorAsignatura", targetEntity = Asignatura.class)
+	private List<Asignatura> asignaturas = new ArrayList<>();
+
+	@ManyToMany(mappedBy = "profesorePorAlumno", targetEntity = Alumno.class)
 	private List<Alumno> alumnosPorProfesor = new ArrayList<>();
-	
-	@ManyToMany (mappedBy = "profesores_curso", targetEntity = Aula.class)
+
+	@ManyToMany(mappedBy = "profesores_curso", targetEntity = Aula.class)
 	private List<Aula> aulas = new ArrayList<>();
-	
-	public Integer getIdentificador() {
+
+	public long getIdentificador() {
 		return identificador;
 	}
 
 	public void setIdentificador(Integer identificador) {
 		this.identificador = identificador;
 	}
-	
+
 	public List<Aula> getAulas() {
 		return aulas;
 	}
@@ -53,35 +54,29 @@ public class Profesor {
 	public void setAlumnos(List<Alumno> alumnos) {
 		this.alumnosPorProfesor = alumnos;
 	}
-	
-	public Profesor() {}
 
-	public Profesor(String n, String a1, String a2,String c) {
-		this.identificador=(int)(Math.random()*(129-1)+1);
-		this.nombre= n;
+	public Profesor() {
+	}
+
+	public Profesor(String n, String a1, String a2, String c) {
+		this.identificador = (long) Math.random()*7;
+		this.nombre = n;
 		this.apellido1 = a1;
 		this.apellido2 = a2;
-		this.correo=c;
+		this.correo = c;
 	}
-	
 
 	public String getNombre() {
 		return nombre;
 	}
 
-
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-
-
 	public String getCorreo() {
 		return correo;
 	}
-
-
 
 	public String getApellido1() {
 		return apellido1;
@@ -103,29 +98,26 @@ public class Profesor {
 		this.correo = correo;
 	}
 
-	
 	public List<Asignatura> getAsignaturas() {
 		return asignaturas;
 	}
+
 	public void setAsignaturas(List<Asignatura> asignaturas) {
 		this.asignaturas = asignaturas;
 	}
-	
-	
-	
+
 	@Override
 	public String toString() {
 		return "Profesor [identificador=" + identificador + ", nombre=" + nombre + ", apellido1=" + apellido1
-				+ ", apellido2=" + apellido2 + ", correo=" + correo + ", asignaturas=" 
-				+ ", alumnos=" +  ", aulas=" + "]";
+				+ ", apellido2=" + apellido2 + ", correo=" + correo + ", asignaturas=" + ", alumnos=" + ", aulas="
+				+ "]";
 	}
 
-	/*FUNCIONES PROPIAS
-	public void EnviarComedor(Padre[]  p, File f) {}
-	public void EnviarCorreo(Padre[] p){}
-	public void Añadir_falta(Alumno a, Asignatura as){}
-	public void Subir_notas(Asignatura a){}
-	public void EnviarInfoExcursiones(Padre[] p){}*/
+	/*
+	 * FUNCIONES PROPIAS public void EnviarComedor(Padre[] p, File f) {} public void
+	 * EnviarCorreo(Padre[] p){} public void Añadir_falta(Alumno a, Asignatura as){}
+	 * public void Subir_notas(Asignatura a){} public void
+	 * EnviarInfoExcursiones(Padre[] p){}
+	 */
 
 }
-

@@ -6,10 +6,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name ="asignatura")
-public class Asignatura {
+public class Asignatura{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id; 
+	private long id; 
 	@Column
 	private String nombre;
 	@Column
@@ -43,7 +44,7 @@ public class Asignatura {
 	public Asignatura() {}
 	
 	public Asignatura(String nombre, int curso) {
-		this.id= (int)(Math.random()*(19-1)+1);
+		this.id= (long)(Math.random()*7);
 		this.nombre = nombre;
 		this.curso = curso;
 	}

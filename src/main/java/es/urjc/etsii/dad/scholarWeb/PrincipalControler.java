@@ -52,7 +52,6 @@ public class PrincipalControler {
 		Alumno a2= new Alumno("Ana", "Martin","Lopez");
 		Alumno a3= new Alumno("Elena","Vazquez","Rodriguez");
 		
-		
 		a.setAula(new Aula(1,'A'));		
 		a2.setAula(a.getAula());
 		a3.setAula(new Aula(1,'C'));
@@ -65,7 +64,11 @@ public class PrincipalControler {
 		Asignatura asi2= new Asignatura("Ingles",1);
 		Asignatura asi3= new Asignatura("Física",1);
 		
-		/*a.getAsignaturas().add(asi1);
+		asigRepo.save(asi1);
+		asigRepo.save(asi2);
+		asigRepo.save(asi3);
+		
+		a.getAsignaturas().add(asi1);
 		a.getAsignaturas().add(asi2);
 		a.getAsignaturas().add(asi3);
 		a2.getAsignaturas().add(asi1);
@@ -83,35 +86,30 @@ public class PrincipalControler {
 		asi2.getAlumnos().add(a3);
 		asi3.getAlumnos().add(a);
 		asi3.getAlumnos().add(a2);
-		asi3.getAlumnos().add(a3);*/
+		asi3.getAlumnos().add(a3);
 		
-		asigRepo.save(asi1);
-		asigRepo.save(asi2);
-		asigRepo.save(asi3);
+		Padre pa= new Padre("juan@gmail.com","Ortega","Juan");
+		Padre pa2= new Padre("marisa@gmail.com","Ramos","Marisa");
+		Padre pa3= new Padre("jpablo@gmail.com","Hernandez","Jose Pablo");
 		
-		Padre pa= new Padre("juan@gmail.com","Juan","Ortega");
-		Padre pa2= new Padre("marisa@gmail.com","Marisa","Ramos");
-		Padre pa3= new Padre("jpablo@gmail.com","Jose Pablo","Hernandez");
-		
-		/*a.setPadre(pa);
+		a.setPadre(pa);
 		a2.setPadre(pa2);
-		a3.setPadre(pa3);*/
+		a3.setPadre(pa3);
 		
-		/*pa.getAlumno().add(a);
+		pa.getAlumno().add(a);
 		pa.getAlumno().add(a2);
-		pa2.getAlumno().add(a3);*/
+		pa2.getAlumno().add(a3);
 		
 		Profesor p= new Profesor("Pedro","Gomez","Martin","pgm@gmail.com");
 		Profesor p2=new Profesor("Felix","Lopez","Cid","flc@gmail.com");
+		Profesor p3 = new Profesor("Agatha", "Garcia", "Lopez", "agl@gmail.com");
 		
-		/*a.getProfesores().add(p);
+		a.getProfesores().add(p);
 		a.getProfesores().add(p2);
 		a2.getProfesores().add(p);
 		a2.getProfesores().add(p2);
 		a3.getProfesores().add(p);
-		a3.getProfesores().add(p2);*/
-		
-		
+		a3.getProfesores().add(p2);
 		
 		padreRepo.save(pa);
 		padreRepo.save(pa2);
@@ -120,7 +118,7 @@ public class PrincipalControler {
 				
 		profeRepo.save(p);
 		profeRepo.save(p2);
-
+		profeRepo.save(p3);
 		
 		reposAula.save(a.getAula());
 		reposAula.save(new Aula(1,'B'));
@@ -129,7 +127,6 @@ public class PrincipalControler {
 		reposAl.save(a);
 		reposAl.save(a2);
 		reposAl.save(a3);
-		
 	}
 
 	@GetMapping("/")

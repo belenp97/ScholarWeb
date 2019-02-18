@@ -9,9 +9,10 @@ import javax.persistence.*;
 @Entity
 @Table(name ="alumnos")
 public class Alumno {
+	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer nexpediente;
+	long nexpediente;
 	@Column
 	String nombre;
 	@Column
@@ -35,6 +36,16 @@ public class Alumno {
 	@ManyToOne(targetEntity=Padre.class, fetch = FetchType.LAZY)
 	private Padre padre_alumno;
 	
+	
+	
+	public Alumno(String n, String a1,String a2) {
+		this.nombre=n;
+		this.apellido1=a1;
+		this.apellido2=a2;
+		this.nexpediente= (int) Math.random()*7;
+	}
+	
+	public Alumno() {} 
 	
 	public Aula getAula() {
 		return aula;
@@ -60,15 +71,6 @@ public class Alumno {
 		this.padre_alumno = padre;
 	}
 
-	public Alumno(String n, String a1,String a2) {
-		this.nombre=n;
-		this.apellido1=a1;
-		this.apellido2=a2;
-		this.nexpediente= (int) (Math.random()*(120-1)+1);
-	}
-	
-	public Alumno() {} 
-	
 	public String getNombre() {
 		return nombre;
 	}
@@ -93,7 +95,7 @@ public class Alumno {
 		this.apellido2 = apellido;
 	}
 
-	public int getNexpediente() {
+	public long getNexpediente() {
 		return nexpediente;
 	}
 
@@ -129,7 +131,7 @@ public class Alumno {
 	@Override
 	public String toString() {
 		return "Alumno [nexpediente=" + nexpediente + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2="
-				+ apellido2  + ", faltas=" + faltas + ", padre="  + "]";
+				+ apellido2  + ", faltas=" + faltas +"]";
 	}
 
 	/* FUNCIONES PROPIAS  

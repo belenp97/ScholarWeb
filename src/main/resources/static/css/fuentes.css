@@ -78,6 +78,14 @@ img {
 	border: none;
 }
 
+.prof{
+    margin: 0;
+	padding: 0;
+	border: none;
+    width: 100px;
+    height: 133px;
+}
+
 .imgholder, .imgl, .imgr {
 	padding: 4px;
 	border: 1px solid #D8D8D8;
@@ -540,8 +548,8 @@ display: block;
 	margin: 0 0 0 10px;
 }
 
-<!--
-profesores            -->.school-features {
+/*-- profesores            -->*/
+.school-features {
 	width: 100%;
 	padding-right: 15px;
 	padding-left: 15px;
