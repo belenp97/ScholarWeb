@@ -1,7 +1,8 @@
 <html>
 <head>
 <title>Schollar Web</title>
-<link rel="stylesheet" href="./css/fuentes.css" type="text/css" />
+<link rel="stylesheet" href="/css/fuentes.css" type="text/css" />
+<meta charset="UTF-8" />
 </head>
 
 <body id="top">
@@ -9,9 +10,9 @@
 		<div id="box_tittle">
 			<ul>
 				<li><a href="/"><strong>Inicio</strong></a></li>
-				<li><a href="profesores"><strong>Profesores</strong></a></li>
-				<li><a href="noticias"><strong>Noticias</strong></a></li>
-				<li><a href="contacto"><strong>Contacto</strong></a></li>
+				<li><a href="/profesores"><strong>Profesores</strong></a></li>
+				<li><a href="/noticias"><strong>Noticias</strong></a></li>
+				<li><a href="/contacto"><strong>Contacto</strong></a></li>
 			</ul>
 		</div>
 	</div>
@@ -25,43 +26,39 @@
 					</h1>
 				</div>
 				<div class="fl_right">
-					<form action="#" method="post" id="sitesearch">
+					<form action="busqueda" method="post" id="sitesearch">
 						<fieldset>
 							<legend>Busqueda</legend>
 							<input type="text" class="t" /> <input type="image"
 								src="/css/img/search.gif" id="search" alt="Search" />
 						</fieldset>
 					</form>
-					<p>
-						<h3><a href="login">Login</a></h3>
-					</p>
+					<p><h3>
+						<a href="login">Login</a>
+					</h3></p>
+
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- ####################################################################################################### -->
-	<div class="wrapper principal">
-		<div id="box_image">
-			<img src="./css/img/fachada.jpg" width="940" height="340" />
-		</div>
-		<div id="box_url_info" class="clear">
-			<ul>
-				<li><a href="#"><img src="css/img/fachada.jpg" alt="" /> <strong>Make
-							An Application</strong></a></li>
-				<li><a href="#"><img src="css/img/fachada.jpg" alt="" /> <strong>Order
-							A Prospectus</strong></a></li>
-				<li class="last"><a href="#"><img src="css/img/fachada.jpg"
-						alt="" /> <strong>Fees &amp; Funding</strong></a></li>
-			</ul>
-		</div>
-	</div>
-	
+
+	<section class="wrapper_login">
+		<form class="register" action="/login" method="post">
+			<input class="mininbox t" type="email" placeholder="info@mailaddress.com">
+			<input class="mininbox t" type="password" placeholder="••••••••••••">
+
+			<input type="submit" value="Enviar" class="submit">
+		</form>
+	</section>
+
+
 	<!-- ####################################################################################################### -->
 	<div class="wrapper">
-		<div id="footer" class="not">
+		<div id="footer" class="clear">
 			<div class="fl_left clear">
 				<div class="fl_left center">
-					<img src="./css/img/worldmap.gif"/><br /> <a href="#">Find
+					<img src="/css/img/worldmap.gif" alt="" /><br /> <a href="#">Find
 						Us With Google Maps &raquo;</a>
 				</div>
 			</div>
@@ -74,7 +71,7 @@
 			</div>
 			<div id="copyright" class="clear">
 				<p class="fl_left">
-					Copyright &copy; 2014 - All Rights Reserved - <a href="#">Domain
+					Copyright &copy; 2019 - All Rights Reserved - <a href="#">Domain
 						Name</a>
 				</p>
 			</div>

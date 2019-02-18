@@ -87,4 +87,17 @@ public class PrincipalControler {
 
 		return "contacto_recibido";
 	}
+	
+	@GetMapping("/login")
+	public String login(Model model) {
+		
+		return "login"; 
+	}
+	
+	@PostMapping("/login/privado")
+	public String loginPrivado(Model model) {
+
+		return "login_privado";
+	}
+	
 }
