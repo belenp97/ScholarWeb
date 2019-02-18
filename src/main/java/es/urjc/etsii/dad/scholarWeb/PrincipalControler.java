@@ -63,11 +63,13 @@ public class PrincipalControler {
 		Asignatura asi2= new Asignatura("Ingles",1);
 		Asignatura asi3= new Asignatura("Física",1);
 		
+
 		asigRepo.save(asi1);
 		asigRepo.save(asi2);
 		asigRepo.save(asi3);
 		
-		List<Asignatura> ass = asigRepo.findAll(); 
+
+		List<Asignatura> ass= asigRepo.findAll();
 		a.setAsignaturas(ass);
 		a2.setAsignaturas(ass);
 		a3.setAsignaturas(ass);
@@ -77,6 +79,7 @@ public class PrincipalControler {
 		a2.setProfesores(pss);
 		a3.setProfesores(pss);
 		
+				
 		/*a.getAsignaturas().add(asi1);
 		a.getAsignaturas().add(asi2);
 		a.getAsignaturas().add(asi3);
