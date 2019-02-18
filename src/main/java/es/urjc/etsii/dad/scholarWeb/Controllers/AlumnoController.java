@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.urjc.etsii.dad.scholarWeb.Alumno;
+import es.urjc.etsii.dad.scholarWeb.Aula;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AlumnoRepository;
+import es.urjc.etsii.dad.scholarWeb.Repositories.AulaRepository;
 
 
 @RestController
@@ -23,11 +25,22 @@ public class AlumnoController {
 	@Autowired
 	private AlumnoRepository repository;
 	
-	@PostConstruct
+	@Autowired
+	private AulaRepository reposAl;
+	
+	/*@PostConstruct
 	public void init() {
-		Alumno a= new Alumno("Juan", "Perez", "Gomez");		
+		Alumno a= new Alumno("Juan", "Perez", "Gomez");	
+		Alumno a2= new Alumno("Ana", "Martin","Lopez");
+		Alumno a3= new Alumno("Elena","Vazquez","Rodriguez");
+		
+		a.setAula(new Aula(1,'a'));
+		reposAl.save(a.getAula());
+			
 		repository.save(a);
-	}
+		repository.save(a2);
+		repository.save(a3);
+	}*/
 	
 
 	/*@RequestMapping(method = RequestMethod.GET)

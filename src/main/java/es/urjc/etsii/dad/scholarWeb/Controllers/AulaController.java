@@ -23,11 +23,21 @@ public class AulaController {
 	@Autowired
 	private AulaRepository repository;
 	
-	@PostConstruct
+	/*@PostConstruct
 	public void init() {
-		repository.save(new Aula(1,'A'));		
-		
-	}
+		repository.save(new Aula(1,'A'));
+		repository.save(new Aula(1,'B'));
+		repository.save(new Aula(1,'C'));
+		repository.save(new Aula(2,'A'));
+		repository.save(new Aula(2,'B'));
+		repository.save(new Aula(2,'C'));
+		repository.save(new Aula(3,'A'));
+		repository.save(new Aula(3,'B'));
+		repository.save(new Aula(3,'C'));
+		repository.save(new Aula(4,'A'));
+		repository.save(new Aula(4,'B'));
+		repository.save(new Aula(4,'C'));
+	}*/
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Aula> findItems() {
