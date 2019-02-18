@@ -1,7 +1,7 @@
 package es.urjc.etsii.dad.scholarWeb;
 
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.Collection;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -68,7 +67,17 @@ public class PrincipalControler {
 		asigRepo.save(asi2);
 		asigRepo.save(asi3);
 		
-		a.getAsignaturas().add(asi1);
+		List<Asignatura> ass = asigRepo.findAll(); 
+		a.setAsignaturas(ass);
+		a2.setAsignaturas(ass);
+		a3.setAsignaturas(ass);
+		
+		List<Profesor> pss = profeRepo.findAll(); 
+		a.setProfesores(pss);
+		a2.setProfesores(pss);
+		a3.setProfesores(pss);
+		
+		/*a.getAsignaturas().add(asi1);
 		a.getAsignaturas().add(asi2);
 		a.getAsignaturas().add(asi3);
 		a2.getAsignaturas().add(asi1);
@@ -86,7 +95,7 @@ public class PrincipalControler {
 		asi2.getAlumnos().add(a3);
 		asi3.getAlumnos().add(a);
 		asi3.getAlumnos().add(a2);
-		asi3.getAlumnos().add(a3);
+		asi3.getAlumnos().add(a3);*/
 		
 		Padre pa= new Padre("juan@gmail.com","Ortega","Juan");
 		Padre pa2= new Padre("marisa@gmail.com","Ramos","Marisa");
@@ -96,25 +105,25 @@ public class PrincipalControler {
 		a2.setPadre(pa2);
 		a3.setPadre(pa3);
 		
-		pa.getAlumno().add(a);
-		pa.getAlumno().add(a2);
-		pa2.getAlumno().add(a3);
-		
 		Profesor p= new Profesor("Pedro","Gomez","Martin","pgm@gmail.com");
 		Profesor p2=new Profesor("Felix","Lopez","Cid","flc@gmail.com");
 		Profesor p3 = new Profesor("Agatha", "Garcia", "Lopez", "agl@gmail.com");
 		
-		a.getProfesores().add(p);
+		p.getAsignaturas().add(asi1);
+		p2.getAsignaturas().add(asi2);
+		p3.getAsignaturas().add(asi3);
+		
+		
+		/*a.getProfesores().add(p);
 		a.getProfesores().add(p2);
 		a2.getProfesores().add(p);
 		a2.getProfesores().add(p2);
 		a3.getProfesores().add(p);
-		a3.getProfesores().add(p2);
+		a3.getProfesores().add(p2);*/
 		
 		padreRepo.save(pa);
 		padreRepo.save(pa2);
 		padreRepo.save(pa3);
-	
 				
 		profeRepo.save(p);
 		profeRepo.save(p2);
