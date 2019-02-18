@@ -28,8 +28,8 @@ public class Alumno {
 	private List<Asignatura> asignaturas = new ArrayList<>();
 	
 	@ManyToMany (targetEntity = Profesor.class)
-	@JoinTable(name = "alumnos_profesore_por_alumno", joinColumns = { @JoinColumn(name = "alumnos_por_profesor") },
-    inverseJoinColumns = { @JoinColumn(name = "profesore_por_alumno") })
+	@JoinTable(name = "alumnos_profesor", joinColumns = { @JoinColumn(name = "alumnos_por_profesor") },
+    inverseJoinColumns = { @JoinColumn(name = "profesor_por_alumno") })
 	
 	private List<Profesor> profesorePorAlumno = new ArrayList<>();
 	
