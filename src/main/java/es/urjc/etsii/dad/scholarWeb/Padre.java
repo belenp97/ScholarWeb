@@ -10,19 +10,19 @@ import javax.persistence.*;
 public class Padre {
 	
 	@Id
-	int idPadre;
+	private long idPadre;
 	@Column
-	String correo;
+	private String correo;
 	@Column
-	String apellido;
+	private String apellido;
 	@Column
-	String nombre; 
+	private String nombre; 
 	
 	@OneToMany(mappedBy="padre_alumno", targetEntity=Alumno.class)
 	private List<Alumno> alumno= new ArrayList<>();
 	
 	public Padre(String correo, String apellido, String nombre) {
-		this.idPadre = (int)(Math.random()*(129-1)+1);
+		this.idPadre = (long)(Math.random()*(7)+1);
 		this.correo = correo;
 		this.apellido = apellido;
 		this.nombre = nombre; 
@@ -30,7 +30,7 @@ public class Padre {
 	
 	public Padre(){}
 	
-	public int getIdPadre() {
+	public long getIdPadre() {
 		return idPadre;
 	}
 

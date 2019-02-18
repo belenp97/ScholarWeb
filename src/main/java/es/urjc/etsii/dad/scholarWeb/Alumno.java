@@ -10,17 +10,17 @@ import javax.persistence.*;
 @Table(name ="alumnos")
 public class Alumno {
 	
-	@Id 
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long nexpediente;
+	private long nexpediente;
 	@Column
-	String nombre;
+	private String nombre;
 	@Column
-	String apellido1;
+	private String apellido1;
 	@Column
-	String apellido2;
+	private String apellido2;
 	@Column
-	int faltas; 
+	private int faltas; 
 	//@Column
 	//private Alumno alumnos;
 	
@@ -42,7 +42,7 @@ public class Alumno {
 		this.nombre=n;
 		this.apellido1=a1;
 		this.apellido2=a2;
-		this.nexpediente= (int) Math.random()*7;
+		this.nexpediente= (long) (Math.random()*(7)+1);
 	}
 	
 	public Alumno() {} 
@@ -99,7 +99,7 @@ public class Alumno {
 		return nexpediente;
 	}
 
-	public void setNexpediente(Integer n_expediente) {
+	public void setNexpediente(long n_expediente) {
 		this.nexpediente = n_expediente;
 	}
 
