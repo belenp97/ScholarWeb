@@ -23,11 +23,11 @@ public class ProfesorController {
 	@Autowired
 	private ProfesorRepository repository;
 	
-	@PostConstruct
+	/*@PostConstruct
 	public void init() {
 		repository.save(new Profesor("Pedro","Gomez","Martin","pgm@gmail.com"));
 		repository.save(new Profesor("Felix","Lopez","Cid","flc@gmail.com"));
-	}
+	}*/
 
 	public List<Profesor> findItems() {
 		return (List<Profesor>) repository.findAll();

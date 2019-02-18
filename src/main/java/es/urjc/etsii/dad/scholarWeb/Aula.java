@@ -36,6 +36,8 @@ public class Aula {
 		this.profesores_curso=p;
 	}
 	
+	public Aula() {}
+	
 	public Integer getIdAula() {
 		return idAula;
 	}

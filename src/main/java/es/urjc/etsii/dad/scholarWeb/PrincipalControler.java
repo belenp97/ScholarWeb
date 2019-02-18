@@ -28,13 +28,13 @@ public class PrincipalControler {
 	private NoticiaRepository notRepo;
 	
 	@Autowired
-	private AlumnoRepository alumnoRepo;
+	private AlumnoRepository reposAl;
 	
 	@Autowired
 	private AsignaturaRepository asigRepo;
 	
 	@Autowired
-	private AulaRepository aulaRepo;
+	private AulaRepository reposAula;
 	
 	@Autowired
 	private PadreRepository padreRepo;
@@ -45,6 +45,93 @@ public class PrincipalControler {
 	//faltaría contacto.
 	
 	public PrincipalControler() {}
+	
+	@PostConstruct
+	public void init() {
+		Alumno a= new Alumno("Juan", "Perez", "Gomez");	
+		Alumno a2= new Alumno("Ana", "Martin","Lopez");
+		Alumno a3= new Alumno("Elena","Vazquez","Rodriguez");
+		
+		
+		a.setAula(new Aula(1,'A'));		
+		a2.setAula(a.getAula());
+		a3.setAula(new Aula(1,'C'));
+
+		a.getAula().getAlumnos_curso().add(a);
+		a.getAula().getAlumnos_curso().add(a2);
+		a3.getAula().getAlumnos_curso().add(a3);
+				
+		Asignatura asi1=new Asignatura("Matematicas",1);
+		Asignatura asi2= new Asignatura("Ingles",1);
+		Asignatura asi3= new Asignatura("Física",1);
+		
+		/*a.getAsignaturas().add(asi1);
+		a.getAsignaturas().add(asi2);
+		a.getAsignaturas().add(asi3);
+		a2.getAsignaturas().add(asi1);
+		a2.getAsignaturas().add(asi2);
+		a2.getAsignaturas().add(asi3);		
+		a3.getAsignaturas().add(asi1);
+		a3.getAsignaturas().add(asi2);
+		a3.getAsignaturas().add(asi3);
+		
+		asi1.getAlumnos().add(a);
+		asi1.getAlumnos().add(a2);
+		asi1.getAlumnos().add(a3);
+		asi2.getAlumnos().add(a);
+		asi2.getAlumnos().add(a2);
+		asi2.getAlumnos().add(a3);
+		asi3.getAlumnos().add(a);
+		asi3.getAlumnos().add(a2);
+		asi3.getAlumnos().add(a3);*/
+		
+		asigRepo.save(asi1);
+		asigRepo.save(asi2);
+		asigRepo.save(asi3);
+		
+		Padre pa= new Padre("juan@gmail.com","Juan","Ortega");
+		Padre pa2= new Padre("marisa@gmail.com","Marisa","Ramos");
+		Padre pa3= new Padre("jpablo@gmail.com","Jose Pablo","Hernandez");
+		
+		/*a.setPadre(pa);
+		a2.setPadre(pa2);
+		a3.setPadre(pa3);*/
+		
+		/*pa.getAlumno().add(a);
+		pa.getAlumno().add(a2);
+		pa2.getAlumno().add(a3);*/
+		
+		Profesor p= new Profesor("Pedro","Gomez","Martin","pgm@gmail.com");
+		Profesor p2=new Profesor("Felix","Lopez","Cid","flc@gmail.com");
+		
+		/*a.getProfesores().add(p);
+		a.getProfesores().add(p2);
+		a2.getProfesores().add(p);
+		a2.getProfesores().add(p2);
+		a3.getProfesores().add(p);
+		a3.getProfesores().add(p2);*/
+		
+		
+		
+		padreRepo.save(pa);
+		padreRepo.save(pa2);
+		padreRepo.save(pa3);
+	
+				
+		profeRepo.save(p);
+		profeRepo.save(p2);
+
+		
+		reposAula.save(a.getAula());
+		reposAula.save(new Aula(1,'B'));
+		reposAula.save(a3.getAula());
+		
+		reposAl.save(a);
+		reposAl.save(a2);
+		reposAl.save(a3);
+			
+		
+	}
 
 	@GetMapping("/")
 	public String principal(Model model) {
@@ -63,7 +150,7 @@ public class PrincipalControler {
 	@RequestMapping("/alumnos")
 	public String verAlumnos(Model model, @RequestParam(required=false) int n_exp) throws Exception{
 		
-		model.addAttribute("alumno",alumnoRepo.findAll());
+		model.addAttribute("alumno",reposAl.findAll());
 		
 		return "alumnos";
 	}

@@ -23,7 +23,7 @@ public class AulaController {
 	@Autowired
 	private AulaRepository repository;
 	
-	@PostConstruct
+	/*@PostConstruct
 	public void init() {
 		repository.save(new Aula(1,'A'));
 		repository.save(new Aula(1,'B'));
@@ -37,7 +37,7 @@ public class AulaController {
 		repository.save(new Aula(4,'A'));
 		repository.save(new Aula(4,'B'));
 		repository.save(new Aula(4,'C'));
-	}
+	}*/
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Aula> findItems() {

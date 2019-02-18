@@ -22,12 +22,12 @@ public class AsignaturaController {
 	@Autowired
 	private AsignaturaRepository repository;
 	
-	@PostConstruct
+	/*@PostConstruct
 	public void init() {
 		repository.save(new Asignatura("Matematicas",2));
 		repository.save(new Asignatura("Ingles",1));
 		repository.save(new Asignatura("Física",4));
-	}
+	}*/
 
 	public List<Asignatura> findItems() {
 		return (List<Asignatura>) repository.findAll();

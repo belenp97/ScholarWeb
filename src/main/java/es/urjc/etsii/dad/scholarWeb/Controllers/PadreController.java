@@ -23,15 +23,15 @@ public class PadreController {
 	@Autowired
 	private PadreRepository repository;
 	
-	@PostConstruct
+	/*@PostConstruct
 	public void init() {
 	
 			repository.save(new Padre("juan@gmail.com","Juan","Ortega"));
 			repository.save(new Padre("marisa@gmail.com","Marisa","Ramos"));
 			repository.save(new Padre("jpablo@gmail.com","Jose Pablo","Hernandez"));
-	}
+	}*/
 
-	@RequestMapping(method = RequestMethod.GET)
+	/*@RequestMapping(method = RequestMethod.GET)*/
 	public List<Padre> findItems() {
 		return (List<Padre>) repository.findAll();
 	}
