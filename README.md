@@ -54,7 +54,15 @@ Tendremos en un principio 6 entidades en toda la aplicación web que se identifi
 ![diagrama_navegacion](https://user-images.githubusercontent.com/45795451/53003749-faf55480-342f-11e9-8472-b8a12ec56b38.png)
 
 ### **CAPTURAS DE PANTALLA.**
-
+     1- PANTALLA DE INICIO.
+     
+     2-PANTALLA DE "PROFESORES".
+     
+     3-PANTALLA DE "NOTICIAS".
+     
+     4-PANTALLA DE "CONTACTOS".
+     
+     5-PANTALLA DE LOGIN.
 
 ### **Equipo de desarrollo.**
   1. Jorge Alonso Vivar
