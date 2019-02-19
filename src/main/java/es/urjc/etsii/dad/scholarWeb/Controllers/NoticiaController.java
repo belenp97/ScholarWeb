@@ -24,8 +24,8 @@ public class NoticiaController {
 
 	@PostConstruct
 	public void init() {
-		repository.save(new Noticia("Importante","es una noticia importante para los padres"));
-		repository.save(new Noticia("Padres","cada alumno tendra un menu especializado, respecto a sus intolerancias"));
+		//repository.save(new Noticia("Importante","es una noticia importante para los padres"));
+		//repository.save(new Noticia("Padres","cada alumno tendra un menu especializado, respecto a sus intolerancias"));
 	}
 
 	

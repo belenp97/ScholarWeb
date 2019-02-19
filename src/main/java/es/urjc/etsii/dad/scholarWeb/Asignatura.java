@@ -22,9 +22,19 @@ public class Asignatura {
 	private List<Alumno> alumno = new ArrayList<Alumno>();
 
 	@ManyToOne(targetEntity = Profesor.class, fetch = FetchType.LAZY)
-	@JoinTable(name = "profesor_por_asignatura", joinColumns = { @JoinColumn(name = "asignatura") }, inverseJoinColumns = {
+	@JoinTable(name = "profesor_por_asignatura", joinColumns = {
+			@JoinColumn(name = "asignatura") }, inverseJoinColumns = { 
 			@JoinColumn(name = "profesor") })
 	private Profesor profesor_por_asignatura;
+
+	public Asignatura() {
+	}
+
+	public Asignatura(String nombre, int curso) {
+		this.id = (long) (Math.random() * 7);
+		this.nombre = nombre;
+		this.curso = curso;
+	}
 
 	public Profesor getProfesorPorAsignatura() {
 		return profesor_por_asignatura;
@@ -40,15 +50,6 @@ public class Asignatura {
 
 	public void setAlumnos(List<Alumno> alumnos) {
 		this.alumno = alumnos;
-	}
-
-	public Asignatura() {
-	}
-
-	public Asignatura(String nombre, int curso) {
-		this.id = (long) (Math.random() * 7);
-		this.nombre = nombre;
-		this.curso = curso;
 	}
 
 	public String getNombre() {

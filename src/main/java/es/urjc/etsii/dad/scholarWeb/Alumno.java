@@ -31,7 +31,8 @@ public class Alumno {
 	private List<Profesor> profesores_por_alumno = new ArrayList<>();
 
 	@ManyToOne(targetEntity = Aula.class, fetch = FetchType.LAZY)
-	@JoinTable(name = "alumno_aula", joinColumns = { @JoinColumn(name = "alumno") }, inverseJoinColumns = {
+	@JoinTable(name = "alumno_aula", joinColumns = { 
+			@JoinColumn(name = "alumno") }, inverseJoinColumns = {
 			@JoinColumn(name = "aula") })
 	private Aula aula;
 

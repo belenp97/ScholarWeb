@@ -28,14 +28,24 @@ public class Profesor {
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "profesores_por_alumno", joinColumns = {
 			@JoinColumn(name = "profesor_por_alumno") }, inverseJoinColumns = {
-			@JoinColumn(name = "alumno_por_profesor") })
+					@JoinColumn(name = "alumno_por_profesor") })
 	private List<Alumno> alumnos_por_profesor = new ArrayList<>();
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "profesores_por_aula", joinColumns = { 
-			@JoinColumn(name = "profesor") }, inverseJoinColumns = {
+	@JoinTable(name = "profesores_por_aula", joinColumns = { @JoinColumn(name = "profesor") }, inverseJoinColumns = {
 			@JoinColumn(name = "aula") })
 	private List<Aula> aulas = new ArrayList<>();
+
+	public Profesor() {
+	}
+
+	public Profesor(String n, String a1, String a2, String c) {
+		this.identificador = (long) Math.random() * 7;
+		this.nombre = n;
+		this.apellido1 = a1;
+		this.apellido2 = a2;
+		this.correo = c;
+	}
 
 	public long getIdentificador() {
 		return identificador;
@@ -59,17 +69,6 @@ public class Profesor {
 
 	public void setAlumnos(List<Alumno> alumnos) {
 		this.alumnos_por_profesor = alumnos;
-	}
-
-	public Profesor() {
-	}
-
-	public Profesor(String n, String a1, String a2, String c) {
-		this.identificador = (long) Math.random() * 7;
-		this.nombre = n;
-		this.apellido1 = a1;
-		this.apellido2 = a2;
-		this.correo = c;
 	}
 
 	public String getNombre() {

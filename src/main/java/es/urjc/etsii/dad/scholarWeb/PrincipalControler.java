@@ -1,6 +1,5 @@
 package es.urjc.etsii.dad.scholarWeb;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -48,7 +47,7 @@ public class PrincipalControler {
 
 	@PostConstruct
 	public void init() {
-		Alumno alumn = new Alumno("Juan", "Perez", "Gomez");
+		/*Alumno alumn = new Alumno("Juan", "Perez", "Gomez");
 		Alumno alumn2 = new Alumno("Ana", "Martin", "Lopez");
 		Alumno alumn3 = new Alumno("Elena", "Vazquez", "Rodriguez");
 
@@ -118,7 +117,7 @@ public class PrincipalControler {
 
 		reposAl.save(alumn);
 		reposAl.save(alumn2);
-		reposAl.save(alumn3);
+		reposAl.save(alumn3);*/
 	}
 
 	@GetMapping("/")
