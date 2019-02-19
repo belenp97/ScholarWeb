@@ -21,7 +21,8 @@ public class Aula {
 	@OneToMany (mappedBy = "aula",  targetEntity=Alumno.class)
 	private List<Alumno> alumnos_curso = new ArrayList<>();
 	
-	@ManyToMany(mappedBy = "aulas", targetEntity= Profesor.class)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST,
+			CascadeType.MERGE }, mappedBy = "aulas")
 	private List<Profesor> profesores_aula = new ArrayList<>();
 	
 	public Aula(Integer c, char l) {
