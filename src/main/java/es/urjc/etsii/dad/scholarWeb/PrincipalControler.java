@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -135,7 +136,7 @@ public class PrincipalControler {
 	}
 
 	@RequestMapping("/alumnos")
-	public String verAlumnos(Model model, @RequestParam(required = false) int n_exp) throws Exception {
+	public String verAlumnos(Model model) throws Exception {
 
 		model.addAttribute("alumno", reposAl.findAll());
 
@@ -172,6 +173,26 @@ public class PrincipalControler {
 	public String loginPrivado(Model model) {
 
 		return "login_privado";
+	}
+	
+	@GetMapping("/administrador")
+	public String administrador(Model model) {
+		//Alumno alumno = reposAl.getOne(id);
+		
+		
+		//model.addAttribute("alumno", reposAl.insertarAlumno());
+		
+
+		return "administrador";
+	}
+	@PostMapping("/administrador/alumno")
+	public String administradorAlumno(Model model, @RequestAttribute long id) {
+		Alumno alumno = reposAl.getOne((int) id);
+		
+		model.addAttribute("insertar_alumno", alumno.getNombre());
+		model.addAttribute("insertar_alumno", alumno.getApellido1());
+		model.addAttribute("insertar_alumno", alumno.getApellido2());
+		return "administrador";
 	}
 
 }

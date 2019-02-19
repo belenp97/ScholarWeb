@@ -1,7 +1,8 @@
 <html>
 <head>
 <title>Schollar Web</title>
-<link rel="stylesheet" href="./css/fuentes.css" type="text/css" />
+<link rel="stylesheet" href="/css/fuentes.css" type="text/css" />
+<meta charset="UTF-8" />
 </head>
 
 <body id="top">
@@ -9,9 +10,9 @@
 		<div id="box_tittle">
 			<ul>
 				<li><a href="/"><strong>Inicio</strong></a></li>
-				<li><a href="profesores"><strong>Profesores</strong></a></li>
-				<li><a href="noticias"><strong>Noticias</strong></a></li>
-				<li><a href="contacto"><strong>Contacto</strong></a></li>
+				<li><a href="/profesores"><strong>Profesores</strong></a></li>
+				<li><a href="/noticias"><strong>Noticias</strong></a></li>
+				<li><a href="/contacto"><strong>Contacto</strong></a></li>
 			</ul>
 		</div>
 	</div>
@@ -41,16 +42,35 @@
 	</div>
 	<!-- ####################################################################################################### -->
 
-	<div class="wrapper principal">
-		<div id="container">
-			{{#noticia}}
-			<h3 class="not">
-				<strong><p>{{titulo}}</p></strong>
-				<p>{{cuerpo}}</p>
-			</h3>
-			{{/noticia}}
+	<section class="wrapper principal">
+		<div id="contain" class="center">
+			<h2>
+				<form action="insertar_alumno?id={{id}}" method="post">
+						<div class="row">
+							<label for="name">Alumno</label><br/>
+							<div class="col form-group">
+								<label for="name">Nombre</label> <input type="text" id="name"
+									class="form-control ">
+							</div>
+							<div class="col form-group">
+								<label for="name">Apellido 1</label> <input type="text"
+									id="phone" class="form-control ">
+							</div>
+							<div class="col form-group">
+								<label for="name">Apellido 2</label> <input type="email" id="email"
+									class="form-control ">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col_m form-group">
+								<input type="submit" value="EnviarAlumno" class="btn btn-primary">
+							</div>
+						</div>
+						
+					</form>
+			</h2>
 		</div>
-	</div>
+	</section>
 
 	
 	<!-- ####################################################################################################### -->
