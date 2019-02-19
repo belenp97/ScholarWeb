@@ -73,7 +73,7 @@ En esta ventana se ofrece un listado de los profesores que componene el colegio,
  
  
      4-PANTALLA DE "CONTACTOS".
- ![contacto](https://user-images.githubusercontent.com/45795451/53005183-ff6f3c80-3432-11e9-991f-976941092114.png)
+ ![contacto](https://user-images.githubusercontent.com/45795451/53006749-1f542f80-3436-11e9-8dad-3f977cc4dc29.png)
  
  Si una persona desea contactar con el centro por cualquier motivo y no desea contactar vía teléfono, puede ponerse en contacto con el colegio mediante un mensaje en esta ventana, en la que se informará de lo que se desee dejando un nombre, un teléfono y un correo de contacto.
      
