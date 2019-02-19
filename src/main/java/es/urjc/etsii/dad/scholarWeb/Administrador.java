@@ -27,8 +27,8 @@ public class Administrador {
 
 	}
 
-	public Administrador(String id) {
-
+	public Administrador(long id) {
+		this.id=id; 
 	}
 
 	public String getnombre() {

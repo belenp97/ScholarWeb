@@ -190,8 +190,8 @@ public class PrincipalControler {
 		Alumno alumno = reposAl.getOne((int) id);
 		
 		model.addAttribute("insertar_alumno", alumno.getNombre());
-		model.addAttribute("insertar_alumno", alumno.getApellido1());
-		model.addAttribute("insertar_alumno", alumno.getApellido2());
+		//model.addAttribute("apellido1", alumno.getApellido1());
+		//model.addAttribute("apellido2", alumno.getApellido2());
 		return "administrador";
 	}
 

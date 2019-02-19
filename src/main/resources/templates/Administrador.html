@@ -34,7 +34,10 @@
 						</fieldset>
 					</form>
 					<p>
-						<h3><a href="login">Login</a> | <a href="administrador"> administrador</a></h3>
+						<h3>
+							<a href="login">Login</a> | <a href="administrador">
+								administrador</a>
+						</h3>
 					</p>
 				</div>
 			</div>
@@ -45,53 +48,56 @@
 	<section class="wrapper principal">
 		<div id="contain" class="center">
 			<h2>
-				<form action="insertar_alumno?id={{id}}" method="post">
-						<div class="row">
-							<label for="name">Alumno</label><br/>
-							<div class="col form-group">
-								<label for="name">Nombre</label> <input type="text" id="name"
-									class="form-control ">
-							</div>
-							<div class="col form-group">
-								<label for="name">Apellido 1</label> <input type="text"
-									id="phone" class="form-control ">
-							</div>
-							<div class="col form-group">
-								<label for="name">Apellido 2</label> <input type="email" id="email"
-									class="form-control ">
-							</div>
+			{{#alumno}}
+				<form action="insertar_alumno?nexpediente={{alumno.nexpediente}}" method="post">
+					<div class="row">
+						<label for="name">Alumno</label><br />
+						<div class="col form-group">
+							<label for="name">Nombre</label> <input type="text" id="name"
+								class="form-control " value="nombre">
 						</div>
-						<div class="row">
-							<div class="col_m form-group">
-								<input type="submit" value="EnviarAlumno" class="btn btn-primary">
-							</div>
+						<div class="col form-group">
+							<label for="name">Apellido 1</label> <input type="text"
+								id="apellido" class="form-control " value="apellido1">
 						</div>
-						
-					</form>
+						<div class="col form-group">
+							<label for="name">Apellido 2</label> <input type="email"
+								id="email" class="form-control " value="apellido2">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col_m form-group">
+							<input type="submit" value="EnviarAlumno" class="btn btn-primary">
+						</div>
+					</div>
+				</form>
+			{{/alumno}}
 			</h2>
 		</div>
 	</section>
 
-	
+
 	<!-- ####################################################################################################### -->
 	<div class="wrapper">
 		<div id="footer" class="not">
 			<div class="fl_left clear">
 				<div class="fl_left center">
-					<a href="https://www.google.com/maps?client=safari&rls=en&q=puerta+del+sol&oe=UTF-8&um=1&ie=UTF-8&sa=X&ved=0ahUKEwivh4OLtMXgAhUMHxoKHX1vBQIQ_AUIDigB"><img src="./css/img/worldmap.gif"/><br /> Find
-						Us With Google Maps &raquo;</a>
+					<a
+						href="https://www.google.com/maps?client=safari&rls=en&q=puerta+del+sol&oe=UTF-8&um=1&ie=UTF-8&sa=X&ved=0ahUKEwivh4OLtMXgAhUMHxoKHX1vBQIQ_AUIDigB"><img
+						src="./css/img/worldmap.gif" /><br /> Find Us With Google Maps
+						&raquo;</a>
 				</div>
 			</div>
 			<div class="fl_right">
 				<address>
-					Calle de la piruleta<br /> sin numero <br /> Madrid<br />
-					28903p<br /> <br /> Tel: 91 6876832<br /> Email: <a
-						href="#">contact@scholarweb.com</a>
+					Calle de la piruleta<br /> sin numero <br /> Madrid<br /> 28903p<br />
+					<br /> Tel: 91 6876832<br /> Email: <a href="#">contact@scholarweb.com</a>
 				</address>
 			</div>
 			<div id="copyright" class="clear">
 				<p class="fl_left">
-					Copyright &copy; 2019 - All Rights Reserved - <a href="#">Scholar Web</a>
+					Copyright &copy; 2019 - All Rights Reserved - <a href="#">Scholar
+						Web</a>
 				</p>
 			</div>
 		</div>
