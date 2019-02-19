@@ -55,14 +55,20 @@ Tendremos en un principio 6 entidades en toda la aplicación web que se identifi
 
 ### **CAPTURAS DE PANTALLA.**
      1- PANTALLA DE INICIO.
+ ![principal](https://user-images.githubusercontent.com/45795451/53005017-a2738680-3432-11e9-8abc-17be771fe635.png)
      
      2-PANTALLA DE "PROFESORES".
-     
+ ![profesores](https://user-images.githubusercontent.com/45795451/53005172-fb431f00-3432-11e9-964b-9998fd7ec2d4.png)
+    
      3-PANTALLA DE "NOTICIAS".
-     
+ ![noticias](https://user-images.githubusercontent.com/45795451/53005176-fd0ce280-3432-11e9-945d-bb3e5c57a8b7.png)
+ 
      4-PANTALLA DE "CONTACTOS".
+ ![contacto](https://user-images.githubusercontent.com/45795451/53005183-ff6f3c80-3432-11e9-991f-976941092114.png)
      
      5-PANTALLA DE LOGIN.
+ ![login](https://user-images.githubusercontent.com/45795451/53005185-01390000-3433-11e9-8ed3-4dc0f9d1ec1e.png)
+
 
 ### **Equipo de desarrollo.**
   1. Jorge Alonso Vivar
