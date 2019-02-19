@@ -177,21 +177,17 @@ public class PrincipalControler {
 	
 	@GetMapping("/administrador")
 	public String administrador(Model model) {
-		//Alumno alumno = reposAl.getOne(id);
 		
 		
-		//model.addAttribute("alumno", reposAl.insertarAlumno());
+		//model.addAttribute("apellido1", alumno.getApellido1());
+		//model.addAttribute("apellido2", alumno.getApellido2());
 		
 
 		return "administrador";
 	}
 	@PostMapping("/administrador/alumno")
-	public String administradorAlumno(Model model, @RequestAttribute long id) {
-		Alumno alumno = reposAl.getOne((int) id);
+	public String administradorAlumno(Model model) {
 		
-		model.addAttribute("insertar_alumno", alumno.getNombre());
-		//model.addAttribute("apellido1", alumno.getApellido1());
-		//model.addAttribute("apellido2", alumno.getApellido2());
 		return "administrador";
 	}
 

@@ -44,34 +44,33 @@
 		</div>
 	</div>
 	<!-- ####################################################################################################### -->
-
+	
 	<section class="wrapper principal">
 		<div id="contain" class="center">
 			<h2>
-			{{#alumno}}
-				<form action="insertar_alumno?nexpediente={{alumno.nexpediente}}" method="post">
-					<div class="row">
-						<label for="name">Alumno</label><br />
-						<div class="col form-group">
-							<label for="name">Nombre</label> <input type="text" id="name"
-								class="form-control " value="nombre">
+				<form action="/administrador" method="post">
+						<div class="row">
+							<label for="name">Alumno</label><br/>
+							<div class="col form-group">
+								<label for="name">Nombre</label> <input type="text" id="name"
+									class="form-control ">
+							</div>
+							<div class="col form-group">
+								<label for="name">Apellido 1</label> <input type="text"
+									id="apellido1" class="form-control ">
+							</div>
+							<div class="col form-group">
+								<label for="name">Apellido 2</label> <input type="email" id="apellido2"
+									class="form-control ">
+							</div>
 						</div>
-						<div class="col form-group">
-							<label for="name">Apellido 1</label> <input type="text"
-								id="apellido" class="form-control " value="apellido1">
+						<div class="row">
+							<div class="col_m form-group">
+								<input type="submit" value="Enviar" class="btn btn-primary">
+							</div>
 						</div>
-						<div class="col form-group">
-							<label for="name">Apellido 2</label> <input type="email"
-								id="email" class="form-control " value="apellido2">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col_m form-group">
-							<input type="submit" value="EnviarAlumno" class="btn btn-primary">
-						</div>
-					</div>
-				</form>
-			{{/alumno}}
+						
+					</form>
 			</h2>
 		</div>
 	</section>
