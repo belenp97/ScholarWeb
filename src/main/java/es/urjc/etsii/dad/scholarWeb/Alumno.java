@@ -5,11 +5,10 @@ import java.util.List;
 
 import javax.persistence.*;
 
-
 @Entity
-@Table(name ="alumnos")
+@Table(name = "alumnos")
 public class Alumno {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long nexpediente;
@@ -20,36 +19,35 @@ public class Alumno {
 	@Column
 	private String apellido2;
 	@Column
-	private int faltas; 
-	
-	@ManyToMany(targetEntity = Asignatura.class)
-	@JoinTable(name = "asignatura_alumno", joinColumns = { @JoinColumn(name = "alumno") },
-            inverseJoinColumns = { @JoinColumn(name = "asignaturas") })
+	private int faltas;
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "alumno_asignatura", 
+				joinColumns = { @JoinColumn(name = "alumno") },
+				inverseJoinColumns = { @JoinColumn(name = "asignatura") })
 	private List<Asignatura> asignaturas = new ArrayList<>();
-	
-	@ManyToMany (targetEntity = Profesor.class)
-	@JoinTable(name = "alumnos_profesor", joinColumns = { @JoinColumn(name = "alumnos_por_profesor") },
-    inverseJoinColumns = { @JoinColumn(name = "profesor_por_alumno") })
-	
-	private List<Profesor> profesorePorAlumno = new ArrayList<>();
-	
-	@ManyToOne
+
+	@ManyToMany(mappedBy = "alumnos_por_profesor", targetEntity= Profesor.class)
+	private List<Profesor> profesores_por_alumno = new ArrayList<>();
+
+	@ManyToOne(targetEntity = Aula.class, fetch = FetchType.LAZY)
+	@JoinTable(name = "alumno_aula", joinColumns = { @JoinColumn(name = "alumno") }, inverseJoinColumns = {
+			@JoinColumn(name = "aula") })
 	private Aula aula;
-	
-	@ManyToOne(targetEntity=Padre.class, fetch = FetchType.LAZY)
+
+	@ManyToOne(targetEntity = Padre.class, fetch = FetchType.LAZY)
 	private Padre padre_alumno;
-	
-	
-	
-	public Alumno(String n, String a1,String a2) {
-		this.nombre=n;
-		this.apellido1=a1;
-		this.apellido2=a2;
-		this.nexpediente= (long) (Math.random()*(7)+1);
+
+	public Alumno(String n, String a1, String a2) {
+		this.nombre = n;
+		this.apellido1 = a1;
+		this.apellido2 = a2;
+		this.nexpediente = (long) (Math.random() * (7) + 1);
 	}
-	
-	public Alumno() {} 
-	
+
+	public Alumno() {
+	}
+
 	public Aula getAula() {
 		return aula;
 	}
@@ -59,11 +57,11 @@ public class Alumno {
 	}
 
 	public List<Profesor> getProfesores() {
-		return profesorePorAlumno;
+		return profesores_por_alumno;
 	}
 
 	public void setProfesores(List<Profesor> profesores) {
-		this.profesorePorAlumno = profesores;
+		this.profesores_por_alumno = profesores;
 	}
 
 	public Padre getPadre() {
@@ -85,7 +83,7 @@ public class Alumno {
 	public String getApellido1() {
 		return apellido1;
 	}
-	
+
 	public String getApellido2() {
 		return apellido2;
 	}
@@ -93,7 +91,7 @@ public class Alumno {
 	public void setApellido1(String apellido) {
 		this.apellido1 = apellido;
 	}
-	
+
 	public void setApellido2(String apellido) {
 		this.apellido2 = apellido;
 	}
@@ -125,12 +123,12 @@ public class Alumno {
 	@Override
 	public String toString() {
 		return "Alumno [nexpediente=" + nexpediente + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2="
-				+ apellido2  + ", faltas=" + faltas +"]";
+				+ apellido2 + ", faltas=" + faltas + "]";
 	}
 
-	/* FUNCIONES PROPIAS  
-	public void VerDatos() {}
-	public void VerNotas(Asignatura a) {}
-	public void VerFaltas(Asignatura a) {}
-	public void VerFaltasTotales() {}*/
+	/*
+	 * FUNCIONES PROPIAS public void VerDatos() {} public void VerNotas(Asignatura
+	 * a) {} public void VerFaltas(Asignatura a) {} public void VerFaltasTotales()
+	 * {}
+	 */
 }

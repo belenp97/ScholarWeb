@@ -5,35 +5,33 @@ import java.util.ArrayList;
 import javax.persistence.*;
 
 @Entity
-@Table(name ="asignatura")
-public class Asignatura{
-	
+@Table(name = "asignatura")
+public class Asignatura {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id; 
+	private long id;
 	@Column
 	private String nombre;
 	@Column
 	private int curso;
 	@Column
 	private int notas;
-	
-	@ManyToMany(targetEntity=Alumno.class, cascade = CascadeType.ALL)
-	@JoinTable(name = "asignatura_alumno", joinColumns = { @JoinColumn(name = "alumno") },
-    inverseJoinColumns = { @JoinColumn(name = "asignaturas") })
-	
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "asignaturas")
 	private List<Alumno> alumno = new ArrayList<Alumno>();
-	
-	@ManyToOne
-	private Profesor profesorPorAsignatura;
-	
-	
+
+	@ManyToOne(targetEntity = Profesor.class, fetch = FetchType.LAZY)
+	@JoinTable(name = "profesor_por_asignatura", joinColumns = { @JoinColumn(name = "asignatura") }, inverseJoinColumns = {
+			@JoinColumn(name = "profesor") })
+	private Profesor profesor_por_asignatura;
+
 	public Profesor getProfesorPorAsignatura() {
-		return profesorPorAsignatura;
+		return profesor_por_asignatura;
 	}
 
 	public void setProfesorPorAsignatura(Profesor profesorPorAsignatura) {
-		this.profesorPorAsignatura = profesorPorAsignatura;
+		this.profesor_por_asignatura = profesorPorAsignatura;
 	}
 
 	public List<Alumno> getAlumnos() {
@@ -44,37 +42,42 @@ public class Asignatura{
 		this.alumno = alumnos;
 	}
 
-	public Asignatura() {}
-	
+	public Asignatura() {
+	}
+
 	public Asignatura(String nombre, int curso) {
-		this.id= (long)(Math.random()*7);
+		this.id = (long) (Math.random() * 7);
 		this.nombre = nombre;
 		this.curso = curso;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public int getCurso() {
 		return curso;
 	}
+
 	public void setCurso(int curso) {
 		this.curso = curso;
 	}
+
 	public int getNotas() {
 		return notas;
 	}
+
 	public void setNotas(int notas) {
 		this.notas = notas;
 	}
-	
-	
+
 	@Override
 	public String toString() {
 		return "Asignatura [nombre=" + nombre + ", curso=" + curso + ", notas=" + notas + "]";
 	}
-	
-	
+
 }

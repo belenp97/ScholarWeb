@@ -18,14 +18,12 @@ public class Aula {
 	@Column
 	private char letra;
 	
-	@OneToMany (mappedBy = "aula")
+	@OneToMany (mappedBy = "aula",  targetEntity=Alumno.class)
 	private List<Alumno> alumnos_curso = new ArrayList<>();
 	
-	@ManyToMany (targetEntity = Profesor.class)
-	@JoinTable(name = "aula_profesores_curso", joinColumns = { @JoinColumn(name = "aulas") },
-    inverseJoinColumns = { @JoinColumn(name = "profesores_curso") })
-	
-	private List<Profesor> profesores_curso = new ArrayList<>();
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST,
+			CascadeType.MERGE }, mappedBy = "aulas")
+	private List<Profesor> profesores_aula = new ArrayList<>();
 	
 	public Aula(Integer c, char l) {
 		this.Curso= c;
@@ -36,7 +34,7 @@ public class Aula {
 		this.Curso= c;
 		this.letra=l;
 		this.alumnos_curso=a;
-		this.profesores_curso=p;
+		this.profesores_aula=p;
 	}
 	
 	public Aula() {}
@@ -74,17 +72,17 @@ public class Aula {
 	}
 
 	public List<Profesor> getProfesores_curso() {
-		return profesores_curso;
+		return profesores_aula;
 	}
 
 	public void setProfesores_curso(List<Profesor> profesores_curso) {
-		this.profesores_curso = profesores_curso;
+		this.profesores_aula = profesores_curso;
 	}
 
 	@Override
 	public String toString() {
 		return "Aula [idAula=" + idAula + ", Curso=" + Curso + ", letra=" + letra + ", alumnos_curso=" + alumnos_curso
-				+ ", profesores_curso=" + profesores_curso + "]";
+				+ ", profesores_curso=" + profesores_aula + "]";
 	}
 	
 	

@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "profesor")
 public class Profesor {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long identificador;
@@ -21,14 +21,20 @@ public class Profesor {
 	private String apellido2;
 	@Column
 	private String correo;
-	
-	@OneToMany(mappedBy = "profesorPorAsignatura", targetEntity = Asignatura.class)
-	private List<Asignatura> asignaturas = new ArrayList<>();
 
-	@ManyToMany(mappedBy = "profesorePorAlumno", targetEntity = Alumno.class)
-	private List<Alumno> alumnosPorProfesor = new ArrayList<>();
+	@OneToMany(mappedBy = "profesor_por_asignatura",  targetEntity=Asignatura.class)
+	private List<Asignatura> asignaturas_por_profesor = new ArrayList<>();
 
-	@ManyToMany(mappedBy = "profesores_curso", targetEntity = Aula.class)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "profesores_por_alumno", joinColumns = {
+			@JoinColumn(name = "profesor_por_alumno") }, inverseJoinColumns = {
+			@JoinColumn(name = "alumno_por_profesor") })
+	private List<Alumno> alumnos_por_profesor = new ArrayList<>();
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "profesores_por_aula", joinColumns = { 
+			@JoinColumn(name = "profesor") }, inverseJoinColumns = {
+			@JoinColumn(name = "aula") })
 	private List<Aula> aulas = new ArrayList<>();
 
 	public long getIdentificador() {
@@ -48,18 +54,18 @@ public class Profesor {
 	}
 
 	public List<Alumno> getAlumnos() {
-		return alumnosPorProfesor;
+		return alumnos_por_profesor;
 	}
 
 	public void setAlumnos(List<Alumno> alumnos) {
-		this.alumnosPorProfesor = alumnos;
+		this.alumnos_por_profesor = alumnos;
 	}
 
 	public Profesor() {
 	}
 
 	public Profesor(String n, String a1, String a2, String c) {
-		this.identificador = (long) Math.random()*7;
+		this.identificador = (long) Math.random() * 7;
 		this.nombre = n;
 		this.apellido1 = a1;
 		this.apellido2 = a2;
@@ -99,11 +105,11 @@ public class Profesor {
 	}
 
 	public List<Asignatura> getAsignaturas() {
-		return asignaturas;
+		return asignaturas_por_profesor;
 	}
 
 	public void setAsignaturas(List<Asignatura> asignaturas) {
-		this.asignaturas = asignaturas;
+		this.asignaturas_por_profesor = asignaturas;
 	}
 
 	@Override
