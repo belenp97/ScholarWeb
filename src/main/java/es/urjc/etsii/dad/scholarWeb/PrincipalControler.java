@@ -1,6 +1,5 @@
 package es.urjc.etsii.dad.scholarWeb;
 
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,7 +20,8 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 
 @Controller
 public class PrincipalControler {
-
+	
+	
 	@Autowired
 	private NoticiaRepository notRepo;
 
@@ -175,7 +174,7 @@ public class PrincipalControler {
 		return "login_privado";
 	}
 	
-	@GetMapping("/administrador")
+	@RequestMapping(value="/administrador")
 	public String administrador(Model model) {
 		
 		
@@ -185,10 +184,32 @@ public class PrincipalControler {
 
 		return "administrador";
 	}
-	@PostMapping("/administrador/alumno")
-	public String administradorAlumno(Model model) {
+	
+	@RequestMapping(value="/insertar_alumno")
+	public String insertar_alumno(Model model,@RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2) {
+		//alumno = (Alumno) reposAl.findAll(); 
+		
+		Alumno alumno = new Alumno( nombre, apellido1, apellido2);
+		reposAl.save(alumno); 
 		
 		return "administrador";
 	}
-
+	@RequestMapping(value="/insertar_asignatura")
+	public String insertar_asignatura(Model model,@RequestParam String nombre,@RequestParam int curso) {
+		//alumno = (Alumno) reposAl.findAll(); 
+		
+		Asignatura asignatura = new Asignatura( nombre, curso);
+		asigRepo.save(asignatura); 
+		
+		return "administrador";
+	}
+	@RequestMapping(value="/insertar_noticia")
+	public String insertar_noticia(Model model,@RequestParam String titulo,@RequestParam String cuerpo) {
+		//alumno = (Alumno) reposAl.findAll(); 
+		
+		Noticia noticia = new Noticia( titulo, cuerpo);
+		notRepo.save(noticia); 
+		
+		return "administrador";
+	}
 }
