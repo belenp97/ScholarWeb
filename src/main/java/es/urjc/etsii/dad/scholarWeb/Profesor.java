@@ -22,13 +22,13 @@ public class Profesor {
 	@Column
 	private String correo;
 
-	@OneToMany(mappedBy = "profesor_por_asignatura",  targetEntity=Asignatura.class)
+	@OneToMany(mappedBy = "profesor_por_asignatura", cascade = CascadeType.ALL)
 	private List<Asignatura> asignaturas_por_profesor = new ArrayList<>();
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "profesores_por_alumno", joinColumns = {
-			@JoinColumn(name = "profesor_por_alumno") }, inverseJoinColumns = {
-			@JoinColumn(name = "alumno_por_profesor") })
+			@JoinColumn(name = "profesor") }, inverseJoinColumns = {
+			@JoinColumn(name = "alumno") })
 	private List<Alumno> alumnos_por_profesor = new ArrayList<>();
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })

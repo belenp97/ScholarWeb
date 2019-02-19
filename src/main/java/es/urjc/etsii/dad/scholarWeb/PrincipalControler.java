@@ -1,6 +1,5 @@
 package es.urjc.etsii.dad.scholarWeb;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
