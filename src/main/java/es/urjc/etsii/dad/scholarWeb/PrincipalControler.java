@@ -200,9 +200,9 @@ public class PrincipalControler {
 		//alumno = (Alumno) reposAl.findAll(); 
 		
 		Padre padre = new Padre( correo, apellido, nombre);
-		/*Alumno a=reposAl.findbyNombre(nombreA);
+		Alumno a= reposAl.findBynombreEquals(nombreA);
 		padre.getAlumno().add(a);
-		a.setPadre(padre);*/
+		a.setPadre(padre);
 		padreRepo.save(padre); 
 			
 		return "administrador";
