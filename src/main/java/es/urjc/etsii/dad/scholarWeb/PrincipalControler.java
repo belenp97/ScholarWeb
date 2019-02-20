@@ -196,11 +196,12 @@ public class PrincipalControler {
 	}
 
 	@RequestMapping(value="/insertar_padre")
-	public String insertar_padre(Model model,@RequestParam String correo,@RequestParam String apellido,@RequestParam String nombre, String nombreA) {
+	public String insertar_padre(Model model,@RequestParam String correo,@RequestParam String apellido,@RequestParam String nombre, String nombreA /*long nexpediente*/) {
 		//alumno = (Alumno) reposAl.findAll(); 
 		
 		Padre padre = new Padre( correo, apellido, nombre);
-		Alumno a= reposAl.findBynombreEquals(nombreA);
+		//Alumno a= reposAl.findBynexpedienteEquals(nexpediente);
+		Alumno a= reposAl.findBynombreEquals(nombre);
 		padre.getAlumno().add(a);
 		a.setPadre(padre);
 		padreRepo.save(padre); 
@@ -218,6 +219,16 @@ public class PrincipalControler {
 		return "administrador";
 	}
 	
+	
+	@RequestMapping(value="/insertar_aula")
+	public String insertar_aula(Model model,@RequestParam Integer curso,@RequestParam char letra) {
+		//alumno = (Alumno) reposAl.findAll(); 
+		
+		Aula aula = new Aula(curso,letra);
+		reposAula.save(aula); 
+		
+		return "administrador";
+	}
 	
 	@RequestMapping(value="/insertar_asignatura")
 	public String insertar_asignatura(Model model,@RequestParam String nombre,@RequestParam int curso) {

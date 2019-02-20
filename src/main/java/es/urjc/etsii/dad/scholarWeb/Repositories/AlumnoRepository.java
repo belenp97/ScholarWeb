@@ -11,6 +11,6 @@ public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
 
 	//Alumno saveAndFlush(Alumno updatedItem);
 	//Alumno insertarAlumno(String Alumno);
-	Alumno findBynombreEquals(String name);
-
+	//Alumno findBynexpedienteEquals(long nexpediente);
+	Alumno findBynombreEquals(String nombre);
 }
