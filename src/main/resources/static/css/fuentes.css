@@ -22,6 +22,9 @@ body {
 .center {
 	text-align: center;
 }
+.center label{
+	
+}
 
 .right {
 	text-align: right;
@@ -310,6 +313,13 @@ display: block;
 	margin: 0 auto 20px;
 }
 
+#mysql{
+	position: relative;
+    width: 300px;
+    height: 300px; 
+}
+
+
 .row {
 	display: flex;
 	width: 1100px;
@@ -328,6 +338,21 @@ display: block;
 	padding-right: 15px;
 	padding-left: 15px;
 	max-width: 30%
+}
+.col_mysql {
+    position: relative;
+    width: 90%;
+    padding-right: 15px;
+    padding-left: 15px;
+    height: 66px;
+}
+
+.col_mysql_boton {
+    position: relative;
+    width: 74%;
+    padding-right: 15px;
+    padding-left: 15px;
+    height: 54px;
 }
 
 .col_b {
@@ -364,6 +389,18 @@ display: block;
 	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
 		-webkit-box-shadow 0.15s ease-in-out
+}
+
+.form-mysql {
+    display: block;
+    width: auto;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
 }
 
 .btn-primary {
@@ -459,6 +496,10 @@ display: block;
 	padding: 30px 0;
 }
 
+#container2{
+	padding: 15px 0;
+}
+
 #container h1, #container h2, #container h3, #container h4, #container h5,
 	#container h6 {
 	color: #606B72;
@@ -466,10 +507,6 @@ display: block;
 	margin: 0 0 15px 0;
 	padding: 0 0 10px 0;
 	border-bottom: 1px solid #D8D8D8;
-}
-
-#container .title {
-	
 }
 
 #container .readmore {
@@ -634,13 +671,39 @@ display: block;
 	opacity: .5;
 }
 
+.feature_mysql_grande{
+    position: relative;
+    width: 300px;
+    height: 370px;
+    padding-left: 15px;
+    /* max-width: 21%; */
+    /* max-height: 68%; */
+    border-right: 1px solid rgba(255, 255, 255, 12.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 12.1);
+}
+.feature_mysql_peque{
+    position: relative;
+    width: 300px;
+    height: 270px;
+    padding-left: 15px;
+    padding-top: 18px;
+    /* max-width: 21%; */
+    /* max-height: 68%; */
+    border-right: 1px solid rgba(255, 255, 255, 12.1);
+}
+
+.inner_mysql{
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-right: -15px;
+	margin-left: 25px;
+}
+
 /*-------------------------------------------- Noticias ----------*/
-/*.not{
-	border-top: automatic; 
-	list-style:none; 
-	line-height:normal;
-	display: block;
-}*/
+
 
 /* ----------------------------------------------Column------------------------------------- */
 #column {

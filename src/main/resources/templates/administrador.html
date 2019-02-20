@@ -45,161 +45,174 @@
 	</div>
 	<!-- ####################################################################################################### -->
 	
-		<section class="wrapper principal">
-		<div id="contain" class="center">
-			<h2>
-								<!-- INSERTAR ALUMNO -->
-				<form action="/insertar_alumno" method="post">
-						<div class="row">
-							<label for="name">Alumno</label><br/>
-							<div class="col form-group">
-								<label for="name">Nombre</label> 
-								<input type="text" name="nombre" class="form-control ">
-							</div>
-							<div class="col form-group">
-								<label for="name">Apellido 1
-								</label> <input type="text"name="apellido1" class="form-control ">
-							</div>
-							<div class="col form-group">
-								<label for="name">Apellido 2</label> 
-								<input type="text" name="apellido2" class="form-control ">
+	<div class="wrapper principal">
+			<section class="school-features text-dark d-flex">
+				<div class="inner_mysql">
+									<!-- INSERTAR ALUMNO -->
+				<section class="feature_mysql_grande">
+					<form action="/insertar_alumno" method="post" id="mysql">
+						<h1><strong><label id="center">Alumno</label></strong></h1>
+						<div class="col_mysql">
+							<div class="col_mysql ">
+								<label class="center">Nombre<br/></label>
+								<input type="text" name="nombre" class="form-mysql ">
 							</div>
 						</div>
-						<div class="row">
-						<div class="col_m form-group">
-								<input type="submit" value="Enviar" class="btn btn-primary">
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Apellido 1</label> 
+								<input type="text"name="apellido1" class="form-mysql ">
 							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Apellido 2</label> 
+								<input type="text" name="apellido2" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql_boton center">
+							<input type="submit" value="Enviar" class="btn btn-primary">
 						</div>
 						
 					</form>
-					
+				</section>
 									<!-- INSERTAR PADRE -->
-					<form action="/insertar_padre" method="post">
-						<div class="row">
-							<label for="name">Padre/Tutor</label><br/>
-							<div class="col form-group">
-								<label for="name">Correo</label> 
-								<input type="text" name="correo" class="form-control ">
-							</div>
-							<div class="col form-group">
-								<label for="name">Apellido
-								</label> <input type="text"name="apellido" class="form-control ">
-							</div>
-							<div class="col form-group">
-								<label for="name">Nombre</label> 
-								<input type="text" name="nombre" class="form-control ">
-							</div>
-							<div class="col form-group">
-								<label for="name">Nombre alumno</label> 
-								<input type="text" name="nombreA" class="form-control ">
+				<section class="feature_mysql_grande">
+					<form action="/insertar_padre" method="post" id="mysql">
+						<h1><strong><label id="center">Padre/Tutor</label></strong></h1>
+						<div class="col_mysql">
+							<div class="col_mysql ">
+							<label class="center">Correo</label> 
+								<input type="text" name="correo" class="form-mysql">
 							</div>
 						</div>
-						<div class="row">
-						<div class="col_m form-group">
-								<input type="submit" value="Enviar" class="btn btn-primary">
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Apellido</label> 
+								<input type="text"name="apellido1" class="form-mysql ">
 							</div>
 						</div>
-						
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Nombre</label> 
+								<input type="text" name="apellido2" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Nombre alumno</label> 
+								<input type="text" name="nombreA" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql_boton center">
+							<input type="submit" value="Enviar" class="btn btn-primary">
+						</div>
 					</form>
+				</section>
 					
 								<!-- INSERTAR PROFESOR -->
+				<section class="feature_mysql_grande">
 					<form action="/insertar_profesor" method="post">
-						<div class="row">
-							<label for="name">Profesor</label><br/>
-							<div class="col form-group">
-								<label for="name">Nombre</label> 
-								<input type="text" name="nombre" class="form-control ">
-							</div>
-							<div class="col form-group">
-								<label for="name">Apellido 1
-								</label> <input type="text"name="apellido1" class="form-control ">
-							</div>
-							<div class="col form-group">
-								<label for="name">Apellido 2</label> 
-								<input type="text" name="apellido2" class="form-control ">
-							</div>
-							<div class="col form-group">
-								<label for="name">Correo</label> 
-								<input type="text" name="correo" class="form-control ">
+						<h1><strong><label id="center">Profesor</label></strong></h1>
+						<div class="col_mysql">
+							<div class="col_mysql ">
+								<label class="center">Nombre</label> 
+								<input type="text" name="nombre" class="form-mysql ">
 							</div>
 						</div>
-						<div class="row">
-						<div class="col_m form-group">
-								<input type="submit" value="Enviar" class="btn btn-primary">
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Apellido 1</label> 
+								<input type="text"name="apellido1" class="form-mysql ">
 							</div>
 						</div>
-						
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Apellido 2</label> 
+								<input type="text" name="apellido2" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Correo</label> 
+								<input type="text" name="correo" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql_boton center">
+							<input type="submit" value="Enviar" class="btn btn-primary">
+						</div>
 					</form>
+				</section>
 					
 					
 									<!-- INSERTAR ASIGNATURA -->
-					<form action="/insertar_asignatura" method="post">
-						<div class="row">
-							<label for="name">Asignatura</label><br/>
-							<div class="col form-group">
-								<label for="name">Nombre</label> 
-								<input type="text" name="nombre" class="form-control ">
-							</div>
-							<div class="col form-group">
-								<label for="name">Curso
-								</label> <input type="text" name="curso" class="form-control ">
-							</div>
-							
-						</div>
-						<div class="row">
-							<div class="col_m form-group">
-								<input type="submit" value="Enviar" class="btn btn-primary">
+				<section class="feature_mysql_peque">
+					<form action="/insertar_profesor" method="post">
+						<h1><strong><label id="center">Asignatura</label></strong></h1>
+						<div class="col_mysql">
+							<div class="col_mysql ">
+								<label class="center">Nombre</label> 
+								<input type="text" name="nombre" class="form-mysql ">
 							</div>
 						</div>
-						
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Curso</label> 
+								<input type="text" name="curso" class="form-mysql">
+							</div>
+						</div>
+						<div class="col_mysql_boton center">
+							<input type="submit" value="Enviar" class="btn btn-primary">
+						</div>
 					</form>
+				</section>
 					
 										<!-- INSERTAR AULA -->
-					<form action="/insertar_aula" method="post">
-						<div class="row">
-							<label for="name">Aula</label><br/>
-							<div class="col form-group">
-								<label for="name">Curso</label> 
-								<input type="text" name="curso" class="form-control ">
-							</div>
-							<div class="col form-group">
-								<label for="name">Letra
-								</label> <input type="text"name="letra" class="form-control ">
-							</div>
-							
-						</div>
-						<div class="row">
-							<div class="col_m form-group">
-								<input type="submit" value="Enviar" class="btn btn-primary">
+				<section class="feature_mysql_peque">
+					<form action="/insertar_profesor" method="post">
+						<h1><strong><label id="center">Aula</label></strong></h1>
+						<div class="col_mysql">
+							<div class="col_mysql ">
+								<label class="center">Curso</label> 
+								<input type="text" name="curso" class="form-mysql ">
 							</div>
 						</div>
-						
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Letra
+								</label> <input type="text"name="letra" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql_boton center">
+							<input type="submit" value="Enviar" class="btn btn-primary">
+						</div>
+					</form>
+				</section>
 					
 										<!-- INSERTAR NOTICIA -->
-					<form action="/insertar_noticia" method="post">
-						<div class="row">
-							<label for="name">Noticia</label><br/>
-							<div class="col form-group">
-								<label for="name">Titulo</label> 
-								<input type="text" name="titulo" class="form-control ">
-							</div>
-							<div class="col form-group">
-								<label for="name">Cuerpo
-								</label> <input type="text"name="cuerpo" class="form-control ">
-							</div>
-							
-						</div>
-						<div class="row">
-							<div class="col_m form-group">
-								<input type="submit" value="Enviar" class="btn btn-primary">
+				<section class="feature_mysql_peque">
+					<form action="/insertar_profesor" method="post">
+						<h1><strong><label id="center">Noticia</label></strong></h1>
+						<div class="col_mysql">
+							<div class="col_mysql ">
+								<label class="center">Titulo</label> 
+								<input type="text" name="titulo" class="form-mysql ">
 							</div>
 						</div>
-						
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Cuerpo
+								</label> <input type="text"name="cuerpo" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql_boton center">
+							<input type="submit" value="Enviar" class="btn btn-primary">
+						</div>
 					</form>
-					
-			</h2>
+				</section>
+				</div>
+			</section>
 		</div>
-	</section>
 
 
 	<!-- ####################################################################################################### -->
