@@ -9,5 +9,6 @@ public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
 
 	//Alumno saveAndFlush(Alumno updatedItem);
 	//Alumno insertarAlumno(String Alumno);
+	//Alumno findbyNombre(String name);
 
 }

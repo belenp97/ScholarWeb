@@ -45,9 +45,10 @@
 	</div>
 	<!-- ####################################################################################################### -->
 	
-	<section class="wrapper principal">
+		<section class="wrapper principal">
 		<div id="contain" class="center">
 			<h2>
+								<!-- INSERTAR ALUMNO -->
 				<form action="/insertar_alumno" method="post">
 						<div class="row">
 							<label for="name">Alumno</label><br/>
@@ -65,12 +66,73 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col_m form-group">
+						<div class="col_m form-group">
 								<input type="submit" value="Enviar" class="btn btn-primary">
 							</div>
 						</div>
 						
 					</form>
+					
+									<!-- INSERTAR PADRE -->
+					<form action="/insertar_padre" method="post">
+						<div class="row">
+							<label for="name">PADRE/TUTOR</label><br/>
+							<div class="col form-group">
+								<label for="name">Correo</label> 
+								<input type="text" name="correo" class="form-control ">
+							</div>
+							<div class="col form-group">
+								<label for="name">Apellido
+								</label> <input type="text"name="apellido" class="form-control ">
+							</div>
+							<div class="col form-group">
+								<label for="name">Nombre</label> 
+								<input type="text" name="nombre" class="form-control ">
+							</div>
+							<div class="col form-group">
+								<label for="name">Nombre del alumno</label> 
+								<input type="text" name="nombreA" class="form-control ">
+							</div>
+						</div>
+						<div class="row">
+						<div class="col_m form-group">
+								<input type="submit" value="Enviar" class="btn btn-primary">
+							</div>
+						</div>
+						
+					</form>
+					
+								<!-- INSERTAR PROFESOR -->
+					<form action="/insertar_profesor" method="post">
+						<div class="row">
+							<label for="name">Profesor</label><br/>
+							<div class="col form-group">
+								<label for="name">Nombre</label> 
+								<input type="text" name="nombre" class="form-control ">
+							</div>
+							<div class="col form-group">
+								<label for="name">Apellido 1
+								</label> <input type="text"name="apellido1" class="form-control ">
+							</div>
+							<div class="col form-group">
+								<label for="name">Apellido 2</label> 
+								<input type="text" name="apellido2" class="form-control ">
+							</div>
+							<div class="col form-group">
+								<label for="name">Correo</label> 
+								<input type="text" name="correo" class="form-control ">
+							</div>
+						</div>
+						<div class="row">
+						<div class="col_m form-group">
+								<input type="submit" value="Enviar" class="btn btn-primary">
+							</div>
+						</div>
+						
+					</form>
+					
+					
+									<!-- INSERTAR ASIGNATURA -->
 					<form action="/insertar_asignatura" method="post">
 						<div class="row">
 							<label for="name">Asignatura</label><br/>
@@ -91,6 +153,8 @@
 						</div>
 						
 					</form>
+					
+										<!-- INSERTAR NOTICIA -->
 					<form action="/insertar_noticia" method="post">
 						<div class="row">
 							<label for="name">Noticia</label><br/>

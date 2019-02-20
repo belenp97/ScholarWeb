@@ -194,6 +194,31 @@ public class PrincipalControler {
 		
 		return "administrador";
 	}
+
+	@RequestMapping(value="/insertar_padre")
+	public String insertar_padre(Model model,@RequestParam String correo,@RequestParam String apellido,@RequestParam String nombre, String nombreA) {
+		//alumno = (Alumno) reposAl.findAll(); 
+		
+		Padre padre = new Padre( correo, apellido, nombre);
+		/*Alumno a=reposAl.findbyNombre(nombreA);
+		padre.getAlumno().add(a);
+		a.setPadre(padre);*/
+		padreRepo.save(padre); 
+			
+		return "administrador";
+	}
+
+	@RequestMapping(value="/insertar_profesor")
+	public String insertar_profesor(Model model,@RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, @RequestParam String correo) {
+		//alumno = (Alumno) reposAl.findAll(); 
+		
+		Profesor profesor = new Profesor( nombre, apellido1, apellido2, correo);
+		profeRepo.save(profesor); 
+		
+		return "administrador";
+	}
+	
+	
 	@RequestMapping(value="/insertar_asignatura")
 	public String insertar_asignatura(Model model,@RequestParam String nombre,@RequestParam int curso) {
 		//alumno = (Alumno) reposAl.findAll(); 
