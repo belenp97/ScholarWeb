@@ -201,7 +201,7 @@ public class PrincipalControler {
 		
 		Padre padre = new Padre( correo, apellido, nombre);
 		//Alumno a= reposAl.findBynexpedienteEquals(nexpediente);
-		Alumno a= reposAl.findBynombreEquals(nombre);
+		Alumno a= reposAl.findBynombreEquals(nombreA);
 		padre.getAlumno().add(a);
 		a.setPadre(padre);
 		padreRepo.save(padre); 
