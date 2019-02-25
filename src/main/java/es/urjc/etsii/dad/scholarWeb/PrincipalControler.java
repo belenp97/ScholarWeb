@@ -194,9 +194,19 @@ public class PrincipalControler {
 		
 		return "administrador";
 	}
+	
+	@RequestMapping(value="/eliminar_alumno")
+	public String eliminar_alumno(Model model,@RequestParam String nombre, @RequestParam String apellido1, @RequestParam String apellido2) {
+		//alumno = (Alumno) reposAl.findAll(); 
+		
+		Alumno alumno = new Alumno(nombre, apellido1, apellido2);
+			reposAl.delete(reposAl.findBynombreEquals(alumno.getNombre()));
+		
+		return "administrador";
+	}
 
 	@RequestMapping(value="/insertar_padre")
-	public String insertar_padre(Model model,@RequestParam String correo,@RequestParam String apellido,@RequestParam String nombre, String nombreA /*long nexpediente*/) {
+	public String insertar_padre(Model model,@RequestParam String correo,@RequestParam String apellido,@RequestParam String nombre, String nombreA) {
 		//alumno = (Alumno) reposAl.findAll(); 
 		
 		Padre padre = new Padre( correo, apellido, nombre);
@@ -208,6 +218,15 @@ public class PrincipalControler {
 			
 		return "administrador";
 	}
+	@RequestMapping(value="/eliminar_padre")
+	public String eliminar_padre(Model model,@RequestParam String correo,@RequestParam String apellido,@RequestParam String nombre, String nombreA) {
+		//alumno = (Alumno) reposAl.findAll(); 
+		
+		Padre p = new Padre(correo, apellido, nombre);
+		padreRepo.delete(padreRepo.findBycorreoEquals(p.getCorreo()));
+		
+		return "administrador";
+	}
 
 	@RequestMapping(value="/insertar_profesor")
 	public String insertar_profesor(Model model,@RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, @RequestParam String correo) {
@@ -215,6 +234,16 @@ public class PrincipalControler {
 		
 		Profesor profesor = new Profesor( nombre, apellido1, apellido2, correo);
 		profeRepo.save(profesor); 
+		
+		return "administrador";
+	}
+	
+	@RequestMapping(value="/eliminar_profesor")
+	public String eliminar_profesor(Model model,@RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, @RequestParam String correo) {
+		//alumno = (Alumno) reposAl.findAll(); 
+		
+		Profesor profesor = new Profesor( nombre, apellido1, apellido2, correo);
+		profeRepo.delete(profeRepo.findBynombreEquals(profesor.getNombre()));
 		
 		return "administrador";
 	}
@@ -230,6 +259,16 @@ public class PrincipalControler {
 		return "administrador";
 	}
 	
+	/*@RequestMapping(value="/eliminar_aula")
+	public String eliminar_aula(Model model,@RequestParam Integer curso,@RequestParam char letra) {
+		//alumno = (Alumno) reposAl.findAll(); 
+		
+		Aula aula = new Aula(curso,letra);
+		reposAula.delete(reposAula.findBycursoEquals(aula.getCurso())); 
+		
+		return "administrador";
+	}*/
+	
 	@RequestMapping(value="/insertar_asignatura")
 	public String insertar_asignatura(Model model,@RequestParam String nombre,@RequestParam int curso) {
 		//alumno = (Alumno) reposAl.findAll(); 
@@ -239,6 +278,17 @@ public class PrincipalControler {
 		
 		return "administrador";
 	}
+	
+	@RequestMapping(value="/eliminar_asignatura")
+	public String eliminar_asignatura(Model model,@RequestParam String nombre,@RequestParam int curso) {
+		//alumno = (Alumno) reposAl.findAll(); 
+		
+		Asignatura asignatura = new Asignatura( nombre, curso);
+		asigRepo.delete(asigRepo.findBynombreEquals(asignatura.getNombre())); 
+		
+		return "administrador";
+	}
+	
 	@RequestMapping(value="/insertar_noticia")
 	public String insertar_noticia(Model model,@RequestParam String titulo,@RequestParam String cuerpo) {
 		//alumno = (Alumno) reposAl.findAll(); 
@@ -248,4 +298,16 @@ public class PrincipalControler {
 		
 		return "administrador";
 	}
+	
+	@RequestMapping(value="/eliminar_noticia")
+	public String eliminar_noticia(Model model,@RequestParam String titulo,@RequestParam String cuerpo) {
+		//alumno = (Alumno) reposAl.findAll(); 
+		
+		Noticia noticia = new Noticia( titulo, cuerpo);
+		notRepo.delete(notRepo.findBytituloEquals(noticia.gettitulo()));
+		
+		return "administrador";
+	}
+	
+	
 }
