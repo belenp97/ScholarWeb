@@ -15,6 +15,10 @@ public class Noticia {
 	private String cuerpo;
 
 	public Noticia() {	}
+	
+	public Noticia(String titulo) {
+		this.titulo = titulo;
+	}
 
 	public Noticia(String titulo, String cuerpo) {
 		super();

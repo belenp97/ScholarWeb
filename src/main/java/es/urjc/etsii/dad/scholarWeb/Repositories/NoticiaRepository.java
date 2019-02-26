@@ -8,5 +8,6 @@ import es.urjc.etsii.dad.scholarWeb.Noticia;
 public interface NoticiaRepository extends JpaRepository<Noticia, String> {
 
 	Noticia saveAndFlush(Noticia item);
+	Noticia findBytituloEquals(String titulo);
 
 }

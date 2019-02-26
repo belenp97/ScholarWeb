@@ -161,7 +161,7 @@
 				
 							<!-- ELIMINAR PADRE -->
 				<section class="feature_mysql_grande">
-					<form action="/eliminar_padre" method="post" id="mysql">
+					<form action="/insertar_padre" method="post" id="mysql">
 						<h1><strong><label id="center">Padre/Tutor</label></strong></h1>
 						<div class="col_mysql">
 							<div class="col_mysql ">
@@ -181,11 +181,11 @@
 								<input type="text" name="nombre" class="form-mysql ">
 							</div>
 						</div>
-						<!-- <div class="col_mysql">
+						<div class="col_mysql">
 							<div class="col_mysql">
 								<label class="center">Nombre alumno</label> 
 								<input type="text" name="nombreA" class="form-mysql ">
-							</div>	-->				
+							</div>					
 						<div class="col_mysql_boton center">
 							<input type="submit" value="Eliminar" class="btn btn-primary">
 						</div>
@@ -248,7 +248,7 @@
 				
 									<!-- ELIMINAR PROFESOR -->
 				<section class="feature_mysql_grande">
-					<form action="/eliminar_profesor" method="post">
+					<form action="/insertar_profesor" method="post">
 						<h1><strong><label id="center">Profesor</label></strong></h1>
 						<div class="col_mysql">
 							<div class="col_mysql ">
@@ -368,6 +368,68 @@
 					</div>
 				</section>
 					
+										<!-- INSERTAR AULA -->
+				<section class="feature_mysql_grande">
+					<form action="/insertar_aula" method="post">
+						<h1><strong><label id="center">Aula</label></strong></h1>
+						<div class="col_mysql">
+							<div class="col_mysql ">
+								<label class="center">Curso</label> 
+								<input type="text" name="curso" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Letra
+								</label> <input type="text"name="letra" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql_boton center">
+							<input type="submit" value="Enviar" class="btn btn-primary">
+						</div>
+					</form>
+				</section>
+				
+										<!-- ELIMINAR AULA -->
+				<section class="feature_mysql_grande">
+					<form action="/insertar_aula" method="post">
+						<h1><strong><label id="center">Aula</label></strong></h1>
+						<div class="col_mysql">
+							<div class="col_mysql ">
+								<label class="center">Curso</label> 
+								<input type="text" name="curso" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Letra
+								</label> <input type="text"name="letra" class="form-mysql ">
+							</div>						
+						<div class="col_mysql_boton center">
+							<input type="submit" value="Eliminar" class="btn btn-primary">
+						</div>
+					</form>
+				</section>
+				
+									<!-- TABLA Aula-->
+				<section class="feature_mysql_tabla">
+					<div class="col_mysql">
+						<h1 class="center">Aulas</h1>
+								<table style="width:100%">
+								  <tr>
+								  	<th>Curso</th>
+								    <th>Letra</th>
+								  </tr>
+								  {{#aulas}}
+								  <tr class="center">
+								    <td>{{curso}}</td>
+								    <td>{{letra}}</td>
+								  </tr>
+								  {{/aulas}}
+								</table>
+					</div>
+				</section>
+				
 										<!-- INSERTAR NOTICIA -->
 				<section class="feature_mysql_grande">
 					<form action="/insertar_noticia" method="post">
@@ -392,12 +454,18 @@
 			
 									<!-- ELIMINAR NOTICIA -->
 				<section class="feature_mysql_grande">
-					<form action="/eliminar_noticia" method="post">
+					<form action="/insertar_noticia" method="post">
 						<h1><strong><label id="center">Noticia</label></strong></h1>
 						<div class="col_mysql">
 							<div class="col_mysql ">
 								<label class="center">Titulo</label> 
 								<input type="text" name="titulo" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Cuerpo
+								</label> <input type="text"name="cuerpo" class="form-mysql ">
 							</div>
 						</div>
 						<div class="col_mysql_boton center">
@@ -425,68 +493,6 @@
 					</div>
 				</section>
 				
-				<!-- INSERTAR AULA -->
-				<section class="feature_mysql_grande">
-					<form action="/insertar_aula" method="post">
-						<h1><strong><label id="center">Aula</label></strong></h1>
-						<div class="col_mysql">
-							<div class="col_mysql ">
-								<label class="center">Curso</label> 
-								<input type="text" name="curso" class="form-mysql ">
-							</div>
-						</div>
-						<div class="col_mysql">
-							<div class="col_mysql">
-								<label class="center">Letra
-								</label> <input type="text"name="letra" class="form-mysql ">
-							</div>
-						</div>
-						<div class="col_mysql_boton center">
-							<input type="submit" value="Enviar" class="btn btn-primary">
-						</div>
-					</form>
-				</section>
-				
-										<!-- ELIMINAR AULA -->
-				<!--  <section class="feature_mysql_grande">
-					<form action="/eliminar_aula" method="post">
-						<h1><strong><label id="center">Aula</label></strong></h1>
-						<div class="col_mysql">
-							<div class="col_mysql ">
-								<label class="center">Curso</label> 
-								<input type="text" name="curso" class="form-mysql ">
-							</div>
-						</div>
-						<div class="col_mysql">
-							<div class="col_mysql">
-								<label class="center">Letra
-								</label> <input type="text"name="letra" class="form-mysql ">
-							</div>	
-						</div>					
-						<div class="col_mysql_boton center">
-							<input type="submit" value="Eliminar" class="btn btn-primary">
-						</div>
-					</form>
-				</section> -->
-				
-									<!-- TABLA Aula-->
-				  <section class="feature_mysql_tabla">
-					<div class="col_mysql">
-						<h1 class="center">Aulas</h1>
-								<table style="width:100%">
-								  <tr>
-								  	<th>Curso</th>
-								    <th>Letra</th>
-								  </tr>
-								  {{#aulas}}
-								  <tr class="center">
-								    <td>{{curso}}</td>
-								    <td>{{letra}}</td>
-								  </tr>
-								  {{/aulas}}
-								</table>
-					</div>
-				</section>
 				</div>
 			</section>
 		</div>

@@ -7,5 +7,6 @@ import es.urjc.etsii.dad.scholarWeb.Aula;
 public interface AulaRepository extends JpaRepository<Aula, Integer> {
 
 	Aula saveAndFlush(Aula item);
+	//Aula findBycursoEquals(Integer Curso);
 
 }

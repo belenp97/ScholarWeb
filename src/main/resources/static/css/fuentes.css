@@ -347,6 +347,7 @@ display: block;
     height: 66px;
 }
 
+
 .col_mysql_boton {
     position: relative;
     width: 74%;
@@ -676,6 +677,7 @@ display: block;
     width: 300px;
     height: 370px;
     padding-left: 15px;
+    padding-top: 18px;
     /* max-width: 21%; */
     /* max-height: 68%; */
     border-right: 1px solid rgba(255, 255, 255, 12.1);
@@ -690,6 +692,20 @@ display: block;
     /* max-width: 21%; */
     /* max-height: 68%; */
     border-right: 1px solid rgba(255, 255, 255, 12.1);
+}
+
+.feature_mysql_tabla{
+    position: relative;
+    width: 500px;
+    height: 370px;
+    padding-left: 15px;
+    padding-top: 18px;
+    border-right: 1px solid rgba(255, 255, 255, 12.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 12.1);
+}
+
+table, th, td {
+  padding: 1px;
 }
 
 .inner_mysql{

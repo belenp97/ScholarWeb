@@ -1,4 +1,4 @@
-package es.urjc.etsii.dad.scholarWeb.Controllers;
+/*package es.urjc.etsii.dad.scholarWeb.Controllers;
 
 import java.util.List;
 
@@ -22,12 +22,12 @@ public class AsignaturaController {
 	@Autowired
 	private AsignaturaRepository repository;
 	
-	/*@PostConstruct
+	@PostConstruct
 	public void init() {
 		repository.save(new Asignatura("Matematicas",2));
 		repository.save(new Asignatura("Ingles",1));
 		repository.save(new Asignatura("Física",4));
-	}*/
+	}
 
 	public List<Asignatura> findItems() {
 		return (List<Asignatura>) repository.findAll();
@@ -52,4 +52,4 @@ public class AsignaturaController {
 	public void deleteItem(@PathVariable String nombre) {
 		repository.deleteById(nombre);
 	}
-}
+}*/

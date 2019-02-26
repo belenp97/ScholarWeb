@@ -1,6 +1,5 @@
 package es.urjc.etsii.dad.scholarWeb;
 
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import es.urjc.etsii.dad.scholarWeb.Repositories.AlumnoRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AsignaturaRepository;
@@ -42,11 +43,14 @@ public class PrincipalControler {
 
 	// faltaría contacto.
 
+	
+	
 	public PrincipalControler() {
 	}
 
 	@PostConstruct
 	public void init() {
+		
 		/*Alumno alumn = new Alumno("Juan", "Perez", "Gomez");
 		Alumno alumn2 = new Alumno("Ana", "Martin", "Lopez");
 		Alumno alumn3 = new Alumno("Elena", "Vazquez", "Rodriguez");
@@ -119,6 +123,16 @@ public class PrincipalControler {
 		reposAl.save(alumn2);
 		reposAl.save(alumn3);*/
 	}
+	
+	//clase con los model 
+	public void modelos(Model model) {
+		model.addAttribute("alumnos", reposAl.findAll());
+		model.addAttribute("padres", padreRepo.findAll());
+		model.addAttribute("asignaturas", asigRepo.findAll());
+		model.addAttribute("noticias", notRepo.findAll());
+		model.addAttribute("aulas", reposAula.findAll());
+		model.addAttribute("profesores", profeRepo.findAll());
+	}
 
 	@GetMapping("/")
 	public String principal(Model model) {
@@ -177,75 +191,171 @@ public class PrincipalControler {
 	@RequestMapping(value="/administrador")
 	public String administrador(Model model) {
 		
-		
-		//model.addAttribute("apellido1", alumno.getApellido1());
-		//model.addAttribute("apellido2", alumno.getApellido2());
-		
+		modelos(model);
+		/*model.addAttribute("alumnos", reposAl.findAll());
+		model.addAttribute("padres", padreRepo.findAll());
+		model.addAttribute("asignaturas", asigRepo.findAll());
+		model.addAttribute("noticias", notRepo.findAll());
+		model.addAttribute("aulas", reposAula.findAll());
+		model.addAttribute("profesores", profeRepo.findAll());*/
 
 		return "administrador";
 	}
 	
-	@RequestMapping(value="/insertar_alumno")
-	public String insertar_alumno(Model model,@RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2) {
-		//alumno = (Alumno) reposAl.findAll(); 
+	@RequestMapping("/insertar_alumno")
+	public String insertar_alumno(Model model, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2) {
+		//model.addAttribute("alumnos", reposAl.findAll());
+		modelos(model);
 		
 		Alumno alumno = new Alumno( nombre, apellido1, apellido2);
 		reposAl.save(alumno); 
 		
 		return "administrador";
 	}
+	
+	@RequestMapping(value= "/eliminar_alumno" )
+	public String eliminar_alumno(Model model, @RequestParam String nombre, @RequestParam String apellido1, @RequestParam String apellido2) {
+		//model.addAttribute("alumnos", reposAl.findAll());
+		modelos(model);
+		
+		try {
+			Alumno alumno = new Alumno(nombre, apellido1, apellido2);
+				reposAl.delete(reposAl.findBynombreEquals(alumno.getNombre()));
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "administrador";
+	}
 
 	@RequestMapping(value="/insertar_padre")
-	public String insertar_padre(Model model,@RequestParam String correo,@RequestParam String apellido,@RequestParam String nombre, String nombreA /*long nexpediente*/) {
+	public String insertar_padre(Model model, @RequestParam String correo,@RequestParam String apellido,@RequestParam String nombre, String nombreA /*long nexpediente*/) {
 		//alumno = (Alumno) reposAl.findAll(); 
-		
-		Padre padre = new Padre( correo, apellido, nombre);
-		//Alumno a= reposAl.findBynexpedienteEquals(nexpediente);
-		Alumno a= reposAl.findBynombreEquals(nombreA);
-		padre.getAlumno().add(a);
-		a.setPadre(padre);
-		padreRepo.save(padre); 
+		modelos(model);
+		try {
+			Padre padre = new Padre( correo, apellido, nombre);
+			//Alumno a= reposAl.findBynexpedienteEquals(nexpediente);
+			Alumno a= reposAl.findBynombreEquals(nombreA);
+			padre.getAlumno().add(a);
+			a.setPadre(padre);
+			padreRepo.save(padre); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 			
+		return "administrador";
+	}
+	
+	@RequestMapping(value="/eliminar_padre")
+	public String eliminar_padre(Model model, @RequestParam String correo,@RequestParam String apellido,@RequestParam String nombre) {
+		//alumno = (Alumno) reposAl.findAll(); 
+		modelos(model);
+		try {
+			Padre p = new Padre(correo, apellido, nombre);
+			padreRepo.delete(padreRepo.findBycorreoEquals(p.getCorreo()));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		return "administrador";
 	}
 
 	@RequestMapping(value="/insertar_profesor")
-	public String insertar_profesor(Model model,@RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, @RequestParam String correo) {
-		//alumno = (Alumno) reposAl.findAll(); 
-		
-		Profesor profesor = new Profesor( nombre, apellido1, apellido2, correo);
-		profeRepo.save(profesor); 
+	public String insertar_profesor(Model model, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, @RequestParam String correo) {
+		modelos(model);
+		try {
+			Profesor profesor = new Profesor( nombre, apellido1, apellido2, correo);
+			profeRepo.save(profesor); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		return "administrador";
 	}
 	
+	@RequestMapping(value="/eliminar_profesor")
+	public String eliminar_profesor(Model model, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, @RequestParam String correo) {
+		//alumno = (Alumno) reposAl.findAll(); 
+		modelos(model);
+		try {
+			Profesor profesor = new Profesor( nombre, apellido1, apellido2, correo);
+			profeRepo.delete(profeRepo.findBynombreEquals(profesor.getNombre()));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}	
+		return "administrador";
+	}
 	
 	@RequestMapping(value="/insertar_aula")
-	public String insertar_aula(Model model,@RequestParam Integer curso,@RequestParam char letra) {
-		//alumno = (Alumno) reposAl.findAll(); 
-		
-		Aula aula = new Aula(curso,letra);
-		reposAula.save(aula); 
+	public String insertar_aula(Model model, @RequestParam Integer curso,@RequestParam Character letra) {
+		modelos(model);
+		try {
+			Aula aula = new Aula(curso,letra);
+			reposAula.save(aula); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		return "administrador";
 	}
 	
+	/*@RequestMapping(value="/eliminar_aula")
+	public String eliminar_aula(Model model, @RequestParam int curso,@RequestParam char letra) {
+		modelos(model);
+		try {
+			//Aula aula = new Aula(curso,letra);
+			//reposAula.delete(reposAula.findBycursoEquals(aula.getCurso())); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "administrador";
+	}*/
+	
 	@RequestMapping(value="/insertar_asignatura")
-	public String insertar_asignatura(Model model,@RequestParam String nombre,@RequestParam int curso) {
-		//alumno = (Alumno) reposAl.findAll(); 
-		
-		Asignatura asignatura = new Asignatura( nombre, curso);
-		asigRepo.save(asignatura); 
-		
+	public String insertar_asignatura(Model model, @RequestParam String nombre,@RequestParam int curso) {
+		modelos(model);
+		try {
+			Asignatura asignatura = new Asignatura( nombre, curso);
+			asigRepo.save(asignatura); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		return "administrador";
 	}
+	
+	@RequestMapping(value="/eliminar_asignatura")
+	public String eliminar_asignatura(Model model, @RequestParam String nombre,@RequestParam int curso) {
+		modelos(model);
+		try {
+			Asignatura asignatura = new Asignatura( nombre, curso);
+			asigRepo.delete(asigRepo.findBynombreEquals(asignatura.getNombre())); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "administrador";
+	}
+	
 	@RequestMapping(value="/insertar_noticia")
-	public String insertar_noticia(Model model,@RequestParam String titulo,@RequestParam String cuerpo) {
+	public String insertar_noticia(Model model, @RequestParam String titulo,@RequestParam String cuerpo) {
+		modelos(model);
+		try {
+			Noticia noticia = new Noticia( titulo, cuerpo);
+			notRepo.save(noticia); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}	
+		return "administrador";
+	}
+	
+	@RequestMapping(value="/eliminar_noticia")
+	public String eliminar_noticia(Model model,@RequestParam String titulo) {
 		//alumno = (Alumno) reposAl.findAll(); 
-		
-		Noticia noticia = new Noticia( titulo, cuerpo);
-		notRepo.save(noticia); 
-		
+		modelos(model);
+		try {
+			Noticia noticia = new Noticia( titulo);
+			notRepo.delete(notRepo.findBytituloEquals(noticia.gettitulo()));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		return "administrador";
 	}
 }

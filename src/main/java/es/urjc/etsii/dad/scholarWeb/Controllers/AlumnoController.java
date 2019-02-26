@@ -22,13 +22,13 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.AulaRepository;
 @RestController
 public class AlumnoController {
 	
-	@Autowired
+	/*@Autowired
 	private AlumnoRepository repository;
 	
 	@Autowired
 	private AulaRepository reposAl;
 	
-	/*@PostConstruct
+	@PostConstruct
 	public void init() {
 		Alumno a= new Alumno("Juan", "Perez", "Gomez");	
 		Alumno a2= new Alumno("Ana", "Martin","Lopez");
@@ -46,7 +46,7 @@ public class AlumnoController {
 	/*@RequestMapping(method = RequestMethod.GET)
 	public List<Alumno> findItems() {
 		return (List<Alumno>) repository.findAll();
-	}*/
+	}
 
 	//@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Alumno> addItem(@RequestBody Alumno item) {
@@ -67,5 +67,5 @@ public class AlumnoController {
 	@RequestMapping(value = "/deleteItem", method = RequestMethod.DELETE)
 	public void deleteItem(@PathVariable Integer id) {
 		repository.deleteById(id);
-	}
+	}*/
 }

@@ -45,7 +45,7 @@ public class Alumno {
 		this.apellido2 = a2;
 		this.nexpediente = (long) (Math.random() * (7) + 1);
 	}
-
+	
 	public Alumno() {
 	}
 

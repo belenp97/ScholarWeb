@@ -1,4 +1,4 @@
-package es.urjc.etsii.dad.scholarWeb.Controllers;
+/*package es.urjc.etsii.dad.scholarWeb.Controllers;
 
 import java.util.List;
 
@@ -53,4 +53,4 @@ public class NoticiaController {
 	public void deleteItem(@PathVariable String titulo) {
 		repository.deleteById(titulo);
 	}
-}
+}*/
