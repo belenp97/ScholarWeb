@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class Padre {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_padre;
 	@Column
 	private String correo;
@@ -24,11 +25,12 @@ public class Padre {
 	public Padre() {
 	}
 
-	public Padre(String correo, String apellido, String nombre) {
+	public Padre(String correo, String apellido, String nombre, Alumno a) {
 		this.id_padre = (int) Math.ceil(Math.random() * 1000);
 		this.correo = correo;
 		this.apellido = apellido;
 		this.nombre = nombre;
+		alumno.add(a); 
 	}
 
 	public long getid_padre() {

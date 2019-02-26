@@ -21,6 +21,9 @@ public class Administrador {
 	private String apellido;
 	
 	@Column
+	private String correo;
+	
+	@Column
 	private String contraseña;
 
 	public Administrador() {
@@ -61,6 +64,22 @@ public class Administrador {
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public String getContraseña() {
+		return contraseña;
+	}
+
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
 	}
 
 	@Override

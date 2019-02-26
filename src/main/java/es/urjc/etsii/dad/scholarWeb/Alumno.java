@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Alumno {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int nexpediente;
 	@Column
 	private String nombre;
@@ -28,9 +28,11 @@ public class Alumno {
 	private List<Profesor> profesores_por_alumno = new ArrayList<>();
 
 	@ManyToOne(targetEntity = Aula.class, fetch = FetchType.LAZY)
+	@JoinColumn(name = "aula", nullable = false)
 	private Aula aula;
 
 	@ManyToOne(targetEntity = Padre.class, fetch = FetchType.LAZY)
+	@JoinColumn(name = "padre", nullable = false)
 	private Padre padre_alumno;
 
 	public Alumno(String n, String a1, String a2) {
@@ -38,6 +40,15 @@ public class Alumno {
 		this.apellido1 = a1;
 		this.apellido2 = a2;
 		this.nexpediente = (int)Math.floor(Math.random()) *1+1000;
+	}
+	
+	public Alumno(String n, String a1, String a2, Aula a, Padre p) {
+		this.nombre = n;
+		this.apellido1 = a1;
+		this.apellido2 = a2;
+		this.nexpediente = (int)Math.floor(Math.random()) *1+1000;
+		this.aula = a; 
+		this.padre_alumno = p; 
 	}
 	
 	public Alumno() {
@@ -113,6 +124,14 @@ public class Alumno {
 
 	public void setFaltas(int faltas) {
 		this.faltas = faltas;
+	}
+	
+	public Padre getPadre_alumno() {
+		return padre_alumno;
+	}
+
+	public void setPadre_alumno(Padre padre_alumno) {
+		this.padre_alumno = padre_alumno;
 	}
 
 	@Override

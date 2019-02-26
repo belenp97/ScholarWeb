@@ -100,7 +100,7 @@
 								  	<th>Nº Expediente</th>
 								  	<th>Nombre</th>
 								    <th>Apellido 1</th>
-								    <th>Apellido 2</th> 
+								    <th>Apellido 2</th>
 								  </tr>
 								  {{#alumnos}}
 								  <tr class="center">
@@ -172,7 +172,7 @@
 								    <th>ID_Padre</th>
 								  	<th>Nombre</th>
 								    <th>Apellido 1</th>
-								    <th>Correo</th> 
+								    <th>Correo</th>
 								  </tr>
 								  {{#padres}}
 								  <tr class="center">
@@ -319,68 +319,6 @@
 					</div>
 				</section>
 					
-										<!-- INSERTAR AULA -->
-				<section class="feature_mysql_grande">
-					<form action="/insertar_aula" method="post">
-						<h1><strong><label id="center">Aula</label></strong></h1>
-						<div class="col_mysql">
-							<div class="col_mysql ">
-								<label class="center">Curso</label> 
-								<input type="text" name="curso" class="form-mysql ">
-							</div>
-						</div>
-						<div class="col_mysql">
-							<div class="col_mysql">
-								<label class="center">Letra
-								</label> <input type="text"name="letra" class="form-mysql ">
-							</div>
-						</div>
-						<div class="col_mysql_boton center">
-							<input type="submit" value="Enviar" class="btn btn-primary">
-						</div>
-					</form>
-				</section>
-				
-										<!-- ELIMINAR AULA -->
-				<!--  <section class="feature_mysql_grande">
-					<form action="/eliminar_aula" method="post">
-						<h1><strong><label id="center">Aula</label></strong></h1>
-						<div class="col_mysql">
-							<div class="col_mysql ">
-								<label class="center">Curso</label> 
-								<input type="text" name="curso" class="form-mysql ">
-							</div>
-						</div>
-						<div class="col_mysql">
-							<div class="col_mysql">
-								<label class="center">Letra
-								</label> <input type="text"name="letra" class="form-mysql ">
-							</div>	
-						</div>					
-						<div class="col_mysql_boton center">
-							<input type="submit" value="Eliminar" class="btn btn-primary">
-						</div>
-					</form>
-				</section> -->
-				
-									<!-- TABLA Aula-->
-				<!--  <section class="feature_mysql_tabla">
-					<div class="col_mysql">
-						<h1 class="center">Aulas</h1>
-								<table style="width:100%">
-								  <tr>
-								  	<th>Curso</th>
-								    <th>Letra</th>
-								  </tr>
-								  {{#aulas}}
-								  <tr class="center">
-								    <td>{{curso}}</td>
-								    <td>{{letra}}</td>
-								  </tr>
-								  {{/aulas}}
-								</table>
-					</div>
-				</section>-->
 				
 										<!-- INSERTAR NOTICIA -->
 				<section class="feature_mysql_grande">
@@ -435,6 +373,68 @@
 								    <td>{{cuerpo}}</td>
 								  </tr>
 								  {{/noticias}}
+								</table>
+					</div>
+				</section>
+										<!-- INSERTAR AULA -->
+				<section class="feature_mysql_grande">
+					<form action="/insertar_aula" method="post">
+						<h1><strong><label id="center">Aula</label></strong></h1>
+						<div class="col_mysql">
+							<div class="col_mysql ">
+								<label class="center">Curso</label> 
+								<input type="text" name="curso" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Letra
+								</label> <input type="text"name="letra" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql_boton center">
+							<input type="submit" value="Enviar" class="btn btn-primary">
+						</div>
+					</form>
+				</section>
+				
+										<!-- ELIMINAR AULA -->
+				<!--  <section class="feature_mysql_grande">
+					<form action="/eliminar_aula" method="post">
+						<h1><strong><label id="center">Aula</label></strong></h1>
+						<div class="col_mysql">
+							<div class="col_mysql ">
+								<label class="center">Curso</label> 
+								<input type="text" name="curso" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Letra
+								</label> <input type="text"name="letra" class="form-mysql ">
+							</div>	
+						</div>					
+						<div class="col_mysql_boton center">
+							<input type="submit" value="Eliminar" class="btn btn-primary">
+						</div>
+					</form>
+				</section> -->
+				
+									<!-- TABLA Aula-->
+				 <section class="feature_mysql_tabla">
+					<div class="col_mysql">
+						<h1 class="center">Aulas</h1>
+								<table style="width:100%">
+								  <tr>
+								  	<th>Curso</th>
+								    <th>Letra</th>
+								  </tr>
+								  {{#aulas}}
+								  <tr class="center">
+								    <td>{{curso}}</td>
+								    <td>{{letra}}</td>
+								  </tr>
+								  {{/aulas}}
 								</table>
 					</div>
 				</section>

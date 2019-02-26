@@ -34,10 +34,9 @@
 						</fieldset>
 					</form>
 					<p><h3>
-						<a href="login">Login</a>| <a href="administrador">
+						<a href="/login">Login</a>| <a href="/administrador">
 								administrador</a>
 					</h3></p>
-
 				</div>
 			</div>
 		</div>
@@ -45,12 +44,30 @@
 	<!-- ####################################################################################################### -->
 
 	<section class="wrapper_login">
-		<form class="register" action="/login" method="post">
-			<input class="mininbox t" type="email" placeholder="info@mailaddress.com">
-			<input class="mininbox t" type="password" placeholder="••••••••••••">
+		<form class="register" action="/login/privado" method="post">
+			<input class="mininbox t" type="email" name="correo" placeholder="info@mailaddress.com">
+			<input class="mininbox t" type="password" name="contraseña"placeholder="••••••••••••">
 
 			<input type="submit" value="Enviar" class="submit">
 		</form>
+						<!-- TABLA Alumnos-->
+				<section class="feature_mysql_tabla">
+					<div class="col_mysql">
+						<h1 class="center">Admin</h1>
+								<table style="width:100%">
+								  <tr>
+								  	<th>Correo</th>
+								    <th>contraseña</th>
+								  </tr>
+								  {{#admin}}
+								  <tr class="center">
+								    <td>{{correo}}</td>
+								    <td>{{contraseña}}</td>
+								  </tr>
+								  {{/admin}}
+								</table>
+					</div>
+				</section>
 	</section>
 
 

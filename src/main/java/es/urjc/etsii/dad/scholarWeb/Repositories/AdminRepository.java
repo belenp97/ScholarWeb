@@ -7,6 +7,8 @@ import es.urjc.etsii.dad.scholarWeb.Administrador;
 public interface AdminRepository extends JpaRepository<Administrador, Integer>{
 	
 	Administrador saveAndFlush(Administrador updatedItem);
+	Administrador findByCorreo(String correo);
+	
 	
 
 }

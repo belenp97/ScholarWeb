@@ -8,5 +8,5 @@ public interface PadreRepository extends JpaRepository<Padre, Integer> {
 
 	//Padre saveAndFlush(Padre item);
 	Padre findBycorreoEquals(String correo);
-
+	Padre findByNombreEquals(String nombre);
 }

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import es.urjc.etsii.dad.scholarWeb.Alumno;
+import es.urjc.etsii.dad.scholarWeb.Padre;
 
 
 public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
@@ -14,5 +15,5 @@ public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
 	//Alumno insertarAlumno(String Alumno);
 	//Alumno findBynexpedienteEquals(long nexpediente);
 	Alumno findBynombreEquals(String nombre);
-	Alumno deleteByNexpediente(Integer nexp);	
+	Alumno deleteByNexpediente(Integer nexp);
 }

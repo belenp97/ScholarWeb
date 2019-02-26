@@ -1,8 +1,11 @@
 package es.urjc.etsii.dad.scholarWeb;
 
+import java.util.Optional;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import es.urjc.etsii.dad.scholarWeb.Repositories.AdminRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AlumnoRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AsignaturaRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AulaRepository;
@@ -41,7 +44,8 @@ public class PrincipalControler {
 	@Autowired
 	private ProfesorRepository profeRepo;
 
-	// faltaría contacto.
+	@Autowired
+	private AdminRepository adminRepo;
 
 	
 	
@@ -178,17 +182,25 @@ public class PrincipalControler {
 
 	@GetMapping("/login")
 	public String login(Model model) {
-
+		model.addAttribute("admin", adminRepo.findAll());
+		
 		return "login";
 	}
 
-	@PostMapping("/login/privado")
-	public String loginPrivado(Model model) {
-
-		return "login_privado";
+	@PostMapping("/login/{nombre}")
+	public String loginPrivado(Model model, @RequestParam String correo, @RequestParam String contraseña) {
+		try {
+			Administrador administrador = adminRepo.findByCorreo(correo);
+			if(administrador.getContraseña().equals(contraseña)) {
+				return "/login_privado"; 
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "loginError";
 	}
 	
-	@RequestMapping(value="/administrador")
+	@RequestMapping("/administrador")
 	public String administrador(Model model) {
 		
 		modelos(model);
@@ -206,17 +218,24 @@ public class PrincipalControler {
 	public String insertar_alumno(Model model, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2) {
 		//model.addAttribute("alumnos", reposAl.findAll());
 		modelos(model);
-		
-		Alumno alumno = new Alumno( nombre, apellido1, apellido2);
-		reposAl.save(alumno); 
-		
+		try {
+			Alumno alumno = new Alumno(nombre, apellido1, apellido2);
+			reposAl.save(alumno); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		return "administrador";
 	}
 	
-	@RequestMapping(value= "/eliminar_alumno" )
+	@RequestMapping("/eliminar_alumno" )
 	public String eliminar_alumno(Model model, @RequestParam Integer nexp) {
 		modelos(model);
 		try {
+			Optional<Alumno> alumno = reposAl.findById(nexp);
+			Padre p = alumno.get().getPadre(); 
+			if(p.getNombre() != null) {
+				padreRepo.delete(p);
+			}
 			reposAl.deleteById(nexp); 
 			
 		}catch(Exception e) {
@@ -225,17 +244,16 @@ public class PrincipalControler {
 		return "administrador";
 	}
 
-	@RequestMapping(value="/insertar_padre")
+	@RequestMapping("/insertar_padre")
 	public String insertar_padre(Model model, @RequestParam String correo,@RequestParam String apellido,@RequestParam String nombre, String nombreA /*long nexpediente*/) {
 		//alumno = (Alumno) reposAl.findAll(); 
 		modelos(model);
+		
 		try {
-			Padre padre = new Padre( correo, apellido, nombre);
-			//Alumno a= reposAl.findBynexpedienteEquals(nexpediente);
 			Alumno a= reposAl.findBynombreEquals(nombreA);
-			//padre.getAlumno().add(a);
+			Padre padre = new Padre( correo, apellido, nombre, a);
 			a.setPadre(padre);
-			padreRepo.save(padre); 
+			padreRepo.saveAndFlush(padre); 
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -243,7 +261,7 @@ public class PrincipalControler {
 		return "administrador";
 	}
 	
-	@RequestMapping(value="/eliminar_padre")
+	@RequestMapping("/eliminar_padre")
 	public String eliminar_padre(Model model, @RequestParam Integer id_padre) {
 		modelos(model);
 		try {
@@ -254,7 +272,7 @@ public class PrincipalControler {
 		return "administrador";
 	}
 
-	@RequestMapping(value="/insertar_profesor")
+	@RequestMapping("/insertar_profesor")
 	public String insertar_profesor(Model model, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, @RequestParam String correo) {
 		modelos(model);
 		try {
@@ -267,7 +285,7 @@ public class PrincipalControler {
 		return "administrador";
 	}
 	
-	@RequestMapping(value="/eliminar_profesor")
+	@RequestMapping("/eliminar_profesor")
 	public String eliminar_profesor(Model model, @RequestParam Integer id_profesor) {
 		modelos(model);
 		try {
@@ -278,7 +296,7 @@ public class PrincipalControler {
 		return "administrador";
 	}
 	
-	@RequestMapping(value="/insertar_aula")
+	@RequestMapping("/insertar_aula")
 	public String insertar_aula(Model model, @RequestParam Integer curso,@RequestParam Character letra) {
 		modelos(model);
 		try {
@@ -303,7 +321,7 @@ public class PrincipalControler {
 		return "administrador";
 	}*/
 	
-	@RequestMapping(value="/insertar_asignatura")
+	@RequestMapping("/insertar_asignatura")
 	public String insertar_asignatura(Model model, @RequestParam String nombre,@RequestParam int curso) {
 		modelos(model);
 		try {
@@ -315,7 +333,7 @@ public class PrincipalControler {
 		return "administrador";
 	}
 	
-	@RequestMapping(value="/eliminar_asignatura")
+	@RequestMapping("/eliminar_asignatura")
 	public String eliminar_asignatura(Model model, @RequestParam Integer id) {
 		modelos(model);
 		try {
@@ -326,7 +344,7 @@ public class PrincipalControler {
 		return "administrador";
 	}
 	
-	@RequestMapping(value="/insertar_noticia")
+	@RequestMapping("/insertar_noticia")
 	public String insertar_noticia(Model model, @RequestParam String titulo,@RequestParam String cuerpo) {
 		modelos(model);
 		try {
@@ -338,7 +356,7 @@ public class PrincipalControler {
 		return "administrador";
 	}
 	
-	@RequestMapping(value="/eliminar_noticia")
+	@RequestMapping("/eliminar_noticia")
 	public String eliminar_noticia(Model model,@RequestParam String titulo) {
 		//alumno = (Alumno) reposAl.findAll(); 
 		modelos(model);
