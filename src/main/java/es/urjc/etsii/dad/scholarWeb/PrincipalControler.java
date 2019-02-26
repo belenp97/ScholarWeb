@@ -214,18 +214,14 @@ public class PrincipalControler {
 	}
 	
 	@RequestMapping(value= "/eliminar_alumno" )
-	public String eliminar_alumno(Model model, @RequestParam String nombre, @RequestParam String apellido1, @RequestParam String apellido2) {
-		//model.addAttribute("alumnos", reposAl.findAll());
+	public String eliminar_alumno(Model model, @RequestParam Integer nexp) {
 		modelos(model);
-		
 		try {
-			Alumno alumno = new Alumno(nombre, apellido1, apellido2);
-				reposAl.delete(reposAl.findBynombreEquals(alumno.getNombre()));
+			reposAl.deleteById(nexp); 
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-
 		return "administrador";
 	}
 
@@ -237,7 +233,7 @@ public class PrincipalControler {
 			Padre padre = new Padre( correo, apellido, nombre);
 			//Alumno a= reposAl.findBynexpedienteEquals(nexpediente);
 			Alumno a= reposAl.findBynombreEquals(nombreA);
-			padre.getAlumno().add(a);
+			//padre.getAlumno().add(a);
 			a.setPadre(padre);
 			padreRepo.save(padre); 
 		}catch(Exception e) {
@@ -248,12 +244,10 @@ public class PrincipalControler {
 	}
 	
 	@RequestMapping(value="/eliminar_padre")
-	public String eliminar_padre(Model model, @RequestParam String correo,@RequestParam String apellido,@RequestParam String nombre) {
-		//alumno = (Alumno) reposAl.findAll(); 
+	public String eliminar_padre(Model model, @RequestParam Integer id_padre) {
 		modelos(model);
 		try {
-			Padre p = new Padre(correo, apellido, nombre);
-			padreRepo.delete(padreRepo.findBycorreoEquals(p.getCorreo()));
+			padreRepo.deleteById(id_padre);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -274,12 +268,10 @@ public class PrincipalControler {
 	}
 	
 	@RequestMapping(value="/eliminar_profesor")
-	public String eliminar_profesor(Model model, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, @RequestParam String correo) {
-		//alumno = (Alumno) reposAl.findAll(); 
+	public String eliminar_profesor(Model model, @RequestParam Integer id_profesor) {
 		modelos(model);
 		try {
-			Profesor profesor = new Profesor( nombre, apellido1, apellido2, correo);
-			profeRepo.delete(profeRepo.findBynombreEquals(profesor.getNombre()));
+			profeRepo.deleteById(id_profesor);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}	
@@ -324,11 +316,10 @@ public class PrincipalControler {
 	}
 	
 	@RequestMapping(value="/eliminar_asignatura")
-	public String eliminar_asignatura(Model model, @RequestParam String nombre,@RequestParam int curso) {
+	public String eliminar_asignatura(Model model, @RequestParam Integer id) {
 		modelos(model);
 		try {
-			Asignatura asignatura = new Asignatura( nombre, curso);
-			asigRepo.delete(asigRepo.findBynombreEquals(asignatura.getNombre())); 
+			asigRepo.deleteById(id);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -359,6 +350,4 @@ public class PrincipalControler {
 		}
 		return "administrador";
 	}
-	
-	
 }

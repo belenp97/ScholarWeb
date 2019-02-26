@@ -10,7 +10,7 @@ public class Asignatura {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private int id;
 	@Column
 	private String nombre;
 	@Column
@@ -28,7 +28,7 @@ public class Asignatura {
 	}
 
 	public Asignatura(String nombre, int curso) {
-		this.id = (long) (Math.random() * 7);
+		this.id = (int) Math.ceil(Math.random() * 1000);
 		this.nombre = nombre;
 		this.curso = curso;
 	}

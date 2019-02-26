@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Padre {
 
 	@Id
-	private long idPadre;
+	private int id_padre;
 	@Column
 	private String correo;
 	@Column
@@ -25,18 +25,18 @@ public class Padre {
 	}
 
 	public Padre(String correo, String apellido, String nombre) {
-		this.idPadre = (long) (Math.random() * (7) + 1);
+		this.id_padre = (int) Math.ceil(Math.random() * 1000);
 		this.correo = correo;
 		this.apellido = apellido;
 		this.nombre = nombre;
 	}
 
-	public long getIdPadre() {
-		return idPadre;
+	public long getid_padre() {
+		return id_padre;
 	}
 
-	public void setIdPadre(int idPadre) {
-		this.idPadre = idPadre;
+	public void setid_padre(int id_padre) {
+		this.id_padre = id_padre;
 	}
 
 	public String getApellido() {

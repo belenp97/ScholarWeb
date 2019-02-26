@@ -82,8 +82,20 @@
 						<h1><strong><label id="center">Alumno</label></strong></h1>
 						<div class="col_mysql">
 							<div class="col_mysql ">
-								<label class="center">Nº Expediente<br/></label>
-								<input type="text" name="nexp" class="form-mysql ">
+								<label class="center">Nombre<br/></label>
+								<input type="text" name="nombre" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Apellido 1</label> 
+								<input type="text"name="apellido1" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Apellido 2</label> 
+								<input type="text" name="apellido2" class="form-mysql ">
 							</div>
 						</div>
 						<div class="col_mysql_boton center">
@@ -149,14 +161,31 @@
 				
 							<!-- ELIMINAR PADRE -->
 				<section class="feature_mysql_grande">
-					<form action="/eliminar_padre" method="post" id="mysql">
+					<form action="/insertar_padre" method="post" id="mysql">
 						<h1><strong><label id="center">Padre/Tutor</label></strong></h1>
 						<div class="col_mysql">
 							<div class="col_mysql ">
-							<label class="center">ID-Padre</label> 
-								<input type="text" name="id_padre" class="form-mysql">
+							<label class="center">Correo</label> 
+								<input type="email" name="correo" class="form-mysql">
 							</div>
-						</div>		
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Apellido</label> 
+								<input type="text"name="apellido" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Nombre</label> 
+								<input type="text" name="nombre" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Nombre alumno</label> 
+								<input type="text" name="nombreA" class="form-mysql ">
+							</div>					
 						<div class="col_mysql_boton center">
 							<input type="submit" value="Eliminar" class="btn btn-primary">
 						</div>
@@ -169,14 +198,12 @@
 						<h1 class="center">Padres</h1>
 								<table style="width:100%">
 								  <tr>
-								    <th>ID_Padre</th>
 								  	<th>Nombre</th>
 								    <th>Apellido 1</th>
 								    <th>Correo</th> 
 								  </tr>
 								  {{#padres}}
 								  <tr class="center">
-								  	<td>{{id_padre}}</td>
 								    <td>{{nombre}}</td>
 								    <td>{{apellido}}</td>
 								    <td>{{correo}}</td>
@@ -221,12 +248,30 @@
 				
 									<!-- ELIMINAR PROFESOR -->
 				<section class="feature_mysql_grande">
-					<form action="/eliminar_profesor" method="post">
+					<form action="/insertar_profesor" method="post">
 						<h1><strong><label id="center">Profesor</label></strong></h1>
 						<div class="col_mysql">
 							<div class="col_mysql ">
-								<label class="center">ID_Profesor</label> 
-								<input type="text" name="id_profesor" class="form-mysql ">
+								<label class="center">Nombre</label> 
+								<input type="text" name="nombre" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Apellido 1</label> 
+								<input type="text"name="apellido1" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Apellido 2</label> 
+								<input type="text" name="apellido2" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Correo</label> 
+								<input type="text" name="correo" class="form-mysql ">
 							</div>
 						</div>
 						<div class="col_mysql_boton center">
@@ -241,7 +286,7 @@
 						<h1 class="center">Profesores</h1>
 								<table style="width:100%">
 								  <tr>
-								  	<th>Id_Profesor</th>
+								  	<th>Id</th>
 								  	<th>Nombre</th>
 								    <th>Apellido 1</th>
 								    <th>Apellido 2</th> 
@@ -249,7 +294,7 @@
 								  </tr>
 								  {{#profesores}}
 								  <tr class="center">
-								  	<td>{{id_profesor}}</td>
+								  	<td>{{identificador}}</td>
 								    <td>{{nombre}}</td>
 								    <td>{{apellido1}}</td>
 								    <td>{{apellido2}}</td>
@@ -288,8 +333,14 @@
 						<h1><strong><label id="center">Asignatura</label></strong></h1>
 						<div class="col_mysql">
 							<div class="col_mysql ">
-								<label class="center">ID_Asignatura</label> 
-								<input type="text" name="id" class="form-mysql ">
+								<label class="center">Nombre</label> 
+								<input type="text" name="nombre" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Curso</label> 
+								<input type="text" name="curso" class="form-mysql">
 							</div>
 						</div>
 						<div class="col_mysql_boton center">
@@ -304,13 +355,11 @@
 						<h1 class="center">Asignaturas</h1>
 								<table style="width:100%">
 								  <tr>
-								  	<th>ID_Asignatura</th>
 								  	<th>Nombre</th>
 								    <th>Curso</th>
 								  </tr>
 								  {{#asignaturas}}
 								  <tr class="center">
-								  	<td>{{id}}</td>
 								    <td>{{nombre}}</td>
 								    <td>{{curso}}</td>
 								  </tr>
@@ -342,8 +391,8 @@
 				</section>
 				
 										<!-- ELIMINAR AULA -->
-				<!--  <section class="feature_mysql_grande">
-					<form action="/eliminar_aula" method="post">
+				<section class="feature_mysql_grande">
+					<form action="/insertar_aula" method="post">
 						<h1><strong><label id="center">Aula</label></strong></h1>
 						<div class="col_mysql">
 							<div class="col_mysql ">
@@ -355,16 +404,15 @@
 							<div class="col_mysql">
 								<label class="center">Letra
 								</label> <input type="text"name="letra" class="form-mysql ">
-							</div>	
-						</div>					
+							</div>						
 						<div class="col_mysql_boton center">
 							<input type="submit" value="Eliminar" class="btn btn-primary">
 						</div>
 					</form>
-				</section> -->
+				</section>
 				
 									<!-- TABLA Aula-->
-				<!--  <section class="feature_mysql_tabla">
+				<section class="feature_mysql_tabla">
 					<div class="col_mysql">
 						<h1 class="center">Aulas</h1>
 								<table style="width:100%">
@@ -380,7 +428,7 @@
 								  {{/aulas}}
 								</table>
 					</div>
-				</section>-->
+				</section>
 				
 										<!-- INSERTAR NOTICIA -->
 				<section class="feature_mysql_grande">
@@ -406,12 +454,18 @@
 			
 									<!-- ELIMINAR NOTICIA -->
 				<section class="feature_mysql_grande">
-					<form action="/eliminar_noticia" method="post">
+					<form action="/insertar_noticia" method="post">
 						<h1><strong><label id="center">Noticia</label></strong></h1>
 						<div class="col_mysql">
 							<div class="col_mysql ">
 								<label class="center">Titulo</label> 
 								<input type="text" name="titulo" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Cuerpo
+								</label> <input type="text"name="cuerpo" class="form-mysql ">
 							</div>
 						</div>
 						<div class="col_mysql_boton center">
