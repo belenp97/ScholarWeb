@@ -225,6 +225,7 @@ public class PrincipalControler {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+
 		return "administrador";
 	}
 
@@ -358,4 +359,6 @@ public class PrincipalControler {
 		}
 		return "administrador";
 	}
+	
+	
 }
