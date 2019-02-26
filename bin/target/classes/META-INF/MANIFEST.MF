@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: jorgealonsovivar
+Build-Jdk: 10.0.2
+Implementation-Title: scholarWeb
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: es.urjc.etsii.dad
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/scholarWeb
+Created-By: Maven Integration for Eclipse
+

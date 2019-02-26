@@ -11,7 +11,7 @@ public class Alumno {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long nexpediente;
+	private int nexpediente;
 	@Column
 	private String nombre;
 	@Column
@@ -43,7 +43,7 @@ public class Alumno {
 		this.nombre = n;
 		this.apellido1 = a1;
 		this.apellido2 = a2;
-		this.nexpediente = (long) (Math.random() * (7) + 1);
+		this.nexpediente = (int)Math.floor(Math.random()) *1+1000;
 	}
 	
 	public Alumno() {
@@ -101,7 +101,7 @@ public class Alumno {
 		return nexpediente;
 	}
 
-	public void setNexpediente(long n_expediente) {
+	public void setNexpediente(int n_expediente) {
 		this.nexpediente = n_expediente;
 	}
 

@@ -11,7 +11,7 @@ public class Profesor {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long identificador;
+	private int id_profesor;
 
 	@Column
 	private String nombre;
@@ -40,19 +40,19 @@ public class Profesor {
 	}
 
 	public Profesor(String n, String a1, String a2, String c) {
-		this.identificador = (long) Math.random() * 7;
+		this.id_profesor =(int) Math.ceil(Math.random() * 1000);
 		this.nombre = n;
 		this.apellido1 = a1;
 		this.apellido2 = a2;
 		this.correo = c;
 	}
 
-	public long getIdentificador() {
-		return identificador;
+	public long getid_profesor() {
+		return id_profesor;
 	}
 
-	public void setIdentificador(Integer identificador) {
-		this.identificador = identificador;
+	public void setid_profesor(Integer id_profesor) {
+		this.id_profesor = id_profesor;
 	}
 
 	public List<Aula> getAulas() {
@@ -113,7 +113,7 @@ public class Profesor {
 
 	@Override
 	public String toString() {
-		return "Profesor [identificador=" + identificador + ", nombre=" + nombre + ", apellido1=" + apellido1
+		return "Profesor [id_profesor=" + id_profesor + ", nombre=" + nombre + ", apellido1=" + apellido1
 				+ ", apellido2=" + apellido2 + ", correo=" + correo + ", asignaturas=" + ", alumnos=" + ", aulas="
 				+ "]";
 	}
