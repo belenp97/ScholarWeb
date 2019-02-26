@@ -22,18 +22,12 @@ public class Alumno {
 	private int faltas;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "alumno_asignatura", 
-				joinColumns = { @JoinColumn(name = "alumno") },
-				inverseJoinColumns = { @JoinColumn(name = "asignatura") })
 	private List<Asignatura> asignaturas = new ArrayList<>();
 
 	@ManyToMany(mappedBy = "alumnos_por_profesor", targetEntity= Profesor.class)
 	private List<Profesor> profesores_por_alumno = new ArrayList<>();
 
 	@ManyToOne(targetEntity = Aula.class, fetch = FetchType.LAZY)
-	@JoinTable(name = "alumno_aula", joinColumns = { 
-			@JoinColumn(name = "alumno") }, inverseJoinColumns = {
-			@JoinColumn(name = "aula") })
 	private Aula aula;
 
 	@ManyToOne(targetEntity = Padre.class, fetch = FetchType.LAZY)

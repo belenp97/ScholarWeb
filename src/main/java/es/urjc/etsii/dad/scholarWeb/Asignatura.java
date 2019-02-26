@@ -22,9 +22,6 @@ public class Asignatura {
 	private List<Alumno> alumno = new ArrayList<Alumno>();
 
 	@ManyToOne(targetEntity = Profesor.class, fetch = FetchType.LAZY)
-	@JoinTable(name = "profesor_por_asignatura", joinColumns = {
-			@JoinColumn(name = "asignatura") }, inverseJoinColumns = { 
-			@JoinColumn(name = "profesor") })
 	private Profesor profesor_por_asignatura;
 
 	public Asignatura() {
