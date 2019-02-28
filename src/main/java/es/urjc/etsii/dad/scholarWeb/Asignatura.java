@@ -22,7 +22,7 @@ public class Asignatura {
 	private List<Alumno> alumno = new ArrayList<Alumno>();
 
 	@ManyToOne(targetEntity = Profesor.class, fetch = FetchType.LAZY)
-	private Profesor profesor_por_asignatura;
+	private Profesor profesor;
 
 	public Asignatura() {
 	}
@@ -34,11 +34,11 @@ public class Asignatura {
 	}
 
 	public Profesor getProfesorPorAsignatura() {
-		return profesor_por_asignatura;
+		return profesor;
 	}
 
 	public void setProfesorPorAsignatura(Profesor profesorPorAsignatura) {
-		this.profesor_por_asignatura = profesorPorAsignatura;
+		this.profesor = profesorPorAsignatura;
 	}
 
 	public List<Alumno> getAlumnos() {

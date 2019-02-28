@@ -22,14 +22,14 @@ public class Profesor {
 	@Column
 	private String correo;
 
-	@OneToMany(mappedBy = "profesor_por_asignatura",  targetEntity=Asignatura.class)
+	@OneToMany(mappedBy = "profesor",  targetEntity=Asignatura.class)
 	private List<Asignatura> asignaturas_por_profesor = new ArrayList<>();
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "profesores_por_alumno", joinColumns = {
-			@JoinColumn(name = "profesor_por_alumno") }, inverseJoinColumns = {
-					@JoinColumn(name = "alumno_por_profesor") })
-	private List<Alumno> alumnos_por_profesor = new ArrayList<>();
+			@JoinColumn(name = "profesor") }, inverseJoinColumns = {
+			@JoinColumn(name = "alumno") })
+	private List<Alumno> alumnos = new ArrayList<>();
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "profesores_por_aula", joinColumns = { @JoinColumn(name = "profesor") }, inverseJoinColumns = {
@@ -39,12 +39,15 @@ public class Profesor {
 	public Profesor() {
 	}
 
-	public Profesor(String n, String a1, String a2, String c) {
+	public Profesor(String n, String a1, String a2, String c, Asignatura a, Alumno alu, Aula aul) {
 		this.id_profesor =(int) Math.ceil(Math.random() * 1000);
 		this.nombre = n;
 		this.apellido1 = a1;
 		this.apellido2 = a2;
 		this.correo = c;
+		this.asignaturas_por_profesor.add(a); 
+		this.alumnos.add(alu); 
+		this.aulas.add(aul);
 	}
 
 	public long getid_profesor() {
@@ -64,11 +67,11 @@ public class Profesor {
 	}
 
 	public List<Alumno> getAlumnos() {
-		return alumnos_por_profesor;
+		return alumnos;
 	}
 
 	public void setAlumnos(List<Alumno> alumnos) {
-		this.alumnos_por_profesor = alumnos;
+		this.alumnos = alumnos;
 	}
 
 	public String getNombre() {

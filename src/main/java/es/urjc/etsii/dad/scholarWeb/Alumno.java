@@ -22,10 +22,13 @@ public class Alumno {
 	private int faltas;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "Alumno_asignaturas",
+			joinColumns = { @JoinColumn(name = "alumnos") },
+			inverseJoinColumns = { @JoinColumn(name = "asignaturas") })
 	private List<Asignatura> asignaturas = new ArrayList<>();
 
-	@ManyToMany(mappedBy = "alumnos_por_profesor", targetEntity= Profesor.class)
-	private List<Profesor> profesores_por_alumno = new ArrayList<>();
+	@ManyToMany(mappedBy = "alumnos", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private List<Profesor> profesores = new ArrayList<>();
 
 	@ManyToOne(targetEntity = Aula.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "aula", nullable = false)
@@ -42,13 +45,14 @@ public class Alumno {
 		this.nexpediente = (int)Math.floor(Math.random()) *1+1000;
 	}
 	
-	public Alumno(String n, String a1, String a2, Aula a, Padre p) {
+	
+	public Alumno(String n, String a1, String a2, Asignatura asig, Aula aula) {
 		this.nombre = n;
 		this.apellido1 = a1;
 		this.apellido2 = a2;
 		this.nexpediente = (int)Math.floor(Math.random()) *1+1000;
-		this.aula = a; 
-		this.padre_alumno = p; 
+		this.asignaturas.add(asig);  
+		this.aula = aula; 
 	}
 	
 	public Alumno() {
@@ -63,11 +67,11 @@ public class Alumno {
 	}
 
 	public List<Profesor> getProfesores() {
-		return profesores_por_alumno;
+		return profesores;
 	}
 
 	public void setProfesores(List<Profesor> profesores) {
-		this.profesores_por_alumno = profesores;
+		this.profesores = profesores;
 	}
 
 	public Padre getPadre() {

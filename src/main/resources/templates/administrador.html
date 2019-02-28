@@ -70,6 +70,24 @@
 								<input type="text" name="apellido2" class="form-mysql ">
 							</div>
 						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">id Profesor</label> 
+								<input type="text" name="idprofesor" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Nombre Asignatura</label> 
+								<input type="text" name="nombreasig" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">id Aula</label> 
+								<input type="text" name="id" class="form-mysql ">
+							</div>
+						</div>
 						<div class="col_mysql_boton center">
 							<input type="submit" value="Enviar" class="btn btn-primary">
 						</div>
@@ -101,6 +119,7 @@
 								  	<th>Nombre</th>
 								    <th>Apellido 1</th>
 								    <th>Apellido 2</th>
+								    <th>Asignatura</th>
 								  </tr>
 								  {{#alumnos}}
 								  <tr class="center">
@@ -108,6 +127,11 @@
 								    <td>{{nombre}}</td>
 								    <td>{{apellido1}}</td>
 								    <td>{{apellido2}}</td>
+								    
+								    {{#asignaturas}}
+								    <td>{{nombre}}</td>
+								    {{/asignaturas}}
+								    
 								  </tr>
 								  {{/alumnos}}
 								</table>
@@ -173,6 +197,7 @@
 								  	<th>Nombre</th>
 								    <th>Apellido 1</th>
 								    <th>Correo</th>
+								    <th>hijo</th>
 								  </tr>
 								  {{#padres}}
 								  <tr class="center">
@@ -180,6 +205,9 @@
 								    <td>{{nombre}}</td>
 								    <td>{{apellido}}</td>
 								    <td>{{correo}}</td>
+								    {{#alumnos}}
+								    <td>{{nombre}}</td>
+								    {{/alumnos}}
 								  </tr>
 								  {{/padres}}
 								</table>
@@ -211,6 +239,24 @@
 							<div class="col_mysql">
 								<label class="center">Correo</label> 
 								<input type="text" name="correo" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Asignatura</label> 
+								<input type="text" name="asignatura" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Id Alumno</label> 
+								<input type="text" name="id_alumno" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Id Aula</label> 
+								<input type="text" name="id_aula" class="form-mysql ">
 							</div>
 						</div>
 						<div class="col_mysql_boton center">
@@ -261,7 +307,7 @@
 				</section>
 					
 									<!-- INSERTAR ASIGNATURA -->
-				<section class="feature_mysql_grande">
+				<section class="feature_mysql_peque">
 					<form action="/insertar_asignatura" method="post">
 						<h1><strong><label id="center">Asignatura</label></strong></h1>
 						<div class="col_mysql">
@@ -283,7 +329,7 @@
 				</section>
 				
 										<!-- ELIMINAR ASIGNATURA -->
-				<section class="feature_mysql_grande">
+				<section class="feature_mysql_peque">
 					<form action="/eliminar_asignatura" method="post">
 						<h1><strong><label id="center">Asignatura</label></strong></h1>
 						<div class="col_mysql">
@@ -299,7 +345,7 @@
 				</section>
 					
 												<!-- TABLA Asignaturas-->
-				<section class="feature_mysql_tabla">
+				<section class="feature_mysql_tabla_peque">
 					<div class="col_mysql">
 						<h1 class="center">Asignaturas</h1>
 								<table style="width:100%">
@@ -311,8 +357,8 @@
 								  {{#asignaturas}}
 								  <tr class="center">
 								  	<td>{{id}}</td>
-								    <td>{{nombre}}</td>
 								    <td>{{curso}}</td>
+								    <td>{{nombre}}</td>
 								  </tr>
 								  {{/asignaturas}}
 								</table>
@@ -321,7 +367,7 @@
 					
 				
 										<!-- INSERTAR NOTICIA -->
-				<section class="feature_mysql_grande">
+				<section class="feature_mysql_peque">
 					<form action="/insertar_noticia" method="post">
 						<h1><strong><label id="center">Noticia</label></strong></h1>
 						<div class="col_mysql">
@@ -343,7 +389,7 @@
 				</section>
 			
 									<!-- ELIMINAR NOTICIA -->
-				<section class="feature_mysql_grande">
+				<section class="feature_mysql_peque">
 					<form action="/eliminar_noticia" method="post">
 						<h1><strong><label id="center">Noticia</label></strong></h1>
 						<div class="col_mysql">
@@ -359,7 +405,7 @@
 				</section>
 				
 									<!-- TABLA Noticias-->
-				<section class="feature_mysql_tabla">
+				<section class="feature_mysql_tabla_peque">
 					<div class="col_mysql">
 						<h1 class="center">Noticias</h1>
 								<table style="width:100%">
@@ -377,7 +423,7 @@
 					</div>
 				</section>
 										<!-- INSERTAR AULA -->
-				<section class="feature_mysql_grande">
+				<section class="feature_mysql_peque">
 					<form action="/insertar_aula" method="post">
 						<h1><strong><label id="center">Aula</label></strong></h1>
 						<div class="col_mysql">
@@ -421,16 +467,18 @@
 				</section> -->
 				
 									<!-- TABLA Aula-->
-				 <section class="feature_mysql_tabla">
+				 <section class="feature_mysql_peque">
 					<div class="col_mysql">
 						<h1 class="center">Aulas</h1>
 								<table style="width:100%">
 								  <tr>
+								  	<th>id</th>
 								  	<th>Curso</th>
 								    <th>Letra</th>
 								  </tr>
 								  {{#aulas}}
 								  <tr class="center">
+								  	<td>{{idAula}}</td>
 								    <td>{{curso}}</td>
 								    <td>{{letra}}</td>
 								  </tr>

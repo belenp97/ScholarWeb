@@ -215,11 +215,14 @@ public class PrincipalControler {
 	}
 	
 	@RequestMapping("/insertar_alumno")
-	public String insertar_alumno(Model model, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2) {
+	public String insertar_alumno(Model model, @RequestParam String nombre,@RequestParam String apellido1, @RequestParam String apellido2, @RequestParam String nombreasig, @RequestParam Integer id) {
 		//model.addAttribute("alumnos", reposAl.findAll());
 		modelos(model);
 		try {
-			Alumno alumno = new Alumno(nombre, apellido1, apellido2);
+			Optional<Aula> aul = reposAula.findById(id);
+			Asignatura asig = asigRepo.findBynombreEquals(nombreasig);
+			Aula a = aul.get(); 
+			Alumno alumno = new Alumno(nombre, apellido1, apellido2, asig, a);
 			reposAl.save(alumno); 
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -233,7 +236,7 @@ public class PrincipalControler {
 		try {
 			Optional<Alumno> alumno = reposAl.findById(nexp);
 			Padre p = alumno.get().getPadre(); 
-			if(p.getNombre() != null) {
+			if(p != null) {
 				padreRepo.delete(p);
 			}
 			reposAl.deleteById(nexp); 
@@ -245,8 +248,7 @@ public class PrincipalControler {
 	}
 
 	@RequestMapping("/insertar_padre")
-	public String insertar_padre(Model model, @RequestParam String correo,@RequestParam String apellido,@RequestParam String nombre, String nombreA /*long nexpediente*/) {
-		//alumno = (Alumno) reposAl.findAll(); 
+	public String insertar_padre(Model model, @RequestParam String correo,@RequestParam String apellido, @RequestParam String nombre, String nombreA ) {
 		modelos(model);
 		
 		try {
@@ -265,7 +267,9 @@ public class PrincipalControler {
 	public String eliminar_padre(Model model, @RequestParam Integer id_padre) {
 		modelos(model);
 		try {
-			padreRepo.deleteById(id_padre);
+			if(id_padre < 0) {
+				padreRepo.deleteById(id_padre);
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -273,10 +277,15 @@ public class PrincipalControler {
 	}
 
 	@RequestMapping("/insertar_profesor")
-	public String insertar_profesor(Model model, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, @RequestParam String correo) {
+	public String insertar_profesor(Model model, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, @RequestParam String correo, @RequestParam String asignatura, @RequestParam Integer id_alumno, @RequestParam Integer id_aula) {
 		modelos(model);
 		try {
-			Profesor profesor = new Profesor( nombre, apellido1, apellido2, correo);
+			Optional<Aula> aula = reposAula.findById(id_aula);
+			Aula aul = aula.get();
+			Optional<Alumno> alumno = reposAl.findById(id_alumno);
+			Alumno a = alumno.get(); 
+			Asignatura asig = asigRepo.findBynombreEquals(asignatura);
+			Profesor profesor = new Profesor( nombre, apellido1, apellido2, correo, asig, a, aul);
 			profeRepo.save(profesor); 
 		}catch(Exception e) {
 			e.printStackTrace();
