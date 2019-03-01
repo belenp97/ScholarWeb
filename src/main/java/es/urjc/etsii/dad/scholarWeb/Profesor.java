@@ -39,6 +39,13 @@ public class Profesor {
 	public Profesor() {
 	}
 
+	public Profesor(String n, String a1, String a2, String c) {
+		this.nombre=n;
+		this.apellido1=a1;
+		this.apellido2=a2;
+		this.correo=c;
+	}
+	
 	public Profesor(String n, String a1, String a2, String c, Asignatura a, Alumno alu, Aula aul) {
 		this.id_profesor =(int) Math.ceil(Math.random() * 1000);
 		this.nombre = n;

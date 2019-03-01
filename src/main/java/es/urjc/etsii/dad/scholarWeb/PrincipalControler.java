@@ -1,5 +1,6 @@
 package es.urjc.etsii.dad.scholarWeb;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
@@ -55,7 +56,7 @@ public class PrincipalControler {
 	@PostConstruct
 	public void init() {
 		
-		/*Alumno alumn = new Alumno("Juan", "Perez", "Gomez");
+		Alumno alumn = new Alumno("Juan", "Perez", "Gomez");
 		Alumno alumn2 = new Alumno("Ana", "Martin", "Lopez");
 		Alumno alumn3 = new Alumno("Elena", "Vazquez", "Rodriguez");
 
@@ -102,6 +103,10 @@ public class PrincipalControler {
 		alumn.setPadre(pa);
 		alumn2.setPadre(pa2);
 		alumn3.setPadre(pa3);
+		
+		pa.getAlumno().add(alumn);
+		pa2.getAlumno().add(alumn);
+		pa3.getAlumno().add(alumn);
 
 		prof.setAsignaturas(ass);
 		prof2.setAsignaturas(ass);
@@ -125,7 +130,7 @@ public class PrincipalControler {
 
 		reposAl.save(alumn);
 		reposAl.save(alumn2);
-		reposAl.save(alumn3);*/
+		reposAl.save(alumn3);
 	}
 	
 	//clase con los model 

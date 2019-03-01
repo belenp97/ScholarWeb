@@ -24,6 +24,12 @@ public class Padre {
 
 	public Padre() {
 	}
+	
+	public Padre(String c, String a, String n) {
+		this.correo=c;
+		this.apellido=a;
+		this.nombre=n;
+	}
 
 	public Padre(String correo, String apellido, String nombre, Alumno a) {
 		this.id_padre = (int) Math.ceil(Math.random() * 1000);
