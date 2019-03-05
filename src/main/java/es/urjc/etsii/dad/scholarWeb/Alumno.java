@@ -12,11 +12,11 @@ public class Alumno {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int nexpediente;
-	@Column
+	@Column(nullable=false)
 	private String nombre;
-	@Column
+	@Column(nullable=false)
 	private String apellido1;
-	@Column
+	@Column(nullable=false)
 	private String apellido2;
 	@Column
 	private int faltas;
@@ -35,7 +35,7 @@ public class Alumno {
 	private Aula aula;
 
 	@ManyToOne(targetEntity = Padre.class, fetch = FetchType.LAZY)
-	@JoinColumn(name = "padre", nullable = false)
+	@JoinColumn(name = "padre", nullable = true)
 	private Padre padre_alumno;
 
 	public Alumno(String n, String a1, String a2) {
@@ -53,6 +53,7 @@ public class Alumno {
 		this.nexpediente = (int)Math.floor(Math.random()) *1+1000;
 		this.asignaturas.add(asig);  
 		this.aula = aula; 
+		this.padre_alumno = null; 
 	}
 	
 	public Alumno() {

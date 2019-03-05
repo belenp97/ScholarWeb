@@ -131,6 +131,5 @@ public class PrincipalControler {
 
 		return "principal";
 	}
-	
-	
+
 }
