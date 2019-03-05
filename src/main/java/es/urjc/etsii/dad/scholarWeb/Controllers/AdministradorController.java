@@ -42,9 +42,6 @@ public class AdministradorController {
 	
 	@Autowired
 	private ProfesorRepository profeRepo;
-
-	@Autowired
-	private AdminRepository adminRepo;
 	
 	@Autowired
 	private NoticiaRepository notRepo;
@@ -58,7 +55,7 @@ public class AdministradorController {
 	}
 	
 	//Clase con los model 
-	public void modelos(Model model) {
+	private void modelos(Model model) {
 		model.addAttribute("alumnos", reposAl.findAll());
 		model.addAttribute("padres", padreRepo.findAll());
 		model.addAttribute("asignaturas", asigRepo.findAll());

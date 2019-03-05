@@ -32,7 +32,8 @@ public class Profesor {
 	private List<Alumno> alumnos = new ArrayList<>();
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "profesores_por_aula", joinColumns = { @JoinColumn(name = "profesor") }, inverseJoinColumns = {
+	@JoinTable(name = "profesores_por_aula", joinColumns = { 
+			@JoinColumn(name = "profesor") }, inverseJoinColumns = {
 			@JoinColumn(name = "aula") })
 	private List<Aula> aulas = new ArrayList<>();
 

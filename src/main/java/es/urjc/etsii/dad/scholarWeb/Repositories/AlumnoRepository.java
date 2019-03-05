@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import es.urjc.etsii.dad.scholarWeb.Alumno;
 import es.urjc.etsii.dad.scholarWeb.Padre;
+import es.urjc.etsii.dad.scholarWeb.Profesor;
 
 
 public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {

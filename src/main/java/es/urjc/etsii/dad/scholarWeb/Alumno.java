@@ -35,7 +35,7 @@ public class Alumno {
 	private Aula aula;
 
 	@ManyToOne(targetEntity = Padre.class, fetch = FetchType.LAZY)
-	@JoinColumn(name = "padre", nullable = true)
+	@JoinColumn(name = "padre")
 	private Padre padre_alumno;
 
 	public Alumno(String n, String a1, String a2) {

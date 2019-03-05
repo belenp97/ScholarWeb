@@ -36,7 +36,8 @@
 					<p>
 						<h3>
 							<a href="login">Login</a> | <a href="administrador">
-								administrador</a>
+								administrador</a> | <input type="image"
+								src="/css/img/salir.png" />
 						</h3>
 					</p>
 				</div>
@@ -161,8 +162,8 @@
 						</div>
 						<div class="col_mysql">
 							<div class="col_mysql">
-								<label class="center">Nombre alumno</label> 
-								<input type="text" name="nombreA" class="form-mysql ">
+								<label class="center">Id Alumno</label> 
+								<input type="text" name="idalumno" class="form-mysql ">
 							</div>
 						</div>
 						<div class="col_mysql_boton center">
@@ -177,7 +178,7 @@
 						<h1><strong><label id="center">Padre/Tutor</label></strong></h1>
 						<div class="col_mysql">
 							<div class="col_mysql ">
-							<label class="center">ID-Padre</label> 
+							<label class="center">Id-Padre</label> 
 								<input type="text" name="id_padre" class="form-mysql">
 							</div>
 						</div>		
@@ -193,7 +194,7 @@
 						<h1 class="center">Padres</h1>
 								<table style="width:100%">
 								  <tr>
-								    <th>ID_Padre</th>
+								    <th>Id_Padre</th>
 								  	<th>Nombre</th>
 								    <th>Apellido 1</th>
 								    <th>Correo</th>
@@ -206,9 +207,6 @@
 								    <td>{{apellido}}</td>
 								    <td>{{correo}}</td>
 								    <td>{{alumno}}</td>
-								    <!-- {{#alumnos}}
-								    <td>{{nombre}}</td>
-								    {{/alumnos}} -->
 								  </tr>
 								  {{/padres}}
 								</table>

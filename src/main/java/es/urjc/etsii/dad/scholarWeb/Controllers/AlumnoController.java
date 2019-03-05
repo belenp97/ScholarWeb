@@ -21,17 +21,18 @@ import es.urjc.etsii.dad.scholarWeb.Alumno;
 import es.urjc.etsii.dad.scholarWeb.Asignatura;
 import es.urjc.etsii.dad.scholarWeb.Aula;
 import es.urjc.etsii.dad.scholarWeb.Padre;
+import es.urjc.etsii.dad.scholarWeb.PrincipalControler;
 import es.urjc.etsii.dad.scholarWeb.Profesor;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AlumnoRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AsignaturaRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AulaRepository;
+import es.urjc.etsii.dad.scholarWeb.Repositories.NoticiaRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.PadreRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 
 
 @Controller
 public class AlumnoController {
-	
 	@Autowired
 	private AlumnoRepository reposAl;
 	
@@ -39,28 +40,46 @@ public class AlumnoController {
 	private AulaRepository reposAula;
 	
 	@Autowired
+	private PadreRepository padreRepo;
+	
+	@Autowired
 	private AsignaturaRepository asigRepo;
 	
 	@Autowired
-	private PadreRepository padreRepo;
+	private NoticiaRepository notRepo;
+	
+	@Autowired
+	private ProfesorRepository profeRepo;
+	
+	private void modelos(Model model) {
+		model.addAttribute("alumnos", reposAl.findAll());
+		model.addAttribute("padres", padreRepo.findAll());
+		model.addAttribute("asignaturas", asigRepo.findAll());
+		model.addAttribute("noticias", notRepo.findAll());
+		model.addAttribute("aulas", reposAula.findAll());
+		model.addAttribute("profesores", profeRepo.findAll());
+	}
 	
 	@RequestMapping("/alumnos")
 	public String verAlumnos(Model model) throws Exception {
-
-		model.addAttribute("alumnos", reposAl.findAll());
+		modelos(model);
 
 		return "alumnos";
 	}
 		
 	@RequestMapping("/insertar_alumno")
-	public String insertar_alumno(Model model, @RequestParam String nombre,@RequestParam String apellido1, @RequestParam String apellido2, @RequestParam String nombreasig, @RequestParam Integer id) {	
+	public String insertar_alumno(Model model, @RequestParam String nombre,@RequestParam String apellido1, @RequestParam String apellido2, @RequestParam String idasig, @RequestParam Integer id) {	
 		try {
-			verAlumnos(model);
+			modelos(model);
 			Optional<Aula> aul = reposAula.findById(id);
-			Asignatura asig = asigRepo.findBynombreEquals(nombreasig);
+			Optional<Asignatura> asig = asigRepo.findById(id);
+			Asignatura asignatura = asig.get(); 
 			Aula a = aul.get(); 
-			Alumno alumno = new Alumno(nombre, apellido1, apellido2, asig, a);
-			reposAl.save(alumno); 
+			Alumno alumno = new Alumno(nombre, apellido1, apellido2, asignatura, a);
+			Optional<Alumno> al = reposAl.findById(id); 
+			if(al.get().getNexpediente() != alumno.getNexpediente()) {
+				reposAl.save(alumno); 
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -70,7 +89,7 @@ public class AlumnoController {
 	@RequestMapping("/eliminar_alumno" )
 	public String eliminar_alumno(Model model, @RequestParam Integer nexp) {	
 		try {
-			verAlumnos(model);
+			modelos(model);
 			Optional<Alumno> alumno = reposAl.findById(nexp);
 			Padre p = alumno.get().getPadre(); 
 			if(p != null) {

@@ -1,6 +1,7 @@
 package es.urjc.etsii.dad.scholarWeb.Controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
@@ -17,17 +18,48 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.urjc.etsii.dad.scholarWeb.Aula;
+import es.urjc.etsii.dad.scholarWeb.Repositories.AlumnoRepository;
+import es.urjc.etsii.dad.scholarWeb.Repositories.AsignaturaRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AulaRepository;
+import es.urjc.etsii.dad.scholarWeb.Repositories.NoticiaRepository;
+import es.urjc.etsii.dad.scholarWeb.Repositories.PadreRepository;
+import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 
 @Controller
 public class AulaController {
 	
 	@Autowired
+	private AlumnoRepository reposAl;
+	
+	@Autowired
 	private AulaRepository reposAula;
+	
+	@Autowired
+	private PadreRepository padreRepo;
+	
+	@Autowired
+	private AsignaturaRepository asigRepo;
+	
+	@Autowired
+	private NoticiaRepository notRepo;
+	
+	@Autowired
+	private ProfesorRepository profeRepo;
+	
+	
+	private void modelos(Model model) {
+		model.addAttribute("alumnos", reposAl.findAll());
+		model.addAttribute("padres", padreRepo.findAll());
+		model.addAttribute("asignaturas", asigRepo.findAll());
+		model.addAttribute("noticias", notRepo.findAll());
+		model.addAttribute("aulas", reposAula.findAll());
+		model.addAttribute("profesores", profeRepo.findAll());
+	}
 	
 	@RequestMapping("/aulas")
 	public String verAulas(Model model) throws Exception {
 
+		modelos(model); 
 		model.addAttribute("aulas", reposAula.findAll());
 
 		return "aulas";
@@ -37,9 +69,12 @@ public class AulaController {
 	public String insertar_aula(Model model, @RequestParam Integer curso,@RequestParam Character letra) {
 		
 		try {
-			verAulas(model);
+			modelos(model);
+			Aula a =  reposAula.findByLetra(letra);
 			Aula aula = new Aula(curso,letra);
-			reposAula.save(aula); 
+			if(a==null || a.getCurso() == curso && a.getLetra() != letra || a.getCurso() != curso && a.getLetra() == letra) {
+				reposAula.save(aula); 
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

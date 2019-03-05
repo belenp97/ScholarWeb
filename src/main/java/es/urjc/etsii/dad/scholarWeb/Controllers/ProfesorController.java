@@ -24,6 +24,8 @@ import es.urjc.etsii.dad.scholarWeb.Profesor;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AlumnoRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AsignaturaRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AulaRepository;
+import es.urjc.etsii.dad.scholarWeb.Repositories.NoticiaRepository;
+import es.urjc.etsii.dad.scholarWeb.Repositories.PadreRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 
 
@@ -31,21 +33,36 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 public class ProfesorController {
 	
 	@Autowired
-	private ProfesorRepository profeRepo;
+	private AlumnoRepository reposAl;
 	
 	@Autowired
 	private AulaRepository reposAula;
 	
 	@Autowired
-	private AlumnoRepository reposAl;
+	private PadreRepository padreRepo;
 	
 	@Autowired
 	private AsignaturaRepository asigRepo;
-
+	
+	@Autowired
+	private NoticiaRepository notRepo;
+	
+	@Autowired
+	private ProfesorRepository profeRepo;
+	
+	private void modelos(Model model) {
+		model.addAttribute("alumnos", reposAl.findAll());
+		model.addAttribute("padres", padreRepo.findAll());
+		model.addAttribute("asignaturas", asigRepo.findAll());
+		model.addAttribute("noticias", notRepo.findAll());
+		model.addAttribute("aulas", reposAula.findAll());
+		model.addAttribute("profesores", profeRepo.findAll());
+	}
+	
 	@RequestMapping("/profesores")
 	public String verProfesores(Model model) {
 
-		model.addAttribute("profe", profeRepo.findAll());
+		modelos(model);
 
 		return "profesores";
 	}
@@ -53,14 +70,18 @@ public class ProfesorController {
 	@RequestMapping("/insertar_profesor")
 	public String insertar_profesor(Model model, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, @RequestParam String correo, @RequestParam String asignatura, @RequestParam Integer id_alumno, @RequestParam Integer id_aula) {
 		try {
-			verProfesores(model);
+			modelos(model);
 			Optional<Aula> aula = reposAula.findById(id_aula);
 			Aula aul = aula.get();
 			Optional<Alumno> alumno = reposAl.findById(id_alumno);
 			Alumno a = alumno.get(); 
 			Asignatura asig = asigRepo.findBynombreEquals(asignatura);
-			Profesor profesor = new Profesor( nombre, apellido1, apellido2, correo, asig, a, aul);
-			profeRepo.save(profesor); 
+
+			Profesor profe = profeRepo.findBycorreoEquals(correo);
+			if(profe.getCorreo() != correo) {
+				Profesor profesor = new Profesor( nombre, apellido1, apellido2, correo, asig, a, aul);
+				profeRepo.save(profesor); 
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -71,8 +92,16 @@ public class ProfesorController {
 	@RequestMapping("/eliminar_profesor")
 	public String eliminar_profesor(Model model, @RequestParam Integer id_profesor) {
 		try {
-			verProfesores(model);
-			profeRepo.deleteById(id_profesor);
+			modelos(model);
+			Optional<Profesor> profe = profeRepo.findById(id_profesor); 
+			if(profe.get() != null) {
+				if(profe.get().getid_profesor() == id_profesor) {
+					profeRepo.deleteById(id_profesor);
+				}else {
+					return "administrador";
+				}
+			}
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}	
