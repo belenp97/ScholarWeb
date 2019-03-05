@@ -157,13 +157,13 @@ public class PrincipalControler {
 		return "noticias";
 	}
 
-	@RequestMapping("/alumnos")
-	public String verAlumnos(Model model) throws Exception {
-
-		model.addAttribute("alumno", reposAl.findAll());
-
-		return "alumnos";
-	}
+//	@RequestMapping("/alumnos")
+//	public String verAlumnos(Model model) throws Exception {
+//
+//		model.addAttribute("alumno", reposAl.findAll());
+//
+//		return "alumnos";
+//	}
 
 	@RequestMapping("/profesores")
 	public String verprofesores(Model model) {
@@ -220,14 +220,15 @@ public class PrincipalControler {
 	}
 	
 	@RequestMapping("/insertar_alumno")
-	public String insertar_alumno(Model model, @RequestParam String nombre,@RequestParam String apellido1, @RequestParam String apellido2, @RequestParam String nombreasig, @RequestParam Integer id) {
+	public String insertar_alumno(Model model, @RequestParam String nombre,@RequestParam String apellido1, @RequestParam String apellido2, @RequestParam String idasig, @RequestParam Integer id) {
 		//model.addAttribute("alumnos", reposAl.findAll());
 		modelos(model);
 		try {
 			Optional<Aula> aul = reposAula.findById(id);
-			Asignatura asig = asigRepo.findBynombreEquals(nombreasig);
+			Optional<Asignatura> asig = asigRepo.findById(id);
+			Asignatura asignatura = asig.get(); 
 			Aula a = aul.get(); 
-			Alumno alumno = new Alumno(nombre, apellido1, apellido2, asig, a);
+			Alumno alumno = new Alumno(nombre, apellido1, apellido2, asignatura, a);
 			reposAl.save(alumno); 
 		}catch(Exception e) {
 			e.printStackTrace();
