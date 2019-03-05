@@ -1,4 +1,4 @@
-/*package es.urjc.etsii.dad.scholarWeb.Controllers;
+package es.urjc.etsii.dad.scholarWeb.Controllers;
 
 import java.util.List;
 
@@ -7,49 +7,55 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.urjc.etsii.dad.scholarWeb.Asignatura;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AsignaturaRepository;
 
-@RestController
+@Controller
 public class AsignaturaController {
 	
 	@Autowired
-	private AsignaturaRepository repository;
+	private AsignaturaRepository asigRepo;
 	
-	@PostConstruct
-	public void init() {
-		repository.save(new Asignatura("Matematicas",2));
-		repository.save(new Asignatura("Ingles",1));
-		repository.save(new Asignatura("Física",4));
-	}
+	@RequestMapping("/asignaturas")
+	public String verAsignaturas(Model model) throws Exception {
 
-	public List<Asignatura> findItems() {
-		return (List<Asignatura>) repository.findAll();
-	}
+		model.addAttribute("padres", asigRepo.findAll());
 
-	public ResponseEntity<Asignatura> addItem(@RequestBody Asignatura item) {
-		item.setNombre(null);
-		Asignatura newItem = repository.saveAndFlush(item);
-		return new ResponseEntity<>(newItem,HttpStatus.CREATED);
+		return "padres";
 	}
-
-	@RequestMapping(value = "/{nombre}", method = RequestMethod.PUT)
-	public ResponseEntity<Asignatura> updateItem(@RequestBody Asignatura updatedItem,
-			@PathVariable String nombre) {
+	
+	@RequestMapping("/insertar_asignatura")
+	public String insertar_asignatura(Model model, @RequestParam String nombre,@RequestParam int curso) {
 		
-		updatedItem.setNombre(nombre);
-		Asignatura item = repository.saveAndFlush(updatedItem);
-		return new ResponseEntity<>(item,HttpStatus.CREATED);
+		try {
+			
+			Asignatura asignatura = new Asignatura( nombre, curso);
+			asigRepo.save(asignatura); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "administrador";
 	}
-
-	@RequestMapping(value = "/{nombre}", method = RequestMethod.DELETE)
-	public void deleteItem(@PathVariable String nombre) {
-		repository.deleteById(nombre);
+	
+	@RequestMapping("/eliminar_asignatura")
+	public String eliminar_asignatura(Model model, @RequestParam Integer id) {
+		
+		try {
+			verAsignaturas(model);
+			asigRepo.deleteById(id);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "administrador";
 	}
-}*/
+	
+}

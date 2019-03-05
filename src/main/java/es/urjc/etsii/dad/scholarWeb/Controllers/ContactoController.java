@@ -1,50 +1,35 @@
-/*package es.urjc.etsii.dad.scholarWeb.Controllers;
+package es.urjc.etsii.dad.scholarWeb.Controllers;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import es.urjc.etsii.dad.scholarWeb.Contacto;
-import es.urjc.etsii.dad.scholarWeb.Repositories.ContactoRepository;
 
-
-@RestController
+@Controller
 @RequestMapping("/contactos")
 public class ContactoController {
 
-	@Autowired
-	private ContactoRepository repository;
+	@GetMapping("/contacto")
+	public String newContacto(Model model) {
 
-	@RequestMapping(method = RequestMethod.GET)
-	public List<Contacto> findItems() {
-		return (List<Contacto>) repository.findAll();
+		return "contacto";// llamarlo como se llama el html
 	}
+	
+	@PostMapping("/contacto/recibido")
+	public String contactoRecibido(Model model) {
 
-	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Contacto> addItem(@RequestBody Contacto item) {
-		item.setnombre(null);
-		Contacto newItem = repository.saveAndFlush(item);
-		return new ResponseEntity<>(newItem,HttpStatus.CREATED);
+		return "contacto_recibido";
 	}
-
-	@RequestMapping(value = "/{nombre}", method = RequestMethod.PUT)
-	public ResponseEntity<Contacto> updateItem(@RequestBody Contacto updatedItem,
-			@PathVariable String nombre) {
-		
-		updatedItem.setnombre(nombre);
-		Contacto item = repository.saveAndFlush(updatedItem);
-		return new ResponseEntity<>(item,HttpStatus.CREATED);
-	}
-
-	@RequestMapping(value = "/{nombre}", method = RequestMethod.DELETE)
-	public void deleteItem(@PathVariable String nombre) {
-		repository.deleteById(nombre);
-	}
-}*/
+	
+}
