@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name ="Padre")
-public class Padre {
+public class Padre extends Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,17 +25,18 @@ public class Padre {
 	public Padre() {
 	}
 	
-	public Padre(String c, String a, String n) {
-		this.correo=c;
+	public Padre( String n, String a, String correo, String contraseña, String rol, String... roles) {
+		super(n, correo, contraseña, rol, roles);
 		this.apellido=a;
-		this.nombre=n;
+		this.id_padre = (int) Math.ceil(Math.random() * 1000);
+		
 	}
 
-	public Padre(String correo, String apellido, String nombre, Alumno a) {
+	public Padre(String n, String correo, Alumno a, String ap, String contraseña, String rol, String... roles) {
+		super(n,correo,contraseña,rol,roles);
 		this.id_padre = (int) Math.ceil(Math.random() * 1000);
 		this.correo = correo;
-		this.apellido = apellido;
-		this.nombre = nombre;
+		this.apellido = ap;
 		alumno.add(a); 
 	}
 

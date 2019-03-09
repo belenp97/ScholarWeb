@@ -68,18 +68,20 @@ public class AlumnoController {
 	}
 		
 	@RequestMapping("/insertar_alumno")
-	public String insertar_alumno(Model model, @RequestParam String nombre,@RequestParam String apellido1, @RequestParam String apellido2, @RequestParam String idasig, @RequestParam Integer id) {	
+	public String insertar_alumno(Model model,@RequestParam String idasig, @RequestParam Integer id, @RequestParam String nombre,@RequestParam String apellido1, @RequestParam String apellido2, String correo, String contraseña, String rol, String... roles) {	
 		try {
 			modelos(model);
 			Optional<Aula> aul = reposAula.findById(id);
 			Optional<Asignatura> asig = asigRepo.findById(id);
 			Asignatura asignatura = asig.get(); 
 			Aula a = aul.get(); 
-			Alumno alumno = new Alumno(nombre, apellido1, apellido2, asignatura, a);
+			/*Alumno alumno = new Alumno(nombre, correo, contraseña, rol, roles);
+			alumno.setApellido1(apellido1);
+			alumno.setApellido2(apellido2);
 			Optional<Alumno> al = reposAl.findById(id); 
 			if(al.get().getNexpediente() != alumno.getNexpediente()) {
 				reposAl.save(alumno); 
-			}
+			}*/
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

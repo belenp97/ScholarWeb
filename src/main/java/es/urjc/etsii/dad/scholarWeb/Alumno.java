@@ -7,13 +7,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "alumnos")
-public class Alumno {
+public class Alumno extends Usuario{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int nexpediente;
-	@Column(nullable=false)
-	private String nombre;
+	
 	@Column(nullable=false)
 	private String apellido1;
 	@Column(nullable=false)
@@ -38,16 +37,16 @@ public class Alumno {
 	@JoinColumn(name = "padre")
 	private Padre padre_alumno;
 
-	public Alumno(String n, String a1, String a2) {
-		this.nombre = n;
+	public Alumno(String nombre, String a1, String a2, String correo, String contraseña, String rol, String... roles) {
+		super(nombre, correo, contraseña, rol, roles);
 		this.apellido1 = a1;
 		this.apellido2 = a2;
 		this.nexpediente = (int)Math.floor(Math.random()) *1+1000;
 	}
 	
 	
-	public Alumno(String n, String a1, String a2, Asignatura asig, Aula aula) {
-		this.nombre = n;
+	public Alumno(String n, String a1, String a2, Asignatura asig, Aula aula,String correo, String contraseña, String rol, String... roles) {
+		super(n, correo, contraseña, rol, roles);
 		this.apellido1 = a1;
 		this.apellido2 = a2;
 		this.nexpediente = (int)Math.floor(Math.random()) *1+1000;
@@ -81,14 +80,6 @@ public class Alumno {
 
 	public void setPadre(Padre padre) {
 		this.padre_alumno = padre;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	public String getApellido1() {
@@ -141,7 +132,7 @@ public class Alumno {
 
 	@Override
 	public String toString() {
-		return "Alumno [nexpediente=" + nexpediente + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2="
+		return "Alumno [nexpediente=" + nexpediente + ", nombre=" + this.getNombre() + ", apellido1=" + apellido1 + ", apellido2="
 				+ apellido2 + ", faltas=" + faltas + "]";
 	}
 

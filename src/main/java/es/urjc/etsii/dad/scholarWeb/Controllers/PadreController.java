@@ -56,7 +56,7 @@ public class PadreController {
 	}
 
 	@RequestMapping("/insertar_padre")
-	public String insertar_padre(Model model, @RequestParam String correo,@RequestParam String apellido, @RequestParam String nombre, Integer idalumno ) {
+	public String insertar_padre(Model model, @RequestParam String nombre,@RequestParam String apellido, @RequestParam String correo, @RequestParam Integer idalumno , @RequestParam String contraseña, @RequestParam String rol, @RequestParam String... roles) {
 
 		try {
 			modelos(model);
@@ -64,7 +64,8 @@ public class PadreController {
 			Alumno alum = a.get();
 			Padre pa = padreRepo.findBycorreoEquals(correo); 
 			if(pa.getCorreo() == correo) {
-				Padre padre = new Padre( correo, apellido, nombre, alum);
+				Padre padre = new Padre(nombre,apellido,correo, contraseña, rol, roles);
+				padre.setApellido(apellido);
 				alum.setPadre(padre);
 				padreRepo.saveAndFlush(padre); 
 			}

@@ -46,7 +46,7 @@ class LoginController {
 	public String loginPrivado(Model model, @RequestParam String correo, @RequestParam String contraseña) {
 		try {
 			Administrador administrador = adminRepo.findByCorreo(correo);
-			if(administrador.getContraseña().equals(contraseña)) {
+			if(administrador.getPass().equals(contraseña)) {
 				return "/login_privado"; 
 			}
 		}catch(Exception e) {

@@ -9,38 +9,25 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "administrador")
-public class Administrador {
+public class Administrador extends Usuario{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column
-	private String nombre;
 
 	@Column
 	private String apellido;
-	
-	@Column
-	private String correo;
-	
-	@Column
-	private String contraseña;
 
 	public Administrador() {
 
 	}
 
-	public Administrador(long id) {
+	public Administrador(long id, String nombre, String apellido, String correo, String contraseña, String rol, String... roles) {
+		super(nombre, correo, contraseña, rol, roles);
 		this.id=id; 
+		this.apellido=apellido;		
 	}
 
-	public String getnombre() {
-		return nombre;
-	}
-
-	public void setnombre(String nombre) {
-		this.nombre = nombre;
-	}
 
 	public long getId() {
 		return id;
@@ -50,13 +37,6 @@ public class Administrador {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 
 	public String getApellido() {
 		return apellido;
@@ -64,22 +44,6 @@ public class Administrador {
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
-	}
-
-	public String getCorreo() {
-		return correo;
-	}
-
-	public void setCorreo(String correo) {
-		this.correo = correo;
-	}
-
-	public String getContraseña() {
-		return contraseña;
-	}
-
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
 	}
 
 	@Override

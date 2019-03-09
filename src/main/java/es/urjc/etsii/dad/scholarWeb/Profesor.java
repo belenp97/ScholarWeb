@@ -7,20 +7,16 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "profesor")
-public class Profesor {
+public class Profesor extends Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_profesor;
 
 	@Column
-	private String nombre;
-	@Column
 	private String apellido1;
 	@Column
 	private String apellido2;
-	@Column
-	private String correo;
 
 	@OneToMany(mappedBy = "profesor",  targetEntity=Asignatura.class)
 	private List<Asignatura> asignaturas_por_profesor = new ArrayList<>();
@@ -40,19 +36,17 @@ public class Profesor {
 	public Profesor() {
 	}
 
-	public Profesor(String n, String a1, String a2, String c) {
-		this.nombre=n;
-		this.apellido1=a1;
-		this.apellido2=a2;
-		this.correo=c;
+	public Profesor(String nombre, String apellido, String ap2, String correo, String contraseña, String rol, String... roles) {
+		super(nombre, correo, contraseña, rol, roles);
+		this.apellido1=apellido;
+		this.apellido2=ap2;
 	}
 	
-	public Profesor(String n, String a1, String a2, String c, Asignatura a, Alumno alu, Aula aul) {
+	public Profesor(String a1, String a2, Asignatura a, Alumno alu, Aula aul, String nombre, String correo, String contraseña, String rol, String... roles) {
+		super(nombre, correo, contraseña, rol, roles);
 		this.id_profesor =(int) Math.ceil(Math.random() * 1000);
-		this.nombre = n;
 		this.apellido1 = a1;
 		this.apellido2 = a2;
-		this.correo = c;
 		this.asignaturas_por_profesor.add(a); 
 		this.alumnos.add(alu); 
 		this.aulas.add(aul);
@@ -82,17 +76,6 @@ public class Profesor {
 		this.alumnos = alumnos;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getCorreo() {
-		return correo;
-	}
 
 	public String getApellido1() {
 		return apellido1;
@@ -110,9 +93,6 @@ public class Profesor {
 		this.apellido2 = apellido2;
 	}
 
-	public void setCorreo(String correo) {
-		this.correo = correo;
-	}
 
 	public List<Asignatura> getAsignaturas() {
 		return asignaturas_por_profesor;
@@ -124,8 +104,8 @@ public class Profesor {
 
 	@Override
 	public String toString() {
-		return "Profesor [id_profesor=" + id_profesor + ", nombre=" + nombre + ", apellido1=" + apellido1
-				+ ", apellido2=" + apellido2 + ", correo=" + correo + ", asignaturas=" + ", alumnos=" + ", aulas="
+		return "Profesor [id_profesor=" + id_profesor + ", nombre=" + this.getNombre() + ", apellido1=" + apellido1
+				+ ", apellido2=" + apellido2 + ", correo=" + this.getCorreo() + ", asignaturas=" + ", alumnos=" + ", aulas="
 				+ "]";
 	}
 
