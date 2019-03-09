@@ -68,7 +68,7 @@ public class ProfesorController {
 	}
 	
 	@RequestMapping("/insertar_profesor")
-	public String insertar_profesor(Model model, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, @RequestParam String correo, /*@RequestParam cont, */@RequestParam String asignatura, @RequestParam Integer id_alumno, @RequestParam Integer id_aula, @RequestParam String rol/*, @RequestParam String roles*/) {
+	public String insertar_profesor(Model model, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, @RequestParam String correo, /*@RequestParam cont, */@RequestParam String asignatura, @RequestParam Integer id_alumno, @RequestParam Integer id_aula, @RequestParam String rol, @RequestParam String roles) {
 		try {
 			modelos(model);
 			Optional<Aula> aula = reposAula.findById(id_aula);
@@ -77,13 +77,13 @@ public class ProfesorController {
 			Alumno a = alumno.get(); 
 			Asignatura asig = asigRepo.findBynombreEquals(asignatura);
 
-			/*Profesor profe = profeRepo.findBycorreoEquals(correo);
+			Profesor profe = profeRepo.findBycorreoEquals(correo);
 			if(profe.getCorreo() != correo) {
-				Profesor profesor = new Profesor(nombre, correo, cont, rol, roles);
+				/*Profesor profesor = new Profesor(nombre, correo, cont, rol, roles);
 				profesor.setApellido1(apellido1);
 				profesor.setApellido2(apellido2);
-				profeRepo.save(profesor); 
-			}*/
+				profeRepo.save(profesor); */
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

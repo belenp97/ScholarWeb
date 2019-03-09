@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Administrador extends Usuario{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 
 
 	@Column
@@ -22,18 +22,18 @@ public class Administrador extends Usuario{
 
 	}
 
-	public Administrador(Integer id, String nombre, String apellido, String correo, String contraseña, String rol/*, String... roles*/) {
-		super(nombre, correo, contraseña, rol/*, roles*/);
+	public Administrador(long id, String nombre, String apellido, String correo, String contraseña, String rol, String... roles) {
+		super(nombre, correo, contraseña, rol, roles);
 		this.id=id; 
 		this.apellido=apellido;		
 	}
 
 
 	public long getId() {
-		return this.id;
+		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
