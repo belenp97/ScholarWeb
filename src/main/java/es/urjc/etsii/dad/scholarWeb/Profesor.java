@@ -11,7 +11,7 @@ public class Profesor extends Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_profesor;
+	private Integer id_profesor;
 
 	@Column
 	private String apellido1;
@@ -36,14 +36,14 @@ public class Profesor extends Usuario {
 	public Profesor() {
 	}
 
-	public Profesor(String nombre, String apellido, String ap2, String correo, String contraseña, String rol, String... roles) {
-		super(nombre, correo, contraseña, rol, roles);
+	public Profesor(String nombre, String apellido, String ap2, String correo, String contraseña, String rol/*, String... roles*/) {
+		super(nombre, correo, contraseña, rol/*, roles*/);
 		this.apellido1=apellido;
 		this.apellido2=ap2;
 	}
 	
-	public Profesor(String a1, String a2, Asignatura a, Alumno alu, Aula aul, String nombre, String correo, String contraseña, String rol, String... roles) {
-		super(nombre, correo, contraseña, rol, roles);
+	public Profesor(String a1, String a2, Asignatura a, Alumno alu, Aula aul, String nombre, String correo, String contraseña, String rol/*, String... roles*/) {
+		super(nombre, correo, contraseña, rol/*, roles*/);
 		this.id_profesor =(int) Math.ceil(Math.random() * 1000);
 		this.apellido1 = a1;
 		this.apellido2 = a2;
@@ -52,7 +52,7 @@ public class Profesor extends Usuario {
 		this.aulas.add(aul);
 	}
 
-	public long getid_profesor() {
+	public Integer getid_profesor() {
 		return id_profesor;
 	}
 

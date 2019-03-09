@@ -45,23 +45,23 @@
 
 	<section class="wrapper_login">
 		<form class="register" action="/login/privado" method="post">
-			<input class="mininbox t" type="email" name="correo" placeholder="info@mailaddress.com">
+			<input class="mininbox t" type="text" name="id">
 			<input class="mininbox t" type="password" name="contraseña"placeholder="••••••••••••">
 
 			<input type="submit" value="Enviar" class="submit">
 		</form>
-						<!-- TABLA Alumnos-->
+						<!-- TABLA Administradores-->
 				<section class="feature_mysql_tabla">
 					<div class="col_mysql">
 						<h1 class="center">Admin</h1>
 								<table style="width:100%">
 								  <tr>
-								  	<th>Correo</th>
+								  	<th>Id</th>
 								    <th>contraseña</th>
 								  </tr>
 								  {{#admin}}
 								  <tr class="center">
-								    <td>{{correo}}</td>
+								    <td>{{id}}</td>
 								    <td>{{contraseña}}</td>
 								  </tr>
 								  {{/admin}}

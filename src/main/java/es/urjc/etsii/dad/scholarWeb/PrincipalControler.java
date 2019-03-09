@@ -53,17 +53,17 @@ public class PrincipalControler {
 		Alumno alumn2 = new Alumno("Ana", "Martin", "Lopez");
 		Alumno alumn3 = new Alumno("Elena", "Vazquez", "Rodriguez");
 
-		Profesor prof = new Profesor("Pedro", "Gomez", "Martin", "pgm@gmail.com");
-		Profesor prof2 = new Profesor("Felix", "Lopez", "Cid", "flc@gmail.com");
-		Profesor prof3 = new Profesor("Agatha", "Garcia", "Lopez", "agl@gmail.com");
+		Profesor prof = new Profesor("Pedro", "Gomez", "Martin", "pgm@gmail.com", "12345", "PROFE");
+		Profesor prof2 = new Profesor("Felix", "Lopez", "Cid", "flc@gmail.com", "12345", "PROFE");
+		Profesor prof3 = new Profesor("Agatha", "Garcia", "Lopez", "agl@gmail.com", "12345", "PROFE");
 
 		Asignatura asi1 = new Asignatura("Matematicas", 1);
 		Asignatura asi2 = new Asignatura("Ingles", 1);
 		Asignatura asi3 = new Asignatura("Física", 1);
 
-		Padre pa = new Padre("juan@gmail.com", "Ortega", "Juan");
-		Padre pa2 = new Padre("marisa@gmail.com", "Ramos", "Marisa");
-		Padre pa3 = new Padre("jpablo@gmail.com", "Hernandez", "Jose Pablo");
+		Padre pa = new Padre("juan@gmail.com", "Ortega", "Juan", "12345", "PADRE");
+		Padre pa2 = new Padre("marisa@gmail.com", "Ramos", "Marisa", "12345", "PADRE");
+		Padre pa3 = new Padre("jpablo@gmail.com", "Hernandez", "Jose Pablo", "12345", "PADRE");
 
 		alumn.setAula(new Aula(1, 'A'));
 		alumn2.setAula(alumn.getAula());

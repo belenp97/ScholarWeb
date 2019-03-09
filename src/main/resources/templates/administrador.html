@@ -143,9 +143,9 @@
 					<form action="/insertar_padre" method="post" id="mysql">
 						<h1><strong><label id="center">Padre/Tutor</label></strong></h1>
 						<div class="col_mysql">
-							<div class="col_mysql ">
-							<label class="center">Correo</label> 
-								<input type="email" name="correo" class="form-mysql">
+							<div class="col_mysql">
+								<label class="center">Nombre</label> 
+								<input type="text" name="nombre" class="form-mysql ">
 							</div>
 						</div>
 						<div class="col_mysql">
@@ -155,9 +155,26 @@
 							</div>
 						</div>
 						<div class="col_mysql">
+							<div class="col_mysql ">
+							<label class="center">Correo</label> 
+								<input type="email" name="correo" class="form-mysql">
+							</div>
+						</div>
+						<div class="col_mysql">
 							<div class="col_mysql">
-								<label class="center">Nombre</label> 
-								<input type="text" name="nombre" class="form-mysql ">
+								<label class="center">Rol</label> 
+								<select name="rol" class="form-mysql">
+									<option selected value="0"> Elige un rol </option>
+									<option value="ADMIN">ADMIN</option>
+									<option value="PROFE">PROFE</option>
+									<option value="PADRE">PADRE</option>
+								</select>
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Contraseña</label> 
+								<input type="text"name="contraseña" class="form-mysql ">
 							</div>
 						</div>
 						<div class="col_mysql">
@@ -238,6 +255,23 @@
 							<div class="col_mysql">
 								<label class="center">Correo</label> 
 								<input type="text" name="correo" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Rol</label> 
+								<select name="rol" class="form-mysql">
+									<option selected value="0"> Elige un rol </option>
+									<option value="ADMIN">ADMIN</option>
+									<option value="PROFE">PROFE</option>
+									<option value="PADRE">PADRE</option>
+								</select>
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Contraseña</label> 
+								<input type="text"name="contraseña" class="form-mysql ">
 							</div>
 						</div>
 						<div class="col_mysql">

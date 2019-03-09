@@ -43,9 +43,9 @@ class LoginController {
 	}
 	
 	@PostMapping("/login/{nombre}")
-	public String loginPrivado(Model model, @RequestParam String correo, @RequestParam String contraseña) {
+	public String loginPrivado(Model model, @RequestParam int id, @RequestParam String contraseña) {
 		try {
-			Administrador administrador = adminRepo.findByCorreo(correo);
+			Administrador administrador = adminRepo.findById(id);
 			if(administrador.getPass().equals(contraseña)) {
 				return "/login_privado"; 
 			}

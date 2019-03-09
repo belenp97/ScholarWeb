@@ -8,6 +8,7 @@ import es.urjc.etsii.dad.scholarWeb.Profesor;
 public interface ProfesorRepository extends JpaRepository<Profesor, Integer>{
 
 	Profesor saveAndFlush(Profesor item);
-	Profesor findBynombreEquals(String nombre);
-	Profesor findBycorreoEquals(String correo);
+	//Profesor findBynombreEquals(String nombre);
+	//Profesor findById_profesor (Integer id);
+	//Profesor findBycorreoEquals(String correo);
 }

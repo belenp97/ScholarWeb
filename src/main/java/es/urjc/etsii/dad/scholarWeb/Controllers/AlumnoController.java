@@ -68,7 +68,7 @@ public class AlumnoController {
 	}
 		
 	@RequestMapping("/insertar_alumno")
-	public String insertar_alumno(Model model,@RequestParam String idasig, @RequestParam Integer id, @RequestParam String nombre,@RequestParam String apellido1, @RequestParam String apellido2, String correo, String contraseña, String rol, String... roles) {	
+	public String insertar_alumno(Model model,@RequestParam String idasig, @RequestParam Integer id, @RequestParam String nombre,@RequestParam String apellido1, @RequestParam String apellido2, String correo, String contraseña, String rol/*, String... roles*/) {	
 		try {
 			modelos(model);
 			Optional<Aula> aul = reposAula.findById(id);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,9 +16,16 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	@Column
 	private String nombre;
+	
+	@Column
 	private String correo;
+	
+	@Column
 	private String pass;
+	
+	@Column
 	private String rol;
 	
 	/*Parte de seguridad*/
@@ -30,13 +38,13 @@ public class Usuario {
 		
 	}
 	
-	public Usuario(String nombre,String correo, String pass,String rol, String... roles) {
+	public Usuario(String nombre,String correo, String pass,String rol/*, String... roles*/) {
 		this.nombre = nombre;
 		this.correo = correo;
 		this.pass = pass;
 		//this.pass = new BCryptPasswordEncoder().encode(pass);
 		this.rol = rol;
-		this.roles = new ArrayList<>(Arrays.asList(roles));
+		//this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
 	
 	/** Métodos de acceso a atributos de Usuario**/
@@ -78,13 +86,13 @@ public class Usuario {
 		this.rol = rol;
 	}
 	
-	public List<String> getRoles() {
+	/*public List<String> getRoles() {
 		return roles;
 	}
 	
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
-	}
+	}*/
 	
 	
 	@Override

@@ -7,12 +7,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "alumnos")
-public class Alumno extends Usuario{
+public class Alumno{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int nexpediente;
+	private Integer nexpediente;
 	
+	@Column
+	private String nombre;
 	@Column(nullable=false)
 	private String apellido1;
 	@Column(nullable=false)
@@ -37,16 +39,16 @@ public class Alumno extends Usuario{
 	@JoinColumn(name = "padre")
 	private Padre padre_alumno;
 
-	public Alumno(String nombre, String a1, String a2, String correo, String contraseña, String rol, String... roles) {
-		super(nombre, correo, contraseña, rol, roles);
+	public Alumno(String nombre, String a1, String a2) {
+		this.nombre = nombre;
 		this.apellido1 = a1;
 		this.apellido2 = a2;
 		this.nexpediente = (int)Math.floor(Math.random()) *1+1000;
 	}
 	
 	
-	public Alumno(String n, String a1, String a2, Asignatura asig, Aula aula,String correo, String contraseña, String rol, String... roles) {
-		super(n, correo, contraseña, rol, roles);
+	public Alumno(String n, String a1, String a2, Asignatura asig, Aula aula,String correo, String contraseña, String rol /*,String... roles*/) {
+		this.nombre = n;
 		this.apellido1 = a1;
 		this.apellido2 = a2;
 		this.nexpediente = (int)Math.floor(Math.random()) *1+1000;
@@ -98,11 +100,11 @@ public class Alumno extends Usuario{
 		this.apellido2 = apellido;
 	}
 
-	public long getNexpediente() {
+	public Integer getNexpediente() {
 		return nexpediente;
 	}
 
-	public void setNexpediente(int n_expediente) {
+	public void setNexpediente(Integer n_expediente) {
 		this.nexpediente = n_expediente;
 	}
 
@@ -132,7 +134,7 @@ public class Alumno extends Usuario{
 
 	@Override
 	public String toString() {
-		return "Alumno [nexpediente=" + nexpediente + ", nombre=" + this.getNombre() + ", apellido1=" + apellido1 + ", apellido2="
+		return "Alumno [nexpediente=" + nexpediente + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2="
 				+ apellido2 + ", faltas=" + faltas + "]";
 	}
 
