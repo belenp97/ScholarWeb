@@ -12,7 +12,7 @@ import es.urjc.etsii.dad.scholarWeb.Profesor;
 
 public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
 
-	//Alumno saveAndFlush(Alumno updatedItem);
+	Alumno saveAndFlush(Alumno updatedItem);
 	//Alumno insertarAlumno(String Alumno);
 	//Alumno findBynexpedienteEquals(long nexpediente);
 	Alumno findBynombreEquals(String nombre);

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -61,7 +62,7 @@ public class AlumnoController {
 	}
 	
 	@RequestMapping("/alumnos")
-	public String verAlumnos(Model model) throws Exception {
+	public String verAlumnos(Model model,  HttpServletRequest request) throws Exception {
 		modelos(model);
 
 		return "alumnos";

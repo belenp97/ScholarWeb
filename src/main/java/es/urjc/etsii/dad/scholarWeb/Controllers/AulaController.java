@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -57,7 +58,7 @@ public class AulaController {
 	}
 	
 	@RequestMapping("/aulas")
-	public String verAulas(Model model) throws Exception {
+	public String verAulas(Model model, HttpServletRequest request) throws Exception {
 
 		modelos(model); 
 		model.addAttribute("aulas", reposAula.findAll());

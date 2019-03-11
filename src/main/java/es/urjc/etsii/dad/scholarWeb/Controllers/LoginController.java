@@ -3,6 +3,7 @@ package es.urjc.etsii.dad.scholarWeb.Controllers;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,7 +37,7 @@ class LoginController {
 	private AdminRepository adminRepo;
 	
 	@GetMapping("/login")
-	public String login(Model model) {
+	public String login(Model model,  HttpServletRequest request) {
 		model.addAttribute("admin", adminRepo.findAll());
 		
 		return "login";

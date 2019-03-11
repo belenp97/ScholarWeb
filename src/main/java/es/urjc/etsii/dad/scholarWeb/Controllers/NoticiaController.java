@@ -26,7 +26,7 @@ public class NoticiaController {
 	private NoticiaRepository notRepo;
 
 	@RequestMapping("/noticias")
-	public String verNoticia(Model model) throws Exception {
+	public String verNoticia(Model model/*, HttpServletRequest request*/) throws Exception {
 
 		model.addAttribute("noticia", notRepo.findAll());
 

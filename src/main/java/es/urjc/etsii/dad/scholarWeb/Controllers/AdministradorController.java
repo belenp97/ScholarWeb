@@ -3,6 +3,7 @@ package es.urjc.etsii.dad.scholarWeb.Controllers;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,7 +48,7 @@ public class AdministradorController {
 	private NoticiaRepository notRepo;
 		
 	@RequestMapping("/administrador")
-	public String administrador(Model model) {
+	public String administrador(Model model, HttpServletRequest request) {
 		
 		modelos(model);
 

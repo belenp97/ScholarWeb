@@ -1,10 +1,16 @@
 package es.urjc.etsii.dad.scholarWeb.Seguridad;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-public class SecurityConfiguration /*extends WebSecurityConfigurerAdapter */ {
-/*
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+	
+	public UsuarioRepositoryAuthenticationProvider authenticationProvider;
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -15,14 +21,15 @@ public class SecurityConfiguration /*extends WebSecurityConfigurerAdapter */ {
 		 auth.inMemoryAuthentication().withUser("admin").password("adminpass")
 		 .roles("USER", "ADMIN");
 
-		 auth.inMemoryAuthentication().withUser("alumno").password("alumpass")
-		 .roles("USER", "ALUMNO");
 
 		 auth.inMemoryAuthentication().withUser("profesor").password("profpass")
 		 .roles("USER","PROFESOR");
 
 		 auth.inMemoryAuthentication().withUser("padre").password("padrepass")
 		 .roles("USER","PADRE");
+		 
+		 //Database authentication provider,
+		 auth.authenticationProvider((AuthenticationProvider) authenticationProvider);
 	}
 	
 	@Override
@@ -38,8 +45,7 @@ public class SecurityConfiguration /*extends WebSecurityConfigurerAdapter */ {
 	  http.authorizeRequests().antMatchers("/css/**");
 	  
 	 // Private pages (all other pages)
-	 http.authorizeRequests().antMatchers("/admin").hasAnyRole("ADMIN").;
-	 http.authorizeRequests().antMatchers("login/pagina_alumno").hasAnyRole("ALUMNO");
+	 http.authorizeRequests().antMatchers("/admin").hasAnyRole("ADMIN");
 	 http.authorizeRequests().antMatchers("login/pagina_profesor").hasAnyRole("PROFESOR");
 	 http.authorizeRequests().antMatchers("login/pagina_padre").hasAnyRole("PADRE");
 	 
@@ -54,7 +60,10 @@ public class SecurityConfiguration /*extends WebSecurityConfigurerAdapter */ {
 	 // Logout
 	 //http.logout().logoutUrl("/logout");
 	 http.logout().logoutSuccessUrl("/principal");
+	 
+	 //deshabilitamos CSRF por el momento.
+	 http.csrf().disable();
 	
 	 }
-*/
+	
 }

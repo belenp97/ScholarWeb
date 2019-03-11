@@ -2,6 +2,8 @@ package es.urjc.etsii.dad.scholarWeb.Controllers;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,7 +51,7 @@ public class PadreController {
 	}
 	
 	@RequestMapping("/padres")
-	public String verPadres(Model model) throws Exception {
+	public String verPadres(Model model,  HttpServletRequest request) throws Exception {
 		modelos(model);
 
 		return "padres";

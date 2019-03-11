@@ -1,6 +1,7 @@
 package es.urjc.etsii.dad.scholarWeb;
 
 import java.util.ArrayList;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,8 +34,8 @@ public class Usuario {
 	public Usuario(String nombre,String correo, String pass,String rol, String... roles) {
 		this.nombre = nombre;
 		this.correo = correo;
-		this.pass = pass;
-		//this.pass = new BCryptPasswordEncoder().encode(pass);
+		//this.pass = pass;
+		this.pass = new BCryptPasswordEncoder().encode(pass);
 		this.rol = rol;
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}

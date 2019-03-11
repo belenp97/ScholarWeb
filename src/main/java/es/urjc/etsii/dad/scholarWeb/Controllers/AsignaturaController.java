@@ -3,6 +3,7 @@ package es.urjc.etsii.dad.scholarWeb.Controllers;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -55,7 +56,7 @@ public class AsignaturaController {
 	}
 	
 	@RequestMapping("/asignaturas")
-	public String verAsignaturas(Model model) throws Exception {
+	public String verAsignaturas(Model model,  HttpServletRequest request) throws Exception {
 
 		modelos(model); 
 		model.addAttribute("padres", asigRepo.findAll());
