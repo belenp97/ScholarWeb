@@ -47,6 +47,9 @@
 		<div id="contain" class="center">
 			<h2>
 				La pagina esta en desarrollo. </br> Gracias por la espera.
+				<form action="/logout" method="post">
+				    <input type="submit" value="Sign Out" />
+				<input type="hidden" name="_csrf" value="{{token}}"/> </form>
 			</h2>
 		</div>
 	</section>

@@ -24,6 +24,7 @@ import es.urjc.etsii.dad.scholarWeb.Aula;
 import es.urjc.etsii.dad.scholarWeb.Padre;
 import es.urjc.etsii.dad.scholarWeb.PrincipalControler;
 import es.urjc.etsii.dad.scholarWeb.Profesor;
+import es.urjc.etsii.dad.scholarWeb.Usuario;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AlumnoRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AsignaturaRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AulaRepository;
@@ -69,24 +70,28 @@ public class AlumnoController {
 	}
 		
 	@RequestMapping("/insertar_alumno")
-	public String insertar_alumno(Model model,@RequestParam String idasig, @RequestParam Integer id, @RequestParam String nombre,@RequestParam String apellido1, @RequestParam String apellido2, String correo, String contraseña, String rol, String... roles) {	
+	public String insertar_alumno(Model model, @RequestParam String nombre,@RequestParam String apellido1, @RequestParam String apellido2, @RequestParam Integer idprofe, @RequestParam Integer idasig, @RequestParam Integer idaula,String contraseña, String rol, String... roles) {	
 		try {
-			modelos(model);
-			Optional<Aula> aul = reposAula.findById(id);
-			Optional<Asignatura> asig = asigRepo.findById(id);
-			Asignatura asignatura = asig.get(); 
-			Aula a = aul.get(); 
-			/*Alumno alumno = new Alumno(nombre, correo, contraseña, rol, roles);
-			alumno.setApellido1(apellido1);
-			alumno.setApellido2(apellido2);
-			Optional<Alumno> al = reposAl.findById(id); 
-			if(al.get().getNexpediente() != alumno.getNexpediente()) {
-				reposAl.save(alumno); 
-			}*/
+			Optional<Aula> aul = reposAula.findById(idaula);
+			Optional<Asignatura> asig = asigRepo.findById(idasig);
+			Optional<Profesor> prof = profeRepo.findById(idprofe);
+			Usuario alumno = new Alumno(nombre, apellido1, apellido2,asig.get().getNombre(), aul.get().toString(), null, null, null, null);
+			Alumno al = reposAl.findBynombreEquals(nombre); 
+			if(al==(null) || !al.equals(alumno) ) {
+//				reposAl.save(alumno); 
+				model.addAttribute("nexp", alumno.getId()); 
+				model.addAttribute("nombreAlum", alumno.getNombre() +" " +((Alumno) alumno).getApellido1() +" " +((Alumno) alumno).getApellido2() +" "); 
+				model.addAttribute("curso", ((Alumno) alumno).getAula().getCurso() +" " +((Alumno) alumno).getAula().getLetra() +" "); 
+				model.addAttribute("nombreasig", ((Alumno) alumno).getAsignaturas().toString()); 
+				model.addAttribute("nombreprofesor", ((Alumno) alumno).getProfesores().toString()); 
+				
+				reposAl.saveAndFlush(alumno); 
+				return "formularioAceptadoAlum";
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return "administrador";
+		return "formularioError";
 	}
 		
 	@RequestMapping("/eliminar_alumno" )

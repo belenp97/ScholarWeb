@@ -8,13 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 import es.urjc.etsii.dad.scholarWeb.Alumno;
 import es.urjc.etsii.dad.scholarWeb.Padre;
 import es.urjc.etsii.dad.scholarWeb.Profesor;
+import es.urjc.etsii.dad.scholarWeb.Usuario;
 
 
 public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
 
-	Alumno saveAndFlush(Alumno updatedItem);
+	Alumno saveAndFlush(Usuario alumno);
 	//Alumno insertarAlumno(String Alumno);
 	//Alumno findBynexpedienteEquals(long nexpediente);
 	Alumno findBynombreEquals(String nombre);
-	Alumno deleteByNexpediente(Integer nexp);
+//	Alumno deleteByNexpediente(Integer nexp);
 }

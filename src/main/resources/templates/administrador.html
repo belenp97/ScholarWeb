@@ -91,6 +91,7 @@
 						</div>
 						<div class="col_mysql_boton center">
 							<input type="submit" value="Enviar" class="btn btn-primary">
+							<input type="hidden" name="_csrf" value="{{token}}"/>
 						</div>
 					</form>
 				</section>
@@ -107,6 +108,7 @@
 						</div>
 						<div class="col_mysql_boton center">
 							<input type="submit" value="Eliminar" class="btn btn-primary">
+							<input type="hidden" name="_csrf" value="{{token}}"/>
 						</div>
 					</form>
 				</section>
@@ -168,6 +170,7 @@
 						</div>
 						<div class="col_mysql_boton center">
 							<input type="submit" value="Enviar" class="btn btn-primary">
+							<input type="hidden" name="_csrf" value="{{token}}"/>
 						</div>
 					</form>
 				</section>
@@ -184,6 +187,7 @@
 						</div>		
 						<div class="col_mysql_boton center">
 							<input type="submit" value="Eliminar" class="btn btn-primary">
+							<input type="hidden" name="_csrf" value="{{token}}"/>
 						</div>
 					</form>
 				</section>
@@ -234,12 +238,12 @@
 								<input type="text" name="apellido2" class="form-mysql ">
 							</div>
 						</div>
-						<div class="col_mysql">
+						<!-- <div class="col_mysql">
 							<div class="col_mysql">
 								<label class="center">Correo</label> 
 								<input type="text" name="correo" class="form-mysql ">
 							</div>
-						</div>
+						</div> -->
 						<div class="col_mysql">
 							<div class="col_mysql">
 								<label class="center">Asignatura</label> 
@@ -260,6 +264,7 @@
 						</div>
 						<div class="col_mysql_boton center">
 							<input type="submit" value="Enviar" class="btn btn-primary">
+							<input type="hidden" name="_csrf" value="{{token}}"/>
 						</div>
 					</form>
 				</section>
@@ -276,6 +281,7 @@
 						</div>
 						<div class="col_mysql_boton center">
 							<input type="submit" value="Eliminar" class="btn btn-primary">
+							<input type="hidden" name="_csrf" value="{{token}}"/>
 						</div>
 					</form>
 				</section>
@@ -298,7 +304,6 @@
 								    <td>{{nombre}}</td>
 								    <td>{{apellido1}}</td>
 								    <td>{{apellido2}}</td>
-								    <td>{{correo}}</td>
 								  </tr>
 								  {{/profesores}}
 								</table>
@@ -323,6 +328,7 @@
 						</div>
 						<div class="col_mysql_boton center">
 							<input type="submit" value="Enviar" class="btn btn-primary">
+							<input type="hidden" name="_csrf" value="{{token}}"/>
 						</div>
 					</form>
 				</section>
@@ -339,11 +345,12 @@
 						</div>
 						<div class="col_mysql_boton center">
 							<input type="submit" value="Eliminar" class="btn btn-primary">
+							<input type="hidden" name="_csrf" value="{{token}}"/>
 						</div>
 					</form>
 				</section>
 					
-												<!-- TABLA Asignaturas-->
+									<!-- TABLA Asignaturas-->
 				<section class="feature_mysql_tabla_peque">
 					<div class="col_mysql">
 						<h1 class="center">Asignaturas</h1>
@@ -383,6 +390,7 @@
 						</div>
 						<div class="col_mysql_boton center">
 							<input type="submit" value="Enviar" class="btn btn-primary">
+							<input type="hidden" name="_csrf" value="{{token}}"/>
 						</div>
 					</form>
 				</section>
@@ -399,6 +407,7 @@
 						</div>
 						<div class="col_mysql_boton center">
 							<input type="submit" value="Eliminar" class="btn btn-primary">
+							<input type="hidden" name="_csrf" value="{{token}}"/>
 						</div>
 					</form>
 				</section>
@@ -439,6 +448,7 @@
 						</div>
 						<div class="col_mysql_boton center">
 							<input type="submit" value="Enviar" class="btn btn-primary">
+							<input type="hidden" name="_csrf" value="{{token}}"/>
 						</div>
 					</form>
 				</section>
@@ -488,6 +498,9 @@
 				
 				</div>
 			</section>
+			
+			<a href="/logout">Cerrar Sesión</a>
+			
 		</div>
 
 

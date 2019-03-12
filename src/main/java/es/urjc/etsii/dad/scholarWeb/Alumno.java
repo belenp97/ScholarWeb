@@ -8,14 +8,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "alumnos")
 public class Alumno extends Usuario{
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int nexpediente;
-	
-	@Column(nullable=false)
+	@Column
 	private String apellido1;
-	@Column(nullable=false)
+	@Column
 	private String apellido2;
 	@Column
 	private int faltas;
@@ -41,7 +36,7 @@ public class Alumno extends Usuario{
 		super(nombre, correo, contraseña, rol, roles);
 		this.apellido1 = a1;
 		this.apellido2 = a2;
-		this.nexpediente = (int)Math.floor(Math.random()) *1+1000;
+//		this.nexpediente = (int)Math.floor(Math.random()) *1+1000;
 	}
 	
 	
@@ -49,7 +44,7 @@ public class Alumno extends Usuario{
 		super(n, correo, contraseña, rol, roles);
 		this.apellido1 = a1;
 		this.apellido2 = a2;
-		this.nexpediente = (int)Math.floor(Math.random()) *1+1000;
+//		this.nexpediente = (int)Math.floor(Math.random()) *1+1000;
 		this.asignaturas.add(asig);  
 		this.aula = aula; 
 		this.padre_alumno = null; 
@@ -98,13 +93,13 @@ public class Alumno extends Usuario{
 		this.apellido2 = apellido;
 	}
 
-	public long getNexpediente() {
-		return nexpediente;
-	}
-
-	public void setNexpediente(int n_expediente) {
-		this.nexpediente = n_expediente;
-	}
+//	public long getNexpediente() {
+//		return nexpediente;
+//	}
+//
+//	public void setNexpediente(int n_expediente) {
+//		this.nexpediente = n_expediente;
+//	}
 
 	public List<Asignatura> getAsignaturas() {
 		return asignaturas;
@@ -132,7 +127,7 @@ public class Alumno extends Usuario{
 
 	@Override
 	public String toString() {
-		return "Alumno [nexpediente=" + nexpediente + ", nombre=" + this.getNombre() + ", apellido1=" + apellido1 + ", apellido2="
+		return "Alumno [nexpediente=" /*+ nexpediente*/ + ", nombre=" + this.getNombre() + ", apellido1=" + apellido1 + ", apellido2="
 				+ apellido2 + ", faltas=" + faltas + "]";
 	}
 

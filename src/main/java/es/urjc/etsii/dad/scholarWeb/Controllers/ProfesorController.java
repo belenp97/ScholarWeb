@@ -22,6 +22,7 @@ import es.urjc.etsii.dad.scholarWeb.Alumno;
 import es.urjc.etsii.dad.scholarWeb.Asignatura;
 import es.urjc.etsii.dad.scholarWeb.Aula;
 import es.urjc.etsii.dad.scholarWeb.Profesor;
+import es.urjc.etsii.dad.scholarWeb.Usuario;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AlumnoRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AsignaturaRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AulaRepository;
@@ -69,27 +70,35 @@ public class ProfesorController {
 	}
 	
 	@RequestMapping("/insertar_profesor")
-	public String insertar_profesor(Model model, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, @RequestParam String correo, /*@RequestParam cont, */@RequestParam String asignatura, @RequestParam Integer id_alumno, @RequestParam Integer id_aula, @RequestParam String rol, @RequestParam String roles) {
+	public String insertar_profesor(Model model, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, /*@RequestParam String correo, @RequestParam cont, */@RequestParam String asignatura, @RequestParam Integer id_alumno, @RequestParam Integer id_aula, @RequestParam String rol, @RequestParam String roles) {
 		try {
-			modelos(model);
+//			modelos(model);
+			String correo = nombre.toLowerCase().charAt(0) +"" +apellido1.toLowerCase().charAt(0) +"" + apellido2.toLowerCase().charAt(0) +"" +"@gmail.com"; 
+			
 			Optional<Aula> aula = reposAula.findById(id_aula);
-			Aula aul = aula.get();
 			Optional<Alumno> alumno = reposAl.findById(id_alumno);
-			Alumno a = alumno.get(); 
 			Asignatura asig = asigRepo.findBynombreEquals(asignatura);
-
-			Profesor profe = profeRepo.findBycorreoEquals(correo);
-			if(profe.getCorreo() != correo) {
-				/*Profesor profesor = new Profesor(nombre, correo, cont, rol, roles);
-				profesor.setApellido1(apellido1);
-				profesor.setApellido2(apellido2);
-				profeRepo.save(profesor); */
+			Profesor profe = profeRepo.findBynombreEquals(nombre);  
+			if(profe ==null || profe.getCorreo() != correo) {
+				
+				Usuario profesor = (Profesor) new Profesor(nombre, apellido1, apellido2, asig, alumno.get(), aula.get(),correo, null, null);
+				profeRepo.saveAndFlush((Profesor) profesor);
+				
+				model.addAttribute("id_profesor", profesor.getId()); 
+				model.addAttribute("nombreProfe", profesor.getNombre() +" " +((Profesor) profesor).getApellido1() +" " +((Profesor) profesor).getApellido2() +" "); 
+				model.addAttribute("correo", profesor.getCorreo()); 
+				model.addAttribute("alumnos", ((Profesor) profesor).getAlumnos().toString()); 
+				model.addAttribute("asignatura", ((Profesor) profesor).getAsignaturas().toString()); 
+				
+//				profeRepo.save(profesor);
+				
+				return "formularioAceptadoProfe";
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		return "administrador";
+		return "formularioError";
 	}
 	
 	@RequestMapping("/eliminar_profesor")
@@ -98,11 +107,11 @@ public class ProfesorController {
 			modelos(model);
 			Optional<Profesor> profe = profeRepo.findById(id_profesor); 
 			if(profe.get() != null) {
-				if(profe.get().getid_profesor() == id_profesor) {
-					profeRepo.deleteById(id_profesor);
-				}else {
-					return "administrador";
-				}
+//				if(profe.get().getid_profesor() == id_profesor) {
+//					profeRepo.deleteById(id_profesor);
+//				}else {
+//					return "administrador";
+//				}
 			}
 			
 		}catch(Exception e) {

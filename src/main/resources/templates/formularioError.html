@@ -43,32 +43,13 @@
 	</div>
 	<!-- ####################################################################################################### -->
 
-	<section class="wrapper_login">
-		<form class="register" action="/login/privado" method="post">
-			<input class="mininbox t" type="email" name="correo" placeholder="info@mailaddress.com">
-			<input class="mininbox t" type="password" name="contraseña"placeholder="••••••••••••">
-			<input type="submit" value="Enviar" class="submit">
-			<input type="hidden" name="_csrf" value="{{token}}"/>
-		</form>
-						<!-- TABLA Alumnos-->
-				<section class="feature_mysql_tabla">
-					<div class="col_mysql">
-						<h1 class="center">Admin</h1>
-								<table style="width:100%">
-								  <tr>
-								  	<th>Correo</th>
-								    <th>contraseña</th>
-								  </tr>
-								  {{#admin}}
-								  <tr class="center">
-								    <td>{{correo}}</td>
-								    <td>{{contraseña}}</td>
-								  </tr>
-								  {{/admin}}
-								</table>
-					</div>
-				</section>
+	<section class="wrapper principal">
+		<div id="contain" class="center">
+				<h2><label style="background: #EC969F;">se ha producido un error en el formulario</label></h2>
+		
+		</div>
 	</section>
+
 
 
 	<!-- ####################################################################################################### -->
@@ -76,7 +57,8 @@
 		<div id="footer" class="not">
 			<div class="fl_left clear">
 				<div class="fl_left center">
-					<a href="https://www.google.com/maps?client=safari&rls=en&q=puerta+del+sol&oe=UTF-8&um=1&ie=UTF-8&sa=X&ved=0ahUKEwivh4OLtMXgAhUMHxoKHX1vBQIQ_AUIDigB"><img src="./css/img/worldmap.gif"/><br /> Find
+					<a href="https://www.google.com/maps?client=safari&rls=en&q=puerta+del+sol&oe=UTF-8&um=1&ie=UTF-8&sa=X&ved=0ahUKEwivh4OLtMXgAhUMHxoKHX1vBQIQ_AUIDigB">
+					<img src="./css/img/worldmap.gif"/><br /> Find
 						Us With Google Maps &raquo;</a>
 				</div>
 			</div>

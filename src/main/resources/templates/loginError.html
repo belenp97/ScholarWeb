@@ -44,12 +44,13 @@
 	<!-- ####################################################################################################### -->
 
 	<section class="wrapper_login">
-		<label style="background: red; margin-left: 320px;">El correo o la contraseña es erronea, intentelo de nuevo</label>
+		<label style="background: #EC969F; margin-left: 320px;">El correo o la contraseña es erronea, intentelo de nuevo</label>
 		<form class="register" action="/login/privado" method="post">
 			<input class="mininbox t" type="email" name="correo" placeholder="info@mailaddress.com">
 			<input class="mininbox t" type="password" name="contraseña"placeholder="••••••••••••">
 
 			<input type="submit" value="Enviar" class="submit">
+			<input type="hidden" name="_csrf" value="{{token}}"/>
 		</form>
 						
 	</section>

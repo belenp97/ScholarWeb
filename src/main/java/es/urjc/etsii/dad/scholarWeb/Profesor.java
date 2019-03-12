@@ -8,11 +8,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "profesor")
 public class Profesor extends Usuario {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_profesor;
-
 	@Column
 	private String apellido1;
 	@Column
@@ -42,9 +37,9 @@ public class Profesor extends Usuario {
 		this.apellido2=ap2;
 	}
 	
-	public Profesor(String a1, String a2, Asignatura a, Alumno alu, Aula aul, String nombre, String correo, String contraseña, String rol, String... roles) {
-		super(nombre, correo, contraseña, rol, roles);
-		this.id_profesor =(int) Math.ceil(Math.random() * 1000);
+	public Profesor(String n, String a1, String a2, Asignatura a, Alumno alu, Aula aul, String correo, String contraseña, String rol, String... roles) {
+		super(n, correo, contraseña, rol, roles);
+//		this.id_profesor =(int) Math.ceil(Math.random() * 1000);
 		this.apellido1 = a1;
 		this.apellido2 = a2;
 		this.asignaturas_por_profesor.add(a); 
@@ -52,13 +47,13 @@ public class Profesor extends Usuario {
 		this.aulas.add(aul);
 	}
 
-	public long getid_profesor() {
-		return id_profesor;
-	}
-
-	public void setid_profesor(Integer id_profesor) {
-		this.id_profesor = id_profesor;
-	}
+//	public long getid_profesor() {
+//		return id_profesor;
+//	}
+//
+//	public void setid_profesor(Integer id_profesor) {
+//		this.id_profesor = id_profesor;
+//	}
 
 	public List<Aula> getAulas() {
 		return aulas;
@@ -104,7 +99,7 @@ public class Profesor extends Usuario {
 
 	@Override
 	public String toString() {
-		return "Profesor [id_profesor=" + id_profesor + ", nombre=" + this.getNombre() + ", apellido1=" + apellido1
+		return "Profesor [id_profesor=" /*+ id_profesor */+ ", nombre=" + this.getNombre() + ", apellido1=" + apellido1
 				+ ", apellido2=" + apellido2 + ", correo=" + this.getCorreo() + ", asignaturas=" + ", alumnos=" + ", aulas="
 				+ "]";
 	}

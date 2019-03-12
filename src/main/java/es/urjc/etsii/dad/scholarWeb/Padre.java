@@ -9,14 +9,8 @@ import javax.persistence.*;
 @Table(name ="Padre")
 public class Padre extends Usuario {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id_padre;
-	@Column
 	private String correo;
-	@Column
 	private String apellido;
-	@Column
 	private String nombre;
 
 	@OneToMany(mappedBy = "padre_alumno", targetEntity = Alumno.class)
@@ -28,25 +22,25 @@ public class Padre extends Usuario {
 	public Padre( String n, String a, String correo, String contraseña, String rol, String... roles) {
 		super(n, correo, contraseña, rol, roles);
 		this.apellido=a;
-		this.id_padre = (int) Math.ceil(Math.random() * 1000);
+//		this.id_padre = (int) Math.ceil(Math.random() * 1000);
 		
 	}
 
 	public Padre(String n, String correo, Alumno a, String ap, String contraseña, String rol, String... roles) {
 		super(n,correo,contraseña,rol,roles);
-		this.id_padre = (int) Math.ceil(Math.random() * 1000);
+//		this.id_padre = (int) Math.ceil(Math.random() * 1000);
 		this.correo = correo;
 		this.apellido = ap;
 		alumno.add(a); 
 	}
 
-	public long getid_padre() {
-		return id_padre;
-	}
-
-	public void setid_padre(int id_padre) {
-		this.id_padre = id_padre;
-	}
+//	public long getid_padre() {
+//		return id_padre;
+//	}
+//
+//	public void setid_padre(int id_padre) {
+//		this.id_padre = id_padre;
+//	}
 
 	public String getApellido() {
 		return apellido;
