@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.urjc.etsii.dad.scholarWeb.Alumno;
@@ -20,6 +21,7 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.PadreRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 
 @Controller
+@RequestMapping("/padres")
 public class PadreController {
 	
 	@Autowired
@@ -50,14 +52,14 @@ public class PadreController {
 		model.addAttribute("profesores", profeRepo.findAll());
 	}
 	
-	@RequestMapping("/padres")
+	@RequestMapping(value="", method=RequestMethod.GET)
 	public String verPadres(Model model,  HttpServletRequest request) throws Exception {
 		modelos(model);
 
 		return "padres";
 	}
 
-	@RequestMapping("/insertar_padre")
+	@RequestMapping(value="/insertar_padre", method=RequestMethod.GET)
 	public String insertar_padre(Model model, @RequestParam String nombre,@RequestParam String apellido, @RequestParam String correo, @RequestParam Integer idalumno , @RequestParam String contraseña, @RequestParam String rol, @RequestParam String... roles) {
 
 		try {
@@ -78,7 +80,7 @@ public class PadreController {
 		return "administrador";
 	}
 	
-	@RequestMapping("/eliminar_padre")
+	@RequestMapping(value="/eliminar_padre", method=RequestMethod.GET)
 	public String eliminar_padre(Model model, @RequestParam Integer id_padre){
 		try {
 			modelos(model);

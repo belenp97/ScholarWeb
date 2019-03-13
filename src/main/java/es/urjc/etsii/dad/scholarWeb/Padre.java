@@ -9,8 +9,9 @@ import javax.persistence.*;
 @Table(name ="Padre")
 public class Padre extends Usuario {
 
-	private String correo;
+	@Column
 	private String apellido;
+	@Column
 	private String nombre;
 
 	@OneToMany(mappedBy = "padre_alumno", targetEntity = Alumno.class)
@@ -29,7 +30,7 @@ public class Padre extends Usuario {
 	public Padre(String n, String correo, Alumno a, String ap, String contraseña, String rol, String... roles) {
 		super(n,correo,contraseña,rol,roles);
 //		this.id_padre = (int) Math.ceil(Math.random() * 1000);
-		this.correo = correo;
+//		this.correo = correo;
 		this.apellido = ap;
 		alumno.add(a); 
 	}
@@ -58,13 +59,13 @@ public class Padre extends Usuario {
 		this.alumno = alumno;
 	}
 
-	public String getCorreo() {
-		return correo;
-	}
-
-	public void setCorreo(String correo) {
-		this.correo = correo;
-	}
+//	public String getCorreo() {
+//		return correo;
+//	}
+//
+//	public void setCorreo(String correo) {
+//		this.correo = correo;
+//	}
 
 	public String getNombre() {
 		return nombre;
@@ -76,7 +77,7 @@ public class Padre extends Usuario {
 
 	@Override
 	public String toString() {
-		return "Padre [alumno=" + " nombre " + nombre + " apellido " + apellido + ", correo=" + correo + "]";
+		return "Padre [alumno=" + " nombre " + nombre + " apellido " + apellido + ", correo=" /*+ correo*/ + "]";
 	}
 
 	/*

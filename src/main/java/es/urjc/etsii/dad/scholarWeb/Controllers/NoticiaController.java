@@ -25,7 +25,7 @@ public class NoticiaController {
 	@Autowired
 	private NoticiaRepository notRepo;
 
-	@RequestMapping("/noticias")
+	@RequestMapping(value="/noticias", method=RequestMethod.GET)
 	public String verNoticia(Model model/*, HttpServletRequest request*/) throws Exception {
 
 		model.addAttribute("noticia", notRepo.findAll());
@@ -33,7 +33,7 @@ public class NoticiaController {
 		return "noticias";
 	}
 	
-	@RequestMapping("/insertar_noticia")
+	@RequestMapping(value="/insertar_noticia", method=RequestMethod.GET)
 	public String insertar_noticia(Model model, @RequestParam String titulo,@RequestParam String cuerpo) {
 		try {
 			verNoticia(model);
@@ -45,7 +45,7 @@ public class NoticiaController {
 		return "administrador";
 	}
 	
-	@RequestMapping("/eliminar_noticia")
+	@RequestMapping(value="/eliminar_noticia", method=RequestMethod.GET)
 	public String eliminar_noticia(Model model,@RequestParam String titulo) {
 		try {
 			verNoticia(model);

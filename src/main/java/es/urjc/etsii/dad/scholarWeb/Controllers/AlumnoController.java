@@ -34,6 +34,7 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 
 
 @Controller
+@RequestMapping("/alumno")
 public class AlumnoController {
 	@Autowired
 	private AlumnoRepository reposAl;
@@ -62,14 +63,14 @@ public class AlumnoController {
 		model.addAttribute("profesores", profeRepo.findAll());
 	}
 	
-	@RequestMapping("/alumnos")
+	@RequestMapping("")
 	public String verAlumnos(Model model,  HttpServletRequest request) throws Exception {
 		modelos(model);
 
 		return "alumnos";
 	}
 		
-	@RequestMapping("/insertar_alumno")
+	@RequestMapping(value="/insertar_alumno", method=RequestMethod.GET)
 	public String insertar_alumno(Model model, @RequestParam String nombre,@RequestParam String apellido1, @RequestParam String apellido2, @RequestParam Integer idprofe, @RequestParam Integer idasig, @RequestParam Integer idaula,String contraseña, String rol, String... roles) {	
 		try {
 			Optional<Aula> aul = reposAula.findById(idaula);
@@ -94,7 +95,7 @@ public class AlumnoController {
 		return "formularioError";
 	}
 		
-	@RequestMapping("/eliminar_alumno" )
+	@RequestMapping(value="/eliminar_alumno" , method=RequestMethod.GET)
 	public String eliminar_alumno(Model model, @RequestParam Integer nexp) {	
 		try {
 			modelos(model);

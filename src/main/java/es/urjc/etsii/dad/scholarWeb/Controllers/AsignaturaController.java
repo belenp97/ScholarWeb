@@ -26,6 +26,7 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.PadreRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 
 @Controller
+@RequestMapping("/asignaturas")
 public class AsignaturaController {
 	
 	@Autowired
@@ -55,7 +56,7 @@ public class AsignaturaController {
 		model.addAttribute("profesores", profeRepo.findAll());
 	}
 	
-	@RequestMapping("/asignaturas")
+	@RequestMapping("")
 	public String verAsignaturas(Model model,  HttpServletRequest request) throws Exception {
 
 		modelos(model); 
@@ -64,7 +65,7 @@ public class AsignaturaController {
 		return "padres";
 	}
 	
-	@RequestMapping("/insertar_asignatura")
+	@RequestMapping(value="/insertar_asignatura", method=RequestMethod.GET)
 	public String insertar_asignatura(Model model, @RequestParam String nombre,@RequestParam int curso) {
 		
 		try {
@@ -77,7 +78,7 @@ public class AsignaturaController {
 		return "administrador";
 	}
 	
-	@RequestMapping("/eliminar_asignatura")
+	@RequestMapping(value="/eliminar_asignatura", method=RequestMethod.GET)
 	public String eliminar_asignatura(Model model, @RequestParam Integer id) {
 		
 		try {

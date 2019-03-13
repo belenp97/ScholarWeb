@@ -10,10 +10,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "administrador")
 public class Administrador extends Usuario{
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-
 
 	@Column
 	private String apellido;
@@ -24,18 +20,18 @@ public class Administrador extends Usuario{
 
 	public Administrador(long id, String nombre, String apellido, String correo, String contraseña, String rol, String... roles) {
 		super(nombre, correo, contraseña, rol, roles);
-		this.id=id; 
+//		this.id=id; 
 		this.apellido=apellido;		
 	}
 
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
+//	public long getId() {
+//		return id;
+//	}
+//
+//	public void setId(long id) {
+//		this.id = id;
+//	}
 
 
 	public String getApellido() {
@@ -46,9 +42,9 @@ public class Administrador extends Usuario{
 		this.apellido = apellido;
 	}
 
-	@Override
-	public String toString() {
-		return "Administrador [id=" + id + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Administrador [id=" + id + "]";
+//	}
 
 }

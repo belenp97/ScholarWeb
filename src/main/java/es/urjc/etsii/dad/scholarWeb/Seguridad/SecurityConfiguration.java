@@ -1,14 +1,17 @@
 package es.urjc.etsii.dad.scholarWeb.Seguridad;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-	
+	@Autowired
 	public UsuarioRepositoryAuthenticationProvider authenticationProvider;
 
 	@Override
@@ -29,7 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		 .roles("USER","PADRE");
 		 
 		 //Database authentication provider,
-		 auth.authenticationProvider((AuthenticationProvider) authenticationProvider);
+		 auth.authenticationProvider(authenticationProvider);
 	}
 	
 	@Override
@@ -62,7 +65,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	 http.logout().logoutSuccessUrl("/principal");
 	 
 	 //deshabilitamos CSRF por el momento.
-	 http.csrf().disable();
+//	 http.csrf().disable();
 	
 	 }
 	

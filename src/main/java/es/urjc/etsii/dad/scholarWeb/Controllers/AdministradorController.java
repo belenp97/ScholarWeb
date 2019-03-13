@@ -27,6 +27,7 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.PadreRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 
 @Controller
+@RequestMapping("/administrador")
 public class AdministradorController {	
 	
 	@Autowired
@@ -47,8 +48,8 @@ public class AdministradorController {
 	@Autowired
 	private NoticiaRepository notRepo;
 		
-	@RequestMapping("/administrador")
-	public String administrador(Model model, HttpServletRequest request) {
+	@RequestMapping(value="", method=RequestMethod.GET)
+	public String administrador(Model model) {
 		
 		modelos(model);
 

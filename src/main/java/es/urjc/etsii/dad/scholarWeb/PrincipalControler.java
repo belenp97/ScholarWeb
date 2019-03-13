@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
@@ -46,10 +47,10 @@ public class PrincipalControler {
 	public PrincipalControler() {
 	}
 
-	@PostConstruct
+	/*@PostConstruct
 	public void init() {
 		
-		/*Alumno alumn = new Alumno("Juan", "Perez", "Gomez");
+		Alumno alumn = new Alumno("Juan", "Perez", "Gomez");
 		Alumno alumn2 = new Alumno("Ana", "Martin", "Lopez");
 		Alumno alumn3 = new Alumno("Elena", "Vazquez", "Rodriguez");
 
@@ -123,12 +124,12 @@ public class PrincipalControler {
 
 		reposAl.save(alumn);
 		reposAl.save(alumn2);
-		reposAl.save(alumn3);*/
-	}
+		reposAl.save(alumn3);
+	}*/
 
 	@GetMapping("/")
 	public String principal(Model model) {
-
+		
 		return "principal";
 	}
 	

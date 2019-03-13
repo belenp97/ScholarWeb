@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.web.csrf.CsrfToken;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -22,9 +21,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 		
 	}
 	
-	
 	class CSRFHandlerInterceptor extends HandlerInterceptorAdapter {
-		
 		
 		@Override
 		public void postHandle(final HttpServletRequest request,

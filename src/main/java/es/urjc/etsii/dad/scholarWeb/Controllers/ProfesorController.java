@@ -32,6 +32,7 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 
 
 @Controller
+@RequestMapping("/profesores")
 public class ProfesorController {
 	
 	@Autowired
@@ -61,15 +62,15 @@ public class ProfesorController {
 		model.addAttribute("profesores", profeRepo.findAll());
 	}
 	
-	@RequestMapping("/profesores")
-	public String verProfesores(Model model,  HttpServletRequest request) {
+	@RequestMapping(value="", method=RequestMethod.GET)
+	public String verProfesores(Model model) {
 
 		modelos(model);
 
 		return "profesores";
 	}
 	
-	@RequestMapping("/insertar_profesor")
+	@RequestMapping(value="/insertar_profesor", method=RequestMethod.GET)
 	public String insertar_profesor(Model model, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, /*@RequestParam String correo, @RequestParam cont, */@RequestParam String asignatura, @RequestParam Integer id_alumno, @RequestParam Integer id_aula, @RequestParam String rol, @RequestParam String roles) {
 		try {
 //			modelos(model);
@@ -101,7 +102,7 @@ public class ProfesorController {
 		return "formularioError";
 	}
 	
-	@RequestMapping("/eliminar_profesor")
+	@RequestMapping(value="/eliminar_profesor", method=RequestMethod.GET)
 	public String eliminar_profesor(Model model, @RequestParam Integer id_profesor) {
 		try {
 			modelos(model);

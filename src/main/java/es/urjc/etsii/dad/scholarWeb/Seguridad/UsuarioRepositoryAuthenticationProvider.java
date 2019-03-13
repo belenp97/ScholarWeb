@@ -25,12 +25,13 @@ import es.urjc.etsii.dad.scholarWeb.Usuario;
 import es.urjc.etsii.dad.scholarWeb.Repositories.UsuarioRepository;
 
 @Component
-public class UsuarioRepositoryAuthenticationProvider implements AuthenticationProvider{
+public class UsuarioRepositoryAuthenticationProvider implements AuthenticationProvider, org.springframework.security.authentication.AuthenticationProvider{
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	//@Override
+//	@Override
+	@Transactional
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 		// TODO Auto-generated method stub
 		
@@ -78,6 +79,12 @@ public class UsuarioRepositoryAuthenticationProvider implements AuthenticationPr
 	public String getEncodingForHandshake() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean supports(Class<?> authentication) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

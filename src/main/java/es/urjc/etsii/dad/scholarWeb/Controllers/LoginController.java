@@ -3,6 +3,7 @@ package es.urjc.etsii.dad.scholarWeb.Controllers;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,19 +32,20 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 
 
 @Controller
+@RequestMapping("/login")
 class LoginController {
 	
 	@Autowired
 	private AdminRepository adminRepo;
 	
-	@GetMapping("/login")
-	public String login(Model model,  HttpServletRequest request) {
+	@RequestMapping(value="", method=RequestMethod.GET)
+	public String login(Model model) {
 		model.addAttribute("admin", adminRepo.findAll());
 		
 		return "login";
 	}
 	
-	@PostMapping("/login/{nombre}")
+	@RequestMapping(value="/{nombre}", method=RequestMethod.POST)
 	public String loginPrivado(Model model, @RequestParam String correo, @RequestParam String contraseña) {
 		try {
 			/*Administrador administrador = adminRepo.findByCorreo(correo);
@@ -54,6 +56,20 @@ class LoginController {
 			e.printStackTrace();
 		}
 		return "loginError";
+	}
+	
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String logout(Model model, HttpServletRequest request) {
+		try {
+			request.logout();
+			return "/login";
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		return "/";
+		
 	}
 
 }
