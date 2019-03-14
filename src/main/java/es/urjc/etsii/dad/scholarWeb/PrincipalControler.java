@@ -1,51 +1,36 @@
 package es.urjc.etsii.dad.scholarWeb;
 
-import java.util.List;
-import java.util.Optional;
-
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import es.urjc.etsii.dad.scholarWeb.Repositories.AdminRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AlumnoRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AsignaturaRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AulaRepository;
-import es.urjc.etsii.dad.scholarWeb.Repositories.NoticiaRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.PadreRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 
 @Controller
 public class PrincipalControler {
+//
+//	@Autowired
+//	private AlumnoRepository reposAl;
+//
+//	@Autowired
+//	private AsignaturaRepository asigRepo;
+//
+//	@Autowired
+//	private AulaRepository reposAula;
+//
+//	@Autowired
+//	private PadreRepository padreRepo;
+//
+//	@Autowired
+//	private ProfesorRepository profeRepo;
 
-	@Autowired
-	private AlumnoRepository reposAl;
-
-	@Autowired
-	private AsignaturaRepository asigRepo;
-
-	@Autowired
-	private AulaRepository reposAula;
-
-	@Autowired
-	private PadreRepository padreRepo;
-
-	@Autowired
-	private ProfesorRepository profeRepo;
-
-	
-	
-	public PrincipalControler() {
-	}
 
 	/*@PostConstruct
 	public void init() {
@@ -127,18 +112,18 @@ public class PrincipalControler {
 		reposAl.save(alumn3);
 	}*/
 
-	@GetMapping("/")
+	@RequestMapping("/")
 	public String principal(Model model) {
 		
 		return "principal";
 	}
 	
-	public void modelos(Model model) {
-		model.addAttribute("alumnos", reposAl.findAll());
-		model.addAttribute("padres", padreRepo.findAll());
-		model.addAttribute("asignaturas", asigRepo.findAll());
-		model.addAttribute("aulas", reposAula.findAll());
-		model.addAttribute("profesores", profeRepo.findAll());
-	}
+//	public void modelos(Model model) {
+//		model.addAttribute("alumnos", reposAl.findAll());
+//		model.addAttribute("padres", padreRepo.findAll());
+//		model.addAttribute("asignaturas", asigRepo.findAll());
+//		model.addAttribute("aulas", reposAula.findAll());
+//		model.addAttribute("profesores", profeRepo.findAll());
+//	}
 
 }

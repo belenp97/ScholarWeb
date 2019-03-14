@@ -30,7 +30,7 @@ public class UsuarioRepositoryAuthenticationProvider implements AuthenticationPr
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-//	@Override
+	@Override
 	@Transactional
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 		// TODO Auto-generated method stub
@@ -84,7 +84,7 @@ public class UsuarioRepositoryAuthenticationProvider implements AuthenticationPr
 	@Override
 	public boolean supports(Class<?> authentication) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,20 +50,27 @@ public class AdministradorController {
 	private NoticiaRepository notRepo;
 		
 	@RequestMapping(value="", method=RequestMethod.GET)
-	public String administrador(Model model) {
+	public String administrador(Model model, HttpServletRequest request) {
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
 		
-		modelos(model);
-
-		return "administrador";
-	}
-	
-	//Clase con los model 
-	private void modelos(Model model) {
 		model.addAttribute("alumnos", reposAl.findAll());
 		model.addAttribute("padres", padreRepo.findAll());
 		model.addAttribute("asignaturas", asigRepo.findAll());
 		model.addAttribute("noticias", notRepo.findAll());
 		model.addAttribute("aulas", reposAula.findAll());
 		model.addAttribute("profesores", profeRepo.findAll());
+
+		return "administrador";
 	}
+	
+	//Clase con los model 
+//	private void modelos(Model model) {
+//		model.addAttribute("alumnos", reposAl.findAll());
+//		model.addAttribute("padres", padreRepo.findAll());
+//		model.addAttribute("asignaturas", asigRepo.findAll());
+//		model.addAttribute("noticias", notRepo.findAll());
+//		model.addAttribute("aulas", reposAula.findAll());
+//		model.addAttribute("profesores", profeRepo.findAll());
+//	}
 }

@@ -18,19 +18,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
 		 // Users
-		 auth.inMemoryAuthentication().withUser("user").password("pass")
-		 .roles("USER");
-
-		 auth.inMemoryAuthentication().withUser("admin").password("adminpass")
-		 .roles("USER", "ADMIN");
-
-
-		 auth.inMemoryAuthentication().withUser("profesor").password("profpass")
-		 .roles("USER","PROFESOR");
-
-		 auth.inMemoryAuthentication().withUser("padre").password("padrepass")
-		 .roles("USER","PADRE");
-		 
+//		 auth.inMemoryAuthentication().withUser("user").password("pass")
+//		 .roles("USER");
+//
+//		 auth.inMemoryAuthentication().withUser("admin").password("adminpass")
+//		 .roles("USER", "ADMIN");
+//
+//
+//		 auth.inMemoryAuthentication().withUser("profesor").password("profpass")
+//		 .roles("USER","PROFESOR");
+//
+//		 auth.inMemoryAuthentication().withUser("padre").password("padrepass")
+//		 .roles("USER","PADRE");
+//		 
 		 //Database authentication provider,
 		 auth.authenticationProvider(authenticationProvider);
 	}
@@ -45,12 +45,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	  http.authorizeRequests().antMatchers("/login").permitAll();
 	  http.authorizeRequests().antMatchers("/contacto").permitAll();
 	  http.authorizeRequests().antMatchers("/principal").permitAll();
+	  http.authorizeRequests().antMatchers("/administrador").permitAll();
 	  http.authorizeRequests().antMatchers("/css/**");
 	  
 	 // Private pages (all other pages)
-	 http.authorizeRequests().antMatchers("/admin").hasAnyRole("ADMIN");
+//	 http.authorizeRequests().antMatchers("/administrador").hasAnyRole("ADMIN");
 	 http.authorizeRequests().antMatchers("login/pagina_profesor").hasAnyRole("PROFESOR");
 	 http.authorizeRequests().antMatchers("login/pagina_padre").hasAnyRole("PADRE");
+	 
 	 
 	 // Login form
 	 http.formLogin().loginPage("/login");

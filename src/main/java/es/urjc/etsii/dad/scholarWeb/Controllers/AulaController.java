@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,19 +59,22 @@ public class AulaController {
 		model.addAttribute("profesores", profeRepo.findAll());
 	}
 	
-	@RequestMapping(value="", method=RequestMethod.GET)
-	public String verAulas(Model model, HttpServletRequest request) throws Exception {
-
-		modelos(model); 
-		model.addAttribute("aulas", reposAula.findAll());
-
-		return "aulas";
-	}
-	
+//	@RequestMapping(value="", method=RequestMethod.GET)
+//	public String verAulas(Model model, HttpServletRequest request) throws Exception {
+//
+//		modelos(model); 
+//		model.addAttribute("aulas", reposAula.findAll());
+//
+//		return "aulas";
+//	}
+//	
 	@RequestMapping(value="/insertar_aula", method=RequestMethod.GET)
-	public String insertar_aula(Model model, @RequestParam Integer curso,@RequestParam Character letra) {
+	public String insertar_aula(Model model, HttpServletRequest request, @RequestParam Integer curso,@RequestParam Character letra) {
 		
 		try {
+			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+			model.addAttribute("token", token.getToken());
+			
 			modelos(model);
 			Aula a =  reposAula.findByLetra(letra);
 			Aula aula = new Aula(curso,letra);

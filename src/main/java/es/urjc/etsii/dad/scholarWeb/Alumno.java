@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "alumnos")
+//@Table(name = "alumnos")
 public class Alumno extends Usuario{
 	@Column
 	private String apellido1;

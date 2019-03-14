@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "administrador")
+//@Table(name = "administrador")
 public class Administrador extends Usuario{
 
 	@Column

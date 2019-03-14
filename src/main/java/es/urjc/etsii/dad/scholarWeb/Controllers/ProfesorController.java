@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -62,18 +63,22 @@ public class ProfesorController {
 		model.addAttribute("profesores", profeRepo.findAll());
 	}
 	
-	@RequestMapping(value="", method=RequestMethod.GET)
-	public String verProfesores(Model model) {
-
-		modelos(model);
-
-		return "profesores";
-	}
+//	@RequestMapping(value="", method=RequestMethod.GET)
+//	public String verProfesores(Model model, HttpServletRequest request) {
+//		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+//		model.addAttribute("token", token.getToken());
+//		modelos(model);
+//
+//		return "profesores";
+//	}
 	
 	@RequestMapping(value="/insertar_profesor", method=RequestMethod.GET)
-	public String insertar_profesor(Model model, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, /*@RequestParam String correo, @RequestParam cont, */@RequestParam String asignatura, @RequestParam Integer id_alumno, @RequestParam Integer id_aula, @RequestParam String rol, @RequestParam String roles) {
+	public String insertar_profesor(Model model, HttpServletRequest request, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, /*@RequestParam String correo, @RequestParam cont, */@RequestParam String asignatura, @RequestParam Integer id_alumno, @RequestParam Integer id_aula, @RequestParam String rol, @RequestParam String roles) {
 		try {
 //			modelos(model);
+			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+			model.addAttribute("token", token.getToken());
+			
 			String correo = nombre.toLowerCase().charAt(0) +"" +apellido1.toLowerCase().charAt(0) +"" + apellido2.toLowerCase().charAt(0) +"" +"@gmail.com"; 
 			
 			Optional<Aula> aula = reposAula.findById(id_aula);
@@ -103,16 +108,22 @@ public class ProfesorController {
 	}
 	
 	@RequestMapping(value="/eliminar_profesor", method=RequestMethod.GET)
-	public String eliminar_profesor(Model model, @RequestParam Integer id_profesor) {
+	public String eliminar_profesor(Model model, HttpServletRequest request, @RequestParam Integer id_profesor) {
 		try {
+			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+			model.addAttribute("token", token.getToken());
 			modelos(model);
 			Optional<Profesor> profe = profeRepo.findById(id_profesor); 
 			if(profe.get() != null) {
-//				if(profe.get().getid_profesor() == id_profesor) {
-//					profeRepo.deleteById(id_profesor);
-//				}else {
-//					return "administrador";
-//				}
+				if(profe.get().getId() == id_profesor) {
+					
+					model.addAttribute("id_profesor", profe.get().getId()); 
+					model.addAttribute("nombreProfe", profe.get().getNombre() +" " +((Profesor) profe.get()).getApellido1() +" " +((Profesor) profe.get()).getApellido2() +" "); 
+					model.addAttribute("correo", profe.get().getCorreo()); 
+					model.addAttribute("alumnos", ((Profesor) profe.get()).getAlumnos().toString()); 
+					model.addAttribute("asignatura", ((Profesor) profe.get()).getAsignaturas().toString()); 
+					profeRepo.deleteById(id_profesor);
+				}
 			}
 			
 		}catch(Exception e) {

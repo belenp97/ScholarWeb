@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,15 +55,20 @@ public class PadreController {
 	
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public String verPadres(Model model,  HttpServletRequest request) throws Exception {
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
+		
 		modelos(model);
 
 		return "padres";
 	}
 
 	@RequestMapping(value="/insertar_padre", method=RequestMethod.GET)
-	public String insertar_padre(Model model, @RequestParam String nombre,@RequestParam String apellido, @RequestParam String correo, @RequestParam Integer idalumno , @RequestParam String contraseña, @RequestParam String rol, @RequestParam String... roles) {
+	public String insertar_padre(Model model, HttpServletRequest request,  @RequestParam String nombre,@RequestParam String apellido, @RequestParam String correo, @RequestParam Integer idalumno , @RequestParam String contraseña, @RequestParam String rol, @RequestParam String... roles) {
 
 		try {
+			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+			model.addAttribute("token", token.getToken());
 			modelos(model);
 			Optional<Alumno> a= reposAl.findById(idalumno);
 			Alumno alum = a.get();
@@ -81,8 +87,10 @@ public class PadreController {
 	}
 	
 	@RequestMapping(value="/eliminar_padre", method=RequestMethod.GET)
-	public String eliminar_padre(Model model, @RequestParam Integer id_padre){
+	public String eliminar_padre(Model model,HttpServletRequest request, @RequestParam Integer id_padre){
 		try {
+			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+			model.addAttribute("token", token.getToken());
 			modelos(model);
 			if(id_padre > 0) {
 				padreRepo.deleteById(id_padre);

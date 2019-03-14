@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,15 +40,20 @@ class LoginController {
 	private AdminRepository adminRepo;
 	
 	@RequestMapping(value="", method=RequestMethod.GET)
-	public String login(Model model) {
+	public String login(Model model, HttpServletRequest request) {
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
+		
 		model.addAttribute("admin", adminRepo.findAll());
 		
 		return "login";
 	}
 	
 	@RequestMapping(value="/{nombre}", method=RequestMethod.POST)
-	public String loginPrivado(Model model, @RequestParam String correo, @RequestParam String contraseña) {
+	public String loginPrivado(Model model, HttpServletRequest request,  @RequestParam String correo, @RequestParam String contraseña) {
 		try {
+			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+			model.addAttribute("token", token.getToken());
 			/*Administrador administrador = adminRepo.findByCorreo(correo);
 			if(administrador.getPass().equals(contraseña)) {*/
 				return "/login_privado"; 
@@ -61,6 +67,8 @@ class LoginController {
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logout(Model model, HttpServletRequest request) {
 		try {
+			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+			model.addAttribute("token", token.getToken());
 			request.logout();
 			return "/login";
 		} catch (ServletException e) {

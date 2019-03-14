@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,19 +57,24 @@ public class AsignaturaController {
 		model.addAttribute("profesores", profeRepo.findAll());
 	}
 	
-	@RequestMapping("")
-	public String verAsignaturas(Model model,  HttpServletRequest request) throws Exception {
-
-		modelos(model); 
-		model.addAttribute("padres", asigRepo.findAll());
-
-		return "padres";
-	}
+//	@RequestMapping("")
+//	public String verAsignaturas(Model model,  HttpServletRequest request) throws Exception {
+//		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+//		model.addAttribute("token", token.getToken());
+//		
+//		modelos(model); 
+//		model.addAttribute("padres", asigRepo.findAll());
+//
+//		return "padres";
+//	}
 	
 	@RequestMapping(value="/insertar_asignatura", method=RequestMethod.GET)
-	public String insertar_asignatura(Model model, @RequestParam String nombre,@RequestParam int curso) {
+	public String insertar_asignatura(Model model, HttpServletRequest request, @RequestParam String nombre,@RequestParam int curso) {
 		
 		try {
+			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+			model.addAttribute("token", token.getToken());
+			
 			modelos(model);
 			Asignatura asignatura = new Asignatura( nombre, curso);
 			asigRepo.save(asignatura); 
@@ -79,9 +85,12 @@ public class AsignaturaController {
 	}
 	
 	@RequestMapping(value="/eliminar_asignatura", method=RequestMethod.GET)
-	public String eliminar_asignatura(Model model, @RequestParam Integer id) {
+	public String eliminar_asignatura(Model model, HttpServletRequest request, @RequestParam Integer id) {
 		
 		try {
+			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+			model.addAttribute("token", token.getToken());
+			
 			modelos(model);
 			asigRepo.deleteById(id);
 		}catch(Exception e) {

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +34,7 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.PadreRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 
 
-@Controller
+@RestController
 @RequestMapping("/alumno")
 public class AlumnoController {
 	@Autowired
@@ -54,25 +55,37 @@ public class AlumnoController {
 	@Autowired
 	private ProfesorRepository profeRepo;
 	
-	private void modelos(Model model) {
-		model.addAttribute("alumnos", reposAl.findAll());
-		model.addAttribute("padres", padreRepo.findAll());
-		model.addAttribute("asignaturas", asigRepo.findAll());
-		model.addAttribute("noticias", notRepo.findAll());
-		model.addAttribute("aulas", reposAula.findAll());
-		model.addAttribute("profesores", profeRepo.findAll());
-	}
+//	private void modelos(Model model) {
+//		model.addAttribute("alumnos", reposAl.findAll());
+//		model.addAttribute("padres", padreRepo.findAll());
+//		model.addAttribute("asignaturas", asigRepo.findAll());
+//		model.addAttribute("noticias", notRepo.findAll());
+//		model.addAttribute("aulas", reposAula.findAll());
+//		model.addAttribute("profesores", profeRepo.findAll());
+//	}
 	
-	@RequestMapping("")
-	public String verAlumnos(Model model,  HttpServletRequest request) throws Exception {
-		modelos(model);
-
-		return "alumnos";
-	}
+//	@RequestMapping("")
+//	public String verAlumnos(Model model, HttpServletRequest request) throws Exception {
+////		modelos(model);
+//		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+//		model.addAttribute("token", token.getToken());
+//		
+//		model.addAttribute("alumnos", reposAl.findAll());
+//		model.addAttribute("padres", padreRepo.findAll());
+//		model.addAttribute("asignaturas", asigRepo.findAll());
+//		model.addAttribute("noticias", notRepo.findAll());
+//		model.addAttribute("aulas", reposAula.findAll());
+//		model.addAttribute("profesores", profeRepo.findAll());
+//		
+//		return "alumnos";
+//	}
 		
 	@RequestMapping(value="/insertar_alumno", method=RequestMethod.GET)
-	public String insertar_alumno(Model model, @RequestParam String nombre,@RequestParam String apellido1, @RequestParam String apellido2, @RequestParam Integer idprofe, @RequestParam Integer idasig, @RequestParam Integer idaula,String contraseña, String rol, String... roles) {	
+	public String insertar_alumno(Model model,HttpServletRequest request,  @RequestParam String nombre,@RequestParam String apellido1, @RequestParam String apellido2, @RequestParam Integer idprofe, @RequestParam Integer idasig, @RequestParam Integer idaula,String contraseña, String rol, String... roles) {	
 		try {
+			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+			model.addAttribute("token", token.getToken());
+			
 			Optional<Aula> aul = reposAula.findById(idaula);
 			Optional<Asignatura> asig = asigRepo.findById(idasig);
 			Optional<Profesor> prof = profeRepo.findById(idprofe);
@@ -96,20 +109,31 @@ public class AlumnoController {
 	}
 		
 	@RequestMapping(value="/eliminar_alumno" , method=RequestMethod.GET)
-	public String eliminar_alumno(Model model, @RequestParam Integer nexp) {	
+	public String eliminar_alumno(Model model,HttpServletRequest request , @RequestParam Integer nexp) {	
 		try {
-			modelos(model);
+//			modelos(model);
+			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+			model.addAttribute("token", token.getToken());
+			
 			Optional<Alumno> alumno = reposAl.findById(nexp);
 			Padre p = alumno.get().getPadre(); 
 			if(p != null) {
 				padreRepo.delete(p);
 			}
+			model.addAttribute("nexp", alumno.get().getId()); 
+			model.addAttribute("nombreAlum", alumno.get().getNombre() +" " + alumno.get().getApellido1() +" " + alumno.get().getApellido2() +" "); 
+			model.addAttribute("curso", alumno.get().getAula().getCurso() +" " +alumno.get().getAula().getLetra() +" "); 
+			model.addAttribute("nombreasig", alumno.get().getAsignaturas().toString()); 
+			model.addAttribute("nombreprofesor", alumno.get().getProfesores().toString()); 
+			
 			reposAl.deleteById(nexp); 
+
+			return "formularioAceptadoAlum";
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return "administrador";
+		return "formularioError";
 	}
 }
 	
