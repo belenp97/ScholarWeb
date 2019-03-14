@@ -50,14 +50,14 @@ public class AulaController {
 	private ProfesorRepository profeRepo;
 	
 	
-	private void modelos(Model model) {
-		model.addAttribute("alumnos", reposAl.findAll());
-		model.addAttribute("padres", padreRepo.findAll());
-		model.addAttribute("asignaturas", asigRepo.findAll());
-		model.addAttribute("noticias", notRepo.findAll());
-		model.addAttribute("aulas", reposAula.findAll());
-		model.addAttribute("profesores", profeRepo.findAll());
-	}
+//	private void modelos(Model model) {
+//		model.addAttribute("alumnos", reposAl.findAll());
+//		model.addAttribute("padres", padreRepo.findAll());
+//		model.addAttribute("asignaturas", asigRepo.findAll());
+//		model.addAttribute("noticias", notRepo.findAll());
+//		model.addAttribute("aulas", reposAula.findAll());
+//		model.addAttribute("profesores", profeRepo.findAll());
+//	}
 	
 //	@RequestMapping(value="", method=RequestMethod.GET)
 //	public String verAulas(Model model, HttpServletRequest request) throws Exception {
@@ -68,24 +68,26 @@ public class AulaController {
 //		return "aulas";
 //	}
 //	
-	@RequestMapping(value="/insertar_aula", method=RequestMethod.GET)
-	public String insertar_aula(Model model, HttpServletRequest request, @RequestParam Integer curso,@RequestParam Character letra) {
+	@RequestMapping("/insertar_aula")
+	public String insertar_aula(Model model, /*HttpServletRequest request,*/ @RequestParam Integer curso,@RequestParam Character letra) {
+//		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+//		model.addAttribute("token", token.getToken());
 		
 		try {
-			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-			model.addAttribute("token", token.getToken());
-			
-			modelos(model);
 			Aula a =  reposAula.findByLetra(letra);
 			Aula aula = new Aula(curso,letra);
 			if(a==null || a.getCurso() == curso && a.getLetra() != letra || a.getCurso() != curso && a.getLetra() == letra) {
-				reposAula.save(aula); 
+				reposAula.save(aula);
+				model.addAttribute("id", aula.getIdAula());
+				model.addAttribute("curso", curso);
+				model.addAttribute("letra", letra);
+				return "formularioAceptAula";
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		return "administrador";
+		return "formularioError";
 	}
 	
 	/*@RequestMapping(value="/eliminar_aula")

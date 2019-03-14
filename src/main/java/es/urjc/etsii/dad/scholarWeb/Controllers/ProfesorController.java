@@ -33,7 +33,7 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 
 
 @Controller
-@RequestMapping("/profesores")
+@RequestMapping("/profesor")
 public class ProfesorController {
 	
 	@Autowired
@@ -54,14 +54,14 @@ public class ProfesorController {
 	@Autowired
 	private ProfesorRepository profeRepo;
 	
-	private void modelos(Model model) {
-		model.addAttribute("alumnos", reposAl.findAll());
-		model.addAttribute("padres", padreRepo.findAll());
-		model.addAttribute("asignaturas", asigRepo.findAll());
-		model.addAttribute("noticias", notRepo.findAll());
-		model.addAttribute("aulas", reposAula.findAll());
-		model.addAttribute("profesores", profeRepo.findAll());
-	}
+//	private void modelos(Model model) {
+//		model.addAttribute("alumnos", reposAl.findAll());
+//		model.addAttribute("padres", padreRepo.findAll());
+//		model.addAttribute("asignaturas", asigRepo.findAll());
+//		model.addAttribute("noticias", notRepo.findAll());
+//		model.addAttribute("aulas", reposAula.findAll());
+//		model.addAttribute("profesores", profeRepo.findAll());
+//	}
 	
 //	@RequestMapping(value="", method=RequestMethod.GET)
 //	public String verProfesores(Model model, HttpServletRequest request) {
@@ -112,7 +112,7 @@ public class ProfesorController {
 		try {
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 			model.addAttribute("token", token.getToken());
-			modelos(model);
+//			modelos(model);
 			Optional<Profesor> profe = profeRepo.findById(id_profesor); 
 			if(profe.get() != null) {
 				if(profe.get().getId() == id_profesor) {
@@ -123,13 +123,15 @@ public class ProfesorController {
 					model.addAttribute("alumnos", ((Profesor) profe.get()).getAlumnos().toString()); 
 					model.addAttribute("asignatura", ((Profesor) profe.get()).getAsignaturas().toString()); 
 					profeRepo.deleteById(id_profesor);
+					
+					return "formularioAceptadoProfe";
 				}
 			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}	
-		return "administrador";
+		return "formularioError";
 	}
 	
 }

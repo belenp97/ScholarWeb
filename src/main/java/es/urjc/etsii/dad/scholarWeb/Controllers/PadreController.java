@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import es.urjc.etsii.dad.scholarWeb.Alumno;
 import es.urjc.etsii.dad.scholarWeb.Padre;
+import es.urjc.etsii.dad.scholarWeb.Profesor;
+import es.urjc.etsii.dad.scholarWeb.Usuario;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AlumnoRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AsignaturaRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AulaRepository;
@@ -22,7 +24,7 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.PadreRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 
 @Controller
-@RequestMapping("/padres")
+@RequestMapping("/padre")
 public class PadreController {
 	
 	@Autowired
@@ -44,46 +46,51 @@ public class PadreController {
 	private ProfesorRepository profeRepo;
 	
 	
-	private void modelos(Model model) {
-		model.addAttribute("alumnos", reposAl.findAll());
-		model.addAttribute("padres", padreRepo.findAll());
-		model.addAttribute("asignaturas", asigRepo.findAll());
-		model.addAttribute("noticias", notRepo.findAll());
-		model.addAttribute("aulas", reposAula.findAll());
-		model.addAttribute("profesores", profeRepo.findAll());
-	}
+//	private void modelos(Model model) {
+//		model.addAttribute("alumnos", reposAl.findAll());
+//		model.addAttribute("padres", padreRepo.findAll());
+//		model.addAttribute("asignaturas", asigRepo.findAll());
+//		model.addAttribute("noticias", notRepo.findAll());
+//		model.addAttribute("aulas", reposAula.findAll());
+//		model.addAttribute("profesores", profeRepo.findAll());
+//	}
 	
-	@RequestMapping(value="", method=RequestMethod.GET)
-	public String verPadres(Model model,  HttpServletRequest request) throws Exception {
-		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-		model.addAttribute("token", token.getToken());
-		
-		modelos(model);
-
-		return "padres";
-	}
+//	@RequestMapping(value="", method=RequestMethod.GET)
+//	public String verPadres(Model model,  HttpServletRequest request) throws Exception {
+//		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+//		model.addAttribute("token", token.getToken());
+//		
+//		modelos(model);
+//
+//		return "padres";
+//	}
 
 	@RequestMapping(value="/insertar_padre", method=RequestMethod.GET)
 	public String insertar_padre(Model model, HttpServletRequest request,  @RequestParam String nombre,@RequestParam String apellido, @RequestParam String correo, @RequestParam Integer idalumno , @RequestParam String contraseña, @RequestParam String rol, @RequestParam String... roles) {
-
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
 		try {
-			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-			model.addAttribute("token", token.getToken());
-			modelos(model);
+			
+//			modelos(model);
 			Optional<Alumno> a= reposAl.findById(idalumno);
-			Alumno alum = a.get();
 			Padre pa = padreRepo.findBycorreoEquals(correo); 
 			if(pa.getCorreo() == correo) {
-				Padre padre = new Padre(nombre,apellido,correo, contraseña, rol, roles);
-				padre.setApellido(apellido);
-				alum.setPadre(padre);
+				Usuario padre = (Padre)new Padre(nombre,apellido,correo, contraseña, rol, roles);
+				a.get().setPadre((Padre) padre);
 				padreRepo.saveAndFlush(padre); 
+				
+				model.addAttribute("id_padre", padre.getId()); 
+				model.addAttribute("nombrePadre", padre.getNombre() +" " +((Padre) padre).getApellido() +" ") ; 
+				model.addAttribute("correo", padre.getCorreo()); 
+				model.addAttribute("alumnos", ((Padre) padre).getAlumno().toString()); 
+				
+				return "formularioAceptadoPadre";
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 			
-		return "administrador";
+		return "formularioError";
 	}
 	
 	@RequestMapping(value="/eliminar_padre", method=RequestMethod.GET)
@@ -91,14 +98,22 @@ public class PadreController {
 		try {
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 			model.addAttribute("token", token.getToken());
-			modelos(model);
+//			modelos(model);
+			Optional<Padre> padre = padreRepo.findById(id_padre); 
+			
 			if(id_padre > 0) {
 				padreRepo.deleteById(id_padre);
+				model.addAttribute("id_padre", padre.get().getId()); 
+				model.addAttribute("nombrePadre", padre.get().getNombre() +" " +((Padre) padre.get()).getApellido() +" "); 
+				model.addAttribute("correo", padre.get().getCorreo()); 
+				model.addAttribute("alumnos", ((Padre) padre.get()).getAlumno().toString()); 
+				
+				return "formularioAceptPadre";
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return "administrador";
+		return "formularioError";
 	}
 	
 }

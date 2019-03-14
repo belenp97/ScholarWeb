@@ -34,7 +34,7 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.PadreRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 
 
-@RestController
+@Controller
 @RequestMapping("/alumno")
 public class AlumnoController {
 	@Autowired
@@ -79,8 +79,8 @@ public class AlumnoController {
 //		
 //		return "alumnos";
 //	}
-		
-	@RequestMapping(value="/insertar_alumno", method=RequestMethod.GET)
+		private Alumno alumno; 
+	@RequestMapping(value="/insertar_alumno", method=RequestMethod.POST)
 	public String insertar_alumno(Model model,HttpServletRequest request,  @RequestParam String nombre,@RequestParam String apellido1, @RequestParam String apellido2, @RequestParam Integer idprofe, @RequestParam Integer idasig, @RequestParam Integer idaula,String contraseña, String rol, String... roles) {	
 		try {
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
@@ -88,7 +88,7 @@ public class AlumnoController {
 			
 			Optional<Aula> aul = reposAula.findById(idaula);
 			Optional<Asignatura> asig = asigRepo.findById(idasig);
-			Optional<Profesor> prof = profeRepo.findById(idprofe);
+//			Optional<Profesor> prof = profeRepo.findById(idprofe);
 			Usuario alumno = new Alumno(nombre, apellido1, apellido2,asig.get().getNombre(), aul.get().toString(), null, null, null, null);
 			Alumno al = reposAl.findBynombreEquals(nombre); 
 			if(al==(null) || !al.equals(alumno) ) {
@@ -108,7 +108,7 @@ public class AlumnoController {
 		return "formularioError";
 	}
 		
-	@RequestMapping(value="/eliminar_alumno" , method=RequestMethod.GET)
+	@RequestMapping(value="/eliminar_alumno" , method=RequestMethod.POST)
 	public String eliminar_alumno(Model model,HttpServletRequest request , @RequestParam Integer nexp) {	
 		try {
 //			modelos(model);

@@ -49,7 +49,7 @@ public class AdministradorController {
 	@Autowired
 	private NoticiaRepository notRepo;
 		
-	@RequestMapping(value="", method=RequestMethod.GET)
+	@RequestMapping("")
 	public String administrador(Model model, HttpServletRequest request) {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
