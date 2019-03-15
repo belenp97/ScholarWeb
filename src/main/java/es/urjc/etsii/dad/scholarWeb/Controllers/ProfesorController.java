@@ -54,40 +54,23 @@ public class ProfesorController {
 	@Autowired
 	private ProfesorRepository profeRepo;
 	
-//	private void modelos(Model model) {
-//		model.addAttribute("alumnos", reposAl.findAll());
-//		model.addAttribute("padres", padreRepo.findAll());
-//		model.addAttribute("asignaturas", asigRepo.findAll());
-//		model.addAttribute("noticias", notRepo.findAll());
-//		model.addAttribute("aulas", reposAula.findAll());
-//		model.addAttribute("profesores", profeRepo.findAll());
-//	}
 	
-//	@RequestMapping(value="", method=RequestMethod.GET)
-//	public String verProfesores(Model model, HttpServletRequest request) {
-//		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-//		model.addAttribute("token", token.getToken());
-//		modelos(model);
-//
-//		return "profesores";
-//	}
-	
-	@RequestMapping(value="/insertar_profesor", method=RequestMethod.GET)
-	public String insertar_profesor(Model model, HttpServletRequest request, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, /*@RequestParam String correo, @RequestParam cont, */@RequestParam String asignatura, @RequestParam Integer id_alumno, @RequestParam Integer id_aula, @RequestParam String rol, @RequestParam String roles) {
-		try {
-//			modelos(model);
+	@RequestMapping("/insertar_profesor")
+	public String insertar_profesor(Model model, HttpServletRequest request, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, @RequestParam String asignatura,  @RequestParam Integer id_aula) {
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 			model.addAttribute("token", token.getToken());
 			
-			String correo = nombre.toLowerCase().charAt(0) +"" +apellido1.toLowerCase().charAt(0) +"" + apellido2.toLowerCase().charAt(0) +"" +"@gmail.com"; 
+			String correo = nombre.toLowerCase() +"." +apellido1.toLowerCase()+"." +apellido2.toLowerCase() +"@gmail.com"; 
+			String contrasena = "@" +nombre.toLowerCase() +"." +apellido1.toLowerCase()+"_" +"." +apellido1.toLowerCase()+"_";
 			
+		try {	
 			Optional<Aula> aula = reposAula.findById(id_aula);
-			Optional<Alumno> alumno = reposAl.findById(id_alumno);
+			Aula aul = aula.get() ;
 			Asignatura asig = asigRepo.findBynombreEquals(asignatura);
 			Profesor profe = profeRepo.findBynombreEquals(nombre);  
 			if(profe ==null || profe.getCorreo() != correo) {
 				
-				Usuario profesor = (Profesor) new Profesor(nombre, apellido1, apellido2, asig, alumno.get(), aula.get(),correo, null, null);
+				Usuario profesor = (Profesor) new Profesor(nombre, apellido1, apellido2, asig, aul.getAlumnos_curso().get(0), aula.get(),correo,contrasena, "PROFESOR", "USER");
 				profeRepo.saveAndFlush((Profesor) profesor);
 				
 				model.addAttribute("id_profesor", profesor.getId()); 
@@ -107,24 +90,24 @@ public class ProfesorController {
 		return "formularioError";
 	}
 	
-	@RequestMapping(value="/eliminar_profesor", method=RequestMethod.GET)
+	@RequestMapping(value="/eliminar_profesor", method=RequestMethod.POST)
 	public String eliminar_profesor(Model model, HttpServletRequest request, @RequestParam Integer id_profesor) {
 		try {
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 			model.addAttribute("token", token.getToken());
-//			modelos(model);
-			Optional<Profesor> profe = profeRepo.findById(id_profesor); 
-			if(profe.get() != null) {
-				if(profe.get().getId() == id_profesor) {
-					
-					model.addAttribute("id_profesor", profe.get().getId()); 
-					model.addAttribute("nombreProfe", profe.get().getNombre() +" " +((Profesor) profe.get()).getApellido1() +" " +((Profesor) profe.get()).getApellido2() +" "); 
-					model.addAttribute("correo", profe.get().getCorreo()); 
-					model.addAttribute("alumnos", ((Profesor) profe.get()).getAlumnos().toString()); 
-					model.addAttribute("asignatura", ((Profesor) profe.get()).getAsignaturas().toString()); 
+
+			Optional<Profesor> p = profeRepo.findById(id_profesor); 
+			Usuario profesor = p.get();
+			if(p.get() != null) {
+				if(p.get().getId() == id_profesor) {
+					model.addAttribute("id_profesor", profesor.getId()); 
+					model.addAttribute("nombreProfe", profesor.getNombre() +" " +((Profesor) profesor).getApellido1() +" " +((Profesor) profesor).getApellido2() +" "); 
+					model.addAttribute("correo", profesor.getCorreo()); 
+					model.addAttribute("alumnos",((Profesor) profesor).getAlumnos().toString()); 
+					model.addAttribute("asignatura", ((Profesor) profesor).getAsignaturas().toString()); 
 					profeRepo.deleteById(id_profesor);
 					
-					return "formularioAceptadoProfe";
+					return "formularioAceptProfesor";
 				}
 			}
 			

@@ -17,7 +17,7 @@ import javax.persistence.Id;
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Integer id;
 	@Column
 	private String nombre;
 	@Column
@@ -48,7 +48,7 @@ public class Usuario {
 	
 	/** Métodos de acceso a atributos de Usuario**/
 	
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 	

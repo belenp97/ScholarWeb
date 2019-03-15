@@ -84,8 +84,4 @@ public class Aula {
 		return "Aula [idAula=" + idAula + ", Curso=" + Curso + ", letra=" + letra + ", alumnos_curso=" + alumnos_curso
 				+ ", profesores_curso=" + profesores_aula + "]";
 	}
-	
-	
-
-
 }

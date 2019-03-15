@@ -11,8 +11,6 @@ public class Padre extends Usuario {
 
 	@Column
 	private String apellido;
-	@Column
-	private String nombre;
 
 	@OneToMany(mappedBy = "padre_alumno", targetEntity = Alumno.class)
 	private List<Alumno> alumno = new ArrayList<>();
@@ -27,21 +25,11 @@ public class Padre extends Usuario {
 		
 	}
 
-	public Padre(String n, String correo, Alumno a, String ap, String contraseña, String rol, String... roles) {
+	public Padre(String n,String ap, String correo, Alumno a, String contraseña, String rol, String... roles) {
 		super(n,correo,contraseña,rol,roles);
-//		this.id_padre = (int) Math.ceil(Math.random() * 1000);
-//		this.correo = correo;
 		this.apellido = ap;
 		alumno.add(a); 
 	}
-
-//	public long getid_padre() {
-//		return id_padre;
-//	}
-//
-//	public void setid_padre(int id_padre) {
-//		this.id_padre = id_padre;
-//	}
 
 	public String getApellido() {
 		return apellido;
@@ -59,26 +47,11 @@ public class Padre extends Usuario {
 		this.alumno = alumno;
 	}
 
-//	public String getCorreo() {
-//		return correo;
-//	}
-//
-//	public void setCorreo(String correo) {
-//		this.correo = correo;
-//	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
 	@Override
 	public String toString() {
-		return "Padre [alumno=" + " nombre " + nombre + " apellido " + apellido + ", correo=" /*+ correo*/ + "]";
+		return  this.getNombre() + " " +apellido ;
 	}
+
 
 	/*
 	 * FUNCIONES PROPIAS public void VerDatos() {} public void VerFaltas(){} public

@@ -25,7 +25,6 @@ public class Alumno extends Usuario{
 	private List<Profesor> profesores = new ArrayList<>();
 
 	@ManyToOne(targetEntity = Aula.class, fetch = FetchType.LAZY)
-	@JoinColumn(name = "aula", nullable = false)
 	private Aula aula;
 
 	@ManyToOne(targetEntity = Padre.class, fetch = FetchType.LAZY)
@@ -40,7 +39,17 @@ public class Alumno extends Usuario{
 	}
 	
 	
-	public Alumno(String n, String a1, String a2, Asignatura asig, Aula aula,String correo, String contraseña, String rol, String... roles) {
+	public Alumno(String n, String a1, String a2, Asignatura asig, Aula aula, Profesor profe, String correo, String contraseña, String rol, String... roles) {
+		super(n, correo, contraseña, rol, roles);
+		this.apellido1 = a1;
+		this.apellido2 = a2;
+//		this.nexpediente = (int)Math.floor(Math.random()) *1+1000;
+		this.asignaturas.add(asig);  
+		this.aula = aula; 
+		this.profesores.add(profe);
+		this.padre_alumno = null; 
+	}
+	public Alumno(String n, String a1, String a2, Asignatura asig, Aula aula, String correo, String contraseña, String rol, String... roles) {
 		super(n, correo, contraseña, rol, roles);
 		this.apellido1 = a1;
 		this.apellido2 = a2;
@@ -93,14 +102,6 @@ public class Alumno extends Usuario{
 		this.apellido2 = apellido;
 	}
 
-//	public long getNexpediente() {
-//		return nexpediente;
-//	}
-//
-//	public void setNexpediente(int n_expediente) {
-//		this.nexpediente = n_expediente;
-//	}
-
 	public List<Asignatura> getAsignaturas() {
 		return asignaturas;
 	}
@@ -125,12 +126,16 @@ public class Alumno extends Usuario{
 		this.padre_alumno = padre_alumno;
 	}
 
+	public void deletePadre(Padre padre) {
+		this.padre_alumno = null; 
+	}
+	
 	@Override
 	public String toString() {
-		return "Alumno [nexpediente=" /*+ nexpediente*/ + ", nombre=" + this.getNombre() + ", apellido1=" + apellido1 + ", apellido2="
-				+ apellido2 + ", faltas=" + faltas + "]";
+		return "Alumno [apellido1=" + apellido1 + ", apellido2=" + apellido2 + ", faltas=" + faltas + ", asignaturas=" +asignaturas +"]";
 	}
 
+	
 	/*
 	 * FUNCIONES PROPIAS public void VerDatos() {} public void VerNotas(Asignatura
 	 * a) {} public void VerFaltas(Asignatura a) {} public void VerFaltasTotales()

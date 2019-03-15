@@ -45,46 +45,35 @@ public class PadreController {
 	@Autowired
 	private ProfesorRepository profeRepo;
 	
-	
-//	private void modelos(Model model) {
-//		model.addAttribute("alumnos", reposAl.findAll());
-//		model.addAttribute("padres", padreRepo.findAll());
-//		model.addAttribute("asignaturas", asigRepo.findAll());
-//		model.addAttribute("noticias", notRepo.findAll());
-//		model.addAttribute("aulas", reposAula.findAll());
-//		model.addAttribute("profesores", profeRepo.findAll());
-//	}
-	
-//	@RequestMapping(value="", method=RequestMethod.GET)
-//	public String verPadres(Model model,  HttpServletRequest request) throws Exception {
-//		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-//		model.addAttribute("token", token.getToken());
-//		
-//		modelos(model);
-//
-//		return "padres";
-//	}
-
-	@RequestMapping(value="/insertar_padre", method=RequestMethod.GET)
-	public String insertar_padre(Model model, HttpServletRequest request,  @RequestParam String nombre,@RequestParam String apellido, @RequestParam String correo, @RequestParam Integer idalumno , @RequestParam String contraseña, @RequestParam String rol, @RequestParam String... roles) {
+	@RequestMapping(value="/insertar_padre", method=RequestMethod.POST)
+	public String insertar_padre(Model model, HttpServletRequest request,  @RequestParam String nombre,@RequestParam String apellido, @RequestParam Integer idalumno ) {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
+		
+		Optional<Alumno> a = reposAl.findById(idalumno); 
+		
+		String correo = nombre.toLowerCase() +"." +apellido.toLowerCase() +"@gmail.com"; 
+		String contrasena = "@" +nombre.toLowerCase() +"." +apellido.toLowerCase()+"_" +a.get().getNombre().toLowerCase()+"." +a.get().getApellido1().toLowerCase()+"";
+		
 		try {
-			
-//			modelos(model);
-			Optional<Alumno> a= reposAl.findById(idalumno);
+			Usuario padre = null; 
 			Padre pa = padreRepo.findBycorreoEquals(correo); 
-			if(pa.getCorreo() == correo) {
-				Usuario padre = (Padre)new Padre(nombre,apellido,correo, contraseña, rol, roles);
-				a.get().setPadre((Padre) padre);
+			if(pa == null || (pa.getCorreo() != correo) ) {
+				if(a.isPresent()) {
+					a= reposAl.findById(idalumno);
+					a.get().setPadre((Padre) padre);
+					padre = (Padre)new Padre(nombre,apellido,correo, a.get(), contrasena, "PADRE", "USER");
+					
+				}else {
+					padre = (Padre)new Padre(nombre,apellido,correo, contrasena, "PADRE", "USER");
+				}
 				padreRepo.saveAndFlush(padre); 
 				
 				model.addAttribute("id_padre", padre.getId()); 
 				model.addAttribute("nombrePadre", padre.getNombre() +" " +((Padre) padre).getApellido() +" ") ; 
 				model.addAttribute("correo", padre.getCorreo()); 
-				model.addAttribute("alumnos", ((Padre) padre).getAlumno().toString()); 
 				
-				return "formularioAceptadoPadre";
+				return "formularioAceptPadre";
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -93,20 +82,26 @@ public class PadreController {
 		return "formularioError";
 	}
 	
-	@RequestMapping(value="/eliminar_padre", method=RequestMethod.GET)
+	@RequestMapping(value="/eliminar_padre", method=RequestMethod.POST)
 	public String eliminar_padre(Model model,HttpServletRequest request, @RequestParam Integer id_padre){
 		try {
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 			model.addAttribute("token", token.getToken());
 //			modelos(model);
 			Optional<Padre> padre = padreRepo.findById(id_padre); 
+			for(int i=0; i< padre.get().getAlumno().size(); i++) {
+				Optional<Alumno> alumno = reposAl.findById(padre.get().getAlumno().get(i).getId()); 
+				alumno.get().deletePadre(padre.get());
+			}
 			
 			if(id_padre > 0) {
+				
 				padreRepo.deleteById(id_padre);
+				
 				model.addAttribute("id_padre", padre.get().getId()); 
-				model.addAttribute("nombrePadre", padre.get().getNombre() +" " +((Padre) padre.get()).getApellido() +" "); 
+				model.addAttribute("nombrePadre", padre.get().getNombre() +" " +padre.get().getApellido() +" ") ; 
 				model.addAttribute("correo", padre.get().getCorreo()); 
-				model.addAttribute("alumnos", ((Padre) padre.get()).getAlumno().toString()); 
+				model.addAttribute("hijo", padre.get().getAlumno().toString()); 
 				
 				return "formularioAceptPadre";
 			}

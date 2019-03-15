@@ -28,7 +28,7 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.PadreRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 
 @Controller
-@RequestMapping("/asignaturas")
+@RequestMapping("/asignatura")
 public class AsignaturaController {
 	
 	@Autowired
@@ -49,47 +49,29 @@ public class AsignaturaController {
 	@Autowired
 	private NoticiaRepository notRepo;
 	
-//	public void modelos(Model model) {
-//		model.addAttribute("alumnos", reposAl.findAll());
-//		model.addAttribute("padres", padreRepo.findAll());
-//		model.addAttribute("asignaturas", asigRepo.findAll());
-//		model.addAttribute("noticias", notRepo.findAll());
-//		model.addAttribute("aulas", reposAula.findAll());
-//		model.addAttribute("profesores", profeRepo.findAll());
-//	}
-	
-//	@RequestMapping("")
-//	public String verAsignaturas(Model model,  HttpServletRequest request) throws Exception {
-//		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-//		model.addAttribute("token", token.getToken());
-//		
-//		modelos(model); 
-//		model.addAttribute("padres", asigRepo.findAll());
-//
-//		return "padres";
-//	}
-	
-	@RequestMapping(value="/insertar_asignatura", method=RequestMethod.GET)
+	@RequestMapping(value="/insertar_asignatura", method=RequestMethod.POST)
 	public String insertar_asignatura(Model model, HttpServletRequest request, @RequestParam String nombre,@RequestParam int curso) {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 			model.addAttribute("token", token.getToken());
 		try {
-			Asignatura asignatura = new Asignatura( nombre, curso);
+			Asignatura asignatura = new Asignatura(nombre, curso);
 			Asignatura asig = asigRepo.findBynombreEquals(nombre); 
 			if(asignatura != asig) {
 				asigRepo.save(asignatura);
 			
-				model.addAttribute("nombre", nombre);
-				model.addAttribute("curso", curso);
+				model.addAttribute("nombre", asig.getNombre());
+				model.addAttribute("curso", asig.getCurso());
 				
+
+				return "formularioAceptAsignatura";
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return "administrador";
+		return "formularioError";
 	}
 	
-	@RequestMapping(value="/eliminar_asignatura", method=RequestMethod.GET)
+	@RequestMapping(value="/eliminar_asignatura", method=RequestMethod.POST)
 	public String eliminar_asignatura(Model model, HttpServletRequest request, @RequestParam Integer id) {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 			model.addAttribute("token", token.getToken());
@@ -99,7 +81,6 @@ public class AsignaturaController {
 		
 			model.addAttribute("nombre", asig.get().getNombre());
 			model.addAttribute("curso", asig.get().getCurso());
-			model.addAttribute("profesor", asig.get().getProfesorPorAsignatura());
 			
 			asigRepo.deleteById(id);
 			

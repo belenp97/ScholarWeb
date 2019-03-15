@@ -80,7 +80,7 @@
 						<div class="col_mysql">
 							<div class="col_mysql">
 								<label class="center">id Aula</label> 
-								<input type="text" name="id" class="form-mysql ">
+								<input type="text" name="idaula" class="form-mysql ">
 							</div>
 						</div>
 						<div class="col_mysql_boton center">
@@ -116,15 +116,15 @@
 								  	<th>Nombre</th>
 								    <th>Apellido 1</th>
 								    <th>Apellido 2</th>
-								    <th>Asignatura</th>
+								    <th>Correo</th>
 								  </tr>
 								  {{#alumnos}}
 								  <tr class="center">
-								    <td>{{nexpediente}}</td>
+								    <td>{{id}}</td>
 								    <td>{{nombre}}</td>
 								    <td>{{apellido1}}</td>
 								    <td>{{apellido2}}</td>
-								    
+								    <td>{{correo}}</td>
 								  </tr>
 								  {{/alumnos}}
 								</table>
@@ -136,20 +136,14 @@
 						<h1><strong><label id="center">Padre/Tutor</label></strong></h1>
 						<div class="col_mysql">
 							<div class="col_mysql ">
-							<label class="center">Correo</label> 
-								<input type="email" name="correo" class="form-mysql">
+							<label class="center">Nombre</label> 
+								<input type="text" name="nombre" class="form-mysql">
 							</div>
 						</div>
 						<div class="col_mysql">
 							<div class="col_mysql">
 								<label class="center">Apellido</label> 
 								<input type="text"name="apellido" class="form-mysql ">
-							</div>
-						</div>
-						<div class="col_mysql">
-							<div class="col_mysql">
-								<label class="center">Nombre</label> 
-								<input type="text" name="nombre" class="form-mysql ">
 							</div>
 						</div>
 						<div class="col_mysql">
@@ -192,15 +186,13 @@
 								  	<th>Nombre</th>
 								    <th>Apellido 1</th>
 								    <th>Correo</th>
-								    <th>hijo</th>
 								  </tr>
 								  {{#padres}}
 								  <tr class="center">
-								  	<td>{{id_padre}}</td>
+								  	<td>{{id}}</td>
 								    <td>{{nombre}}</td>
 								    <td>{{apellido}}</td>
 								    <td>{{correo}}</td>
-								    <td>{{alumno}}</td>
 								  </tr>
 								  {{/padres}}
 								</table>
@@ -228,22 +220,10 @@
 								<input type="text" name="apellido2" class="form-mysql ">
 							</div>
 						</div>
-						<!-- <div class="col_mysql">
-							<div class="col_mysql">
-								<label class="center">Correo</label> 
-								<input type="text" name="correo" class="form-mysql ">
-							</div>
-						</div> -->
 						<div class="col_mysql">
 							<div class="col_mysql">
 								<label class="center">Asignatura</label> 
 								<input type="text" name="asignatura" class="form-mysql ">
-							</div>
-						</div>
-						<div class="col_mysql">
-							<div class="col_mysql">
-								<label class="center">Id Alumno</label> 
-								<input type="text" name="id_alumno" class="form-mysql ">
 							</div>
 						</div>
 						<div class="col_mysql">
@@ -290,10 +270,11 @@
 								  </tr>
 								  {{#profesores}}
 								  <tr class="center">
-								  	<td>{{id_profesor}}</td>
+								  	<td>{{id}}</td>
 								    <td>{{nombre}}</td>
 								    <td>{{apellido1}}</td>
 								    <td>{{apellido2}}</td>
+								    <td>{{correo}}</td>
 								  </tr>
 								  {{/profesores}}
 								</table>

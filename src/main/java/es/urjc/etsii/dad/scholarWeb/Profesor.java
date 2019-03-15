@@ -47,14 +47,6 @@ public class Profesor extends Usuario {
 		this.aulas.add(aul);
 	}
 
-//	public long getid_profesor() {
-//		return id_profesor;
-//	}
-//
-//	public void setid_profesor(Integer id_profesor) {
-//		this.id_profesor = id_profesor;
-//	}
-
 	public List<Aula> getAulas() {
 		return aulas;
 	}
@@ -99,7 +91,7 @@ public class Profesor extends Usuario {
 
 	@Override
 	public String toString() {
-		return "Profesor [id_profesor=" /*+ id_profesor */+ ", nombre=" + this.getNombre() + ", apellido1=" + apellido1
+		return "Profesor [nombre=" + this.getNombre() + ", apellido1=" + apellido1
 				+ ", apellido2=" + apellido2 + ", correo=" + this.getCorreo() + ", asignaturas=" + ", alumnos=" + ", aulas="
 				+ "]";
 	}

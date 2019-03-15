@@ -1,4 +1,4 @@
-/*package es.urjc.etsii.dad.scholarWeb;
+package es.urjc.etsii.dad.scholarWeb;
 
 
 public class Contacto {
@@ -60,4 +60,4 @@ public class Contacto {
 		return "Anuncio [nombre=" + nombre +" telefono= "+telefono +" mail= " +mail + ", cuerpo=" + cuerpo + "]";
 	}
 
-}*/
+}
