@@ -41,19 +41,19 @@
 		<div id="contain">
 			<div class="row_b">
 				<div class="col_b">
-					<form action="/contacto/recibido" method="post">
+					<form method="POST" th:action="@{/sendMail}" id="emailForm" class="container">
 						<div class="row">
 							<div class="col form-group">
-								<label for="name">Nombre</label> <input type="text" id="name"
-									class="form-control ">
+								<label for="name">Nombre</label>
+								<input type="text" id="name" class="form-control ">
 							</div>
+							<!--<div class="col form-group">
+								<label for="phone">Telefono</label> 
+								<input type="text" id="phone" class="form-control ">
+							</div>-->
 							<div class="col form-group">
-								<label for="phone">Telefono</label> <input type="text"
-									id="phone" class="form-control ">
-							</div>
-							<div class="col form-group">
-								<label for="email">Email</label> <input type="email" id="email"
-									class="form-control ">
+								<label for="email">Email</label> 
+								<input type="email" id="mail" class="form-control ">
 							</div>
 						</div>
 						<div class="row">
