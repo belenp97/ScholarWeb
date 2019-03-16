@@ -43,6 +43,14 @@ public class AlumnoController {
 	@Autowired
 	private ProfesorRepository profeRepo;
 	
+//	@RequestMapping("")
+//	public String verPadres(Model model) throws Exception {
+//	
+//		model.addAttribute("padres", padreRepo.findAll());
+//
+//		return "padres";
+//	}
+	
 	@RequestMapping(value="/insertar_alumno", method=RequestMethod.POST)
 	public String insertar_alumno(Model model,HttpServletRequest request,  @RequestParam String nombre,@RequestParam String apellido1, @RequestParam String apellido2, @RequestParam Integer idasig, @RequestParam Integer idaula, @RequestParam Integer idprofesor, String contraseña, String rol, String... roles) {	
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");

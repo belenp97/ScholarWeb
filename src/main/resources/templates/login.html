@@ -28,8 +28,11 @@
 				<div class="fl_right">
 					
 					<p><h3>
-						<a href="/login">Login</a>| <a href="/administrador">
+						<a href="/login">Login</a>
+							{{#admin}}| 
+								<a href="administrador">
 								administrador</a>
+							{{/admin}}
 					</h3></p>
 				</div>
 			</div>
@@ -51,12 +54,12 @@
 								<table style="width:100%">
 								  <tr>
 								  	<th>Correo</th>
-								    <th>contraseña</th>
+								    <th>Nombre</th>
 								  </tr>
 								  {{#admin}}
 								  <tr class="center">
 								    <td>{{correo}}</td>
-								    <td>{{contraseña}}</td>
+								    <td>{{nombre}}</td>
 								  </tr>
 								  {{/admin}}
 								</table>

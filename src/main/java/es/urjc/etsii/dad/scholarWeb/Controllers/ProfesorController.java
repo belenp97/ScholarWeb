@@ -54,6 +54,16 @@ public class ProfesorController {
 	@Autowired
 	private ProfesorRepository profeRepo;
 	
+	@RequestMapping("")
+	public String verProfesores(Model model, HttpServletRequest request) {
+//		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+//		model.addAttribute("token", token.getToken());
+		
+		model.addAttribute("profe", profeRepo.findAll());
+
+		return "profesores";
+	}
+	
 	
 	@RequestMapping("/insertar_profesor")
 	public String insertar_profesor(Model model, HttpServletRequest request, @RequestParam String nombre,@RequestParam String apellido1,@RequestParam String apellido2, @RequestParam String asignatura,  @RequestParam Integer id_aula) {

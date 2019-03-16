@@ -30,6 +30,7 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.AulaRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.NoticiaRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.PadreRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
+import es.urjc.etsii.dad.scholarWeb.Repositories.UsuarioRepository;
 
 
 @Controller
@@ -37,14 +38,14 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 class LoginController {
 	
 	@Autowired
-	private AdminRepository adminRepo;
+	private UsuarioRepository repos;
 	
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public String login(Model model, HttpServletRequest request) {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
 		
-		model.addAttribute("admin", adminRepo.findAll());
+		model.addAttribute("admin", repos.findByRol("ADMIN"));
 		
 		return "login";
 	}

@@ -10,7 +10,7 @@
 		<div id="box_tittle">
 			<ul>
 				<li><a href="/"><strong>Inicio</strong></a></li>
-				<li><a href="/profesores"><strong>Profesores</strong></a></li>
+				<li><a href="/profesor"><strong>Profesores</strong></a></li>
 				<li><a href="/noticias"><strong>Noticias</strong></a></li>
 				<li><a href="/contacto"><strong>Contacto</strong></a></li>
 			</ul>
@@ -29,9 +29,11 @@
 					
 					<p>
 						<h3>
-							<a href="login">Login</a> | <a href="administrador">
-								administrador</a> | <input type="image"
-								src="/css/img/salir.png" />
+							<a href="login">Login</a> 
+							{{#admin}}| 
+								<a href="administrador">
+								administrador</a>
+							{{/admin}}
 						</h3>
 					</p>
 				</div>
@@ -424,28 +426,6 @@
 					</form>
 				</section>
 				
-										<!-- ELIMINAR AULA -->
-				<!--  <section class="feature_mysql_grande">
-					<form action="/eliminar_aula" method="post">
-						<h1><strong><label id="center">Aula</label></strong></h1>
-						<div class="col_mysql">
-							<div class="col_mysql ">
-								<label class="center">Curso</label> 
-								<input type="text" name="curso" class="form-mysql ">
-							</div>
-						</div>
-						<div class="col_mysql">
-							<div class="col_mysql">
-								<label class="center">Letra
-								</label> <input type="text"name="letra" class="form-mysql ">
-							</div>	
-						</div>					
-						<div class="col_mysql_boton center">
-							<input type="submit" value="Eliminar" class="btn btn-primary">
-						</div>
-					</form>
-				</section> -->
-				
 									<!-- TABLA Aula-->
 				 <section class="feature_mysql_peque">
 					<div class="col_mysql">
@@ -467,10 +447,55 @@
 					</div>
 				</section>
 				
+					<!-- INSERTAR ADMIN -->
+				<section class="feature_mysql_peque">
+					<form action="administrador/insertar_admin" method="post">
+						<h1><strong><label id="center">ADMIN</label></strong></h1>
+						<div class="col_mysql">
+							<div class="col_mysql ">
+								<label class="center">Nombre</label> 
+								<input type="text" name="nombre" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql">
+							<div class="col_mysql">
+								<label class="center">Apellido</label> 
+								<input type="text"name="apellido" class="form-mysql ">
+							</div>
+						</div>
+						<div class="col_mysql_boton center">
+							<input type="submit" value="Enviar" class="btn btn-primary">
+							<input type="hidden" name="_csrf" value="{{token}}"/>
+						</div>
+					</form>
+				</section>
+				
+								<!-- TABLA Aula-->
+				 <section class="feature_mysql_peque">
+					<div class="col_mysql">
+						<h1 class="center">Aulas</h1>
+								<table style="width:100%">
+								  <tr>
+								  	<th>Nombre</th>
+								    <th>Apellido</th>
+								  </tr>
+								  {{#administrador}}
+								  <tr class="center">
+								    <td>{{nombre}}</td>
+								    <td>{{apellido}}</td>
+								  </tr>
+								  {{/administrador}}
+								</table>
+					</div>
+				</section>
+				
 				</div>
 			</section>
 			
-			<a href="/logout">Cerrar Sesión</a>
+			<form action="/logout" method="post">
+				<input type="submit" value="Sign Out" />
+				<input type="hidden" name="_csrf" value="{{token}}"/>
+			</form>
 			
 		</div>
 

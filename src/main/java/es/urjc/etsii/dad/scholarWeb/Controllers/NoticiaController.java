@@ -28,13 +28,13 @@ public class NoticiaController {
 	@Autowired
 	private NoticiaRepository notRepo;
 	
-//	@RequestMapping(value="/noticias", method=RequestMethod.GET)
-//	public String verNoticia(Model model/*, HttpServletRequest request*/) throws Exception {
-//
-//		model.addAttribute("noticia", notRepo.findAll());
-//
-//		return "noticias";
-//	}
+	@RequestMapping(value="", method=RequestMethod.GET)
+	public String verNoticia(Model model/*, HttpServletRequest request*/) throws Exception {
+
+		model.addAttribute("noticia", notRepo.findAll());
+
+		return "noticias";
+	}
 	
 	@RequestMapping(value="/insertar_noticia")
 	public String insertar_noticia(Model model, HttpServletRequest request, @RequestParam String titulo,@RequestParam String cuerpo) {

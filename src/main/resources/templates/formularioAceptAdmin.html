@@ -28,8 +28,11 @@
 				<div class="fl_right">
 					
 					<p><h3>
-						<a href="/login">Login</a>| <a href="/administrador">
+						<a href="/login">Login</a>|
+							{{#admin}}| 
+								<a href="administrador">
 								administrador</a>
+							{{/admin}}
 					</h3></p>
 				</div>
 			</div>
@@ -39,8 +42,24 @@
 
 	<section class="wrapper principal">
 		<div id="contain" class="center">
-			<h2><label style="background: #EC969F;">ERROR 505</label></h2>
-			<a href="">Volver</a>
+			<section class="feature_mysql_tabla">
+					<div class="col_mysql">
+						<h1 class="center">Admin</h1>
+								<table style="width:100%">
+								  <tr>
+								  	<th>Nº Expediente</th>
+								  	<th>Nombre</th>
+								    <th>Correo</th>
+								  </tr>
+								  <tr class="center">
+								    <td>{{id}}</td>
+								    <td>{{nombre}}</td>
+								    <td>{{correo}}</td>
+								  </tr>
+								</table>
+					</div>
+				</section>
+		
 		</div>
 	</section>
 

@@ -45,14 +45,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	  http.authorizeRequests().antMatchers("/login").permitAll();
 	  http.authorizeRequests().antMatchers("/contacto").permitAll();
 	  http.authorizeRequests().antMatchers("/principal").permitAll();
-	  http.authorizeRequests().antMatchers("/administrador").permitAll();
+//	  http.authorizeRequests().antMatchers("/administrador").permitAll();
 	  http.authorizeRequests().antMatchers("/css/**");
 	  
 	 // Private pages (all other pages)
-//	 http.authorizeRequests().antMatchers("/administrador").hasAnyRole("ADMIN");
+	 http.authorizeRequests().antMatchers("login/administrador").hasAnyRole("ADMIN");
 	 http.authorizeRequests().antMatchers("login/pagina_profesor").hasAnyRole("PROFESOR");
 	 http.authorizeRequests().antMatchers("login/pagina_padre").hasAnyRole("PADRE");
-	 
+
 	 
 	 // Login form
 	 http.formLogin().loginPage("/login");
@@ -63,8 +63,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	 
 	 
 	 // Logout
-	 //http.logout().logoutUrl("/logout");
-	 http.logout().logoutSuccessUrl("/principal");
+	 http.logout().logoutUrl("/logout");
+	 http.logout().logoutSuccessUrl("/");
 	 
 	 //deshabilitamos CSRF por el momento.
 //	 http.csrf().disable();
