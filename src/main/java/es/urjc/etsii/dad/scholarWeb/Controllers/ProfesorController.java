@@ -33,7 +33,7 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
 
 
 @Controller
-@RequestMapping("/profesor")
+@RequestMapping("/profesores")
 public class ProfesorController {
 	
 	@Autowired
@@ -56,8 +56,6 @@ public class ProfesorController {
 	
 	@RequestMapping("")
 	public String verProfesores(Model model, HttpServletRequest request) {
-//		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-//		model.addAttribute("token", token.getToken());
 		
 		model.addAttribute("profe", profeRepo.findAll());
 

@@ -45,7 +45,7 @@ class LoginController {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
 		
-		model.addAttribute("admin", repos.findByRol("ADMIN"));
+		model.addAttribute("administrador", repos.findByRol("ADMIN"));
 		
 		return "login";
 	}
@@ -57,6 +57,8 @@ class LoginController {
 			model.addAttribute("token", token.getToken());
 			/*Administrador administrador = adminRepo.findByCorreo(correo);
 			if(administrador.getPass().equals(contraseña)) {*/
+			model.addAttribute("admin", repos.findByRol("ADMIN"));
+			
 				return "/login_privado"; 
 //			}
 		}catch(Exception e) {
