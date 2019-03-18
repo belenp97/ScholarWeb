@@ -82,6 +82,69 @@ En esta ventana se ofrece un listado de los profesores que componene el colegio,
  
  Mediante el login, aquellos usuarios que formen parte del centro (alumnos, profesores y padres) podrán acceder a su sección privada, dentro de la cual contarán con una serie de secciones propias de cada tipo de usuario. 
 
+### **Fase 3 - Ejecución de la app en un entorno Linux virtualizado**
+
+Para la ejecución de la aplicación en un entorno virtualizado deberemos tener instalado Vagrant y VirtualBox. A continuación explicaremos los pasos a seguir:
+
+- Lo primero es crear la máquina virtual, para ello desde una PowerShell de Windows iremos a la carpeta vagran donde se almacenarán las   máquinas virtuales y creamos una:
+
+	   * mkdir -p ~/vagrant/scholarweb
+	   * cd ~/vagrant/scholarweb
+    
+- Ahora pasamos a crear la maquina virtual de Linux de 64 bits
+
+	   * vagrant init ubuntu/trusty64
+    
+- Una vez creada deberemos arrancarla. La primera vez que la arranquemos descargará toda la configuración del S.O, así que tardará un poco.
+
+	   * vagrant up
+    
+- Ahora que la máquina está arrancada deberemos entrar en ella pero antes vamos a compiar tres ficheros en la carpeta ~/vagrant/scholarweb.
+
+	   * Los ficheros que tenemos que copiar serán los .jar de nuestra app (generados anteriormente en STS con Run As > Maven build) y del  servicio interno, junto con el fichero .sql que hemos generado de nuestra base de datos en Windows:
+    
+		    * formularioUsuarios.sql
+		    * config.vm.network "private_network", ip: "192.168.33.10"
+		    * ScholarWebPublic-0.0.1-SNAPSHOT.jar
+      
+- En esta misma carpeta modificamos el archivo Vagrantfile descomentando la siguiente línea:
+
+	   * config.vm.network "private_network", ip: "192.168.33.10"
+    
+- Esto hará que nuestra máquina tenga esa ip y asi podamos conectarnos a ella por la web.
+
+- Una vez que hemos copiado estos ficheros entramos en la máquina virtual
+
+	   * vagrant ssh
+    
+- Ahora debemos descargar la versión de java 1.8 para poder ejecutar nuestra app. A nosotros no nos salia para isntalar la versión 8 de java, asi que hemso seguido el siguiente tutorial:
+
+	   * https://ricondelzorro.wordpress.com/instalacion-de-java-y-netbeans/como-instalar-openjdk-8-en-ubuntu-14-04-14-10-y-15-04-lts-atravez-de-ppa/
+    
+- El siguiente paso es moverse a la carpeta /vagrant que es donde estan nuestro ficheros compartidos.
+
+- Ahora debemos instalar mysql-server en nuestra máquina. Para ello ejecutaremos el siguiente comando:
+
+	   *sudo apt-get install mysql-server
+    
+- Una vez se ha instalado el servidor de mysql (el cual nos ha pedido una contraseña para el usuario root [password:12345678]) vamos a crear nuestra base de datos:
+
+	   * mysql -h localhost -u root -p (nos pedirá la contraseña: es la que hemos comentado al inicio de este paso)
+	   * CREATE DATABASE scholarweb
+    
+- Ahora que tenemos la BBDD creada importaremos nuestra BBDD de Windows:
+
+	   * mysql –u root -p scholarweb < formularioUsuarios.sql
+    
+- Ya tenemos nuestra BBDD con las tablas
+
+- Por último ejecutamos los dos ficheros .jar que hemos nombrado anteriormente a la vez.
+
+	   * java -jar config.vm.network "private_network", ip: "192.168.33.10" & java -jar ScholarWebPublic-0.0.1-SNAPSHOT.jar
+    
+- Ahora que tenemos tanto la web como el servicio interno corriendo vamos a probarlo desde nuestro navegador local.
+
+	   * Escribimos https://192.168.33.10:8443 y nos debería aparecer nuestra página de ScholarWeb
 
 ### **Equipo de desarrollo.**
   1. Jorge Alonso Vivar
