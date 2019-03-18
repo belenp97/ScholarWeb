@@ -51,7 +51,7 @@ Tendremos en un principio 6 entidades en toda la aplicación web que se identifi
 ![entidad-relacion](https://user-images.githubusercontent.com/45795451/52915678-46e0b600-32d7-11e9-991f-d7332c5f59b0.png)
 
 ### **MODELO DE NAVEGACIÓN.**
-![diagrama_navegacion](https://user-images.githubusercontent.com/45795451/53003749-faf55480-342f-11e9-8472-b8a12ec56b38.png)
+![NAVEGACION](https://user-images.githubusercontent.com/45795451/54568204-a74a3c80-49d6-11e9-81ed-9fa954976e72.png)
 
 ### **CAPTURAS DE PANTALLA.**
      1- PANTALLA DE INICIO.
