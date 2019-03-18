@@ -81,6 +81,20 @@ En esta ventana se ofrece un listado de los profesores que componene el colegio,
  ![login](https://user-images.githubusercontent.com/45795451/53005185-01390000-3433-11e9-8ed3-4dc0f9d1ec1e.png)
  
  Mediante el login, aquellos usuarios que formen parte del centro (alumnos, profesores y padres) podrán acceder a su sección privada, dentro de la cual contarán con una serie de secciones propias de cada tipo de usuario. 
+ 
+ 
+ 6. PDF (CON Y SIN DESCARGA).
+ 
+ 
+ Al seleccionar los distintos pdf que aparecen al final de la página, podrán suceder dos cosas: 
+ 1. Que el pdf se abra como se muestra en la siguiente imagen:
+ 
+ ![pdf_comedor](https://user-images.githubusercontent.com/45795451/54568786-dbbef800-49d8-11e9-9926-dcc1c182e2e6.png)
+ 
+ 2. Que el pdf se descargue de manera automática:
+ 
+ ![pdf_descarga](https://user-images.githubusercontent.com/45795451/54568798-e5e0f680-49d8-11e9-81e7-0b74af52068b.png)
+ 
 
 ### **Fase 3 - Ejecución de la app en un entorno Linux virtualizado**
 
