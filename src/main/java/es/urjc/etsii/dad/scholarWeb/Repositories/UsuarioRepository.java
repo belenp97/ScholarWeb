@@ -11,5 +11,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	Usuario findBycorreoEquals(String correo);
 
 	List<Usuario> findByRol(String rol);
+
+	Usuario findByNombre(String name);
 	
 }

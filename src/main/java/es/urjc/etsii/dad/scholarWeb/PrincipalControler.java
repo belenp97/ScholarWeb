@@ -3,6 +3,8 @@ package es.urjc.etsii.dad.scholarWeb;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,8 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.AsignaturaRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AulaRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.PadreRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
+import es.urjc.etsii.dad.scholarWeb.Repositories.UsuarioRepository;
+import es.urjc.etsii.dad.scholarWeb.Usuario;
 
 @Controller
 public class PrincipalControler {
@@ -30,6 +34,9 @@ public class PrincipalControler {
 //
 //	@Autowired
 //	private ProfesorRepository profeRepo;
+
+	@Autowired
+	private UsuarioRepository repos;
 
 
 	/*@PostConstruct
@@ -113,7 +120,12 @@ public class PrincipalControler {
 	}*/
 
 	@RequestMapping("/")
-	public String principal(Model model) {
+	public String principal(Model model, HttpServletRequest request) {
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
+//
+//		Usuario usuario  = repos.findByNombre(request.getUserPrincipal().getName());
+//		model.addAttribute("admin",usuario.getRol());
 		
 		return "principal";
 	}

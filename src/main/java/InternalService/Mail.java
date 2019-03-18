@@ -1,4 +1,4 @@
-/*package InternalService;
+package InternalService;
 
 public class Mail {
 		
@@ -43,4 +43,4 @@ public class Mail {
 			String [] parameters = {from,to,subject,body};
 			return parameters;
 		}
-}*/
+}

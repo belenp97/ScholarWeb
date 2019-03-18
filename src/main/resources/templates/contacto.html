@@ -44,31 +44,32 @@
 		<div id="contain">
 			<div class="row_b">
 				<div class="col_b">
-					<form method="POST" th:action="@{/sendMail}" id="emailForm" class="container">
+					<form action="/sendMail" method="post" class="container">
 						<div class="row">
 							<div class="col form-group">
 								<label for="name">Nombre</label>
-								<input type="text" id="name" class="form-control ">
+								<input type="text" name="name" class="form-control ">
 							</div>
-							<!--<div class="col form-group">
+							<div class="col form-group">
 								<label for="phone">Telefono</label> 
-								<input type="text" id="phone" class="form-control ">
-							</div>-->
+								<input type="text" name="telefono" class="form-control ">
+							</div>
 							<div class="col form-group">
 								<label for="email">Email</label> 
-								<input type="email" id="mail" class="form-control ">
+								<input type="email" name="mail" class="form-control ">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col_b form-group">
 								<label for="message">Message</label>
-								<textarea name="message" id="message" class="form-control "
+								<textarea name="body"  class="form-control "
 									cols="30" rows="8"></textarea>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col_m form-group">
 								<input type="submit" value="Enviar" class="btn btn-primary">
+								<input type="hidden" name="_csrf" value="{{token}}"/>
 							</div>
 						</div>
 					</form>

@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 
+import InternalService.Mail;
 import es.urjc.etsii.dad.scholarWeb.Administrador;
 import es.urjc.etsii.dad.scholarWeb.Alumno;
 import es.urjc.etsii.dad.scholarWeb.Asignatura;
@@ -37,6 +39,8 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.UsuarioRepository;
 @RequestMapping("/administrador")
 public class AdministradorController {	
 	
+	private static final String RestService = "http://127.0.0.1:8070/send"; 
+	
 	@Autowired
 	private UsuarioRepository repos;
 	
@@ -48,7 +52,6 @@ public class AdministradorController {
 
 	@Autowired
 	private AulaRepository reposAula;
-	
 	
 	@Autowired
 	private NoticiaRepository notRepo;
@@ -93,7 +96,15 @@ public class AdministradorController {
 				model.addAttribute("nombre", adminis.getNombre() +" " +((Administrador) adminis).getApellido() +" " ); 
 				model.addAttribute("correo", adminis.getCorreo() +" " ); 
 				
-//				profeRepo.save(profesor);
+				RestTemplate servInterno = new RestTemplate(); 
+				
+				String from = "scholar.web.dad@gmail.com"; // dirección de correo remitente -> usuario Administrador
+				String to = adminis.getCorreo(); // dirección del correo de destino -> nuevo usuario
+				String body = "Hola " + nombre + ", has sido registrado como " + adminis.getRol() + " en Scholarweb con las siguientes credenciales: \nLogin : " + adminis.getCorreo() +"\nContraseña: " +contrasena+"\n Un saludo ScholarWeb.";
+				
+				// AL INVOCAR ESTE MÉTODO LE PASO COMO PARÁMETROS LA URL DEL CONTROLADOR REST Y EL CORREO QUE QUIERO ENVIAR AL DESTINATARIO
+				servInterno.postForLocation(RestService, new Mail(from,to,"Alta Usuario",body));
+				
 				
 				return "formularioAceptAdmin";
 			}

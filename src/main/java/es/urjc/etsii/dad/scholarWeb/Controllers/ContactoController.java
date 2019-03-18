@@ -1,47 +1,50 @@
-//package es.urjc.etsii.dad.scholarWeb.Controllers;
-//
-//import javax.servlet.http.HttpServletRequest;
-//
-//import org.springframework.security.web.csrf.CsrfToken;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.RequestParam;
-//
-//import InternalService.EmailService;
-//
-//
-//@Controller
-//public class ContactoController {
-//	
-//	 private EmailService mailService;
-//
-//	@RequestMapping(value="/contacto", method=RequestMethod.GET)
-//	public String newContacto(Model model) {
-//
-//		return "contacto";// llamarlo como se llama el html
-//	}
-//	
-//	@RequestMapping(value="/recibido", method=RequestMethod.POST)
-//	public String contactoRecibido(Model model, HttpServletRequest request, @RequestParam String nombre, @RequestParam Integer telefono, @RequestParam String email, @RequestParam String cuerpo) {
-//		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-//		model.addAttribute("token", token.getToken());
-//		
-//		
-//		
-//		return "contacto_recibido";
-//	}
-//	
-//   @PostMapping("/sendMail")
-//    public String sendMail(@RequestParam("name") String name, @RequestParam("mail") String mail, @RequestParam("subject") String subject, @RequestParam("body") String body){
-//
-//        String message = body +"\n\n Datos de contacto: " + "\nNombre: " + name + "\nE-mail: " + mail;
-//        mailService.sendMail("mail de propiedades","mail de contacto",subject,message);
-//
-//        return "contacto_recibido";
-//   }
-//	
-//}
+package es.urjc.etsii.dad.scholarWeb.Controllers;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
+
+import InternalService.Mail;
+
+
+@Controller
+public class ContactoController {
+	
+
+	private static final String RestService = "http://127.0.0.1:8070/send"; 
+	
+//	private EmailService mailService;
+
+	@RequestMapping(value="/contacto", method=RequestMethod.GET)
+	public String newContacto(Model model, HttpServletRequest request) {
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
+
+		return "contacto";// llamarlo como se llama el html
+	}
+	
+   @RequestMapping(value="/sendMail", method=RequestMethod.POST )
+    public String sendMail(Model model, HttpServletRequest request, @RequestParam String name,@RequestParam String telefono, @RequestParam String mail, @RequestParam String body){
+	   CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+	   model.addAttribute("token", token.getToken());
+	   
+	   RestTemplate servInterno = new RestTemplate(); 
+	   
+       String from = "scholar.web.contacto@gmail.com"; // dirección de correo remitente -> usuario Administrador
+       String to = mail; // dirección del correo de destino -> nuevo usuario
+       String bodys = "Hola " + name + ", has sido contactado por la pag ScholarWeb facilitandonos el Telefono " + telefono + ", el Email: " +mail +"y el mensaje: " +body +" en breves le responderemos. \n Un saludo ScholarWeb.";
+		
+       // AL INVOCAR ESTE MÉTODO LE PASO COMO PARÁMETROS LA URL DEL CONTROLADOR REST Y EL CORREO QUE QUIERO ENVIAR AL DESTINATARIO
+       servInterno.postForLocation(RestService, new Mail(from,to,"conctato en pag ScholarWeb",bodys));
+       servInterno.postForLocation(RestService, new Mail(from,from,"conctato en pag ScholarWeb",bodys));
+		
+       return "contacto_recibido";
+   }
+	
+}
