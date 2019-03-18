@@ -29,9 +29,10 @@ public class NoticiaController {
 	private NoticiaRepository notRepo;
 	
 	@RequestMapping(value="", method=RequestMethod.GET)
-	public String verNoticia(Model model/*, HttpServletRequest request*/) throws Exception {
+	public String verNoticia(Model model, HttpServletRequest request) throws Exception {
 
 		model.addAttribute("noticia", notRepo.findAll());
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 
 		return "noticias";
 	}

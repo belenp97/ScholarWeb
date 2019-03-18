@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import es.urjc.etsii.dad.scholarWeb.Administrador;
 import es.urjc.etsii.dad.scholarWeb.Alumno;
 import es.urjc.etsii.dad.scholarWeb.Asignatura;
+import es.urjc.etsii.dad.scholarWeb.Usuario;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AdminRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AlumnoRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AsignaturaRepository;
@@ -40,6 +42,18 @@ class LoginController {
 	@Autowired
 	private UsuarioRepository repos;
 	
+	@Autowired
+	private AdminRepository adminrepo;
+	
+	@Autowired
+	private AsignaturaRepository asigRepo;
+
+	@Autowired
+	private AulaRepository reposAula;
+	
+	@Autowired
+	private NoticiaRepository notRepo;
+	
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public String login(Model model, HttpServletRequest request) {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
@@ -50,17 +64,37 @@ class LoginController {
 		return "login";
 	}
 	
-	@RequestMapping(value="/{nombre}", method=RequestMethod.POST)
+	@RequestMapping(value="/privado", method=RequestMethod.POST)
 	public String loginPrivado(Model model, HttpServletRequest request,  @RequestParam String correo, @RequestParam String contraseña) {
 		try {
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 			model.addAttribute("token", token.getToken());
-			/*Administrador administrador = adminRepo.findByCorreo(correo);
-			if(administrador.getPass().equals(contraseña)) {*/
-			model.addAttribute("admin", repos.findByRol("ADMIN"));
+			 
+			Usuario user = repos.findBycorreoEquals(correo);
+	    	
+			if(user.getRol().equals("ADMIN")) {
+				
+				model.addAttribute("profesores", repos.findByRol("PROFESOR"));
+				model.addAttribute("alumnos", repos.findByRol("ALUMNO"));
+				model.addAttribute("padres", repos.findByRol("PADRE"));
+				model.addAttribute("administrador", repos.findByRol("ADMIN"));
+				model.addAttribute("asignaturas", asigRepo.findAll());
+				model.addAttribute("noticias", notRepo.findAll());
+				model.addAttribute("aulas", reposAula.findAll());
+				model.addAttribute("admin", adminrepo.findAll());
+				
+				return "administrador"; 
+			}
+			if(user.getRol().equals("PROFESOR")) {
+				model.addAttribute("profesor", repos.findByRol("PROFESOR"));
 			
-				return "/login_privado"; 
-//			}
+				return ""; 
+			}
+			if(user.getRol().equals("PADRE")) {
+				model.addAttribute("padre", repos.findByRol("PADRE"));
+			
+				return ""; 
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

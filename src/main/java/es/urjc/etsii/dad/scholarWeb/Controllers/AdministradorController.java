@@ -60,14 +60,17 @@ public class AdministradorController {
 	public String administrador(Model model, HttpServletRequest request) {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
+		
+    	Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
 		try {
 			model.addAttribute("profesores", repos.findByRol("PROFESOR"));
 			model.addAttribute("alumnos", repos.findByRol("ALUMNO"));
 			model.addAttribute("padres", repos.findByRol("PADRE"));
-			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			model.addAttribute("administrador", repos.findByRol("ADMIN"));
 			model.addAttribute("asignaturas", asigRepo.findAll());
 			model.addAttribute("noticias", notRepo.findAll());
 			model.addAttribute("aulas", reposAula.findAll());
+			model.addAttribute("admin", adminrepo.findAll());
 	
 			return "administrador";
 		

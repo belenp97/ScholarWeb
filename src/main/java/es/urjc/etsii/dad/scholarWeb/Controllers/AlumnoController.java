@@ -61,9 +61,6 @@ public class AlumnoController {
 			String contrasena = "@" +nombre.toLowerCase().charAt(0) +"_" +apellido1.toLowerCase().charAt(0) +"_" + apellido2.toLowerCase().charAt(0);
 			String correo = nombre.toLowerCase().charAt(0) +"" +apellido1.toLowerCase().charAt(0) +"" + apellido2.toLowerCase().charAt(0) +"" +"@gmail.com"; 
 			
-			RestTemplate rt=new RestTemplate();
-		    String url= "http://192.168.33.13:8080/send?correo="+correo+"&nombre="+nombre;
-		    Boolean b=rt.getForObject(url, Boolean.class);
 			
 		try {
 			

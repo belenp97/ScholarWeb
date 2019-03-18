@@ -6,12 +6,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLConnection;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +36,9 @@ import es.urjc.etsii.dad.scholarWeb.Usuario;
 public class PrincipalControler {
 	
 	//Cambiar el path según donde se encuentre el proyecto.
-	private static final String EXTERNAL_FILE_PATH = "C:/Users/Belen/git/ScholarWeb/src/main/resources/";
+	private static final String EXTERNAL_FILE_PATH = "Users/jorgealonsovivar/Desktop/urjc/3 AÑO/2 cuatri/DAD";
+//	private static final String EXTERNAL_FILE_PATH = "";
+	
 //
 //	@Autowired
 //	private AlumnoRepository reposAl;
@@ -137,9 +143,8 @@ public class PrincipalControler {
 	public String principal(Model model, HttpServletRequest request) {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
-//
-//		Usuario usuario  = repos.findByNombre(request.getUserPrincipal().getName());
-//		model.addAttribute("admin",usuario.getRol());
+		
+		HttpSession sesion = request.getSession(true); 
 		
 		return "principal";
 	}
@@ -167,8 +172,8 @@ public class PrincipalControler {
 				 */
 				response.setHeader("Content-Disposition", String.format("inline; filename=\"" + file.getName() + "\""));
 
-				 //en este caso tenemos attachment que descargrá directamente el pdf.
-				 response.setHeader("Content-Disposition", String.format("attachment; filename=\"" + file.getName() + "\""));
+				//en este caso tenemos attachment que descargrá directamente el pdf.
+				response.setHeader("Content-Disposition", String.format("attachment; filename=\"" + file.getName() + "\""));
 
 				response.setContentLength((int) file.length());
 
