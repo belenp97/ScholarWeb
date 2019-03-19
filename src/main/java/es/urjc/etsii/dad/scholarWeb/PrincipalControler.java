@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.net.URLConnection;
 import java.util.Optional;
 
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -143,8 +144,14 @@ public class PrincipalControler {
 	public String principal(Model model, HttpServletRequest request, HttpSession sesion) {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
+		
+//		if(sesion != null) {
+//			sesion.setAttribute("registred", true);		
+//		}
 
-    	model.addAttribute("administrador", request.isUserInRole("ADMIN"));
+		sesion= request.getSession(true);
+    	model.addAttribute("administrador", request.isUserInRole("ROLE_ADMIN"));
+    	
     	
 		return "principal";
 	}

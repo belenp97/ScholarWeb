@@ -72,6 +72,9 @@ class LoginController {
 			 
 			Usuario user = repos.findBycorreoEquals(correo);
 
+
+//			sesion= request.getSession(true);
+			
 			model.addAttribute("administrador", request.isUserInRole("ADMIN"));
 			if(user.getRol().equals("ADMIN")) {
 				

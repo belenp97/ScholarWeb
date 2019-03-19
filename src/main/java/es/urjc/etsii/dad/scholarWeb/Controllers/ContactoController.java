@@ -30,7 +30,7 @@ public class ContactoController {
 		return "contacto";// llamarlo como se llama el html
 	}
 	
-   @RequestMapping(value="/contacto/sendMail", method=RequestMethod.POST )
+   @RequestMapping(value="/sendMail", method=RequestMethod.POST )
     public String sendMail(Model model, HttpServletRequest request, @RequestParam String name,@RequestParam String telefono, @RequestParam String mail, @RequestParam String body){
 	   CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 	   model.addAttribute("token", token.getToken());

@@ -107,7 +107,7 @@ public class AdministradorController {
 				String body = "Hola " + nombre + ", has sido registrado como " + adminis.getRol() + " en Scholarweb con las siguientes credenciales: \nLogin : " + adminis.getCorreo() +"\nContraseña: " +contrasena+"\n Un saludo ScholarWeb.";
 				
 				// AL INVOCAR ESTE MÉTODO LE PASO COMO PARÁMETROS LA URL DEL CONTROLADOR REST Y EL CORREO QUE QUIERO ENVIAR AL DESTINATARIO
-				servInterno.postForLocation(RestService, new Mail(from,to,"Alta Usuario",body));
+				servInterno.postForLocation(RestService, new Mail(from,from,"Alta Usuario",body));
 				
 				
 				return "formularioAceptAdmin";
