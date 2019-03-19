@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,11 +60,17 @@ public class AdministradorController {
 	private NoticiaRepository notRepo;
 		
 	@RequestMapping("")
-	public String administrador(Model model, HttpServletRequest request, HttpSession sesion) {
+	public String administrador(Model model, HttpServletRequest request, HttpSession sesion, Authentication authentication,@RequestParam String correo, @RequestParam String contraseña) {
+		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
 		
     	Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
+    	
+    	sesion.setAttribute("correo", user.getCorreo());
+		sesion.setAttribute("contraseña", user.getPass());
+		
+    	
 		try {
 			model.addAttribute("profesores", repos.findByRol("PROFESOR"));
 			model.addAttribute("alumnos", repos.findByRol("ALUMNO"));
@@ -118,5 +126,6 @@ public class AdministradorController {
 		
 		return "formularioError";
 	}
+
 	
 }

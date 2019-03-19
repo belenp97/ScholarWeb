@@ -65,14 +65,17 @@ class LoginController {
 	}
 	
 	@RequestMapping(value="/privado", method=RequestMethod.POST)
-	public String loginPrivado(Model model, HttpServletRequest request, HttpSession sesion, @RequestParam String correo, @RequestParam String contraseña) {
+	public String loginPrivado(Model model, HttpServletRequest request, HttpSession sesion, Authentication authentication, @RequestParam String correo, @RequestParam String contraseña) {
 		try {
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 			model.addAttribute("token", token.getToken());
 			 
 			Usuario user = repos.findBycorreoEquals(correo);
-
-
+			
+			sesion.setAttribute("correo", user.getCorreo());
+			sesion.setAttribute("contraseña", user.getPass());
+			
+			
 //			sesion= request.getSession(true);
 			
 			model.addAttribute("administrador", request.isUserInRole("ADMIN"));

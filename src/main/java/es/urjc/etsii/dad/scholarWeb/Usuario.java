@@ -2,6 +2,8 @@ package es.urjc.etsii.dad.scholarWeb;
 
 import java.util.ArrayList;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.context.annotation.SessionScope;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@SessionScope
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
