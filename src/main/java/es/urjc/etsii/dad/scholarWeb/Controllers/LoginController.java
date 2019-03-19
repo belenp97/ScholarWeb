@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,6 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.UsuarioRepository;
 
 
 @Controller
-@RequestMapping("/login")
 class LoginController {
 	
 	@Autowired
@@ -54,24 +54,25 @@ class LoginController {
 	@Autowired
 	private NoticiaRepository notRepo;
 	
-	@RequestMapping(value="", method=RequestMethod.GET)
-	public String login(Model model, HttpServletRequest request) {
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String login(Model model, HttpServletRequest request, HttpSession sesion) {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
 		
-		model.addAttribute("administrador", repos.findByRol("ADMIN"));
+		model.addAttribute("admin", repos.findByRol("ADMIN"));
 		
 		return "login";
 	}
 	
 	@RequestMapping(value="/privado", method=RequestMethod.POST)
-	public String loginPrivado(Model model, HttpServletRequest request,  @RequestParam String correo, @RequestParam String contraseña) {
+	public String loginPrivado(Model model, HttpServletRequest request, HttpSession sesion, @RequestParam String correo, @RequestParam String contraseña) {
 		try {
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 			model.addAttribute("token", token.getToken());
 			 
 			Usuario user = repos.findBycorreoEquals(correo);
-	    	
+
+			model.addAttribute("administrador", request.isUserInRole("ADMIN"));
 			if(user.getRol().equals("ADMIN")) {
 				
 				model.addAttribute("profesores", repos.findByRol("PROFESOR"));
@@ -88,7 +89,7 @@ class LoginController {
 			if(user.getRol().equals("PROFESOR")) {
 				model.addAttribute("profesor", repos.findByRol("PROFESOR"));
 			
-				return ""; 
+				return "/profesor"; 
 			}
 			if(user.getRol().equals("PADRE")) {
 				model.addAttribute("padre", repos.findByRol("PADRE"));

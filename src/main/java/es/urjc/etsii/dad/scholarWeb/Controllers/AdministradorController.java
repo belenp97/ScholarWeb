@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -57,7 +58,7 @@ public class AdministradorController {
 	private NoticiaRepository notRepo;
 		
 	@RequestMapping("")
-	public String administrador(Model model, HttpServletRequest request) {
+	public String administrador(Model model, HttpServletRequest request, HttpSession sesion) {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
 		

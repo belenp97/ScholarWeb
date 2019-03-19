@@ -30,7 +30,7 @@
 					<p><h3>
 						<a href="/login">Login</a>
 							{{#administrador}}| 
-								<a href="administrador">
+								<a href="/administrador">
 								administrador</a>
 							{{/administrador}}
 					</h3></p>
@@ -42,7 +42,26 @@
 
 	<section class="wrapper principal">
 		<div id="contain" class="center">
-				<h2><label style="background: #EC969F;">se ha producido un error en el formulario</label></h2>
+			<section class="feature_mysql_tabla">
+					<div class="col_mysql">
+						<h1 class="center">Noticia</h1>
+								<table style="width:100%">
+								  <tr>
+								  	<th>Titulo</th>
+								    <th>Cuerpo</th>
+								  </tr>
+								  <tr class="center">
+								    <td>{{titulo}}</td>
+								    <td>{{cuerpo}}</td>
+								  </tr>
+								</table>
+					</div>
+				</section>
+				<form action='/administrador' method='post'>
+    				<input type="hidden" name="_csrf" value="{{token}}"/>
+			        <input type='submit' value="Volver">
+			    </form>
+		
 		</div>
 	</section>
 

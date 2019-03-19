@@ -58,7 +58,6 @@ public class ProfesorController {
 	public String verProfesores(Model model, HttpServletRequest request) {
 		
 		model.addAttribute("profe", profeRepo.findAll());
-
 		return "profesores";
 	}
 	

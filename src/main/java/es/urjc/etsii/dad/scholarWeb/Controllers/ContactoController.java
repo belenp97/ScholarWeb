@@ -1,6 +1,7 @@
 package es.urjc.etsii.dad.scholarWeb.Controllers;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ public class ContactoController {
 	private static final String RestService = "http://127.0.0.1:8070/send"; 
 	
 	@RequestMapping(value="", method=RequestMethod.GET)
-	public String newContacto(Model model, HttpServletRequest request) {
+	public String newContacto(Model model, HttpServletRequest request, HttpSession sesion) {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
 

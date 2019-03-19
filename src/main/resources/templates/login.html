@@ -29,10 +29,10 @@
 					
 					<p><h3>
 						<a href="/login">Login</a>
-							{{#admin}}| 
+							{{#administrador}}| 
 								<a href="administrador">
 								administrador</a>
-							{{/admin}}
+							{{/administrador}}
 					</h3></p>
 				</div>
 			</div>
@@ -41,7 +41,7 @@
 	<!-- ####################################################################################################### -->
 
 	<section class="wrapper_login">
-		<form class="register" action="/login/privado" method="post">
+		<form class="register" action="/privado" method="post">
 			<input class="mininbox t" type="email" name="correo" placeholder="info@mailaddress.com">
 			<input class="mininbox t" type="password" name="contraseña"placeholder="••••••••••••">
 			<input type="submit" value="Enviar" class="submit">
@@ -56,12 +56,12 @@
 								  	<th>Correo</th>
 								    <th>Nombre</th>
 								  </tr>
-								  {{#administrador}}
+								  {{#admin}}
 								  <tr class="center">
 								    <td>{{correo}}</td>
 								    <td>{{nombre}}</td>
 								  </tr>
-								  {{/administrador}}
+								  {{/admin}}
 								</table>
 					</div>
 				</section>

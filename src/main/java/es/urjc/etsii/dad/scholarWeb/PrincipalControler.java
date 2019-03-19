@@ -140,12 +140,12 @@ public class PrincipalControler {
 	}*/
 
 	@RequestMapping("/")
-	public String principal(Model model, HttpServletRequest request) {
+	public String principal(Model model, HttpServletRequest request, HttpSession sesion) {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
-		
-		HttpSession sesion = request.getSession(true); 
-		
+
+    	model.addAttribute("administrador", request.isUserInRole("ADMIN"));
+    	
 		return "principal";
 	}
 	
