@@ -61,11 +61,12 @@ class LoginController {
 		
 		model.addAttribute("admin", repos.findByRol("ADMIN"));
 		
+		
 		return "login";
 	}
 	
 	@RequestMapping(value="/privado", method=RequestMethod.POST)
-	public String loginPrivado(Model model, HttpServletRequest request, HttpSession sesion, Authentication authentication, @RequestParam String correo, @RequestParam String contraseña) {
+	public String loginPrivado(Model model, HttpServletRequest request, HttpSession sesion, @RequestParam String correo, @RequestParam String contraseña) {
 		try {
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 			model.addAttribute("token", token.getToken());
@@ -74,6 +75,9 @@ class LoginController {
 			
 			sesion.setAttribute("correo", user.getCorreo());
 			sesion.setAttribute("contraseña", user.getPass());
+			sesion.setAttribute("usuario", user);
+			
+			System.out.println("el usuario es: "+user);
 			
 			
 //			sesion= request.getSession(true);
@@ -92,6 +96,7 @@ class LoginController {
 				
 				return "administrador"; 
 			}
+			
 			if(user.getRol().equals("PROFESOR")) {
 				model.addAttribute("profesor", repos.findByRol("PROFESOR"));
 			

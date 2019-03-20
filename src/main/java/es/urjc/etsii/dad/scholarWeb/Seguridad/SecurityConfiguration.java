@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
-	public UsuarioRepositoryAuthenticationProvider authenticationProvider;
+	public AuthenticationProvider authenticationProvider;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -21,8 +21,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //		 auth.inMemoryAuthentication().withUser("user").password("pass")
 //		 .roles("USER");
 //
-//		 auth.inMemoryAuthentication().withUser("admin").password("adminpass")
-//		 .roles("USER", "ADMIN");
+		 auth.inMemoryAuthentication().withUser("admin").password("adminpass")
+		 .roles("USER", "ADMIN");
 //
 //
 //		 auth.inMemoryAuthentication().withUser("profesor").password("profpass")
@@ -41,24 +41,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		// Public pages
 		http.authorizeRequests().antMatchers("/").permitAll();
 		http.authorizeRequests().antMatchers("/noticias").permitAll();
-		http.authorizeRequests().antMatchers("/profesores").permitAll();
+		http.authorizeRequests().antMatchers("/profesor").permitAll();
 		http.authorizeRequests().antMatchers("/login").permitAll();
 		http.authorizeRequests().antMatchers("/contacto").permitAll();
 		http.authorizeRequests().antMatchers("/principal").permitAll();
-//	  http.authorizeRequests().antMatchers("/administrador").permitAll();
-		http.authorizeRequests().antMatchers("/css/**");
+		http.authorizeRequests().antMatchers("/privado").permitAll();
+//	  	http.authorizeRequests().antMatchers("/administrador").permitAll();
+		http.authorizeRequests().antMatchers("/css/**").permitAll();
 
 		// Private pages (all other pages)
-//		http.authorizeRequests().anyRequest().authenticated();
+		http.authorizeRequests().anyRequest().authenticated();
 		http.authorizeRequests().antMatchers("/administrador").hasRole("ADMIN");
-//	 http.authorizeRequests().antMatchers("pagina_profesor").hasAnyRole("PROFESOR");
-//	 http.authorizeRequests().antMatchers("pagina_padre").hasAnyRole("PADRE");
+		http.authorizeRequests().antMatchers("/administrador/insertar_admin").hasRole("ADMIN");
+		
+//		http.authorizeRequests().antMatchers("pagina_profesor").hasAnyRole("PROFESOR");
+//	 	http.authorizeRequests().antMatchers("pagina_padre").hasAnyRole("PADRE");
 
 		// Login form
 		http.formLogin().loginPage("/login");
-		http.formLogin().usernameParameter("nombre");
+		http.formLogin().usernameParameter("correo");
 		http.formLogin().passwordParameter("contraseña");
-		http.formLogin().defaultSuccessUrl("/login_privado");
+		http.formLogin().defaultSuccessUrl("/privado");
 		http.formLogin().defaultSuccessUrl("/administrador");
 		http.formLogin().failureUrl("/loginError");
 
