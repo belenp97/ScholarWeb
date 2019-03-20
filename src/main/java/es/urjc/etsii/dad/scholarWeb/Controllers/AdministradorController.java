@@ -69,7 +69,6 @@ public class AdministradorController {
     	
     	sesion.setAttribute("correo", user.getCorreo());
 		sesion.setAttribute("contraseña", user.getPass());
-		sesion.setAttribute("usuario", user);
 		
     	
 		try {
@@ -102,7 +101,7 @@ public class AdministradorController {
 			Administrador admin = adminrepo.findByCorreo(correo);
 			if(admin ==null || admin.getCorreo() != correo) {
 				
-				Usuario adminis = (Administrador) new Administrador(nombre, apellido,correo,contrasena, "ROLE_USER", "ROLE_ADMIN");
+				Usuario adminis = (Administrador) new Administrador(nombre, apellido,correo,contrasena, "ADMIN", "ADMIN");
 				adminrepo.saveAndFlush((Administrador) adminis);
 				
 				model.addAttribute("id", adminis.getId()); 

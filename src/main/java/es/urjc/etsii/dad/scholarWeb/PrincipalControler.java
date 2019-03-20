@@ -148,15 +148,8 @@ public class PrincipalControler {
 //		if(sesion != null) {
 //			sesion.setAttribute("registred", true);		
 //		}
-		
-		if(!sesion.isNew()) {
-			sesion= request.getSession(true);
-			sesion.getAttribute("usuario");
-			
-			System.out.println("el usuario logeado es: "+request.getUserPrincipal());
-		}
 
-		//sesion= request.getSession(true);
+		sesion= request.getSession(true);
     	model.addAttribute("administrador", request.isUserInRole("ROLE_ADMIN"));
     	
     	

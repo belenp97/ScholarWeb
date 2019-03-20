@@ -6,7 +6,6 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,17 +15,23 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.mysql.cj.conf.PropertySet;
+import com.mysql.cj.exceptions.ExceptionInterceptor;
+import com.mysql.cj.protocol.AuthenticationProvider;
+import com.mysql.cj.protocol.Protocol;
+import com.mysql.cj.protocol.ServerSession;
 
 import es.urjc.etsii.dad.scholarWeb.Usuario;
 import es.urjc.etsii.dad.scholarWeb.Repositories.UsuarioRepository;
 
 @Component
-public class UsuarioRepositoryAuthenticationProvider implements AuthenticationProvider{
+public class UsuarioRepositoryAuthenticationProvider implements AuthenticationProvider, org.springframework.security.authentication.AuthenticationProvider{
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
 	@Override
+	@Transactional
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 		// TODO Auto-generated method stub
 		
@@ -53,9 +58,33 @@ public class UsuarioRepositoryAuthenticationProvider implements AuthenticationPr
 	}
 
 	@Override
+	public void init(Protocol prot, PropertySet propertySet, ExceptionInterceptor exceptionInterceptor) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void connect(ServerSession serverSession, String userName, String password, String database) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void changeUser(ServerSession serverSession, String userName, String password, String database) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getEncodingForHandshake() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public boolean supports(Class<?> authentication) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }
