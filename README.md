@@ -161,6 +161,19 @@ Para la ejecución de la aplicación en un entorno virtualizado deberemos tener 
 - Ahora que tenemos tanto la web como el servicio interno corriendo vamos a probarlo desde nuestro navegador local.
 
 	   * Escribimos https://192.168.33.10:8443 y nos debería aparecer nuestra página de ScholarWeb
+	   
+	  
+###  DESARROLLO Y USO DEL SERVICIO INTERNO
+
+El servicio interno va a consistir en el envio de un correo al gmail que se indique mediante dos acciones y propósitos distintos:
+	- Si el cliente se introduce en la ventana de "Contacto", deberá introducir los datos: Nombre, Correo, Teléfono y Cuerpo del 			mensaje. Al enviar el mensaje, lo recibirá, tanto el cliente que ha enviado el mensaje como el administrador de 			ScholarWeb en el correo "scholar.web.dad@gmail.com"
+	- Otra manera de recibir este correo es, una vez el administrador registra un nuevo usuario, este usuario recibirá como 			destinatario un correo dandole la bienvenido y mostrandole sus datos.
+
+### EXTRAS.
+
+Como servicio adicional, el cliente podrá descargar en la página principal una serie de PDF con información de la escuela. Esta acción l apodrá realizar cualquier cliente que acceda sin necesidad de encontrarse registrado.
+En ciertos pdf se abrirá el mismo en otra ventana, mientras que en otros casos se descargará de manera automática.
+
 
 ### **Equipo de desarrollo.**
   1. Jorge Alonso Vivar
