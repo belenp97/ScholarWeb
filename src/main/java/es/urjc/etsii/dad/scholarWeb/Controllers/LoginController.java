@@ -64,7 +64,7 @@ class LoginController {
 		return "login";
 	}
 	
-	@RequestMapping(value="/privado", method=RequestMethod.POST)
+	@RequestMapping(value="/privado")
 	public String loginPrivado(Model model, HttpServletRequest request, HttpSession sesion, Authentication authentication, @RequestParam String correo, @RequestParam String contraseña) {
 		try {
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
@@ -75,6 +75,8 @@ class LoginController {
 			sesion.setAttribute("correo", user.getCorreo());
 			sesion.setAttribute("contraseña", user.getPass());
 			
+			
+			System.out.println("El usuario logeado es: "+correo);
 			
 //			sesion= request.getSession(true);
 			

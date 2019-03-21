@@ -97,6 +97,9 @@ public class AdministradorController {
 			String correo = nombre.toLowerCase() +"." +apellido.toLowerCase() +"@gmail.com"; 
 			String contrasena = "@" +nombre.toLowerCase() +"." +apellido.toLowerCase() +"_";
 			
+			System.out.println("el usuario es: "+correo);
+			
+			
 		try {	
 			Administrador admin = adminrepo.findByCorreo(correo);
 			if(admin ==null || admin.getCorreo() != correo) {
