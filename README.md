@@ -156,7 +156,7 @@ Para la ejecución de la aplicación en un entorno virtualizado deberemos tener 
 
 - Por último ejecutamos los dos ficheros .jar que hemos nombrado anteriormente a la vez.
 
-	   * java -jar config.vm.network "private_network", ip: "192.168.33.10" & java -jar ScholarWebPublic-0.0.1-SNAPSHOT.jar
+	   * java -jar scholarweb-0.0.1-SNAPSHOT.jar & java -jar ScholarWebPublic-0.0.1-SNAPSHOT.jar
     
 - Ahora que tenemos tanto la web como el servicio interno corriendo vamos a probarlo desde nuestro navegador local.
 
