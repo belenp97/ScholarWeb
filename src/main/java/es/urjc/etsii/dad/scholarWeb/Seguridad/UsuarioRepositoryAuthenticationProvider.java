@@ -16,10 +16,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.mysql.cj.conf.PropertySet;
-import com.mysql.cj.exceptions.ExceptionInterceptor;
-import com.mysql.cj.protocol.Protocol;
-import com.mysql.cj.protocol.ServerSession;
 
 import es.urjc.etsii.dad.scholarWeb.Usuario;
 import es.urjc.etsii.dad.scholarWeb.Repositories.UsuarioRepository;

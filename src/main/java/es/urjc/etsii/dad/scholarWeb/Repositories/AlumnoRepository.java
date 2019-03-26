@@ -17,5 +17,9 @@ public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
 	//Alumno insertarAlumno(String Alumno);
 //	Alumno findBynexpedienteEquals(Integer id);
 	Alumno findBynombreEquals(String nombre);
+	Alumno findById(Integer id);
+	Alumno deleteById(Integer id);
+	
+	Alumno deletePadre(Padre p);
 //	Alumno deleteByNexpediente(Integer nexp);
 }

@@ -77,10 +77,10 @@ public class AsignaturaController {
 			model.addAttribute("token", token.getToken());
 			
 		try {
-			Optional<Asignatura> asig = asigRepo.findById(id); 
+			Asignatura asig = asigRepo.findById(id); 
 		
-			model.addAttribute("nombre", asig.get().getNombre());
-			model.addAttribute("curso", asig.get().getCurso());
+			model.addAttribute("nombre", asig.getNombre());
+			model.addAttribute("curso", asig.getCurso());
 			
 			asigRepo.deleteById(id);
 			

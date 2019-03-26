@@ -64,21 +64,16 @@ public class AlumnoController {
 			
 		try {
 			
-			Optional<Profesor>  prof = profeRepo.findById(idprofesor);
-			Optional<Asignatura> asig = asigRepo.findById(idasig);
-			Optional<Aula> aul = reposAula.findById(idaula);
-			Asignatura as = asig.get();
-			Aula au = aul.get();
-			
+			Profesor  prof = profeRepo.findById(idprofesor);
+			Asignatura asig = asigRepo.findById(idasig);
+			Aula aul = reposAula.findById(idaula);
 //			contrasena = nombre.charAt(0) + apellido1.charAt(0) +apellido1.charAt(1) +""; 
 			
-			if(!prof.isPresent()) {
-				alumno = new Alumno(nombre, apellido1, apellido2,as, au, correo, contrasena, "ALUMNO", "USER");
+			if(prof==null) {
+				alumno = new Alumno(nombre, apellido1, apellido2,asig, aul, correo, contrasena, "ALUMNO", "USER");
 			}
 			else {
-
-				Profesor p = prof.get();
-				alumno = new Alumno(nombre, apellido1, apellido2, as, au, p, correo, contrasena, "ALUMNO", "USER");
+				alumno = new Alumno(nombre, apellido1, apellido2, asig, aul, prof, correo, contrasena, "ALUMNO", "USER");
 			}
 			Alumno al = reposAl.findBynombreEquals(nombre); 
 			if(al==(null) || !al.equals(alumno) ) {
@@ -106,18 +101,18 @@ public class AlumnoController {
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 			model.addAttribute("token", token.getToken());
 			
-			Optional<Alumno> alumno = reposAl.findById(nexp);
-			Padre p = alumno.get().getPadre(); 
+			Alumno alumno = reposAl.findById(nexp);
+			Padre p = alumno.getPadre(); 
 			if(p != null) {
 				padreRepo.delete(p);
 			}
 			
-			model.addAttribute("nexp", alumno.get().getId()); 
-			model.addAttribute("nombreAlum", alumno.get().getNombre() +" " + alumno.get().getApellido1() +" " + alumno.get().getApellido2() +" "); 
-			model.addAttribute("aula", alumno.get().getAula().getCurso() +" " +alumno.get().getAula().getLetra() +" "); 
-			model.addAttribute("nombreasig", alumno.get().getAsignaturas().toString()); 
-			model.addAttribute("nombreprofesor",alumno.get().getProfesores().toString()); 
-			model.addAttribute("correo", alumno.get().getCorreo()); 
+			model.addAttribute("nexp", alumno.getId()); 
+			model.addAttribute("nombreAlum", alumno.getNombre() +" " + alumno.getApellido1() +" " + alumno.getApellido2() +" "); 
+			model.addAttribute("aula", alumno.getAula().getCurso() +" " +alumno.getAula().getLetra() +" "); 
+			model.addAttribute("nombreasig", alumno.getAsignaturas().toString()); 
+			model.addAttribute("nombreprofesor",alumno.getProfesores().toString()); 
+			model.addAttribute("correo", alumno.getCorreo()); 
 			
 			reposAl.deleteById(nexp); 
 

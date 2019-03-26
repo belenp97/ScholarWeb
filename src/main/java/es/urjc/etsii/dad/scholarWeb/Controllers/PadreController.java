@@ -50,19 +50,19 @@ public class PadreController {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
 		
-		Optional<Alumno> a = reposAl.findById(idalumno); 
+		Alumno a = reposAl.findById(idalumno); 
 		
 		String correo = nombre.toLowerCase() +"." +apellido.toLowerCase() +"@gmail.com"; 
-		String contrasena = "@" +nombre.toLowerCase() +"." +apellido.toLowerCase()+"_" +a.get().getNombre().toLowerCase()+"." +a.get().getApellido1().toLowerCase()+"";
+		String contrasena = "@" +nombre.toLowerCase() +"." +apellido.toLowerCase()+"_" +a.getNombre().toLowerCase()+"." +a.getApellido1().toLowerCase()+"";
 		
 		try {
 			Usuario padre = null; 
 			Padre pa = padreRepo.findBycorreoEquals(correo); 
 			if(pa == null || (pa.getCorreo() != correo) ) {
-				if(a.isPresent()) {
+				if(a!=null) {
 					a= reposAl.findById(idalumno);
-					a.get().setPadre((Padre) padre);
-					padre = (Padre)new Padre(nombre,apellido,correo, a.get(), contrasena, "PADRE", "USER");
+					a.setPadre((Padre) padre);
+					padre = (Padre)new Padre(nombre,apellido,correo, a, contrasena, "PADRE", "USER");
 					
 				}else {
 					padre = (Padre)new Padre(nombre,apellido,correo, contrasena, "PADRE", "USER");
@@ -88,20 +88,20 @@ public class PadreController {
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 			model.addAttribute("token", token.getToken());
 //			modelos(model);
-			Optional<Padre> padre = padreRepo.findById(id_padre); 
-			for(int i=0; i< padre.get().getAlumno().size(); i++) {
-				Optional<Alumno> alumno = reposAl.findById(padre.get().getAlumno().get(i).getId()); 
-				alumno.get().deletePadre(padre.get());
+			Padre padre = padreRepo.findById(id_padre); 
+			for(int i=0; i< padre.getAlumno().size(); i++) {
+				Alumno alumno = reposAl.findById(padre.getAlumno().get(i).getId()); 
+				alumno.deletePadre(padre);
 			}
 			
 			if(id_padre > 0) {
 				
 				padreRepo.deleteById(id_padre);
 				
-				model.addAttribute("id_padre", padre.get().getId()); 
-				model.addAttribute("nombrePadre", padre.get().getNombre() +" " +padre.get().getApellido() +" ") ; 
-				model.addAttribute("correo", padre.get().getCorreo()); 
-				model.addAttribute("hijo", padre.get().getAlumno().toString()); 
+				model.addAttribute("id_padre", padre.getId()); 
+				model.addAttribute("nombrePadre", padre.getNombre() +" " +padre.getApellido() +" ") ; 
+				model.addAttribute("correo", padre.getCorreo()); 
+				model.addAttribute("hijo", padre.getAlumno().toString()); 
 				
 				return "formularioAceptPadre";
 			}

@@ -60,7 +60,7 @@ public class AdministradorController {
 	private NoticiaRepository notRepo;
 		
 	@RequestMapping("")
-	public String administrador(Model model, HttpServletRequest request, HttpSession sesion, Authentication authentication,@RequestParam String correo, @RequestParam String contraseña) {
+	public String administrador(Model model, HttpServletRequest request, HttpSession sesion, Authentication authenticat) {
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());

@@ -145,6 +145,8 @@ public class PrincipalControler {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
 		
+		//System.out.println("el usuario ahora es: "+ request.getUserPrincipal().getName());
+		
 //		if(sesion != null) {
 //			sesion.setAttribute("registred", true);		
 //		}

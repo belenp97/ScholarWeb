@@ -9,4 +9,6 @@ public interface AsignaturaRepository extends JpaRepository<Asignatura, Integer>
 
 	Asignatura saveAndFlush(Asignatura item);
 	Asignatura findBynombreEquals(String nombre);
+	Asignatura findById(Integer id);
+	Asignatura deleteById(Integer id);
 }
