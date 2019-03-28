@@ -169,6 +169,32 @@ El servicio interno va a consistir en el envio de un correo al gmail que se indi
 - Si el cliente se introduce en la ventana de "Contacto", deberá introducir los datos: Nombre, Correo, Teléfono y Cuerpo del mensaje. Al enviar el mensaje, lo recibirá, tanto el cliente que ha enviado el mensaje como el administrador de ScholarWeb en el correo "scholar.web.dad@gmail.com"
 - Otra manera de recibir este correo es, una vez el administrador registra un nuevo usuario, este usuario recibirá como destinatario un correo dandole la bienvenido y mostrandole sus datos.
 
+### SERVICIO MAIL / API REST
+En la clase principal hemos creado dos clases donde, tienen la clase Mail con sus atributos(from, to, subject y body) y el la otra clase, que es llamado en el controlador de contacto, donde te pide los atributos de la clase y se rellenan y mediante la llamada "postForLocation" llamamos al metodo. 
+
+	* RestTemplate servInterno = new RestTemplate(); 
+		   
+	  String from = "scholar.web.dad@gmail.com"; // dirección de correo remitente -> usuario Administrador
+	  String to = mail; // dirección del correo de destino -> nuevo usuario
+	  String bodys = "Hola " + name + ", has sido contactado por la pag ScholarWeb facilitandonos el Telefono " + telefono 			+ ", el Email: " +mail +"y el mensaje: " +body +" en breves le responderemos. \n Un saludo ScholarWeb.";
+			
+	* servInterno.postForLocation(RestService, new Mail(from,to,"conctato en pag ScholarWeb",bodys));
+
+Luego en la aplicación del servicio interno tenemos la clase Mail con los mismo atributos de la clase principal. 
+
+### SERVICIO PDF
+Mantenemos este servicio en la clase principal donde lo tenemos distribuido en tres imagenes, donde cada imagen tiene su pdf. 
+Este servicio esta implementado solo en la misma clase principal. 
+
+Hemos realizado un metodo para cada imagen/pdf donde hemos incluido un parametro nuevo en la cabecera 
+	
+	* @RequestParam(defaultValue="deportes.pdf")
+
+donde dentro del método con tener la llamada a la creación de ese fichero.
+
+	*File file = new File(EXTERNAL_FILE_PATH +"/"+ fileName);
+		
+
 ### EXTRAS.
 
 Como servicio adicional, el cliente podrá descargar en la página principal una serie de PDF con información de la escuela. Esta acción l apodrá realizar cualquier cliente que acceda sin necesidad de encontrarse registrado.
