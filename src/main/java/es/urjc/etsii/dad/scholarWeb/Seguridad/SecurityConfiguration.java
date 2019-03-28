@@ -17,20 +17,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-		// Users
-//		 auth.inMemoryAuthentication().withUser("user").password("pass")
-//		 .roles("USER");
-//
-//		 auth.inMemoryAuthentication().withUser("admin").password("adminpass")
-//		 .roles("USER", "ADMIN");
-//
-//
-//		 auth.inMemoryAuthentication().withUser("profesor").password("profpass")
-//		 .roles("USER","PROFESOR");
-//
-//		 auth.inMemoryAuthentication().withUser("padre").password("padrepass")
-//		 .roles("USER","PADRE");
-//		 
+		
 		// Database authentication provider,
 		auth.authenticationProvider(authenticationProvider);
 	}
@@ -43,6 +30,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/noticias").permitAll();
 		http.authorizeRequests().antMatchers("/profesores").permitAll();
 		http.authorizeRequests().antMatchers("/login").permitAll();
+		http.authorizeRequests().antMatchers("/loginError").permitAll();
 		http.authorizeRequests().antMatchers("/contacto").permitAll();
 		http.authorizeRequests().antMatchers("/principal").permitAll();
 //	  http.authorizeRequests().antMatchers("/administrador").permitAll();
@@ -50,16 +38,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 		// Private pages (all other pages)
 //		http.authorizeRequests().anyRequest().authenticated();
-		http.authorizeRequests().antMatchers("/administrador").hasRole("ADMIN");
+		http.authorizeRequests().antMatchers("/administrador").hasAnyRole("ADMIN");
 //	 http.authorizeRequests().antMatchers("pagina_profesor").hasAnyRole("PROFESOR");
 //	 http.authorizeRequests().antMatchers("pagina_padre").hasAnyRole("PADRE");
 
 		// Login form
 		http.formLogin().loginPage("/login");
-		http.formLogin().usernameParameter("correo");
+		http.formLogin().usernameParameter("nombre");
 		http.formLogin().passwordParameter("contraseña");
 		http.formLogin().defaultSuccessUrl("/privado");
-		http.formLogin().defaultSuccessUrl("/administrador");
+//		http.formLogin().defaultSuccessUrl("/administrador");
 		http.formLogin().failureUrl("/loginError");
 
 		// Logout

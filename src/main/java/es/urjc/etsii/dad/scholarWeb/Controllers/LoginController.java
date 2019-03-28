@@ -46,6 +46,15 @@ class LoginController {
 	private AdminRepository adminrepo;
 	
 	@Autowired
+	private ProfesorRepository proferepos;
+	
+	@Autowired
+	private AlumnoRepository alrepos;
+	
+	@Autowired
+	private PadreRepository padrerepos;
+	
+	@Autowired
 	private AsignaturaRepository asigRepo;
 
 	@Autowired
@@ -56,37 +65,31 @@ class LoginController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login(Model model, HttpServletRequest request, HttpSession sesion) {
-		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-		model.addAttribute("token", token.getToken());
 		
-		model.addAttribute("admin", repos.findByRol("ADMIN"));
-		
+    	model.addAttribute("admin", request.isUserInRole("ADMIN"));
+    	
 		return "login";
 	}
 	
 	@RequestMapping(value="/privado")
-	public String loginPrivado(Model model, HttpServletRequest request, HttpSession sesion, Authentication authentication, @RequestParam String correo, @RequestParam String contraseña) {
-		try {
-			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-			model.addAttribute("token", token.getToken());
+	public String loginPrivado(Model model, HttpServletRequest request) {
 			 
-			Usuario user = repos.findBycorreoEquals(correo);
-			
-			sesion.setAttribute("correo", user.getCorreo());
-			sesion.setAttribute("contraseña", user.getPass());
-			
-			
-			System.out.println("El usuario logeado es: "+correo);
+			Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
+	    	
+	    	model.addAttribute("admin", request.isUserInRole("ADMIN"));
+	    	model.addAttribute("username", user.getNombre());
+	    	
+			System.out.println("El usuario logeado es: "+user.getCorreo());
 			
 //			sesion= request.getSession(true);
 			
 			model.addAttribute("administrador", request.isUserInRole("ADMIN"));
-			if(user.getRol().equals("ADMIN")) {
+			if(request.isUserInRole("ADMIN")) {
 				
-				model.addAttribute("profesores", repos.findByRol("PROFESOR"));
-				model.addAttribute("alumnos", repos.findByRol("ALUMNO"));
-				model.addAttribute("padres", repos.findByRol("PADRE"));
-				model.addAttribute("administrador", repos.findByRol("ADMIN"));
+				model.addAttribute("profesores", proferepos.findAll());
+				model.addAttribute("alumnos", alrepos.findAll());
+				model.addAttribute("padres", padrerepos.findAll());
+				model.addAttribute("administrador", adminrepo.findAll());
 				model.addAttribute("asignaturas", asigRepo.findAll());
 				model.addAttribute("noticias", notRepo.findAll());
 				model.addAttribute("aulas", reposAula.findAll());
@@ -94,27 +97,23 @@ class LoginController {
 				
 				return "administrador"; 
 			}
-			if(user.getRol().equals("PROFESOR")) {
+			if(request.isUserInRole("PROFESOR")) {
 				model.addAttribute("profesor", repos.findByRol("PROFESOR"));
 			
 				return "/profesor"; 
 			}
-			if(user.getRol().equals("PADRE")) {
+			if(request.isUserInRole("PADRE")) {
 				model.addAttribute("padre", repos.findByRol("PADRE"));
 			
 				return ""; 
 			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		
 		return "loginError";
 	}
 	
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logout(Model model, HttpServletRequest request) {
 		try {
-			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-			model.addAttribute("token", token.getToken());
 			request.logout();
 			return "/login";
 		} catch (ServletException e) {

@@ -18,8 +18,8 @@ public class Administrador extends Usuario{
 
 	}
 
-	public Administrador(String nombre, String apellido, String correo, String contraseña, String rol, String... roles) {
-		super(nombre, correo, contraseña, rol, roles);
+	public Administrador(String nombre, String apellido, String correo, String contraseña, String... roles) {
+		super(nombre, correo, contraseña, roles);
 //		this.id=id; 
 		this.apellido=apellido;		
 	}

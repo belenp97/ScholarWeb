@@ -4,19 +4,19 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.2.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	
 	<groupId>es.urjc.etsii.dad</groupId>
 	<artifactId>scholarWeb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>scholarWeb</name>
 	<description>Web de Colegio de Primaria</description>
 	<packaging>jar</packaging>
-	
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.9.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -62,16 +62,11 @@
 		</dependency>	
 		
 		<!-- Fase 4 -> Hazelcast-->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.session</groupId>
 			<artifactId>spring-session</artifactId>
-		</dependency>
+		</dependency>-->
 		
-		<dependency>
-			<groupId>com.hazelcast</groupId>
-			<artifactId>hazelcast</artifactId>
-			
-		</dependency>
 			
 	</dependencies>
 

@@ -24,105 +24,115 @@ import es.urjc.etsii.dad.scholarWeb.Repositories.AsignaturaRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AulaRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.PadreRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.ProfesorRepository;
-
+import es.urjc.etsii.dad.scholarWeb.Repositories.UsuarioRepository;
 
 @Controller
 @RequestMapping("/alumno")
 public class AlumnoController {
 	@Autowired
-	private AlumnoRepository reposAl;
+	private UsuarioRepository repos;
 	
+	@Autowired
+	private AlumnoRepository reposAl;
+
 	@Autowired
 	private AulaRepository reposAula;
-	
+
 	@Autowired
 	private PadreRepository padreRepo;
-	
+
 	@Autowired
 	private AsignaturaRepository asigRepo;
-	
+
 	@Autowired
 	private ProfesorRepository profeRepo;
-	
-//	@RequestMapping("")
-//	public String verPadres(Model model) throws Exception {
-//	
-//		model.addAttribute("padres", padreRepo.findAll());
-//
-//		return "padres";
-//	}
-	
-	@RequestMapping(value="/insertar_alumno", method=RequestMethod.POST)
-	public String insertar_alumno(Model model,HttpServletRequest request,  @RequestParam String nombre,@RequestParam String apellido1, @RequestParam String apellido2, @RequestParam Integer idasig, @RequestParam Integer idaula, @RequestParam Integer idprofesor, String contraseña, String rol, String... roles) {	
-		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-			model.addAttribute("token", token.getToken());
-			
-			Usuario alumno = null; 
-			String contrasena = "@" +nombre.toLowerCase().charAt(0) +"_" +apellido1.toLowerCase().charAt(0) +"_" + apellido2.toLowerCase().charAt(0);
-			String correo = nombre.toLowerCase().charAt(0) +"" +apellido1.toLowerCase().charAt(0) +"" + apellido2.toLowerCase().charAt(0) +"" +"@gmail.com"; 
-			
-			
+
+
+	@RequestMapping(value = "/insertar_alumno", method = RequestMethod.POST)
+	public String insertar_alumno(Model model, HttpServletRequest request, @RequestParam String nombre,
+			@RequestParam String apellido1, @RequestParam String apellido2, @RequestParam Integer idasig,
+			@RequestParam Integer idaula, @RequestParam Integer idprofesor, String contraseña, String rol,
+			String... roles) {
+
+		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
+
+		model.addAttribute("administrador", request.isUserInRole("ADMIN"));
+		model.addAttribute("username", user.getNombre());
+		
+		Usuario alumno = null;
+		String contrasena = "@" + nombre.toLowerCase().charAt(0) + "_" + apellido1.toLowerCase().charAt(0) + "_"
+				+ apellido2.toLowerCase().charAt(0);
+		String correo = nombre.toLowerCase().charAt(0) + "" + apellido1.toLowerCase().charAt(0) + ""
+				+ apellido2.toLowerCase().charAt(0) + "" + "@gmail.com";
+
 		try {
-			
-			Profesor  prof = profeRepo.findById(idprofesor);
-			Asignatura asig = asigRepo.findById(idasig);
-			Aula aul = reposAula.findById(idaula);
-//			contrasena = nombre.charAt(0) + apellido1.charAt(0) +apellido1.charAt(1) +""; 
-			
-			if(prof==null) {
-				alumno = new Alumno(nombre, apellido1, apellido2,asig, aul, correo, contrasena, "ALUMNO", "USER");
+			Optional<Profesor> p = profeRepo.findById(idprofesor);
+			Profesor prof = profeRepo.findBynombreEquals(p.get().getNombre());
+
+			Optional<Asignatura> asig = asigRepo.findById(idasig);
+			Asignatura asignatura = asigRepo.findBynombreEquals(asig.get().getNombre());
+			Optional<Aula> a = reposAula.findById(idaula);
+//			Aula aul = reposAula.findByCurso(a.get().getCurso());
+			contrasena = nombre.charAt(0) + apellido1.charAt(0) + apellido1.charAt(1) + "";
+
+			if (prof == null) {
+				alumno = new Alumno(nombre, apellido1, apellido2, asignatura, a.get(), correo, contrasena,
+						"ROLE_ALUMNO", "ROLE_USER");
+			} else {
+				alumno = new Alumno(nombre, apellido1, apellido2, asignatura, a.get(), prof, correo, contrasena,
+						"ROLE_ALUMNO", "ROLE_USER");
 			}
-			else {
-				alumno = new Alumno(nombre, apellido1, apellido2, asig, aul, prof, correo, contrasena, "ALUMNO", "USER");
-			}
-			Alumno al = reposAl.findBynombreEquals(nombre); 
-			if(al==(null) || !al.equals(alumno) ) {
-				reposAl.saveAndFlush(alumno); 
-				
-				model.addAttribute("nexp", alumno.getId()); 
-				model.addAttribute("nombreAlum", alumno.getNombre() +" " +((Alumno) alumno).getApellido1() +" " +((Alumno) alumno).getApellido2() +" "); 
-				model.addAttribute("aula", ((Alumno) alumno).getAula().getCurso() +" " +((Alumno) alumno).getAula().getLetra() +" "); 
-				model.addAttribute("nombreasig", ((Alumno) alumno).getAsignaturas().toString()); 
-				model.addAttribute("nombreprofesor", ((Alumno) alumno).getProfesores().toString()); 
-				model.addAttribute("correo", ((Alumno) alumno).getCorreo()); 
-				
+			Alumno al = reposAl.findBynombreEquals(nombre);
+			if (al == (null) || !al.equals(alumno)) {
+				reposAl.saveAndFlush(alumno);
+
+				model.addAttribute("nexp", alumno.getId());
+				model.addAttribute("nombreAlum", alumno.getNombre() + " " + ((Alumno) alumno).getApellido1() + " "
+						+ ((Alumno) alumno).getApellido2() + " ");
+				model.addAttribute("aula",
+						((Alumno) alumno).getAula().getCurso() + " " + ((Alumno) alumno).getAula().getLetra() + " ");
+				model.addAttribute("nombreasig", ((Alumno) alumno).getAsignaturas().toString());
+				model.addAttribute("nombreprofesor", ((Alumno) alumno).getProfesores().toString());
+				model.addAttribute("correo", ((Alumno) alumno).getCorreo());
+
 				return "formularioAceptAlumno";
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "formularioError";
 	}
+
+	@RequestMapping(value = "/eliminar_alumno", method = RequestMethod.POST)
+	public String eliminar_alumno(Model model, HttpServletRequest request, @RequestParam Integer nexp) {
+		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
+
+		model.addAttribute("administrador", request.isUserInRole("ADMIN"));
+		model.addAttribute("username", user.getNombre());
 		
-	@RequestMapping(value="/eliminar_alumno" , method=RequestMethod.POST)
-	public String eliminar_alumno(Model model,HttpServletRequest request , @RequestParam Integer nexp) {	
 		try {
-//			modelos(model);
-			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-			model.addAttribute("token", token.getToken());
-			
-			Alumno alumno = reposAl.findById(nexp);
-			Padre p = alumno.getPadre(); 
-			if(p != null) {
+			Optional<Alumno> a = reposAl.findById(nexp);
+			Alumno alumno = reposAl.findBynombreEquals(a.get().getNombre());
+			Padre p = alumno.getPadre();
+			if (p != null) {
 				padreRepo.delete(p);
 			}
-			
-			model.addAttribute("nexp", alumno.getId()); 
-			model.addAttribute("nombreAlum", alumno.getNombre() +" " + alumno.getApellido1() +" " + alumno.getApellido2() +" "); 
-			model.addAttribute("aula", alumno.getAula().getCurso() +" " +alumno.getAula().getLetra() +" "); 
-			model.addAttribute("nombreasig", alumno.getAsignaturas().toString()); 
-			model.addAttribute("nombreprofesor",alumno.getProfesores().toString()); 
-			model.addAttribute("correo", alumno.getCorreo()); 
-			
-			reposAl.deleteById(nexp); 
+
+			model.addAttribute("nexp", alumno.getId());
+			model.addAttribute("nombreAlum",
+					alumno.getNombre() + " " + alumno.getApellido1() + " " + alumno.getApellido2() + " ");
+			model.addAttribute("aula", alumno.getAula().getCurso() + " " + alumno.getAula().getLetra() + " ");
+			model.addAttribute("nombreasig", alumno.getAsignaturas().toString());
+			model.addAttribute("nombreprofesor", alumno.getProfesores().toString());
+			model.addAttribute("correo", alumno.getCorreo());
+
+			reposAl.delete(alumno);
 
 			return "formularioAceptAlumno";
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "formularioError";
 	}
 }
-	
-	

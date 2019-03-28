@@ -15,6 +15,4 @@ public interface PadreRepository extends JpaRepository<Padre, Integer> {
 	Padre findBycorreoEquals(String correo);
 	Padre findByNombreEquals(String nombre);
 	Padre saveAndFlush(Usuario padre);
-	Padre findById(Integer id);
-	Padre deleteById(Integer id);
 }

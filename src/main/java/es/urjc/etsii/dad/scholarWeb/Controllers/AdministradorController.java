@@ -51,6 +51,12 @@ public class AdministradorController {
 	private AdminRepository adminrepo;
 	
 	@Autowired
+	private AlumnoRepository reposAl;
+
+	@Autowired
+	private PadreRepository padreRepo;
+
+	@Autowired
 	private AsignaturaRepository asigRepo;
 
 	@Autowired
@@ -58,24 +64,25 @@ public class AdministradorController {
 	
 	@Autowired
 	private NoticiaRepository notRepo;
+	
+	@Autowired
+	private ProfesorRepository profeRepo;
+
 		
 	@RequestMapping("")
-	public String administrador(Model model, HttpServletRequest request, HttpSession sesion, Authentication authenticat) {
+	public String administrador(Model model, HttpServletRequest request) {
 		
-		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-		model.addAttribute("token", token.getToken());
-		
-    	Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
+		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
     	
-    	sesion.setAttribute("correo", user.getCorreo());
-		sesion.setAttribute("contraseña", user.getPass());
-		
+    	model.addAttribute("administrador", request.isUserInRole("ADMIN"));
+    	model.addAttribute("username", user.getNombre());
+    	
     	
 		try {
-			model.addAttribute("profesores", repos.findByRol("PROFESOR"));
-			model.addAttribute("alumnos", repos.findByRol("ALUMNO"));
-			model.addAttribute("padres", repos.findByRol("PADRE"));
-			model.addAttribute("administrador", repos.findByRol("ADMIN"));
+			model.addAttribute("profesores", profeRepo.findAll());
+			model.addAttribute("alumnos", reposAl.findAll());
+			model.addAttribute("padres", padreRepo.findAll());
+			model.addAttribute("admin", repos.findAll());
 			model.addAttribute("asignaturas", asigRepo.findAll());
 			model.addAttribute("noticias", notRepo.findAll());
 			model.addAttribute("aulas", reposAula.findAll());
@@ -91,8 +98,6 @@ public class AdministradorController {
 	
 	@RequestMapping("/insertar_admin")
 	public String insertar_admin(Model model, HttpServletRequest request, @RequestParam String nombre,@RequestParam String apellido) {
-			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-			model.addAttribute("token", token.getToken());
 			
 			String correo = nombre.toLowerCase() +"." +apellido.toLowerCase() +"@gmail.com"; 
 			String contrasena = "@" +nombre.toLowerCase() +"." +apellido.toLowerCase() +"_";
@@ -104,7 +109,7 @@ public class AdministradorController {
 			Administrador admin = adminrepo.findByCorreo(correo);
 			if(admin ==null || admin.getCorreo() != correo) {
 				
-				Usuario adminis = (Administrador) new Administrador(nombre, apellido,correo,contrasena, "ADMIN", "ADMIN");
+				Usuario adminis = (Administrador) new Administrador(nombre, apellido,correo,contrasena, "ROLE_ADMIN");
 				adminrepo.saveAndFlush((Administrador) adminis);
 				
 				model.addAttribute("id", adminis.getId()); 

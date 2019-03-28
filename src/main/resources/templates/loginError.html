@@ -29,10 +29,10 @@
 					
 					<p><h3>
 						<a href="/login">Login</a>
-							{{#admin}}| 
+							{{#administrador}}| 
 								<a href="administrador">
 								administrador</a>
-							{{/admin}}
+							{{/administrador}}
 					</h3></p>
 				</div>
 			</div>
@@ -42,10 +42,9 @@
 
 	<section class="wrapper_login">
 		<label style="background: #EC969F; margin-left: 320px;">El correo o la contraseña es erronea, intentelo de nuevo</label>
-		<form class="register" action="/login/privado" method="post">
-			<input class="mininbox t" type="email" name="correo" placeholder="info@mailaddress.com">
+		<form class="register" action="/login" method="post">
+			<input class="mininbox t" type="text" name="nombre" placeholder="Usuario">
 			<input class="mininbox t" type="password" name="contraseña"placeholder="••••••••••••">
-
 			<input type="submit" value="Enviar" class="submit">
 			<input type="hidden" name="_csrf" value="{{token}}"/>
 		</form>

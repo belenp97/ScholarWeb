@@ -142,19 +142,16 @@ public class PrincipalControler {
 
 	@RequestMapping("/")
 	public String principal(Model model, HttpServletRequest request, HttpSession sesion) {
-		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-		model.addAttribute("token", token.getToken());
 		
-		//System.out.println("el usuario ahora es: "+ request.getUserPrincipal().getName());
-		
-//		if(sesion != null) {
-//			sesion.setAttribute("registred", true);		
-//		}
-
-		sesion= request.getSession(true);
-    	model.addAttribute("administrador", request.isUserInRole("ROLE_ADMIN"));
+//		sesion= request.getSession(true);
+//    	Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
     	
+    	model.addAttribute("admin", request.isUserInRole("ADMIN"));
+    	if(request.isAsyncStarted()) {
+    		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
+    		model.addAttribute("username", user.getNombre());
     	
+    	}
 		return "principal";
 	}
 	

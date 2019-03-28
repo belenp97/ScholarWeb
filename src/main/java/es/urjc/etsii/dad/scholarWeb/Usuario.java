@@ -40,12 +40,11 @@ public class Usuario {
 		
 	}
 	
-	public Usuario(String nombre,String correo, String pass,String rol, String... roles) {
+	public Usuario(String nombre,String correo, String pass, String... roles) {
 		this.nombre = nombre;
 		this.correo = correo;
 		//this.pass = pass;
 		this.pass = new BCryptPasswordEncoder().encode(pass);
-		this.rol = rol;
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
 	

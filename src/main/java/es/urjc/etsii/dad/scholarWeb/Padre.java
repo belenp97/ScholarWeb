@@ -18,15 +18,15 @@ public class Padre extends Usuario {
 	public Padre() {
 	}
 	
-	public Padre( String n, String a, String correo, String contraseña, String rol, String... roles) {
-		super(n, correo, contraseña, rol, roles);
+	public Padre( String n, String a, String correo, String contraseña, String... roles) {
+		super(n, correo, contraseña, roles);
 		this.apellido=a;
 //		this.id_padre = (int) Math.ceil(Math.random() * 1000);
 		
 	}
 
-	public Padre(String n,String ap, String correo, Alumno a, String contraseña, String rol, String... roles) {
-		super(n,correo,contraseña,rol,roles);
+	public Padre(String n,String ap, String correo, Alumno a, String contraseña, String... roles) {
+		super(n,correo,contraseña,roles);
 		this.apellido = ap;
 		alumno.add(a); 
 	}

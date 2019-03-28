@@ -31,16 +31,16 @@ public class Alumno extends Usuario{
 	@JoinColumn(name = "padre")
 	private Padre padre_alumno;
 
-	public Alumno(String nombre, String a1, String a2, String correo, String contraseña, String rol, String... roles) {
-		super(nombre, correo, contraseña, rol, roles);
+	public Alumno(String nombre, String a1, String a2, String correo, String contraseña, String... roles) {
+		super(nombre, correo, contraseña, roles);
 		this.apellido1 = a1;
 		this.apellido2 = a2;
 //		this.nexpediente = (int)Math.floor(Math.random()) *1+1000;
 	}
 	
 	
-	public Alumno(String n, String a1, String a2, Asignatura asig, Aula aula, Profesor profe, String correo, String contraseña, String rol, String... roles) {
-		super(n, correo, contraseña, rol, roles);
+	public Alumno(String n, String a1, String a2, Asignatura asig, Aula aula, Profesor profe, String correo, String contraseña, String... roles) {
+		super(n, correo, contraseña, roles);
 		this.apellido1 = a1;
 		this.apellido2 = a2;
 //		this.nexpediente = (int)Math.floor(Math.random()) *1+1000;
@@ -49,8 +49,8 @@ public class Alumno extends Usuario{
 		this.profesores.add(profe);
 		this.padre_alumno = null; 
 	}
-	public Alumno(String n, String a1, String a2, Asignatura asig, Aula aula, String correo, String contraseña, String rol, String... roles) {
-		super(n, correo, contraseña, rol, roles);
+	public Alumno(String n, String a1, String a2, Asignatura asig, Aula aula, String correo, String contraseña, String... roles) {
+		super(n, correo, contraseña, roles);
 		this.apellido1 = a1;
 		this.apellido2 = a2;
 //		this.nexpediente = (int)Math.floor(Math.random()) *1+1000;

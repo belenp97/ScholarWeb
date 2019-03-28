@@ -31,14 +31,14 @@ public class Profesor extends Usuario {
 	public Profesor() {
 	}
 
-	public Profesor(String nombre, String apellido, String ap2, String correo, String contraseña, String rol, String... roles) {
-		super(nombre, correo, contraseña, rol, roles);
+	public Profesor(String nombre, String apellido, String ap2, String correo, String contraseña, String... roles) {
+		super(nombre, correo, contraseña,roles);
 		this.apellido1=apellido;
 		this.apellido2=ap2;
 	}
 	
-	public Profesor(String n, String a1, String a2, Asignatura a, Alumno alu, Aula aul, String correo, String contraseña, String rol, String... roles) {
-		super(n, correo, contraseña, rol, roles);
+	public Profesor(String n, String a1, String a2, Asignatura a, Alumno alu, Aula aul, String correo, String contraseña, String... roles) {
+		super(n, correo, contraseña, roles);
 //		this.id_profesor =(int) Math.ceil(Math.random() * 1000);
 		this.apellido1 = a1;
 		this.apellido2 = a2;

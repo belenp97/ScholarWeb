@@ -26,12 +26,11 @@ public class UsuarioRepositoryAuthenticationProvider implements AuthenticationPr
 	private UsuarioRepository usuarioRepository;
 	
 	@Override
-	@Transactional
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 		// TODO Auto-generated method stub
 		
 		// Cargamos el usuario de la Base de Datos
-		Usuario user = usuarioRepository.findBycorreoEquals(auth.getName());
+		Usuario user = usuarioRepository.findByNombre(auth.getName());
 		System.out.println(auth.getDetails().toString());
 		
 		if(user == null) {
@@ -48,14 +47,14 @@ public class UsuarioRepositoryAuthenticationProvider implements AuthenticationPr
 			roles.add(new SimpleGrantedAuthority(role));
 		}
 	
-		return new UsernamePasswordAuthenticationToken(user.getCorreo(),password,roles);
+		return new UsernamePasswordAuthenticationToken(user.getNombre(),password,roles);
 	
 	}
 
 	@Override
 	public boolean supports(Class<?> authentication) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 
