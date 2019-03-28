@@ -183,8 +183,10 @@ En la clase principal hemos creado dos clases donde, tienen la clase Mail con su
 Luego en la aplicación del servicio interno tenemos la clase Mail con los mismo atributos de la clase principal. 
 
 ### SERVICIO PDF
+Como servicio adicional, el cliente podrá descargar en la página principal una serie de PDF con información de la escuela. Esta acción la apodrá realizar cualquier cliente que acceda sin necesidad de encontrarse registrado.
+En ciertos pdf se abrirá el mismo en otra ventana, mientras que en otros casos se descargará de manera automática.
+
 Mantenemos este servicio en la clase principal donde lo tenemos distribuido en tres imagenes, donde cada imagen tiene su pdf. 
-Este servicio esta implementado solo en la misma clase principal. 
 
 Hemos realizado un metodo para cada imagen/pdf donde hemos incluido un parametro nuevo en la cabecera 
 	
@@ -194,11 +196,6 @@ donde dentro del método con tener la llamada a la creación de ese fichero.
 
 	*File file = new File(EXTERNAL_FILE_PATH +"/"+ fileName);
 		
-
-### EXTRAS.
-
-Como servicio adicional, el cliente podrá descargar en la página principal una serie de PDF con información de la escuela. Esta acción l apodrá realizar cualquier cliente que acceda sin necesidad de encontrarse registrado.
-En ciertos pdf se abrirá el mismo en otra ventana, mientras que en otros casos se descargará de manera automática.
 
 
 ### **Equipo de desarrollo.**
