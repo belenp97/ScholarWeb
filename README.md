@@ -176,7 +176,7 @@ En la clase principal hemos creado dos clases donde, tienen la clase Mail con su
 		   
 	  String from = "scholar.web.dad@gmail.com"; // dirección de correo remitente -> usuario Administrador
 	  String to = mail; // dirección del correo de destino -> nuevo usuario
-	  String bodys = "Hola " + name + ", has sido contactado por la pag ScholarWeb facilitandonos el Telefono " + telefono 			+ ", el Email: " +mail +"y el mensaje: " +body +" en breves le responderemos. \n Un saludo ScholarWeb.";
+	  String bodys = "Hola " + name + ", has sido contactado por la pag ScholarWeb facilitandonos el Telefono " + telefono + ", el Email: " +mail +"y el mensaje: " +body +" en breves le responderemos. \n Un saludo ScholarWeb.";
 			
 	* servInterno.postForLocation(RestService, new Mail(from,to,"conctato en pag ScholarWeb",bodys));
 
