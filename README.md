@@ -172,7 +172,9 @@ El servicio interno va a consistir en el envio de un correo al gmail que se indi
 ### SERVICIO MAIL / API REST
 En la clase principal hemos creado dos clases donde, tienen la clase Mail con sus atributos(from, to, subject y body) y el de la otra clase, que es llamado en el controlador de contacto, donde te pide los atributos de la clase, se rellenan. Mediante la llamada "postForLocation" llamamos al metodo. 
 
-	* RestTemplate servInterno = new RestTemplate(); 
+	* private static final String RestService = "http://127.0.0.1:8070/send"; 
+	
+	  RestTemplate servInterno = new RestTemplate(); 
 		   
 	  String from = "scholar.web.dad@gmail.com"; // dirección de correo remitente -> usuario Administrador
 	  String to = mail; // dirección del correo de destino -> nuevo usuario
@@ -181,6 +183,22 @@ En la clase principal hemos creado dos clases donde, tienen la clase Mail con su
 	* servInterno.postForLocation(RestService, new Mail(from,to,"conctato en pag ScholarWeb",bodys));
 
 Luego en la aplicación del servicio interno tenemos la clase Mail con los mismo atributos de la clase principal. 
+
+Al final para poder hacer las llamadas entre el servicio interno y la aplicacion principal, tenemos que añadir en el properties: 
+
+	*APP INTERNA 
+	server.port=8070
+	spring.mail.host=smtp.gmail.com
+	spring.mail.properties.mail.smtp.port=587
+	
+	*APP PRINCIPAL
+	spring.mail.host=smtp.gmail.com
+	spring.mail.port=587
+	spring.mail.username= your mail
+	spring.mail.password= your password
+	spring.mail.properties.smtp.auth=true
+	spring.mail.properties.smtp.starttls.enable=true
+	
 
 ### SERVICIO PDF
 Como servicio adicional, el cliente podrá descargar en la página principal una serie de PDF con información de la escuela. Esta acción la apodrá realizar cualquier cliente que acceda sin necesidad de encontrarse registrado.
