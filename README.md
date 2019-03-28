@@ -170,7 +170,7 @@ El servicio interno va a consistir en el envio de un correo al gmail que se indi
 - Otra manera de recibir este correo es, una vez el administrador registra un nuevo usuario, este usuario recibirá como destinatario un correo dandole la bienvenido y mostrandole sus datos.
 
 ### SERVICIO MAIL / API REST
-En la clase principal hemos creado dos clases donde, tienen la clase Mail con sus atributos(from, to, subject y body) y el la otra clase, que es llamado en el controlador de contacto, donde te pide los atributos de la clase y se rellenan y mediante la llamada "postForLocation" llamamos al metodo. 
+En la clase principal hemos creado dos clases donde, tienen la clase Mail con sus atributos(from, to, subject y body) y el la otra clase, que es llamado en el controlador de contacto, donde te pide los atributos de la clase, se rellenan y mediante la llamada "postForLocation" llamamos al metodo. 
 
 	* RestTemplate servInterno = new RestTemplate(); 
 		   
