@@ -85,7 +85,7 @@ En esta ventana se ofrece un listado de los profesores que componene el colegio,
  Mediante el login, aquellos usuarios que formen parte del centro (alumnos, profesores y padres) podrán acceder a su sección privada, dentro de la cual contarán con una serie de secciones propias de cada tipo de usuario. 
  
  
- 6. PDF (CON Y SIN DESCARGA).
+     6- PDF (CON Y SIN DESCARGA).
  
  
  Al seleccionar los distintos pdf que aparecen al final de la página, podrán suceder dos cosas: 
