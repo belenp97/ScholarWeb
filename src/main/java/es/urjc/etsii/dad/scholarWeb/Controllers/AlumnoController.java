@@ -66,20 +66,20 @@ public class AlumnoController {
 				+ apellido2.toLowerCase().charAt(0) + "" + "@gmail.com";
 
 		try {
-			Optional<Profesor> p = profeRepo.findById(idprofesor);
-			Profesor prof = profeRepo.findBynombreEquals(p.get().getNombre());
+			Profesor p = profeRepo.findByid(idprofesor);
+			Profesor prof = profeRepo.findBynombreEquals(p.getNombre());
 
-			Optional<Asignatura> asig = asigRepo.findById(idasig);
-			Asignatura asignatura = asigRepo.findBynombreEquals(asig.get().getNombre());
-			Optional<Aula> a = reposAula.findById(idaula);
+			Asignatura asig = asigRepo.findByid(idasig);
+			Asignatura asignatura = asigRepo.findBynombreEquals(asig.getNombre());
+			Aula a = reposAula.findByidAula(idaula);
 //			Aula aul = reposAula.findByCurso(a.get().getCurso());
 			contrasena = nombre.charAt(0) + apellido1.charAt(0) + apellido1.charAt(1) + "";
 
 			if (prof == null) {
-				alumno = new Alumno(nombre, apellido1, apellido2, asignatura, a.get(), correo, contrasena,
+				alumno = new Alumno(nombre, apellido1, apellido2, asignatura, a, correo, contrasena,
 						"ROLE_ALUMNO", "ROLE_USER");
 			} else {
-				alumno = new Alumno(nombre, apellido1, apellido2, asignatura, a.get(), prof, correo, contrasena,
+				alumno = new Alumno(nombre, apellido1, apellido2, asignatura, a, prof, correo, contrasena,
 						"ROLE_ALUMNO", "ROLE_USER");
 			}
 			Alumno al = reposAl.findBynombreEquals(nombre);
@@ -111,8 +111,8 @@ public class AlumnoController {
 		model.addAttribute("username", user.getNombre());
 		
 		try {
-			Optional<Alumno> a = reposAl.findById(nexp);
-			Alumno alumno = reposAl.findBynombreEquals(a.get().getNombre());
+			Alumno a = reposAl.findByid(nexp);
+			Alumno alumno = reposAl.findBynombreEquals(a.getNombre());
 			Padre p = alumno.getPadre();
 			if (p != null) {
 				padreRepo.delete(p);

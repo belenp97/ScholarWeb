@@ -77,13 +77,13 @@ public class AsignaturaController {
 			model.addAttribute("token", token.getToken());
 			
 		try {
-			Optional<Asignatura> a = asigRepo.findById(id);
-			Asignatura asig = asigRepo.findBynombreEquals(a.get().getNombre()); 
+			Asignatura a = asigRepo.findByid(id);
+			Asignatura asig = asigRepo.findBynombreEquals(a.getNombre()); 
 		
 			model.addAttribute("nombre", asig.getNombre());
 			model.addAttribute("curso", asig.getCurso());
 			
-			asigRepo.deleteById(id);
+			asigRepo.deleteByid(id);
 			
 			return "formularioAceptAsignatura";
 		}catch(Exception e) {

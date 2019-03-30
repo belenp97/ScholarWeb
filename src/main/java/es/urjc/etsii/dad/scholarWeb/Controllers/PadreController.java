@@ -58,24 +58,19 @@ public class PadreController {
 		model.addAttribute("administrador", request.isUserInRole("ADMIN"));
 		model.addAttribute("username", user.getNombre());
 
-		Optional<Alumno> al = reposAl.findById(idalumno);
-		Alumno a = reposAl.findBynombreEquals(al.get().getNombre());
+		Alumno al = reposAl.findByid(idalumno);
+		Alumno a = reposAl.findBynombreEquals(al.getNombre());
 
 		String correo = nombre.toLowerCase() + "." + apellido.toLowerCase() + "@gmail.com";
 		String contrasena = "@" + nombre.toLowerCase() + "." + apellido.toLowerCase() + "_"
 				+ a.getNombre().toLowerCase() + "." + a.getApellido1().toLowerCase() + "";
 
 		try {
-			Usuario padre = null;
+			Padre padre = null;
 			Padre pa = padreRepo.findBycorreoEquals(correo);
 			if (pa == null || (pa.getCorreo() != correo)) {
-				if (a != null) {
-					a.setPadre((Padre) padre);
-					padre = (Padre) new Padre(nombre, apellido, correo, a, contrasena, "ROLE_PADRE", "ROLE_USER");
-
-				} else {
-					padre = (Padre) new Padre(nombre, apellido, correo, contrasena, "ROLE_PADRE", "ROLE_USER");
-				}
+				a.setPadre((Padre) padre);
+				padre = (Padre) new Padre(nombre, apellido, correo, a, contrasena, "ROLE_PADRE", "ROLE_USER");
 				padreRepo.saveAndFlush(padre);
 
 				model.addAttribute("id_padre", padre.getId());
@@ -100,8 +95,8 @@ public class PadreController {
 
 		try {
 
-			Optional<Padre> p = padreRepo.findById(id_padre);
-			Padre padre = padreRepo.findBycorreoEquals(p.get().getCorreo());
+			Padre p = padreRepo.findByid(id_padre);
+			Padre padre = padreRepo.findBycorreoEquals(p.getCorreo());
 			for (int i = 0; i < padre.getAlumno().size(); i++) {
 				Alumno alumno = reposAl.findBynombreEquals(padre.getAlumno().get(0).getNombre());
 				alumno.deletePadre(padre);
@@ -109,7 +104,7 @@ public class PadreController {
 
 			if (id_padre > 0) {
 
-				padreRepo.deleteById(id_padre);
+				padreRepo.deleteByid(id_padre);
 
 				model.addAttribute("id_padre", padre.getId());
 				model.addAttribute("nombrePadre", padre.getNombre() + " " + padre.getApellido() + " ");

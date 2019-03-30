@@ -7,12 +7,14 @@ import org.springframework.data.repository.CrudRepository;
 
 import es.urjc.etsii.dad.scholarWeb.Usuario;
 
-public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
+public interface UsuarioRepository extends CrudRepository<Usuario, Integer> {
 
 	Usuario findBycorreoEquals(String correo);
 
 	List<Usuario> findByRol(String rol);
 
 	Usuario findByNombre(String nombre);
+	
+	Usuario findByid(Integer id);
 	
 }
