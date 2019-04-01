@@ -2,12 +2,14 @@ package es.urjc.etsii.dad.scholarWeb.Repositories;
 
 import java.util.List;
 
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 
 import es.urjc.etsii.dad.scholarWeb.Usuario;
 
-public interface UsuarioRepository extends CrudRepository<Usuario, Integer> {
+@CacheConfig(cacheNames = "test")
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
 	Usuario findBycorreoEquals(String correo);
 
@@ -16,5 +18,8 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Integer> {
 	Usuario findByNombre(String nombre);
 	
 	Usuario findByid(Integer id);
+	
+	@CacheEvict(allEntries=true)
+	Usuario save(Usuario u);
 	
 }

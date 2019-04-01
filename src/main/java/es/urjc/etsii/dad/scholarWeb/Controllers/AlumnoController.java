@@ -84,7 +84,7 @@ public class AlumnoController {
 			}
 			Alumno al = reposAl.findBynombreEquals(nombre);
 			if (al == (null) || !al.equals(alumno)) {
-				reposAl.saveAndFlush(alumno);
+				reposAl.save(alumno);
 
 				model.addAttribute("nexp", alumno.getId());
 				model.addAttribute("nombreAlum", alumno.getNombre() + " " + ((Alumno) alumno).getApellido1() + " "
