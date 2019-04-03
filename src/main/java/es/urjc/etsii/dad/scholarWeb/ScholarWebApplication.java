@@ -10,9 +10,18 @@ import org.springframework.session.hazelcast.config.annotation.web.http.EnableHa
 import com.hazelcast.config.Config;
 import com.hazelcast.config.JoinConfig;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
+
+@EnableCaching
 @SpringBootApplication
 @EnableHazelcastHttpSession
 public class ScholarWebApplication{
+
+	private static final Log LOG = LogFactory.getLog(ScholarWebApplication.class);
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ScholarWebApplication.class, args);
@@ -27,7 +36,11 @@ public class ScholarWebApplication{
 		 return config;
 	 }
 
-
+	 @Bean
+	 public CacheManager cacheManager() {
+	    	LOG.info("Activating cache...");
+	    	return new ConcurrentMapCacheManager("administrador");
+	    }
 	
 }
 

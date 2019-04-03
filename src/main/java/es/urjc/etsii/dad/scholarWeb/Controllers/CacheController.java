@@ -1,4 +1,4 @@
-/*package es.urjc.etsii.dad.scholarWeb.Controllers;
+package es.urjc.etsii.dad.scholarWeb.Controllers;
 
 import java.util.Map;
 
@@ -18,8 +18,8 @@ public class CacheController {
 	
 	@RequestMapping(value="/cache", method=RequestMethod.GET)
 	public Map<Object, Object> getCacheContent() {
-		ConcurrentMapCacheManager manager = (ConcurrentMapCacheManager) cacheManager;
-		ConcurrentMapCache cache = (ConcurrentMapCache) manager.getCache("test");
+		ConcurrentMapCacheManager cacheMgr = (ConcurrentMapCacheManager) cacheManager;
+		ConcurrentMapCache cache = (ConcurrentMapCache) cacheMgr.getCache("administrador");
 		return cache.getNativeCache();
 	}
-}*/
+}
