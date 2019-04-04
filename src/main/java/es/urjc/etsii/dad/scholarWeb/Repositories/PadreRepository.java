@@ -1,5 +1,6 @@
 package es.urjc.etsii.dad.scholarWeb.Repositories;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.cache.annotation.CacheConfig;
@@ -15,6 +16,9 @@ import es.urjc.etsii.dad.scholarWeb.Usuario;
 @CacheConfig(cacheNames="test")
 public interface PadreRepository extends JpaRepository<Padre, Integer> {
 
+	/*@Cacheable
+	List<Padre> findAll();*/
+	
 	@Cacheable
 	Padre findBycorreoEquals(String correo);
 	

@@ -1,5 +1,7 @@
 package es.urjc.etsii.dad.scholarWeb.Repositories;
 
+import java.util.List;
+
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -11,6 +13,9 @@ import es.urjc.etsii.dad.scholarWeb.Usuario;
 @CacheConfig(cacheNames="test")
 public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
 
+	/*@Cacheable
+	List<Alumno> findAll();*/
+	
 	@Cacheable
 	Alumno findBynombreEquals(String nombre);
 	

@@ -1,6 +1,8 @@
 package es.urjc.etsii.dad.scholarWeb.Repositories;
 
 
+import java.util.List;
+
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -10,6 +12,9 @@ import es.urjc.etsii.dad.scholarWeb.Aula;
 
 @CacheConfig(cacheNames="test")
 public interface AulaRepository extends JpaRepository<Aula, Integer> {
+	
+	/*@Cacheable
+	List<Aula> findAll();*/
 	
 	@Cacheable
 	Aula findByLetra(Character letra);
