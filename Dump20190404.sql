@@ -21,13 +21,13 @@
 
 DROP TABLE IF EXISTS `alumno_asignaturas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `alumno_asignaturas` (
   `alumnos` int(11) NOT NULL,
   `asignaturas` int(11) NOT NULL,
   KEY `FKo5ubv9181a5iis9sh6rlyl8aa` (`asignaturas`),
   KEY `FKice4rphdleok6m9nm699csekn` (`alumnos`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `asignatura`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `asignatura` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `curso` int(11) DEFAULT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE `asignatura` (
   `profesor` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKdru875ovqxlv83iuiwrpmc4nh` (`profesor`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,13 +74,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `aula`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `aula` (
   `id_aula` int(11) NOT NULL AUTO_INCREMENT,
   `curso` int(11) DEFAULT NULL,
   `letra` char(1) DEFAULT NULL,
   PRIMARY KEY (`id_aula`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,10 +99,10 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `hibernate_sequence`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `hibernate_sequence` (
   `next_val` bigint(20) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,13 +121,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `noticia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `noticia` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cuerpo` varchar(255) DEFAULT NULL,
   `titulo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,13 +146,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `profesores_por_alumno`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `profesores_por_alumno` (
   `profesor` int(11) NOT NULL,
   `alumno` int(11) NOT NULL,
   KEY `FKa8gtwy4xi6401dfo7vyvjsr2l` (`alumno`),
   KEY `FKhcq1hrt2gfmirx76ijmyru64u` (`profesor`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,13 +171,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `profesores_por_aula`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `profesores_por_aula` (
   `profesor` int(11) NOT NULL,
   `aula` int(11) NOT NULL,
   KEY `FKg4vfclpd8ymo70s0n0pw9f9u5` (`aula`),
   KEY `FKgchojgq5sa64xbkfc8jgntm2x` (`profesor`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,7 +196,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `usuario` (
   `dtype` varchar(31) NOT NULL,
   `id` int(11) NOT NULL,
@@ -213,7 +213,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`id`),
   KEY `FK33kx3b1yegcik4qli8231g44y` (`aula`),
   KEY `FK90xwf4j1u6mqjxs4f02kqdyja` (`padre`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -232,12 +232,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `usuario_roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `usuario_roles` (
   `usuario_id` int(11) NOT NULL,
   `roles` varchar(255) DEFAULT NULL,
   KEY `FKqblnumndby0ftm4c7sg6uso6p` (`usuario_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
