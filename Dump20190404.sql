@@ -21,13 +21,13 @@
 
 DROP TABLE IF EXISTS `alumno_asignaturas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `alumno_asignaturas` (
   `alumnos` int(11) NOT NULL,
   `asignaturas` int(11) NOT NULL,
   KEY `FKo5ubv9181a5iis9sh6rlyl8aa` (`asignaturas`),
   KEY `FKice4rphdleok6m9nm699csekn` (`alumnos`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `alumno_asignaturas` (
 
 LOCK TABLES `alumno_asignaturas` WRITE;
 /*!40000 ALTER TABLE `alumno_asignaturas` DISABLE KEYS */;
-INSERT INTO `alumno_asignaturas` VALUES (2,1),(5,1),(8,1),(24,2);
+INSERT INTO `alumno_asignaturas` VALUES (2,1),(5,1),(8,1),(24,2),(40,2),(102,1);
 /*!40000 ALTER TABLE `alumno_asignaturas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -46,7 +46,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `asignatura`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `asignatura` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `curso` int(11) DEFAULT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE `asignatura` (
   `profesor` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKdru875ovqxlv83iuiwrpmc4nh` (`profesor`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +64,7 @@ CREATE TABLE `asignatura` (
 
 LOCK TABLES `asignatura` WRITE;
 /*!40000 ALTER TABLE `asignatura` DISABLE KEYS */;
-INSERT INTO `asignatura` VALUES (1,1,'Ingles',0,29),(2,1,'Frances',0,23),(3,1,'Tecnologia',0,39),(4,1,'Conocimiento del Medio',0,NULL);
+INSERT INTO `asignatura` VALUES (1,1,'Ingles',0,29),(2,1,'Frances',0,23),(3,1,'Tecnologia',0,39);
 /*!40000 ALTER TABLE `asignatura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -74,13 +74,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `aula`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `aula` (
   `id_aula` int(11) NOT NULL AUTO_INCREMENT,
   `curso` int(11) DEFAULT NULL,
   `letra` char(1) DEFAULT NULL,
   PRIMARY KEY (`id_aula`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,10 +99,10 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `hibernate_sequence`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `hibernate_sequence` (
   `next_val` bigint(20) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,7 +111,7 @@ CREATE TABLE `hibernate_sequence` (
 
 LOCK TABLES `hibernate_sequence` WRITE;
 /*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
-INSERT INTO `hibernate_sequence` VALUES (40);
+INSERT INTO `hibernate_sequence` VALUES (107);
 /*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,13 +121,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `noticia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `noticia` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cuerpo` varchar(255) DEFAULT NULL,
   `titulo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,13 +146,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `profesores_por_alumno`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `profesores_por_alumno` (
   `profesor` int(11) NOT NULL,
   `alumno` int(11) NOT NULL,
   KEY `FKa8gtwy4xi6401dfo7vyvjsr2l` (`alumno`),
   KEY `FKhcq1hrt2gfmirx76ijmyru64u` (`profesor`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,7 +161,7 @@ CREATE TABLE `profesores_por_alumno` (
 
 LOCK TABLES `profesores_por_alumno` WRITE;
 /*!40000 ALTER TABLE `profesores_por_alumno` DISABLE KEYS */;
-INSERT INTO `profesores_por_alumno` VALUES (19,8),(20,8),(21,8),(22,8),(23,8),(29,24),(39,24);
+INSERT INTO `profesores_por_alumno` VALUES (19,8),(20,8),(21,8),(22,8),(23,8),(29,24),(39,24),(98,1),(99,1),(100,1),(101,1);
 /*!40000 ALTER TABLE `profesores_por_alumno` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,13 +171,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `profesores_por_aula`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `profesores_por_aula` (
   `profesor` int(11) NOT NULL,
   `aula` int(11) NOT NULL,
   KEY `FKg4vfclpd8ymo70s0n0pw9f9u5` (`aula`),
   KEY `FKgchojgq5sa64xbkfc8jgntm2x` (`profesor`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,7 +186,7 @@ CREATE TABLE `profesores_por_aula` (
 
 LOCK TABLES `profesores_por_aula` WRITE;
 /*!40000 ALTER TABLE `profesores_por_aula` DISABLE KEYS */;
-INSERT INTO `profesores_por_aula` VALUES (19,1),(20,1),(21,1),(22,1),(23,1),(29,2),(39,2);
+INSERT INTO `profesores_por_aula` VALUES (19,1),(20,1),(21,1),(22,1),(23,1),(29,2),(39,2),(98,1),(99,1),(100,1),(101,1);
 /*!40000 ALTER TABLE `profesores_por_aula` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,7 +196,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `usuario` (
   `dtype` varchar(31) NOT NULL,
   `id` int(11) NOT NULL,
@@ -213,7 +213,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`id`),
   KEY `FK33kx3b1yegcik4qli8231g44y` (`aula`),
   KEY `FK90xwf4j1u6mqjxs4f02kqdyja` (`padre`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -222,7 +222,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES ('Alumno',8,'jav@gmail.com','Jorge','$2a$10$MT/zd4rOwGbu0QmK7Hvbo.A//rn3Mj/.2ZTdwDaHw4SlKYl6C0IcK','ALUMNO','Alonso','Vivar',NULL,0,1,1),('Padre',1,'esteban.alonso@gmail.com','Esteban','$2a$10$GwGx7clVI.gzWWz7uY4I8e0mELDaN2Y6PDuuQGKajl01ey8b8b1SW','PADRE',NULL,NULL,'Alonso',NULL,NULL,NULL),('Padre',25,'mirian.lopez@gmail.com','Mirian','$2a$10$WwTqdwLL.u8Z9BSfJB4AK.uAywKgrtf.xsWUOhGzKtufeAJQhohSO','PADRE',NULL,NULL,'Lopez',NULL,NULL,NULL),('Profesor',23,'flor.ramirez@gmail.com','Flor','$2a$10$g3u0SuhARaXPflQZirDOHOHeSg6t9GKrzXH57ZZWBVbHIR6opxTfa','PROFESOR','Ramirez','Pereira',NULL,NULL,NULL,NULL),('Alumno',24,'plm@gmail.com','Pepe','$2a$10$UkmB45WdrrNhsQw37vG2yOFtdrn7Nv.YPXOT5SyOZrake0y2OdTDS','ALUMNO','Lopez','Martin',NULL,0,2,NULL),('Profesor',29,'juan.perez@gmail.com','Juan','$2a$10$H1jadsSXUvHeNbyaUtMXcuXlzWt1/QXVbMMewAj47XKnS266dBrzy','PROFESOR','Perez','Yuste',NULL,NULL,NULL,NULL),('Administrador',33,'jorge.alonso@gmail.com','Jorge','$2a$10$1mHZsqB8h12EPE6TOUepbOmyHrquc332PF.VUu20tzIkHEIwAoepm','ADMIN',NULL,NULL,'Alonso',NULL,NULL,NULL),('Profesor',39,'laura.fernandez.teide@gmail.com','Laura','$2a$10$oQo/dWAmSM5vYX7mpW5oyO9Edy4UhkV9Rnk0sOMSQ5PJ1G08zED56','PROFESOR','Fernandez','Teide',NULL,NULL,NULL,NULL);
+INSERT INTO `usuario` VALUES ('Usuario',94,'user@gmail.com','user','$2a$10$OsBtFgwMnSgyN.r6e1/poe9Xibx9Rm8NMmUrJ/mcUcqeUvsnB23kW',NULL,NULL,NULL,NULL,NULL,NULL,NULL),('Usuario',95,'admin@gmail.com','admin','$2a$10$rfi6LeHf64.88x5gH1JIlOwSAG46EUi/Cfihg5cWeVXmtsRM7cwXC',NULL,NULL,NULL,NULL,NULL,NULL,NULL),('Administrador',96,'jorge.alonso@gmail.com','jorge','$2a$10$.1XQOlBEX692rK/Nbq8iA.wiF5RZ3cPfekHhjckwwamUhYZUVgPYy',NULL,NULL,NULL,'alonso',NULL,NULL,NULL),('Padre',103,'maria.de las mercedes@gmail.com','Maria','$2a$10$2/C/QlmovEHIQ8O/FBaQJenKYvCz39tDk8gvAzuCzhPVxexv/pVY.',NULL,NULL,NULL,'de las Mercedes',NULL,NULL,NULL),('Profesor',100,'juan.perez.torrijo@gmail.com','juan','$2a$10$YY44Ks9ByWSM2iiESgxQa.b9.bmCR7O.XnQdt3WpxLH2uwChw/35.',NULL,'Perez','Torrijo',NULL,NULL,NULL,NULL),('Alumno',102,'eav@gmail.com','Esteban','$2a$10$kRQhLDnDqwMZ7sx.8e8UHetIArL0oqREajUxSBwbCfJVSiy3X50A.',NULL,'Alonso','Vivar',NULL,0,1,NULL),('Padre',105,'flora.alcala@gmail.com','Flora','$2a$10$1pixCX3pcCbPIukwX85dtufka9eIt2FXq48WQdmNFjN/08/lAFlzi',NULL,NULL,NULL,'Alcala',NULL,NULL,NULL),('Administrador',106,'laura.fernandez@gmail.com','Laura','$2a$10$4r60oDofF21UgpTMPuAoruVdP2J6Oj9YMf0CiDJCerTB7E4lAUDdO',NULL,NULL,NULL,'Fernandez',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -232,12 +232,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `usuario_roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8 ;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `usuario_roles` (
   `usuario_id` int(11) NOT NULL,
   `roles` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`usuario_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  KEY `FKqblnumndby0ftm4c7sg6uso6p` (`usuario_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,7 +246,7 @@ CREATE TABLE `usuario_roles` (
 
 LOCK TABLES `usuario_roles` WRITE;
 /*!40000 ALTER TABLE `usuario_roles` DISABLE KEYS */;
-INSERT INTO `usuario_roles` VALUES (1,'USER'),(8,'USER'),(25,'USER'),(24,'USER'),(29,'USER'),(33,'ADMIN'),(34,'ADMIN'),(35,'ADMIN'),(36,'ADMIN'),(37,'ADMIN'),(38,'ADMIN'),(39,'USER');
+INSERT INTO `usuario_roles` VALUES (94,'ROLE_ALUMNO'),(95,'ROLE_ALUMNO'),(95,'ROLE_ADMIN'),(96,'ROLE_ADMIN'),(97,'ROLE_ADMIN'),(98,'ROLE_PROFESOR'),(99,'ROLE_PROFESOR'),(100,'ROLE_PROFESOR'),(101,'ROLE_PROFESOR'),(102,'ROLE_ALUMNO'),(102,'ROLE_USER'),(103,'ROLE_PADRE'),(103,'ROLE_USER'),(105,'ROLE_PADRE'),(105,'ROLE_USER'),(106,'ROLE_ADMIN');
 /*!40000 ALTER TABLE `usuario_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -259,4 +259,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-19 11:09:20
+-- Dump completed on 2019-04-04 11:59:03
