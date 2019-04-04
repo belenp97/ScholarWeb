@@ -42,7 +42,7 @@ public class NoticiaController {
 		return "noticias";
 	}
 	
-	@RequestMapping(value="/insertar_noticia")
+	@RequestMapping(value="/insertar_noticia", method=RequestMethod.POST)
 	public String insertar_noticia(Model model, HttpServletRequest request, @RequestParam String titulo,@RequestParam String cuerpo) {
 		try {
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
@@ -67,7 +67,7 @@ public class NoticiaController {
 		return "formularioError";
 	}
 	
-	@RequestMapping(value="/eliminar_noticia")
+	@RequestMapping(value="/eliminar_noticia", method=RequestMethod.POST)
 	public String eliminar_noticia(Model model, HttpServletRequest request, HttpSession sesion,@RequestParam String titulo) {
 		try {
 			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");

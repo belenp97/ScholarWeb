@@ -1,23 +1,33 @@
 package es.urjc.etsii.dad.scholarWeb.Repositories;
 
 
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import es.urjc.etsii.dad.scholarWeb.Aula;
 
-@Cacheable
+@CacheConfig(cacheNames="test")
 public interface AulaRepository extends JpaRepository<Aula, Integer> {
+	
+	@Cacheable
+	Aula findByLetra(Character letra);
+	
+	@Cacheable
+	Aula findByidAula(Integer id);
+	
 	
 	@CacheEvict(allEntries=true)
 	Aula save(Aula item);
 	//Integer save(Integer id, String name);
-	Aula findByLetra(Character letra);
+	
+	@CacheEvict(allEntries=true)
+	void deleteByidAula(Integer id);
+	
 //	Aula findByCurso(Integer curso);
 //	Aula BorrarAula(Integer id);
 //	Optional<Aula> findByidAula(Integer idaula);
 	
-	Aula findByidAula(Integer id);
-	void deleteByidAula(Integer id);
+	
 }

@@ -100,7 +100,7 @@ class LoginController {
 			if(request.isUserInRole("PROFESOR")) {
 				model.addAttribute("profesor", repos.findByRol("PROFESOR"));
 			
-				return "/profesor"; 
+				return "profesores"; 
 			}
 			if(request.isUserInRole("PADRE")) {
 				model.addAttribute("padre", repos.findByRol("PADRE"));

@@ -39,7 +39,7 @@ public class ScholarWebApplication{
 	 @Bean
 	 public CacheManager cacheManager() {
 	    	LOG.info("Activating cache...");
-	    	return new ConcurrentMapCacheManager("administrador");
+	    	return new ConcurrentMapCacheManager("test");
 	    }
 	
 }
