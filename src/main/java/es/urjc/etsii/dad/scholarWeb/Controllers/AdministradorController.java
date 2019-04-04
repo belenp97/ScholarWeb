@@ -31,7 +31,7 @@ public class AdministradorController {
 	private UsuarioRepository repos;
 	
 	@Autowired
-	private AdminRepository adminrepo;
+	private AdminRepository admRepo;
 	
 	@Autowired
 	private AlumnoRepository reposAl;
@@ -69,7 +69,7 @@ public class AdministradorController {
 			model.addAttribute("asignaturas", asigRepo.findAll());
 			model.addAttribute("noticias", notRepo.findAll());
 			model.addAttribute("aulas", reposAula.findAll());
-			model.addAttribute("admin", adminrepo.findAll());
+			model.addAttribute("ad", admRepo.findAll());
 	
 			return "administrador";
 		
@@ -89,11 +89,11 @@ public class AdministradorController {
 			
 			
 		try {	
-			Administrador admin = adminrepo.findByCorreo(correo);
+			Administrador admin = admRepo.findByCorreo(correo);
 			if(admin ==null || admin.getCorreo() != correo) {
 				
 				Usuario adminis = (Administrador) new Administrador(nombre, apellido,correo,contrasena, "ROLE_ADMIN");
-				adminrepo.saveAndFlush((Administrador) adminis);
+				admRepo.saveAndFlush((Administrador) adminis);
 				
 				model.addAttribute("id", adminis.getId()); 
 				model.addAttribute("nombre", adminis.getNombre() +" " +((Administrador) adminis).getApellido() +" " ); 

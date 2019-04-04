@@ -46,11 +46,8 @@ public class NoticiaController {
 	@RequestMapping(value="/insertar_noticia", method=RequestMethod.POST)
 	public String insertar_noticia(Model model, HttpServletRequest request, @RequestParam String titulo,@RequestParam String cuerpo) {
 		try {
-			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-			model.addAttribute("token", token.getToken());
 
-//	    	model.addAttribute("administrador", request.isUserInRole("ADMIN"));
-			model.addAttribute("administrador", repos.findByRol("ADMIN"));
+	    	model.addAttribute("administrador", request.isUserInRole("ADMIN"));
 			
 			model.addAttribute("noticia", notRepo.findAll());
 			Noticia noticia = new Noticia(titulo, cuerpo);

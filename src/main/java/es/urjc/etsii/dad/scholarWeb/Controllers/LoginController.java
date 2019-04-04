@@ -125,4 +125,10 @@ class LoginController {
 		
 	}
 
+	@RequestMapping(value="/loginError", method=RequestMethod.GET)
+	public String loginError() {
+		
+		return "/loginError";
+		
+	}
 }

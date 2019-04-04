@@ -50,30 +50,12 @@ public class AulaController {
 	private ProfesorRepository profeRepo;
 	
 	
-//	private void modelos(Model model) {
-//		model.addAttribute("alumnos", reposAl.findAll());
-//		model.addAttribute("padres", padreRepo.findAll());
-//		model.addAttribute("asignaturas", asigRepo.findAll());
-//		model.addAttribute("noticias", notRepo.findAll());
-//		model.addAttribute("aulas", reposAula.findAll());
-//		model.addAttribute("profesores", profeRepo.findAll());
-//	}
-	
-//	@RequestMapping(value="", method=RequestMethod.GET)
-//	public String verAulas(Model model, HttpServletRequest request) throws Exception {
-//
-//		modelos(model); 
-//		model.addAttribute("aulas", reposAula.findAll());
-//
-//		return "aulas";
-//	}
-//	
 	@RequestMapping("/insertar_aula")
-	public String insertar_aula(Model model, /*HttpServletRequest request,*/ @RequestParam Integer curso,@RequestParam Character letra) {
-//		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-//		model.addAttribute("token", token.getToken());
+	public String insertar_aula(Model model, HttpServletRequest request, @RequestParam Integer curso,@RequestParam Character letra) {
 		
 		try {
+			model.addAttribute("administrador", request.isUserInRole("ADMIN"));
+			
 			Aula a =  reposAula.findByLetra(letra);
 			Aula aula = new Aula(curso,letra);
 			if(a==null || a.getCurso() == curso && a.getLetra() != letra || a.getCurso() != curso && a.getLetra() == letra) {
@@ -90,16 +72,5 @@ public class AulaController {
 		return "formularioError";
 	}
 	
-	/*@RequestMapping(value="/eliminar_aula")
-	public String eliminar_aula(Model model, @RequestParam int curso,@RequestParam char letra) {
-		modelos(model);
-		try {
-			//Aula aula = new Aula(curso,letra);
-			//reposAula.delete(reposAula.findBycursoEquals(aula.getCurso())); 
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return "administrador";
-	}*/
 
 }
