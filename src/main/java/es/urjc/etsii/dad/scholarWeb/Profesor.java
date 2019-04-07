@@ -31,20 +31,30 @@ public class Profesor extends Usuario {
 	public Profesor() {
 	}
 
-	public Profesor(String nombre, String apellido, String ap2, String correo, String contraseña, String... roles) {
-		super(nombre, correo, contraseña,roles);
+	public Profesor( String nombre, String apellido, String ap2, String correo, String contraseña, String... roles) {
+		super( nombre, correo, contraseña,roles);
 		this.apellido1=apellido;
 		this.apellido2=ap2;
 	}
 	
 	public Profesor(String n, String a1, String a2, Asignatura a, Alumno alu, Aula aul, String correo, String contraseña, String... roles) {
-		super(n, correo, contraseña, roles);
+		super( n, correo, contraseña, roles);
 //		this.id_profesor =(int) Math.ceil(Math.random() * 1000);
 		this.apellido1 = a1;
 		this.apellido2 = a2;
 		this.asignaturas_por_profesor.add(a); 
 		this.alumnos.add(alu); 
 		this.aulas.add(aul);
+	}
+
+	public Profesor(String nombre, String apellido1, String apellido2, Asignatura asig, List<Alumno> alumnos_curso,
+			Aula a, String correo, String contrasena, String roles) {
+		super(nombre, correo, contrasena, roles);
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+		this.asignaturas_por_profesor.add(asig); 
+		this.alumnos.add((Alumno) alumnos_curso); 
+		this.aulas.add(a);
 	}
 
 	public List<Aula> getAulas() {
@@ -91,9 +101,9 @@ public class Profesor extends Usuario {
 
 	@Override
 	public String toString() {
-		return "Profesor [nombre=" + this.getNombre() + ", apellido1=" + apellido1
-				+ ", apellido2=" + apellido2 + ", correo=" + this.getCorreo() + ", asignaturas=" + ", alumnos=" + ", aulas="
-				+ "]";
+		return "nombre: " + this.getNombre() +"\n apellido1: " + apellido1
+				+ "\n apellido2: " + apellido2 + "\n correo: " + this.getCorreo() + "\n asignaturas:" +this.getAsignaturas() + "\n alumnos: " +this.getAlumnos() + "\n aulas: "
+				+ this.getAulas();
 	}
 
 	/*

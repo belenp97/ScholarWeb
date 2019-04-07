@@ -29,12 +29,17 @@
 					<h3>
 							<a href="login">Login</a> 
 							{{#administrador}}| 
-								<a href="/administrador">
+								<a href="administrador">
 								administrador</a>
 							{{/administrador}}
+							{{#profes}}| 
+								<a href="/profesor/profesoresPrivada">
+								Profesor Privado</a>
+							{{/profes}}
 							{{#username}}
-							| <a href="logout"><img src="./css/img/logout.png alt=" /></a> 
+							| <a href="logout"><img src="./css/img/logout.png" /></a> 
 							{{/username}}
+							
 					</h3>
 				</div>
 			</div>
@@ -50,11 +55,11 @@
 				<div class="inner">
 					{{#profe}}
 					<div class="feature text-center">
-						<img class="prof" src="./css/img/{{nombre}}.gif">
+						<img class="prof" src="./css/img/user.gif">
 						<h3 class="center">
 							{{nombre}} {{apellido1}} {{apellido2}}
 						</h3>
-						<p>Asignaturas: {{asignaturas}}</p>
+						<p>Alumnos: {{alumnos}}</p>
 						<p>{{correo}}</p>
 					</div>
 					{{/profe}}

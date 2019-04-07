@@ -132,7 +132,7 @@ public class Alumno extends Usuario{
 	
 	@Override
 	public String toString() {
-		return "Alumno [apellido1=" + apellido1 + ", apellido2=" + apellido2 + ", faltas=" + faltas + ", asignaturas=" +asignaturas +"]";
+		return "Nombre: "+this.getNombre() + ", Apellido1:" + apellido1 + ", Apellido2:" + apellido2 + ", faltas:" + faltas ;
 	}
 
 	

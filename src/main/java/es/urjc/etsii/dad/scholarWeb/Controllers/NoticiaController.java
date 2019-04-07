@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.urjc.etsii.dad.scholarWeb.Administrador;
 import es.urjc.etsii.dad.scholarWeb.Noticia;
+import es.urjc.etsii.dad.scholarWeb.Usuario;
 import es.urjc.etsii.dad.scholarWeb.Repositories.NoticiaRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.UsuarioRepository;
 
@@ -35,16 +36,24 @@ public class NoticiaController {
 	
 	@RequestMapping(value="/noticias", method=RequestMethod.GET)
 	public String verNoticia(Model model, HttpServletRequest request, HttpSession sesion) throws Exception {
-
-		
 		model.addAttribute("noticia", notRepo.findAll());
-		model.addAttribute("administrador", request.isUserInRole("ADMIN"));
-
+		
+		if(request.isUserInRole("ROLE_")) {
+    		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
+    		model.addAttribute("username", user.getNombre());
+    		model.addAttribute("administrador", request.isUserInRole("ADMIN"));
+    		model.addAttribute("profes", request.isUserInRole("PROFESOR"));
+		}
 		return "noticias";
 	}
 	
 	@RequestMapping(value="/insertar_noticia", method=RequestMethod.POST)
 	public String insertar_noticia(Model model, HttpServletRequest request, @RequestParam String titulo,@RequestParam String cuerpo) {
+		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
+
+		model.addAttribute("administrador", request.isUserInRole("ADMIN"));
+		model.addAttribute("username", user.getNombre());
+
 		try {
 
 	    	model.addAttribute("administrador", request.isUserInRole("ADMIN"));
@@ -67,9 +76,13 @@ public class NoticiaController {
 	
 	@RequestMapping(value="/eliminar_noticia", method=RequestMethod.POST)
 	public String eliminar_noticia(Model model, HttpServletRequest request, HttpSession sesion,@RequestParam String titulo) {
+		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
+
+		model.addAttribute("administrador", request.isUserInRole("ADMIN"));
+		model.addAttribute("profes", request.isUserInRole("PROFESOR"));
+		model.addAttribute("username", user.getNombre());
+
 		try {
-			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-			model.addAttribute("token", token.getToken());
 			
 			model.addAttribute("administrador", repos.findByRol("ADMIN"));
 			

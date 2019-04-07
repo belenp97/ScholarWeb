@@ -19,7 +19,7 @@ import javax.persistence.Id;
 @SessionScope
 public class Usuario {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column
 	private String nombre;
@@ -48,9 +48,21 @@ public class Usuario {
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
 	
+	public Usuario(Integer id, String nombre,String correo, String pass, String... roles) {
+		this.id = id; 
+		this.nombre = nombre;
+		this.correo = correo;
+		//this.pass = pass;
+		this.pass = new BCryptPasswordEncoder().encode(pass);
+		this.roles = new ArrayList<>(Arrays.asList(roles));
+	}
+	
 	/** Métodos de acceso a atributos de Usuario**/
 	
 	public Integer getId() {
+		if(id == null) {
+			id = (int) Math.random()*100; 
+		}
 		return id;
 	}
 	

@@ -8,17 +8,16 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import es.urjc.etsii.dad.scholarWeb.Administrador;
+import es.urjc.etsii.dad.scholarWeb.Noticia;
 
 @CacheConfig(cacheNames="test")
 public interface AdminRepository extends JpaRepository<Administrador, Integer>{
-	
 	@Cacheable
-	Administrador findByCorreo(String correo); 
+	List<Administrador>findAll();
+//	@Cacheable
+//	Administrador findByCorreo(String correo); 
 	
-	@Cacheable
-	List<Administrador> findAll();
-	
-	@CacheEvict(allEntries=true)
-	Administrador save(Administrador updatedItem);
+//	@CacheEvict(allEntries=true)
+//	Administrador save(Administrador updatedItem);
 
 }

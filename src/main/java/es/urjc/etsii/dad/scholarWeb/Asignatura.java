@@ -75,7 +75,7 @@ public class Asignatura {
 
 	@Override
 	public String toString() {
-		return "Asignatura [nombre=" + nombre + ", curso=" + curso + ", notas=" + notas + "]";
+		return "nombre: " + nombre +"\n" + ", curso: " + curso +"\n"+ ", notas: " + notas;
 	}
 
 }

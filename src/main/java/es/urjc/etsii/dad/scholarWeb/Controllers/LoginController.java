@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import es.urjc.etsii.dad.scholarWeb.Administrador;
 import es.urjc.etsii.dad.scholarWeb.Alumno;
 import es.urjc.etsii.dad.scholarWeb.Asignatura;
+import es.urjc.etsii.dad.scholarWeb.Profesor;
 import es.urjc.etsii.dad.scholarWeb.Usuario;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AdminRepository;
 import es.urjc.etsii.dad.scholarWeb.Repositories.AlumnoRepository;
@@ -67,6 +68,7 @@ class LoginController {
 	public String login(Model model, HttpServletRequest request, HttpSession sesion) {
 		
     	model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("profesor", request.isUserInRole("PROFESOR"));
     	
 		return "login";
 	}
@@ -91,16 +93,26 @@ class LoginController {
 				model.addAttribute("padres", padrerepos.findAll());
 				model.addAttribute("administrador", adminrepo.findAll());
 				model.addAttribute("asignaturas", asigRepo.findAll());
-				model.addAttribute("noticias", notRepo.findAll());
+				model.addAttribute("not", notRepo.findAll());
 				model.addAttribute("aulas", reposAula.findAll());
 				model.addAttribute("admin", adminrepo.findAll());
 				
 				return "administrador"; 
 			}
 			if(request.isUserInRole("PROFESOR")) {
-				model.addAttribute("profesor", repos.findByRol("PROFESOR"));
+					
+				model.addAttribute("administrador", request.isUserInRole("ADMIN"));
+				model.addAttribute("profes", request.isUserInRole("PROFESOR"));
+				model.addAttribute("username", user.getNombre());
 			
-				return "profesores"; 
+				Profesor p = proferepos.findBynombreEquals(user.getNombre()); 
+					
+				model.addAttribute("nombre", ((Profesor) user).getNombre() +" " +((Profesor) user).getApellido1() +" " +((Profesor) user).getApellido2());
+				model.addAttribute("correo", p.getCorreo());
+				model.addAttribute("alumnos", p.getAlumnos());
+				model.addAttribute("asignaturas", p.getAlumnos().get(0).getAsignaturas());
+				
+				return "profesoresPrivada"; 
 			}
 			if(request.isUserInRole("PADRE")) {
 				model.addAttribute("padre", repos.findByRol("PADRE"));
@@ -117,7 +129,6 @@ class LoginController {
 			request.logout();
 			return "/login";
 		} catch (ServletException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 				
@@ -127,8 +138,6 @@ class LoginController {
 
 	@RequestMapping(value="/loginError", method=RequestMethod.GET)
 	public String loginError() {
-		
 		return "/loginError";
-		
 	}
 }

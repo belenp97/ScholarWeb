@@ -66,34 +66,29 @@ public class AlumnoController {
 				+ apellido2.toLowerCase().charAt(0) + "" + "@gmail.com";
 
 		try {
-			Profesor p = profeRepo.findByid(idprofesor);
-			Profesor prof = profeRepo.findBynombreEquals(p.getNombre());
-
+			Profesor p = (Profesor) profeRepo.findByid(idprofesor);
 			Asignatura asig = asigRepo.findByid(idasig);
-			Asignatura asignatura = asigRepo.findBynombreEquals(asig.getNombre());
 			Aula a = reposAula.findByidAula(idaula);
-//			Aula aul = reposAula.findByCurso(a.get().getCurso());
-			contrasena = nombre.charAt(0) + apellido1.charAt(0) + apellido1.charAt(1) + "";
+			contrasena = nombre.charAt(0) + apellido1.charAt(0) + apellido1.charAt(0) + "";
 
-			if (prof == null) {
-				alumno = new Alumno(nombre, apellido1, apellido2, asignatura, a, correo, contrasena,
+			if (p == null) {
+				alumno = new Alumno(nombre, apellido1, apellido2, asig, a, correo, contrasena,
 						"ROLE_ALUMNO", "ROLE_USER");
 			} else {
-				alumno = new Alumno(nombre, apellido1, apellido2, asignatura, a, prof, correo, contrasena,
+				alumno = new Alumno(nombre, apellido1, apellido2, asig, a, p, correo, contrasena,
 						"ROLE_ALUMNO", "ROLE_USER");
 			}
-			Alumno al = reposAl.findBynombreEquals(nombre);
+			Alumno al = (Alumno) repos.findByNombre(nombre);
 			if (al == (null) || !al.equals(alumno)) {
-				reposAl.save(alumno);
-
+				
 				model.addAttribute("nexp", alumno.getId());
-				model.addAttribute("nombreAlum", alumno.getNombre() + " " + ((Alumno) alumno).getApellido1() + " "
-						+ ((Alumno) alumno).getApellido2() + " ");
-				model.addAttribute("aula",
-						((Alumno) alumno).getAula().getCurso() + " " + ((Alumno) alumno).getAula().getLetra() + " ");
-				model.addAttribute("nombreasig", ((Alumno) alumno).getAsignaturas().toString());
-				model.addAttribute("nombreprofesor", ((Alumno) alumno).getProfesores().toString());
-				model.addAttribute("correo", ((Alumno) alumno).getCorreo());
+				model.addAttribute("nombreAlum", nombre +" "+apellido1 +" " +apellido2 +"");
+				model.addAttribute("aula",a.toString());
+				model.addAttribute("nombreasig", asig.toString());
+				model.addAttribute("nombreprofesor", p.getNombre() +" " +p.getApellido1()+" " +p.getApellido2());
+				model.addAttribute("correo", correo);
+
+				repos.save(alumno);
 
 				return "formularioAceptAlumno";
 			}
@@ -111,11 +106,10 @@ public class AlumnoController {
 		model.addAttribute("username", user.getNombre());
 		
 		try {
-			Alumno a = reposAl.findByid(nexp);
-			Alumno alumno = reposAl.findBynombreEquals(a.getNombre());
+			Alumno alumno = (Alumno) reposAl.findByid(nexp);
 			Padre p = alumno.getPadre();
 			if (p != null) {
-				padreRepo.delete(p);
+				repos.delete(p);
 			}
 
 			model.addAttribute("nexp", alumno.getId());
@@ -126,7 +120,7 @@ public class AlumnoController {
 			model.addAttribute("nombreprofesor", alumno.getProfesores().toString());
 			model.addAttribute("correo", alumno.getCorreo());
 
-			reposAl.delete(alumno);
+			repos.delete(alumno);
 
 			return "formularioAceptAlumno";
 

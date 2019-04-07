@@ -58,8 +58,8 @@ public class PadreController {
 		model.addAttribute("administrador", request.isUserInRole("ADMIN"));
 		model.addAttribute("username", user.getNombre());
 
-		Alumno al = reposAl.findByid(idalumno);
-		Alumno a = reposAl.findBynombreEquals(al.getNombre());
+//		Alumno al = (Alumno) reposAl.findByid(idalumno);
+		Alumno a = (Alumno) reposAl.findByid(idalumno);
 
 		String correo = nombre.toLowerCase() + "." + apellido.toLowerCase() + "@gmail.com";
 		String contrasena = "@" + nombre.toLowerCase() + "." + apellido.toLowerCase() + "_"
@@ -67,11 +67,11 @@ public class PadreController {
 
 		try {
 			Padre padre = null;
-			Padre pa = padreRepo.findBycorreoEquals(correo);
+			Padre pa = padreRepo.findBycorreo(correo);
 			if (pa == null || (pa.getCorreo() != correo)) {
 				a.setPadre((Padre) padre);
 				padre = (Padre) new Padre(nombre, apellido, correo, a, contrasena, "ROLE_PADRE", "ROLE_USER");
-				padreRepo.saveAndFlush(padre);
+				repos.save(padre);
 
 				model.addAttribute("id_padre", padre.getId());
 				model.addAttribute("nombrePadre", padre.getNombre() + " " + ((Padre) padre).getApellido() + " ");
@@ -90,26 +90,20 @@ public class PadreController {
 	public String eliminar_padre(Model model, HttpServletRequest request, @RequestParam Integer id_padre) {
 		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
 
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("administrador", request.isUserInRole("ADMIN"));
 		model.addAttribute("username", user.getNombre());
 
 		try {
 
-			Padre p = padreRepo.findByid(id_padre);
-			Padre padre = padreRepo.findBycorreoEquals(p.getCorreo());
-			for (int i = 0; i < padre.getAlumno().size(); i++) {
-				Alumno alumno = reposAl.findBynombreEquals(padre.getAlumno().get(0).getNombre());
-				alumno.deletePadre(padre);
-			}
+			Padre padre = (Padre) padreRepo.findByid(id_padre);
 
 			if (id_padre > 0) {
 
-				padreRepo.deleteByid(id_padre);
+				repos.delete(id_padre);
 
-				model.addAttribute("id_padre", padre.getId());
+				model.addAttribute("id_padre", id_padre);
 				model.addAttribute("nombrePadre", padre.getNombre() + " " + padre.getApellido() + " ");
 				model.addAttribute("correo", padre.getCorreo());
-				model.addAttribute("hijo", padre.getAlumno().toString());
 
 				return "formularioAceptPadre";
 			}

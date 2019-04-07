@@ -8,30 +8,25 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import es.urjc.etsii.dad.scholarWeb.Alumno;
+import es.urjc.etsii.dad.scholarWeb.Noticia;
 import es.urjc.etsii.dad.scholarWeb.Usuario;
 
 @CacheConfig(cacheNames="test")
 public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
 
-	/*@Cacheable
-	List<Alumno> findAll();*/
-	
 	@Cacheable
-	Alumno findBynombreEquals(String nombre);
+	List<Alumno> findAll();
 	
-	@Cacheable
+//	@Cacheable
+	Alumno findBynombre(String nombre);
+	
+//	@Cacheable
 	Alumno findByid(Integer id);
 	
-	@CacheEvict(allEntries=true)
-	void deleteByid(Integer id);
+//	@CacheEvict(allEntries=true)
+//	void deleteByid(Integer id);
 	
-	@CacheEvict(allEntries=true)
-	Alumno save(Usuario alumno);
-	//Alumno insertarAlumno(String Alumno);
-//	Alumno findBynexpedienteEquals(Integer id);
+//	@CacheEvict(allEntries=true)
+//	Alumno save(Usuario alumno);
 	
-//	Optional<Alumno> findById(Integer nexp);
-	
-//	Alumno deleteByNexpediente(Integer nexp);
-
 }

@@ -12,22 +12,22 @@ import es.urjc.etsii.dad.scholarWeb.Usuario;
 @CacheConfig(cacheNames="test")
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
-	/*@Cacheable
-	List<Usuario> findAll();*/
+//	@Cacheable
+	List<Usuario> findAll();
 	
 	@Cacheable
-	Usuario findBycorreoEquals(String correo);
+	Usuario findBycorreo(String correo);
 
 	@Cacheable
-	List<Usuario> findByRol(String rol);
+	List<Usuario>findByRol(String rol);
 
-	@Cacheable
+//	@Cacheable
 	Usuario findByNombre(String nombre);
 	
 	@Cacheable
 	Usuario findByid(Integer id);
 	
 	@CacheEvict(allEntries=true)
-	Usuario save(Usuario u);
+	Usuario save(int id);
 	
 }

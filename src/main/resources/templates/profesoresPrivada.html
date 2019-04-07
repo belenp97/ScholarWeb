@@ -10,9 +10,9 @@
 		<div id="box_tittle">
 			<ul>
 				<li><a href="/"><strong>Inicio</strong></a></li>
-				<li><a href="/profesor"><strong>Profesores</strong></a></li>
-				<li><a href="/noticias"><strong>Noticias</strong></a></li>
-				<li><a href="/contacto"><strong>Contacto</strong></a></li>
+				<li><a href="profesor"><strong>Profesores</strong></a></li>
+				<li><a href="noticias"><strong>Noticias</strong></a></li>
+				<li><a href="contacto"><strong>Contacto</strong></a></li>
 			</ul>
 		</div>
 	</div>
@@ -27,8 +27,8 @@
 				</div>
 				<div class="fl_right">
 					
-					<p>
-						<h3><a href="/login">Login</a>
+					<h3>
+							<a href="login">Login</a> 
 							{{#administrador}}| 
 								<a href="administrador">
 								administrador</a>
@@ -40,33 +40,44 @@
 							{{#username}}
 							| <a href="logout"><img src="./css/img/logout.png" /></a> 
 							{{/username}}
-					</p>
+							
+					</h3>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- ####################################################################################################### -->
 
-	<section class="wrapper principal">
-		<div id="contain" class="center">
-			<h2>
-				La pagina esta en desarrollo. </br> Gracias por la espera.
-				<form action="/logout" method="post">
-					<input type="submit" value="Sign Out" />
-					<input type="hidden" name="_csrf" value="{{token}}"/>
-				</form>
-			</h2>
-		</div>
-	</section>
+	<div class="wrapper principal">
+		<div id="container" class="clear">
 
-	
+			<h3 class="center">Profesores</h3>
+			<section class="school-features text-dark d-flex">
+				<div class="inner">
+					<div class=" text-center">
+						<img class="prof" src="/css/img/user.gif">
+						<h3 class="center">
+							{{nombre}}
+						</h3>
+						<p>Asignaturas: 
+							<ul>
+								<li type="circle">{{asignaturas}}</li>
+							</ul>
+						</p>
+						<p>Correo: {{correo}}</p>
+						<p>Alumnos: {{alumnos}}</p>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+
 	<!-- ####################################################################################################### -->
 	<div class="wrapper">
 		<div id="footer" class="not">
 			<div class="fl_left clear">
 				<div class="fl_left center">
-					<a href="https://www.google.com/maps?client=safari&rls=en&q=puerta+del+sol&oe=UTF-8&um=1&ie=UTF-8&sa=X&ved=0ahUKEwivh4OLtMXgAhUMHxoKHX1vBQIQ_AUIDigB">
-					<img src="./css/img/worldmap.gif"/><br /> Find
+					<a href="https://www.google.com/maps?client=safari&rls=en&q=puerta+del+sol&oe=UTF-8&um=1&ie=UTF-8&sa=X&ved=0ahUKEwivh4OLtMXgAhUMHxoKHX1vBQIQ_AUIDigB"><img src="./css/img/worldmap.gif"/><br /> Find
 						Us With Google Maps &raquo;</a>
 				</div>
 			</div>

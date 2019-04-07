@@ -34,8 +34,12 @@
 								<a href="/administrador">
 								administrador</a>
 							{{/administrador}}
+							{{#profes}}| 
+								<a href="/profesor/profesoresPrivada">
+								Profesor Privado</a>
+							{{/profes}}
 							{{#username}}
-							| <a href="logout"><img src="./css/img/logout.png alt=" /></a> 
+							| <a href="logout"><img src="./css/img/logout.png" /></a> 
 							{{/username}}
 						</h3>
 					</p>
@@ -228,7 +232,7 @@
 						<div class="col_mysql">
 							<div class="col_mysql">
 								<label class="center">Asignatura</label> 
-								<input type="text" name="asignatura" class="form-mysql ">
+								<input type="text" name="id_asig" class="form-mysql ">
 							</div>
 						</div>
 						<div class="col_mysql">
@@ -339,8 +343,8 @@
 								  {{#asignaturas}}
 								  <tr class="center">
 								  	<td>{{id}}</td>
-								    <td>{{curso}}</td>
 								    <td>{{nombre}}</td>
+								    <td>{{curso}}</td>
 								  </tr>
 								  {{/asignaturas}}
 								</table>
@@ -397,12 +401,12 @@
 								  	<th>Titulo</th>
 								    <th>Cuerpo</th>
 								  </tr>
-								  {{#noticias}}
+								  {{#not}}
 								  <tr class="center">
 								    <td>{{titulo}}</td>
 								    <td>{{cuerpo}}</td>
 								  </tr>
-								  {{/noticias}}
+								  {{/not}}
 								</table>
 					</div>
 				</section>
@@ -482,12 +486,12 @@
 								  	<th>Nombre</th>
 								    <th>Apellido</th>
 								  </tr>
-								  {{#ad}}
+								  {{#admin}}
 								  <tr class="center">
 								    <td>{{nombre}}</td>
 								    <td>{{apellido}}</td>
 								  </tr>
-								  {{/ad}}
+								  {{/admin}}
 								</table>
 					</div>
 				</section>
