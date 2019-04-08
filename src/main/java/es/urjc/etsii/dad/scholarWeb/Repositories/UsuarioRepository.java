@@ -27,7 +27,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 	@Cacheable
 	Usuario findByid(Integer id);
 	
-	@CacheEvict(allEntries=true)
+	@CacheEvict
 	Usuario save(int id);
 	
 }

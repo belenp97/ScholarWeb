@@ -41,6 +41,14 @@ public class Noticia {
 	public void setcuerpo(String cuerpo) {
 		this.cuerpo = cuerpo;
 	}
+	
+	public int getid() {
+		return this.id;
+	}
+
+	public void setid(int id) {
+		this.id = id;
+	}
 
 	@Override
 	public String toString() {

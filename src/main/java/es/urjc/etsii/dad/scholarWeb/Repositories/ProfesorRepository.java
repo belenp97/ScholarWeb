@@ -15,7 +15,7 @@ import es.urjc.etsii.dad.scholarWeb.Profesor;
 @CacheConfig(cacheNames="test")
 public interface ProfesorRepository extends JpaRepository<Profesor, Integer>{
 
-	@Cacheable
+//	@Cacheable("test")
 	List<Profesor>findAll();
 	
 //	@Cacheable

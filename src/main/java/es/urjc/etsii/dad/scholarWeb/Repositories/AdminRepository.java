@@ -12,8 +12,9 @@ import es.urjc.etsii.dad.scholarWeb.Noticia;
 
 @CacheConfig(cacheNames="test")
 public interface AdminRepository extends JpaRepository<Administrador, Integer>{
-	@Cacheable
+//	@Cacheable
 	List<Administrador>findAll();
+	
 //	@Cacheable
 //	Administrador findByCorreo(String correo); 
 	

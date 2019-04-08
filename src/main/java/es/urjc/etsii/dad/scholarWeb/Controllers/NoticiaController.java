@@ -93,7 +93,7 @@ public class NoticiaController {
 				model.addAttribute("titulo", noticia.gettitulo()); 
 				model.addAttribute("cuerpo", noticia.getcuerpo()); 
 				
-				notRepo.delete(notRepo.findBytituloEquals(noticia.gettitulo()));
+				notRepo.delete(noticia);
 				
 				return "formularioAceptNoticia";
 			}

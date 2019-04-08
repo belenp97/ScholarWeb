@@ -12,13 +12,15 @@ import es.urjc.etsii.dad.scholarWeb.Noticia;
 @CacheConfig(cacheNames="test")
 public interface NoticiaRepository extends JpaRepository<Noticia, String> {
 
-	@Cacheable
+	@Cacheable("test")
 	List<Noticia> findAll();
 	
 	@Cacheable
 	Noticia findBytituloEquals(String titulo);
 	
-	@CacheEvict(allEntries=true)
+	@CacheEvict(value="test", allEntries=true)
 	Noticia save(Noticia item);
 
+	@CacheEvict(value="test", allEntries=true)
+	void delete(Noticia noticia);
 }

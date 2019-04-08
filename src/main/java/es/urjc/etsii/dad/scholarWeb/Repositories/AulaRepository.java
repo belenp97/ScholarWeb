@@ -19,10 +19,10 @@ public interface AulaRepository extends JpaRepository<Aula, Integer> {
 	@Cacheable
 	Aula findByidAula(Integer id);
 	
-	@CacheEvict(allEntries=true)
+	@CacheEvict
 	Aula save(Aula item);
 	
-	@CacheEvict(allEntries=true)
+	@CacheEvict
 	void deleteByidAula(Integer id);
 	
 	
