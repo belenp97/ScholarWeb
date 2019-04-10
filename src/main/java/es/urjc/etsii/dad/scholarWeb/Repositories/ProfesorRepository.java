@@ -18,10 +18,10 @@ public interface ProfesorRepository extends JpaRepository<Profesor, Integer>{
 //	@Cacheable("test")
 	List<Profesor>findAll();
 	
-//	@Cacheable
+//	@Cacheable("test")
 	Profesor findBynombreEquals(String nombre);
 	
-//	@Cacheable
+//	@Cacheable("test")
 	Profesor findByid(Integer id);
 	
 //	@CacheEvict(allEntries=true)

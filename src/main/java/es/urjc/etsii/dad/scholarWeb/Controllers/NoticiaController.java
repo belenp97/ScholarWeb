@@ -36,6 +36,7 @@ public class NoticiaController {
 	
 	@RequestMapping(value="/noticias", method=RequestMethod.GET)
 	public String verNoticia(Model model, HttpServletRequest request, HttpSession sesion) throws Exception {
+		
 		model.addAttribute("noticia", notRepo.findAll());
 		
 		if(request.isUserInRole("ROLE_")) {
