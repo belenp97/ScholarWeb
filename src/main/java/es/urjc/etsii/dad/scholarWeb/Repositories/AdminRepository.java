@@ -12,7 +12,7 @@ import es.urjc.etsii.dad.scholarWeb.Noticia;
 
 @CacheConfig(cacheNames="test")
 public interface AdminRepository extends JpaRepository<Administrador, Integer>{
-//	@Cacheable
+//	@Cacheable("test")
 	List<Administrador>findAll();
 	
 //	@Cacheable

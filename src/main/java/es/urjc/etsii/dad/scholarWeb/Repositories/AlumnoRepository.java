@@ -14,13 +14,13 @@ import es.urjc.etsii.dad.scholarWeb.Usuario;
 @CacheConfig(cacheNames="test")
 public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
 
-	//@Cacheable
+//	@Cacheable("test")
 	List<Alumno> findAll();
 	
-//	@Cacheable
+//	@Cacheable("test")
 	Alumno findBynombre(String nombre);
 	
-//	@Cacheable
+//	@Cacheable("test")
 	Alumno findByid(Integer id);
 	
 //	@CacheEvict(allEntries=true)

@@ -13,16 +13,16 @@ import es.urjc.etsii.dad.scholarWeb.Aula;
 @CacheConfig(cacheNames="test")
 public interface AulaRepository extends JpaRepository<Aula, Integer> {
 	
-	@Cacheable
+//	@Cacheable("test")
 	Aula findByLetra(Character letra);
 	
-	@Cacheable
+//	@Cacheable("test")
 	Aula findByidAula(Integer id);
 	
-	@CacheEvict
+//	@CacheEvict(value="test", allEntries=true)
 	Aula save(Aula item);
 	
-	@CacheEvict
+//	@CacheEvict(value="test", allEntries=true)
 	void deleteByidAula(Integer id);
 	
 	

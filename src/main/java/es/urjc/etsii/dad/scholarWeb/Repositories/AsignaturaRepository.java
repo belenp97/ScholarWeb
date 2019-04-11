@@ -14,19 +14,19 @@ import es.urjc.etsii.dad.scholarWeb.Profesor;
 @CacheConfig(cacheNames="test")
 public interface AsignaturaRepository extends JpaRepository<Asignatura, Integer>{
 
-//	@Cacheable
+//	@Cacheable("test")
 	List<Asignatura> findAll();
 	
-	@Cacheable
+//	@Cacheable("test")
 	Asignatura findBynombreEquals(String nombre);
 	
-	@Cacheable
+//	@Cacheable("test")
 	Asignatura findByid(Integer id);
 	
-	@Cacheable
+//	@Cacheable("test")
 	void delete(Integer id);
 
-	@CacheEvict(allEntries=true)
+//	@CacheEvict(value="test", allEntries=true)
 	Asignatura save(Asignatura item);
 	
 //	List<Asignatura> findByUsuario(Usuario usuario);
