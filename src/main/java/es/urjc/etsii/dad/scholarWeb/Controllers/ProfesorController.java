@@ -57,11 +57,15 @@ public class ProfesorController {
 		try {
 			model.addAttribute("profe", profeRepo.findAll());
 			
-			if(request.isUserInRole("ROLE_")) {
+			if((request.isUserInRole("ADMIN"))) {
 	    		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
 	    		model.addAttribute("username", user.getNombre());
 	    		model.addAttribute("administrador", request.isUserInRole("ADMIN"));
-	    		model.addAttribute("profes", request.isUserInRole("PROFESOR"));
+			}
+			if((request.isUserInRole("PROFESOR"))) {
+	    		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
+	    		model.addAttribute("username", user.getNombre());
+	    		model.addAttribute("administrador", request.isUserInRole("PROFESOR"));
 			}
     	
     	} catch (Exception e) {

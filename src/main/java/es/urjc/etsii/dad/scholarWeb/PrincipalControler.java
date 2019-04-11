@@ -45,11 +45,15 @@ public class PrincipalControler {
 
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String principal(Model model, HttpServletRequest request, HttpSession sesion) {
-		if(request.isUserInRole("ROLE_")) {
+		if((request.isUserInRole("ADMIN"))) {
     		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
     		model.addAttribute("username", user.getNombre());
     		model.addAttribute("administrador", request.isUserInRole("ADMIN"));
-    		model.addAttribute("profes", request.isUserInRole("PROFESOR"));
+		}
+		if((request.isUserInRole("PROFESOR"))) {
+    		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
+    		model.addAttribute("username", user.getNombre());
+    		model.addAttribute("administrador", request.isUserInRole("PROFESOR"));
 		}
 		return "principal";
 	}

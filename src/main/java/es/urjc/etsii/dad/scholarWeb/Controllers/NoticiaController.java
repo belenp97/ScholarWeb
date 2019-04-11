@@ -38,11 +38,15 @@ public class NoticiaController {
 	public String verNoticia(Model model, HttpServletRequest request, HttpSession sesion) throws Exception {
 		model.addAttribute("noticia", notRepo.findAll());
 		
-		if(request.isUserInRole("ROLE_")) {
+		if((request.isUserInRole("ADMIN"))) {
     		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
     		model.addAttribute("username", user.getNombre());
     		model.addAttribute("administrador", request.isUserInRole("ADMIN"));
-    		model.addAttribute("profes", request.isUserInRole("PROFESOR"));
+		}
+		if((request.isUserInRole("PROFESOR"))) {
+    		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
+    		model.addAttribute("username", user.getNombre());
+    		model.addAttribute("administrador", request.isUserInRole("PROFESOR"));
 		}
 		return "noticias";
 	}

@@ -3,6 +3,7 @@ package es.urjc.etsii.dad.scholarWeb.Controllers;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,21 +13,35 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import InternalService.Mail;
+import es.urjc.etsii.dad.scholarWeb.Usuario;
+import es.urjc.etsii.dad.scholarWeb.Repositories.UsuarioRepository;
 
 
 @Controller
 @RequestMapping("/contacto")
 public class ContactoController {
-	
+
+	@Autowired
+	private UsuarioRepository repos;
 
 	private static final String RestService = "http://127.0.0.1:8070/send"; 
 	
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public String newContacto(Model model, HttpServletRequest request, HttpSession sesion) {
-		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-		model.addAttribute("token", token.getToken());
+//		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+//		model.addAttribute("token", token.getToken());
+		
+		if((request.isUserInRole("ADMIN"))) {
+    		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
+    		model.addAttribute("username", user.getNombre());
+    		model.addAttribute("administrador", request.isUserInRole("ADMIN"));
+		}
+		if((request.isUserInRole("PROFESOR"))) {
+    		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
+    		model.addAttribute("username", user.getNombre());
+    		model.addAttribute("administrador", request.isUserInRole("PROFESOR"));
+		}
 
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		return "contacto";// llamarlo como se llama el html
 	}
 	

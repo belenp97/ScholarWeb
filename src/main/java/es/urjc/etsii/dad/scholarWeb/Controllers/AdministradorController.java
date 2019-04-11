@@ -54,12 +54,17 @@ public class AdministradorController {
 	@RequestMapping("")
 	public String administrador(Model model, HttpServletRequest request) {
 
-		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
-
-		model.addAttribute("administrador", request.isUserInRole("ADMIN"));
-		model.addAttribute("profes", request.isUserInRole("PROFESOR"));
-		model.addAttribute("username", user.getNombre());
-
+		if((request.isUserInRole("ADMIN"))) {
+    		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
+    		model.addAttribute("username", user.getNombre());
+    		model.addAttribute("administrador", request.isUserInRole("ADMIN"));
+		}
+		if((request.isUserInRole("PROFESOR"))) {
+    		Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
+    		model.addAttribute("username", user.getNombre());
+    		model.addAttribute("administrador", request.isUserInRole("PROFESOR"));
+		}
+		
 		try {
 			model.addAttribute("profesores", profeRepo.findAll());
 			model.addAttribute("alumnos", reposAl.findAll());
