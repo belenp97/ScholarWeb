@@ -114,7 +114,6 @@ Para la ejecución de la aplicación en un entorno virtualizado deberemos tener 
 	   * Los ficheros que tenemos que copiar serán los .jar de nuestra app (generados anteriormente en STS con Run As > Maven build) y del  servicio interno, junto con el fichero .sql que hemos generado de nuestra base de datos en Windows:
     
 		    * formularioUsuarios.sql
-		    * config.vm.network "private_network", ip: "192.168.33.10"
 		    * ScholarWebPublic-0.0.1-SNAPSHOT.jar
       
 - En esta misma carpeta modificamos el archivo Vagrantfile descomentando la siguiente línea:
