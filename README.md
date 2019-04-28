@@ -207,7 +207,8 @@ donde dentro del método con tener la llamada a la creación de ese fichero.
 
 	*File file = new File(EXTERNAL_FILE_PATH +"/"+ fileName);
 		
-
+### INFRAESTRUCTURA DOCKER.
+![Untitled Diagram](https://user-images.githubusercontent.com/45795451/56870258-2e92c300-6a0d-11e9-9aaf-594e1a75dfb7.jpg)
 
 ### **Equipo de desarrollo.**
   1. Jorge Alonso Vivar
