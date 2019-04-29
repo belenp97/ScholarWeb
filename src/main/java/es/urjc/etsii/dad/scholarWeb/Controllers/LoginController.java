@@ -67,9 +67,6 @@ class LoginController {
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login(Model model, HttpServletRequest request, HttpSession sesion) {
 		
-		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-		model.addAttribute("token", token.getToken());
-		
     	model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		model.addAttribute("profesor", request.isUserInRole("PROFESOR"));
     	
@@ -78,9 +75,6 @@ class LoginController {
 	
 	@RequestMapping(value="/privado")
 	public String loginPrivado(Model model, HttpServletRequest request) {
-		
-			CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-			model.addAttribute("token", token.getToken());
 			 
 			Usuario user = repos.findByNombre(request.getUserPrincipal().getName());
 	    	
