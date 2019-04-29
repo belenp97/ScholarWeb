@@ -17,16 +17,16 @@ public interface AsignaturaRepository extends JpaRepository<Asignatura, Integer>
 //	@Cacheable
 	List<Asignatura> findAll();
 	
-	@Cacheable
+//	@Cacheable
 	Asignatura findBynombreEquals(String nombre);
 	
-	@Cacheable
+//	@Cacheable
 	Asignatura findByid(Integer id);
 	
-	@Cacheable
+//	@Cacheable
 	void delete(Integer id);
 
-	@CacheEvict(allEntries=true)
+//	@CacheEvict(allEntries=true)
 	Asignatura save(Asignatura item);
 	
 //	List<Asignatura> findByUsuario(Usuario usuario);
