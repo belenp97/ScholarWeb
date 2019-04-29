@@ -17,19 +17,19 @@ import es.urjc.etsii.dad.scholarWeb.Usuario;
 @CacheConfig(cacheNames="test")
 public interface PadreRepository extends JpaRepository<Padre, Integer> {
 
-//	@Cacheable("test")
+//	@Cacheable
 	List<Padre>findAll();
 	
-//	@Cacheable("test")
+//	@Cacheable
 	Padre findBycorreo(String correo);
 	
-//	@Cacheable("test")
+//	@Cacheable
 	Padre findByNombre(String nombre);
 	
-//	@Cacheable("test")
+//	@Cacheable
 	Padre findByid(Integer id);
 
-//	@CacheEvict(value="test", allEntries=true)
+//	@CacheEvict(allEntries=true)
 //	Padre save(Usuario padre);
 	
 //	@CacheEvict(allEntries=true)

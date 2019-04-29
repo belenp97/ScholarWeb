@@ -15,7 +15,7 @@ public interface NoticiaRepository extends JpaRepository<Noticia, String> {
 	@Cacheable("test")
 	List<Noticia> findAll();
 	
-	@Cacheable("test")
+	@Cacheable
 	Noticia findBytituloEquals(String titulo);
 	
 	@CacheEvict(value="test", allEntries=true)

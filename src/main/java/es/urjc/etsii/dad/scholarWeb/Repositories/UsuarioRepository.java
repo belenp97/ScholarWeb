@@ -15,19 +15,19 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 //	@Cacheable
 	List<Usuario> findAll();
 	
-	@Cacheable("test")
+	@Cacheable
 	Usuario findBycorreo(String correo);
 
 	@Cacheable
 	List<Usuario>findByRol(String rol);
 
-	@Cacheable("test")
+//	@Cacheable
 	Usuario findByNombre(String nombre);
 	
-	@Cacheable("test")
+	@Cacheable
 	Usuario findByid(Integer id);
 	
-	@CacheEvict(value="test", allEntries=true)
+	@CacheEvict
 	Usuario save(int id);
 	
 }
