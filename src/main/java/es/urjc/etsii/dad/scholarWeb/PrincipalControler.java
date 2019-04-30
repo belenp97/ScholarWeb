@@ -38,7 +38,7 @@ import es.urjc.etsii.dad.scholarWeb.Usuario;
 public class PrincipalControler {
 	
 	//Cambiar el path según donde se encuentre el proyecto.
-	private static final String EXTERNAL_FILE_PATH = "Users/jorgealonsovivar/Desktop/urjc/3 AÑO/2 cuatri/DAD";
+	private static final String EXTERNAL_FILE_PATH = "./";
 
 	@Autowired
 	private UsuarioRepository repos;

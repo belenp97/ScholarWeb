@@ -94,7 +94,7 @@ public class AdministradorController {
 			Administrador admin = (Administrador) repos.findBycorreo(correo);
 			if (admin == null || admin.getCorreo() != correo) {
 
-				Usuario adminis = (Administrador) new Administrador(nombre, apellido, correo, contrasena, "ROLE_ADMIN", "ROLE_PROFESOR", "ROLE_PADRE");
+				Usuario adminis = (Administrador) new Administrador(nombre, apellido, correo, contrasena, "ROLE_ADMIN");
 				admRepo.save((Administrador) adminis);
 
 //				model.addAttribute("id", adminis.getId());

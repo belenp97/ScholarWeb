@@ -1,0 +1,72 @@
+version: '3'
+services:
+  web1:
+    image: app
+    container_name: web1
+    environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/scholarweb
+        #SPRING_JPA_HIBERNATE_DDL-AUTO: update
+    links:
+        - db
+        - servint1
+        - servint2
+    restart: unless-stopped
+
+  web2:
+    image: app
+    container_name: web2
+    environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/scholarweb
+        #SPRING_JPA_HIBERNATE_DDL-AUTO: update
+    links:
+        - db
+        - servint1
+        - servint2
+    restart: unless-stopped
+
+  servint1:
+    image: servint
+    container_name: servint1
+    expose:
+      - "8070"
+
+  servint2:
+    image: servint
+    container_name: servint2
+    expose:
+      - "8070"
+  db:
+    image: mysql
+    container_name: db
+    environment:
+        MYSQL_ROOT_PASSWORD: 12345678
+        MYSQL_DATABASE: scholarweb
+
+  balanceint:
+    image: haproxy:1.9.6
+    container_name: balanceint
+    expose:
+     - "8071"
+    volumes:
+     - "./proxySI/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
+    links:
+     - servint1
+     - servint2
+
+  balance:
+    image: haproxy:1.9.6
+    container_name: balance
+    ports:
+     - "9090:8080"
+     - "8443:8443"
+    volumes:
+     - "./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
+     - "./xip.io.pem:/user/local/etc/haproxy/xip.io.pem"
+    links:
+     - db
+     - web1
+     - web2
+     - servint1
+     - servint2
+
+        
