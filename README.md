@@ -211,7 +211,7 @@ donde dentro del método con tener la llamada a la creación de ese fichero.
 ![Untitled Diagram](https://user-images.githubusercontent.com/45795451/56870258-2e92c300-6a0d-11e9-9aaf-594e1a75dfb7.jpg)
 
 ### Video Explicativo de la funcionalidad de la web
-[![Watch the video](https://www.youtube.com/watch?v=nWzAhFHLJws&feature=youtu.be)]
+https://www.youtube.com/watch?v=nWzAhFHLJws&feature=youtu.be
 
 
 ### **Equipo de desarrollo.**
